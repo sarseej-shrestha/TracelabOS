@@ -8,14 +8,14 @@ Official repository: https://github.com/sarseej-shrestha/TracelabOS
 
 ## Local development
 
-Node 22.13+ is required for SQLite. Intended workspace manager: pnpm 10.28.2.
+Use Node 22 LTS (22.13+) or Node 24 LTS and pnpm 10.28.2.
 
 ```sh
-pnpm install
+corepack pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-The initial restricted environment has an npm offline fallback (`npm ci --offline` using a populated cache). Run `npm run verify` for type checks, lint, tests and a production build. Open http://localhost:3000. Only fictional adult demo personas may be used. No school deployment or privacy-law compliance is claimed.
+The pnpm lockfile is authoritative. Run `pnpm verify` for type checks, lint, tests and a production build. Open http://localhost:3000. Only fictional adult demo personas may be used. No school deployment or privacy-law compliance is claimed.
 
 ## Engineering records
 
