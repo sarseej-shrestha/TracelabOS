@@ -46,6 +46,8 @@ import {
   type ImageStore,
 } from '../../../packages/vision-adapter/src/storage.ts';
 import { saveImage, readImage } from './images.ts';
+import { enqueueOcr, manualEntry, OcrJobError } from './ocr.ts';
+import type { VisionProvider } from '../../../packages/vision-adapter/src/index.ts';
 type User = {
   id: string;
   username: string;
@@ -90,6 +92,7 @@ export function createApp(
   options: {
     allowedOrigins?: string[];
     imageStore?: ImageStore;
+    visionProvider?: VisionProvider;
   } = {},
 ) {
   const db = asDatabase(input);
@@ -302,7 +305,7 @@ export function createApp(
       status: 'ok',
       persistence: db.kind,
       imageStorage: options.imageStore?.kind ?? 'private-database',
-      ocr: 'unavailable',
+      ocr: options.visionProvider ? 'available' : 'unavailable',
       version: '0.1.0',
     });
   });
@@ -586,6 +589,13 @@ export function createApp(
           'SELECT submission_id FROM submission_images WHERE submission_id=? UNION SELECT submission_id FROM image_references WHERE submission_id=?',
         )
         .get(s.id, s.id)),
+      ocrAvailable: !!options.visionProvider,
+      ocrJob:
+        (await db
+          .prepare(
+            'SELECT id,status,attempts,error_code,provider_version,raw_output FROM ocr_jobs WHERE submission_id=? ORDER BY created_at DESC,id DESC LIMIT 1',
+          )
+          .get(s.id)) ?? null,
       evaluation: e ? JSON.parse(e.result) : null,
       feedbackHeld: !visible,
       reviews: visible
@@ -657,6 +667,45 @@ export function createApp(
     });
     return c.json({ state: s.state });
   });
+  app.post('/api/submissions/:id/process', async (c) => {
+    const s = await submission(c.req.param('id'), c.get('user'), true);
+    const body = z
+      .object({
+        version: z.number().int().positive(),
+        idempotencyKey: z.string().uuid(),
+      })
+      .strict()
+      .parse(await c.req.json());
+    try {
+      return c.json(
+        await enqueueOcr(
+          db,
+          s.id,
+          body.version,
+          body.idempotencyKey,
+          options.visionProvider,
+        ),
+        202,
+      );
+    } catch (error) {
+      if (error instanceof OcrJobError) fail(error.status, error.message);
+      throw error;
+    }
+  });
+  app.post('/api/submissions/:id/manual-entry', async (c) => {
+    const s = await submission(c.req.param('id'), c.get('user'), true);
+    const body = z
+      .object({ version: z.number().int().positive() })
+      .strict()
+      .parse(await c.req.json());
+    try {
+      await manualEntry(db, s.id, body.version);
+    } catch (error) {
+      if (error instanceof OcrJobError) fail(error.status, error.message);
+      throw error;
+    }
+    return c.json({ state: 'MANUAL_ENTRY' });
+  });
   app.post('/api/submissions/:id/image', async (c) => {
     let s = await submission(c.req.param('id'), c.get('user'), true);
     if (s.state !== 'MANUAL_ENTRY') fail(409, 'SUBMISSION_LOCKED');
@@ -684,7 +733,11 @@ export function createApp(
     s = await submission(s.id, c.get('user'), true);
     if (s.state !== 'MANUAL_ENTRY') fail(409, 'SUBMISSION_LOCKED');
     await saveImage(db, options.imageStore, s.id, normalized!);
-    return c.json({ stored: true, ocr: 'unavailable', manualEntry: true });
+    return c.json({
+      stored: true,
+      ocr: options.visionProvider ? 'available' : 'unavailable',
+      manualEntry: true,
+    });
   });
   app.get('/api/submissions/:id/image', async (c) => {
     const s = await submission(c.req.param('id'), c.get('user'));

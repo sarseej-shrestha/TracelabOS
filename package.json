@@ -29,7 +29,9 @@
     "db:import-sqlite": "node --experimental-transform-types scripts/import-sqlite.ts",
     "images:migrate": "node --experimental-transform-types scripts/images.ts migrate",
     "images:reconcile": "node --experimental-transform-types scripts/images.ts reconcile",
-    "ocr:smoke": "node --experimental-transform-types scripts/ocr-smoke.ts"
+    "ocr:smoke": "node --experimental-transform-types scripts/ocr-smoke.ts",
+    "ocr:worker": "node --experimental-transform-types scripts/ocr-worker.ts",
+    "ocr:workflow-smoke": "node --experimental-transform-types scripts/ocr-workflow-smoke.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.1148.0",

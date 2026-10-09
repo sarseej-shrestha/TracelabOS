@@ -50,7 +50,26 @@ it('imports immutable local work and event ordering, and refuses to overwrite a 
         'abc123',
         new Date().toISOString(),
       );
+    local
+      .prepare(
+        'INSERT INTO ocr_jobs(id,submission_id,request_key,input_version,image_sha256,provider_version,status,raw_output,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?)',
+      )
+      .run(
+        'imported-job',
+        s.id,
+        'imported-request',
+        1,
+        'hash',
+        'historical-model',
+        'SUCCEEDED',
+        '{"preserved":true}',
+        new Date().toISOString(),
+        new Date().toISOString(),
+      );
     const counts = await importLocal(local, db);
+    expect(await db.prepare('SELECT * FROM ocr_jobs').get()).toEqual(
+      local.prepare('SELECT * FROM ocr_jobs').get(),
+    );
     expect(await db.prepare('SELECT * FROM image_references').get()).toEqual(
       local.prepare('SELECT * FROM image_references').get(),
     );
@@ -63,6 +82,7 @@ it('imports immutable local work and event ordering, and refuses to overwrite a 
       evaluations: 1,
       teacher_reviews: 1,
       submission_images: 1,
+      ocr_jobs: 1,
       image_references: 1,
     });
     expect(await db.prepare('SELECT result FROM evaluations').get()).toEqual(

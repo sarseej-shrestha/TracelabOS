@@ -9,6 +9,7 @@ const tables = [
   'submissions',
   'submission_images',
   'image_references',
+  'ocr_jobs',
   'transcription_versions',
   'evaluations',
   'teacher_reviews',
@@ -31,12 +32,8 @@ export async function importLocal(source: DatabaseSync, target: Database) {
       const counts: Record<string, number> = {};
       for (const table of tables) {
         if (
-          table === 'image_references' &&
-          !source
-            .prepare(
-              "SELECT 1 FROM sqlite_master WHERE name='image_references'",
-            )
-            .get()
+          ['image_references', 'ocr_jobs'].includes(table) &&
+          !source.prepare('SELECT 1 FROM sqlite_master WHERE name=?').get(table)
         ) {
           counts[table] = 0;
           continue;
