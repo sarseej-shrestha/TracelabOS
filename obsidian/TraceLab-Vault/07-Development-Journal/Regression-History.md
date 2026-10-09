@@ -9,3 +9,7 @@ INSTALL-001: offline npm peer resolution crashed and a transitive pure-rand tarb
 Related: [[00-START-HERE]] · [[Current-State]]
 
 MATH-001: Review identified two fraction-classifier failures. The observed affine coefficient was ignored when matching a denominator-addition candidate, and a zero candidate denominator raised an exception before generic inequivalence could be reported. Added two explicit failing-case regressions, required a constant observation and nonzero candidate denominator, and reran the full suite successfully (358 tests). See [[Change-Ledger]] TASK-0005.
+
+## Browser origin mismatch — 2026-10-08
+
+First real Chromium run failed all three original tests: demo POST was rejected with origin required. Baseline 839d634 used the internal request URL as sole CSRF origin; Next normalized its hostname differently from the browser. Reproduced through the real production server, then added explicit configured public origins and three security regressions (accepted external HTTPS origin, forged forwarded host rejected, internal origin rejected). Session cookies follow the validated public origin. All five browser tests and 361 Vitest tests now pass locally. A test-only select locator timeout was corrected to use its accessible combobox role.

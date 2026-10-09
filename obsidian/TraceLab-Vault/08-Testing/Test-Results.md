@@ -28,3 +28,7 @@ Related: [[Test-Matrix]] · [[Math-Engine-Results]] · [[Current-State]]
 ## Recovery rerun
 
 After verified extraction to a fresh directory and clean npm ci using the existing lockfile, npm run verify exited 0 again: all 358 tests/5,000 seeded cases, typecheck, lint, and production build passed. Formatting and all 84 notes/links passed. SymPy repeated 2,000 cases/6,000 comparisons with zero disagreements (Python 3.13.9/SymPy 1.14.0). Original artifacts are unchanged; new evidence is under recovery/verification/. Node 23.10.0 engine warnings remain disclosed. A fresh socket probe confirmed EPERM; no repeat browser attempt or browser pass is claimed. This validates restoration on the same restricted host, not a completed move to a new authorized runtime.
+
+## Full-access browser checkpoint — 2026-10-08
+
+361 Vitest tests passed, zero failed; typecheck, lint, production build passed. Five Playwright Chromium tests passed in 7.5s. Artifacts/browser-results.json and three screenshots record local results. GitHub baseline CI failed installation (npm Invalid Version), so remote verification remains pending tooling repair.
