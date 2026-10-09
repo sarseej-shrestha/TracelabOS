@@ -25,3 +25,5 @@ Related: [[00-START-HERE]] · [[Current-State]] · [[Git-Workflow]]
 ## Permissions restored — 2026-10-08
 
 Git, GitHub authentication/network, localhost and Chromium execution now succeed. Baseline 839d63439e9c2d5e3f800592cb68003bf1cec3c9 is verified on official main. Do not reinitialize or import another baseline. See [[Current-State]] for the current task and verified checks. Original archive is retained unchanged; subsequent changes are tracked in Git.
+
+Current recovery checkpoint: code PRs #1–#12 are merged with checks; no source migration or reinitialization is needed. The original archive hash was checked again unchanged. Current local preview at 127.0.0.1:3000 was verified in Chromium. Next development is TASK-0021B geometry integration, not Git recovery. See [[Current-State]] for the recorded code merge, remaining cloud/OCR limitations and exact next branch.

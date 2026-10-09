@@ -8,19 +8,19 @@ Curriculum expansion after verified recovery, local cloud adapters and OCR integ
 
 ## Active Task
 
-TASK-0021A dimensional quantity verifier passes local tests and independent SymPy checks; commit/push/CI follows. Geometry templates/UI remain TASK-0021B.
+TASK-0021A is merged and verified. Recovery checkpoint documentation is being recorded on docs/curriculum-recovery-checkpoint; the next implementation is TASK-0021B geometry templates/UI.
 
 ## Current Git Branch
 
-feat/geometry-unit-verifier
+Checkpoint branch: docs/curriculum-recovery-checkpoint. Return to main after its checked merge; start TASK-0021B from synchronized main.
 
 ## Latest Commit Hash
 
-Latest verified remote main: 7cd2bd3a971285eb0bf6eab726229e1927b295c7 (PR #11 merge). Durable jobs commit 8893999; importer fix 88487d7; adapter be25149. This note records preceding commits rather than its own hash.
+Latest verified remote main: 0113e1ca334621d8db131fc7a61ef7412ea2d3b2 (PR #12 merge). Durable jobs commit 8893999; importer fix 88487d7; adapter be25149. This note records preceding commits rather than its own hash.
 
 ## Latest Successful Push
 
-PRs #1–#11 merged after checks; PR #11 run 37991449649 passed verify/oracle/ocr-metrics. Algebra feature 572ceec is preserved. Fraction commit fd5f584 and UI commit 8742c97 are preserved. Ratio feature 3c38f88 is preserved; quantity task push/checks follow local verification.
+PRs #1–#12 merged after checks; PR #12 run 37992150994 passed verify/oracle/ocr-metrics. Algebra feature 572ceec is preserved. Fraction commit fd5f584 and UI commit 8742c97 are preserved. Ratio feature 3c38f88 is preserved; quantity feature 434ebb9 is preserved. This documentation snapshot records the preceding verified code merge; use git log for its own later commit/merge.
 
 ## Latest Verified Test Results
 
@@ -56,10 +56,12 @@ TRACELAB_DB_PATH (use the same absolute path for API and worker) or DATABASE_URL
 
 ## Exact Next Steps
 
-1. Commit/push dimensional verifier work, pass checks and merge; verify remote main.
-2. Expand geometry according to [[Task-Backlog]], preserving explicit domain and unit boundaries.
+1. From synchronized main, create feat/geometry-curriculum for TASK-0021B. Add six skills/twelve templates, known SVG dimensions, answer-unit metadata, API/browser completion and independent oracle coverage.
+2. Connect evaluateQuantities through question-aware grading. Keep unsupported symbolic/unit notation in review and require final units.
 3. Continue mastery/realtime/deployment in [[Master-Roadmap]]. Targeted photographed-work validation and cloud credentials remain open.
 
 ## Recovery Procedure
 
 Read [[00-START-HERE]], this note, [[Recovery-Instructions]] and ledger; inspect status/log/remote. Original verified backup recovery/tracelab-baseline-20261009T000129Z.tar.gz SHA-256 acd9b02518cc2d38254cba428e03acf00e10f3c399f0b0b895a11fca84da8bdc contains the original 150 files/84 notes. Git preserves subsequent work. Use Node 22 LTS, frozen pnpm install and versioned SQL migrations. Do not recreate the baseline. The original queue stash remains as an extra local recovery copy; its restored work is committed and pushed in 8893999.
+
+Preview checkpoint: http://127.0.0.1:3000 returned HTTP 200 and the guided-demo control was visible in Chromium. The local experimental OCR service listens on 127.0.0.1:8020. Preview processes are session-local; restart with [[Local-Development]] and the OCR service README when needed. The source archive hash was rechecked unchanged at this checkpoint.
