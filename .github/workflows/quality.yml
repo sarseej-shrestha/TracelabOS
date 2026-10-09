@@ -71,9 +71,9 @@ jobs:
         with:
           python-version: '3.13'
       - run: pip install -r research/ocr-benchmarks/requirements-test.txt
-      - run: ruff check research/ocr-benchmarks
-      - run: ruff format --check research/ocr-benchmarks
-      - run: pytest research/ocr-benchmarks --junitxml=artifacts/ocr-metric-tests.xml
+      - run: ruff check research/ocr-benchmarks services/ocr-worker/python
+      - run: ruff format --check research/ocr-benchmarks services/ocr-worker/python
+      - run: pytest research/ocr-benchmarks services/ocr-worker/python --junitxml=artifacts/ocr-metric-tests.xml
       - uses: actions/upload-artifact@v4
         if: always()
         with:

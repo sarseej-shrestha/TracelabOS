@@ -40,3 +40,7 @@ After verified extraction to a fresh directory and clean npm ci using the existi
 ## Private R2 checkpoint — 2026-10-08
 
 416 tests passed, zero failed; typecheck/lint/build passed; five Chromium tests passed in 5.8s; pnpm audit found no known vulnerabilities. Added signed local S3 protocol requests, private-object API authorization, source-preserving migration, storage failure, integrity mismatch and orphan reconciliation tests on SQLite/PostgreSQL. Evidence: artifacts/r2-verification.log. No live R2 call or deployment is claimed.
+
+## Experimental OCR adapter checkpoint
+
+444 TypeScript tests, 24 Python tests, TypeScript/lint/Ruff and production build passed locally. Real HTTP smoke against the running Pix2Text service rejected missing authentication and returned schema-valid extraction with pixel-derived coordinates. See artifacts/ocr-service-smoke.json. This is provider verification, not photographed classroom workflow acceptance.

@@ -1,7 +1,11 @@
 import { ocrSchema, type OcrResult } from '../../contracts/src/index.ts';
 export interface VisionProvider {
   readonly version: string;
-  transcribe(image: Uint8Array, signal: AbortSignal): Promise<unknown>;
+  transcribe(
+    image: Uint8Array,
+    signal: AbortSignal,
+    questionId?: string,
+  ): Promise<unknown>;
 }
 export type Extraction =
   | { ok: true; data: OcrResult }
@@ -21,7 +25,7 @@ export async function extract(
   let timer: ReturnType<typeof setTimeout> | undefined;
   try {
     const output = await Promise.race([
-      provider.transcribe(image, controller.signal),
+      provider.transcribe(image, controller.signal, questionId),
       new Promise<never>((_, reject) => {
         timer = setTimeout(() => {
           controller.abort();
