@@ -24,29 +24,33 @@
     "format:check": "prettier --check .",
     "verify": "pnpm typecheck && pnpm lint && pnpm test && pnpm build",
     "benchmark": "node --experimental-transform-types scripts/benchmark.ts",
-    "oracle:vectors": "node --experimental-transform-types scripts/oracle-vectors.ts"
+    "oracle:vectors": "node --experimental-transform-types scripts/oracle-vectors.ts",
+    "db:migrate": "node --experimental-transform-types scripts/migrate.ts",
+    "db:import-sqlite": "node --experimental-transform-types scripts/import-sqlite.ts"
   },
   "dependencies": {
+    "@neondatabase/serverless": "1.2.0",
+    "hono": "4.13.13",
     "next": "16.3.8",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "hono": "4.13.13",
-    "zod": "4.4.3",
-    "sharp": "0.35.5"
+    "sharp": "0.35.5",
+    "zod": "4.4.3"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@electric-sql/pglite": "0.5.8",
     "@types/node": "22.20.5",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.3",
-    "typescript": "5.9.3",
-    "vitest": "4.1.11",
-    "fast-check": "4.8.0",
     "eslint": "9.39.5",
-    "typescript-eslint": "8.67.0",
-    "prettier": "3.9.6",
+    "fast-check": "4.8.0",
     "playwright": "1.63.0",
+    "prettier": "3.9.6",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.67.0",
     "vite": "7.3.6",
-    "@axe-core/playwright": "4.13.0"
+    "vitest": "4.1.11"
   },
   "pnpm": {
     "overrides": {

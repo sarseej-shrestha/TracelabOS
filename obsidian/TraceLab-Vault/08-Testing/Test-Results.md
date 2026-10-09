@@ -32,3 +32,7 @@ After verified extraction to a fresh directory and clean npm ci using the existi
 ## Full-access browser checkpoint — 2026-10-08
 
 361 Vitest tests passed, zero failed; typecheck, lint, production build passed. Five Playwright Chromium tests passed in 7.5s. Artifacts/browser-results.json and three screenshots record local results. GitHub baseline CI failed installation (npm Invalid Version), so remote verification remains pending tooling repair.
+
+## PostgreSQL checkpoint — 2026-10-08
+
+398 tests passed, zero failed on Node 22.23.3. The 24 API tests now run on both SQLite and PostgreSQL/PGlite. Added concurrent create/edit/confirmation, rollback-on-event-failure, transaction recovery, migration checksum/atomicity, parameter binding and full local-to-PostgreSQL import preservation tests. Typecheck/lint/build passed. Five browser tests passed in 5.5s against the local production server. pnpm audit: no known vulnerabilities. Evidence: artifacts/postgresql-verification.log. This does not verify Neon connectivity or R2 storage.

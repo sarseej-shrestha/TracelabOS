@@ -1,11 +1,14 @@
 import { createApp } from '../../../../../services/api/src/app.ts';
 import { openDatabase } from '../../../../../packages/database/src/local.ts';
+import { openPostgres } from '../../../../../packages/database/src/postgres.ts';
 export const runtime = 'nodejs';
 const globalStore = globalThis as unknown as {
   tracelabApi?: ReturnType<typeof createApp>;
 };
 const app = (globalStore.tracelabApi ??= createApp(
-  openDatabase(process.env.TRACELAB_DB_PATH ?? '.data/tracelab.db'),
+  process.env.DATABASE_URL
+    ? openPostgres(process.env.DATABASE_URL)
+    : openDatabase(process.env.TRACELAB_DB_PATH ?? '.data/tracelab.db'),
   {
     allowedOrigins: process.env.TRACELAB_PUBLIC_ORIGIN
       ? [new URL(process.env.TRACELAB_PUBLIC_ORIGIN).origin]

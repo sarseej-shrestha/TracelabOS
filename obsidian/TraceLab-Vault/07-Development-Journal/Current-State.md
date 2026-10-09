@@ -8,23 +8,23 @@ Recovery and Phase 1/2 foundation; cloud persistence is next after CI repair.
 
 ## Active Task
 
-TASK-0008 browser verification passed locally. Repair online dependency installation before merge.
+TASK-0011 PostgreSQL persistence and guarded data import passed local verification; prepare feature commit/CI.
 
 ## Current Git Branch
 
-test/recovery-browser-verification
+feat/postgresql-persistence
 
 ## Latest Commit Hash
 
-Baseline: 839d63439e9c2d5e3f800592cb68003bf1cec3c9. A checkpoint records the preceding verified commit, avoiding a self-referential hash.
+Verified main: fce835835e3673ed901264ced80e6cddaeb75705; original baseline 839d63439e9c2d5e3f800592cb68003bf1cec3c9. A checkpoint records the preceding verified commit, avoiding a self-referential hash.
 
 ## Latest Successful Push
 
-Baseline pushed to official main; GitHub contents API and matching remote hash verified. Browser task push pending.
+Recovery PR #1 merged after GitHub verify/oracle checks passed (run 37864780014); remote main fce835835e3673ed901264ced80e6cddaeb75705 matched locally.
 
 ## Latest Verified Test Results
 
-361 Vitest tests pass, including 5,000 seeded property cases and three new origin regressions. Strict typecheck, ESLint and production build pass. Five Chromium E2E tests pass (7.5 seconds): authenticated classroom publication/enrollment, controlled image upload/rotation, confirmed transcription, withheld/released feedback, teacher review, login, demo reasoning, mobile overflow, keyboard navigation, 200% text zoom and automated axe checks. The image fixture is typeset, not evidence of handwriting OCR. Recovery oracle: 2,000 cases, 6,000 comparisons, zero disagreements. GitHub CI run 37863511190 failed during npm ci; no remote check pass claimed.
+398 Vitest tests pass, including 5,000 seeded property cases and three new origin regressions. Strict typecheck, ESLint and production build pass. Five Chromium E2E tests pass (5.5 seconds): authenticated classroom publication/enrollment, controlled image upload/rotation, confirmed transcription, withheld/released feedback, teacher review, login, demo reasoning, mobile overflow, keyboard navigation, 200% text zoom and automated axe checks. The image fixture is typeset, not evidence of handwriting OCR. Recovery oracle: 2,000 cases, 6,000 comparisons, zero disagreements. Baseline CI failed npm install; repaired pnpm frozen install and patched dependencies passed GitHub run 37864780014. PostgreSQL branch local checks pass; its remote CI is pending.
 
 ## Completed Features
 
@@ -36,19 +36,19 @@ Four skills/templates; rule recommendations without persisted mastery; OCR contr
 
 ## Pending Features
 
-PostgreSQL and R2; actual OCR and benchmark; expanded curriculum; mastery/remediation; real-time/replay; retention/deletion; deployment, load tests and live acceptance.
+Hosted Neon verification and R2; actual OCR and benchmark; expanded curriculum; mastery/remediation; real-time/replay; retention/deletion; deployment, load tests and live acceptance.
 
 ## Known Bugs
 
-Fixed: Next's internal URL hostname differed from browser Origin, rejecting valid mutations. Explicit public-origin allowlist now tested; forwarded-host values cannot grant trust. Open: npm online install crashes in nested sharp optional-dependency deduplication. See [[Regression-History]].
+Fixed: Next's internal URL hostname differed from browser Origin, rejecting valid mutations. Explicit public-origin allowlist now tested; forwarded-host values cannot grant trust. Resolved: npm optional-dependency install crash through frozen pnpm and patched dependencies. Corrected workspace contrast and premature axe scan. See [[Regression-History]].
 
 ## Current Blockers
 
-No remaining filesystem, Git, network or browser restriction observed. Cloud credentials/resources are absent. GitHub CI dependency install must be repaired before merging browser work.
+No remaining filesystem, Git, network or browser restriction observed. Cloud credentials/resources are absent. Neon network/pool behavior and cloud latency remain unverified; PGlite validates PostgreSQL SQL locally.
 
 ## Important Architecture Decisions
 
-Modular monolith, exact bounded math domain, mandatory transcription confirmation, append-only review history. Local SQLite remains active; cloud persistence is not yet implemented.
+Modular monolith, exact bounded math domain, mandatory transcription confirmation, append-only review history. SQLite remains the default; DATABASE_URL selects the new Neon adapter. See [[ADR-0005-Async-Persistence]].
 
 ## Required Environment Variables
 
@@ -56,9 +56,9 @@ TRACELAB_DB_PATH optionally selects SQLite. TRACELAB_PUBLIC_ORIGIN sets the expl
 
 ## Exact Next Steps
 
-1. Commit/push browser fix and evidence on its task branch.
-2. Establish reproducible pnpm frozen installs on supported Node LTS, fix CI and audit dependencies; merge only after checks pass.
-3. Implement PostgreSQL/private object storage while preserving local mode.
+1. Commit/push PostgreSQL task and merge after remote checks pass.
+2. Implement private R2 image storage with cross-resource failure handling.
+3. Verify hosted adapters when cloud credentials are configured.
 4. Continue [[Master-Roadmap]] through real OCR and deployment; record external credential blockers accurately.
 
 ## Recovery Procedure
