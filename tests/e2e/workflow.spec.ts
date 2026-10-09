@@ -70,6 +70,7 @@ test('landing and student workspace pass automated accessibility checks', async 
   await page
     .getByRole('button', { name: /The distribution detective/ })
     .click();
+  await expect(page.getByRole('checkbox')).toBeVisible();
   expect(
     (
       await new AxeBuilder({ page })
