@@ -55,6 +55,8 @@ jobs:
       - run: pip install -r research/symbolic-oracle/requirements.txt
       - run: pnpm oracle:vectors
       - run: python research/symbolic-oracle/verify.py
+      - run: pnpm oracle:fractions
+      - run: python research/symbolic-oracle/curriculum_oracle.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -62,6 +64,8 @@ jobs:
           path: |
             artifacts/oracle-vectors.json
             artifacts/sympy-results.json
+            artifacts/fraction-oracle-vectors.json
+            artifacts/fraction-oracle-results.json
   ocr-metrics:
     runs-on: ubuntu-latest
     timeout-minutes: 5

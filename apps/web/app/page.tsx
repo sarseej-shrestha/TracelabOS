@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState, type FormEvent } from 'react';
+import { FractionBars } from '../../../packages/ui/src/fraction-bars';
 import type { OcrResult } from '../../../packages/contracts/src/index';
 import type { Evaluation } from '../../../packages/math-engine/src/index';
 import type { Question } from '../../../packages/question-bank/src/index';
@@ -49,6 +50,8 @@ type Skill = {
   description: string;
   examples: string[][];
   prerequisites: string[];
+  standards?: string[];
+  misconceptions?: string[];
 };
 async function api<T>(
   path: string,
@@ -651,8 +654,8 @@ export default function Home() {
                   <div className="eyebrow">SMALL STEPS, STRONG FOUNDATIONS</div>
                   <h1>The skill library.</h1>
                   <p>
-                    Four implemented skills. Ratios, geometry, and broader
-                    coverage are still on the roadmap.
+                    {skills.length} implemented skills. Ratios, geometry, and
+                    broader coverage are still on the roadmap.
                   </p>
                 </div>
                 <div className="info-grid">
@@ -671,6 +674,28 @@ export default function Home() {
                           ))}
                         </div>
                       ))}
+                      {s.misconceptions && (
+                        <details>
+                          <summary>Common mistakes to look for</summary>
+                          <ul>
+                            {s.misconceptions.map((item) => (
+                              <li key={item}>{item}</li>
+                            ))}
+                          </ul>
+                        </details>
+                      )}
+                      {s.standards && (
+                        <p className="fine">
+                          Alignment reference:{' '}
+                          <a
+                            href="https://www.thecorestandards.org/wp-content/uploads/Math_Standards.pdf"
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {s.standards.join(', ')}
+                          </a>
+                        </p>
+                      )}
                       <p className="fine">
                         Prerequisites:{' '}
                         {s.prerequisites.join(', ') || 'None in this library'}
@@ -864,9 +889,14 @@ export default function Home() {
                         </button>
                       </div>
                       {questionPreview && (
-                        <p className="equation small">
-                          {questionPreview.expression}
-                        </p>
+                        <div>
+                          <p className="equation small">
+                            {questionPreview.expression}
+                          </p>
+                          {questionPreview.figure && (
+                            <FractionBars figure={questionPreview.figure} />
+                          )}
+                        </div>
                       )}
                     </form>
                   </div>
@@ -1103,6 +1133,11 @@ export default function Home() {
                         All assignments
                       </button>
                     </div>
+                    {selected.question.figure && (
+                      <section className="card">
+                        <FractionBars figure={selected.question.figure} />
+                      </section>
+                    )}
                     <div className="flow">
                       <span className="done">01 Capture or type</span>
                       <span className={graded ? 'done' : 'current'}>
@@ -1505,6 +1540,9 @@ function Reasoning({ sub }: { sub: Submission }) {
                     : 'The solution is not yet finished.'}
             </h3>
           </div>
+          {sub.evaluation.completionHint && (
+            <p role="status">{sub.evaluation.completionHint}</p>
+          )}
           <ol className="trace-list">
             {sub.evaluation.steps.map((s) => (
               <li className={s.outcome.toLowerCase()} key={s.line}>

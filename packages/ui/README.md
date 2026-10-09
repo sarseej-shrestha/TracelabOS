@@ -1,3 +1,3 @@
-# Shared interface boundary
+# Shared interface components
 
-The first vertical slice uses native accessible controls and application CSS in `apps/web/app/globals.css`. Reusable components will move here once their student/teacher usage stabilizes. This package currently exports no component library and should not be advertised as one.
+`src/fraction-bars.tsx` renders bounded deterministic SVGs from known question operands. Each bar has a textual quantity/partition label and an accessible image description; no uploaded diagram is interpreted. The component is used by the teacher preview and student question workspace, with mobile/axe browser coverage and rendered partition/shading invariants. The rest of the interface still uses native accessible controls and app CSS; this is not a general component library yet.

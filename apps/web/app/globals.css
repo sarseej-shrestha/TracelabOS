@@ -1230,3 +1230,10 @@ footer {
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
+.fraction-figure {
+  margin: 0;
+}
+.fraction-figure figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}

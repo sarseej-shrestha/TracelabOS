@@ -1,5 +1,5 @@
 /** Exact, bounded arithmetic for the supported rational/affine domain. */
-export const ENGINE_VERSION = '0.1.0';
+export const ENGINE_VERSION = '0.2.0';
 export type Outcome =
   | 'VALID'
   | 'FIRST_ERROR'
@@ -278,33 +278,91 @@ function misconception(
         skillId: 'distributive-property',
       };
   }
+  // Classify only an observed numeric pattern; do not infer hidden operations.
   if (
     p.kind === 'binary' &&
-    p.op === '+' &&
     p.left.kind === 'binary' &&
     p.left.op === '/' &&
     p.right.kind === 'binary' &&
     p.right.op === '/'
   ) {
-    const a = normalize(p.left.left),
-      b = normalize(p.left.right),
-      d = normalize(p.right.left),
-      e = normalize(p.right.right);
-    if ([a, b, d, e].every((v) => v.a.zero)) {
-      const denominator = b.b.add(e.b);
-      const observed = normalize(c);
-      if (
-        !denominator.zero &&
-        observed.a.zero &&
-        observed.b.equals(a.b.add(d.b).div(denominator))
-      )
+    const operands = [
+      p.left.left,
+      p.left.right,
+      p.right.left,
+      p.right.right,
+    ].map(normalize);
+    const observed = normalize(c);
+    if (operands.every((v) => v.a.zero) && observed.a.zero) {
+      const [a, b, d, e] = operands.map((v) => v.b) as [
+        Rational,
+        Rational,
+        Rational,
+        Rational,
+      ];
+      const matches = (numerator: Rational, denominator: Rational) =>
+        !denominator.zero && observed.b.equals(numerator.div(denominator));
+      if (p.op === '+' && matches(a.add(d), b.add(e)))
         return {
           ruleId: 'ADD_DENOMINATORS',
           explanation:
             'Use equivalent fractions with a common denominator, then add the numerators. Adding the denominators changes the size of the parts.',
           skillId: 'fraction-addition',
         };
+      if (p.op === '+' && matches(a.add(d), b.mul(e)))
+        return {
+          ruleId: 'SCALE_NUMERATORS',
+          explanation:
+            'This result matches changing to the product denominator without scaling the numerators. Multiply each numerator by the same factor used for its denominator.',
+          skillId: 'fraction-addition',
+        };
+      if (p.op === '-' && matches(a.sub(d), b.sub(e)))
+        return {
+          ruleId: 'SUBTRACT_DENOMINATORS',
+          explanation:
+            'This result matches subtracting both numerators and denominators. Use equal-sized parts: subtract the numerators after finding a common denominator.',
+          skillId: 'fraction-subtraction',
+        };
+      if (p.op === '*' && matches(a.mul(d), b.add(e)))
+        return {
+          ruleId: 'MULTIPLY_DENOMINATORS',
+          explanation:
+            'This result matches multiplying numerators but adding denominators. Multiply both numerators and both denominators, then simplify.',
+          skillId: 'fraction-multiplication',
+        };
+      if (p.op === '/' && matches(a.mul(d), b.mul(e)))
+        return {
+          ruleId: 'RECIPROCAL_DIVISOR',
+          explanation:
+            'This result matches multiplication by the divisor. Division by a nonzero fraction uses the reciprocal of that divisor.',
+          skillId: 'fraction-division',
+        };
+      if (p.op === '/' && matches(b.mul(d), a.mul(e)))
+        return {
+          ruleId: 'INVERT_DIVISOR_ONLY',
+          explanation:
+            'This result matches inverting the first fraction. Keep the dividend and multiply by the reciprocal of the nonzero divisor.',
+          skillId: 'fraction-division',
+        };
     }
+  }
+  if (
+    p.kind === 'binary' &&
+    p.op === '/' &&
+    c.kind === 'binary' &&
+    c.op === '/'
+  ) {
+    const [a, b, d, e] = [p.left, p.right, c.left, c.right].map(normalize);
+    if (
+      [a!, b!, d!, e!].every((v) => v.a.zero) &&
+      (a!.b.equals(d!.b) || b!.b.equals(e!.b))
+    )
+      return {
+        ruleId: 'SCALE_BOTH_PARTS',
+        explanation:
+          'Only one part of this fraction changed. To preserve its value, multiply or divide both numerator and denominator by the same nonzero factor.',
+        skillId: 'fraction-equivalence',
+      };
   }
   return {
     ruleId: 'EQUIVALENCE_CHANGED',
@@ -328,6 +386,7 @@ export interface Evaluation {
   firstError: number | null;
   complete: boolean;
   requiresReview: boolean;
+  completionHint?: string;
 }
 export function evaluate(problem: string, lines: string[]): Evaluation {
   if (!lines.length || lines.length > 40)
