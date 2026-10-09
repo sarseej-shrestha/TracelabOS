@@ -25,3 +25,9 @@ During benchmark review, plain prefix replacement of LaTeX sizing commands also 
 ## 2026-10-09 — Import rejected digit-bearing identifiers
 
 Adding an OCR provenance import regression exposed `Unexpected source schema`: the existing column validator rejected `sha256` and new `image_sha256`. The PostgreSQL importer originated in d673447 before R2 added the digit-bearing field. It now permits digits after a valid identifier start while retaining a restricted alphabet. The regression imports an existing image reference and compares every field; transactional failures preserved the source and destination. Related: [[Change-Ledger]].
+
+## 2026-10-09 — Simplification completion and reference exposure
+
+Baseline math completion accepted any terminal equivalent fraction, so restating an unreduced simplification problem was marked complete. The fraction curriculum now applies a separate reduced-fraction requirement to new and legacy reduction questions; valid-but-unfinished work retains its valid steps and receives a completion hint. Original saved evaluations are preserved. Unit and dual-database API regressions exercise this behavior.
+
+The question-preview route previously returned references to any authenticated role even though assignment responses hid them. Preview now requires the teacher role, and the new alternative-path field is also withheld from student assignment responses. Dual-database authorization tests cover both boundaries. The source paths originate in the baseline import; the changes are scoped to the fraction task's completion and preview contracts.

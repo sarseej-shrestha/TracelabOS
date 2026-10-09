@@ -1,6 +1,9 @@
 import { Rational } from '../../math-engine/src/index.ts';
-export type Difficulty = 'intro' | 'practice' | 'challenge';
-export const skills = [
+import { fractionSkills, generateFraction } from './fractions.ts';
+import type { Difficulty, Question, Skill } from './types.ts';
+export type { Difficulty, Question, Skill, FractionFigure } from './types.ts';
+export { fractionTemplates } from './fractions.ts';
+const legacySkills = [
   {
     id: 'fraction-equivalence',
     unit: 'Fractions',
@@ -49,19 +52,24 @@ export const skills = [
     ],
   },
 ] as const;
-export interface Question {
-  id: string;
-  templateId: string;
-  templateVersion: string;
-  skillId: string;
-  seed: number;
-  difficulty: Difficulty;
-  prompt: string;
-  expression: string;
-  reference: string[];
-  parameters: Record<string, number>;
-}
+export const skills: readonly Skill[] = [
+  ...fractionSkills,
+  ...legacySkills.filter((s) => s.unit !== 'Fractions'),
+];
 export function generateQuestion(
+  skillId: string,
+  seed: number,
+  difficulty: Difficulty = 'practice',
+): Question {
+  if (!Number.isInteger(seed) || seed < 0 || seed > 2147483647)
+    throw new Error('Invalid seed');
+  if (!['intro', 'practice', 'challenge'].includes(difficulty))
+    throw new Error('Invalid difficulty');
+  return fractionSkills.some((s) => s.id === skillId)
+    ? generateFraction(skillId, seed, difficulty)
+    : generateLegacyQuestion(skillId, seed, difficulty);
+}
+export function generateLegacyQuestion(
   skillId: string,
   seed: number,
   difficulty: Difficulty = 'practice',

@@ -8,23 +8,23 @@ Phase 3 computer vision integration, following verified recovery and local cloud
 
 ## Active Task
 
-TASK-0017 OCR workspace passes eight browser tests and a separate actual-model browser smoke. Preparing verified UI commit/push.
+TASK-0018 fraction curriculum passes local mathematical, API, browser and independent-oracle verification; commit/push/CI follows.
 
 ## Current Git Branch
 
-feat/ocr-transcription-workspace
+feat/fraction-curriculum
 
 ## Latest Commit Hash
 
-Latest verified remote main: 3319e45a8651bba4b0d20cfc9b7cceba10ee3623 (PR #7 merge). Durable jobs commit 8893999; importer fix 88487d7; adapter be25149. This note records preceding commits rather than its own hash.
+Latest verified remote main: 77d62fad8c141af89d3663f850464c32b8e85198 (PR #8 merge). Durable jobs commit 8893999; importer fix 88487d7; adapter be25149. This note records preceding commits rather than its own hash.
 
 ## Latest Successful Push
 
-PRs #1–#7 merged after checks; PR #7 run 37893284667 passed verify/oracle/ocr-metrics. UI task commit/push/checks follow local verification.
+PRs #1–#8 merged after checks; PR #8 run 37893988907 passed verify/oracle/ocr-metrics. UI commit 8742c97 is preserved. Fraction task push/checks follow local verification.
 
 ## Latest Verified Test Results
 
-470 Vitest tests pass, including 5,000 seeded property cases and 26 new dual-database OCR job cases. Strict TypeScript, ESLint and production build pass. Eight Chromium workflows pass (latest 12.2s), including extraction, correction, cancellation, failure fallback, teacher provenance and axe accessibility. Latest Python checkpoint: 24 tests pass. SymPy CI repeats 2,000 cases/6,000 comparisons with zero differences. Actual model API smoke processed the research image in 100.57ms. A separate Chromium workflow through the actual local model completed in 1465.52ms, left evaluation null until explicit correction/confirmation, detected fixture first error at step 2, and recorded a teacher review. This is workflow evidence, not camera-image accuracy.
+655 Vitest tests pass, including 5,000 seeded property cases and 26 new dual-database OCR job cases. Strict TypeScript, ESLint and production build pass. Nine Chromium workflows pass (14.4s), including extraction, correction, cancellation, failure fallback, teacher provenance and axe accessibility. Latest Python checkpoint: 24 tests pass; new fraction oracle reports 1,800 cases/11,700 comparisons with zero disagreements. SymPy CI repeats 2,000 cases/6,000 comparisons with zero differences. Actual model API smoke processed the research image in 100.57ms. A separate Chromium workflow through the actual local model completed in 1465.52ms, left evaluation null until explicit correction/confirmation, detected fixture first error at step 2, and recorded a teacher review. This is workflow evidence, not camera-image accuracy.
 
 ## Completed Features
 
@@ -32,7 +32,7 @@ Recovery backup/hash/extraction, authorized Git/GitHub and localhost/browser acc
 
 ## Partially Completed Features
 
-Four skills/templates. Rule recommendations without persisted mastery. OCR API/worker and browser processing/correction/fallback controls connected. Experimental model had only 3/72 exact matches in the general handwritten-expression pilot; targeted photographed-work accuracy remains unverified. History slider lacks deterministic reducer/WebSockets.
+Eight skills/fourteen active templates; ratios, geometry and broader algebra remain. Rule recommendations without persisted mastery. OCR API/worker and browser processing/correction/fallback controls connected. Experimental model had only 3/72 exact matches in the general handwritten-expression pilot; targeted photographed-work accuracy remains unverified. History slider lacks deterministic reducer/WebSockets.
 
 ## Pending Features
 
@@ -56,8 +56,8 @@ TRACELAB_DB_PATH (use the same absolute path for API and worker) or DATABASE_URL
 
 ## Exact Next Steps
 
-1. Commit/push UI work, pass checks and merge; verify remote main.
-2. Expand the four-topic curriculum with deterministic figures, verified reference paths and explicit supported-domain boundaries.
+1. Commit/push fraction work, pass checks and merge; verify remote main.
+2. Expand algebra, ratios and geometry according to [[Task-Backlog]], preserving explicit domain and unit boundaries.
 3. Continue mastery/realtime/deployment in [[Master-Roadmap]]. Targeted photographed-work validation and cloud credentials remain open.
 
 ## Recovery Procedure

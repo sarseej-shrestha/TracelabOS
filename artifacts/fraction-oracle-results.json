@@ -1,0 +1,9 @@
+{
+  "executedAt": "2026-10-09T11:21:18.123339+00:00",
+  "sympy": "1.14.0",
+  "cases": 1800,
+  "templates": 12,
+  "comparisons": 11700,
+  "disagreements": [],
+  "scope": "Generated fraction curriculum: each expression/reference/alternative checked against independent parameter arithmetic; not OCR accuracy or an educational outcome."
+}

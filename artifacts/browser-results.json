@@ -86,12 +86,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1847,
+                  "duration": 1923,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-09T06:30:40.634Z",
+                  "startTime": "2026-10-09T11:21:41.523Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -120,12 +120,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 200,
+                  "duration": 218,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-09T06:30:42.980Z",
+                  "startTime": "2026-10-09T11:21:43.995Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -136,6 +136,48 @@
           "id": "ee123a1e90c2c71e0969-f3ee9b7971d8160ac2e6",
           "file": "classroom.spec.ts",
           "line": 175,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "curriculum.spec.ts",
+      "file": "curriculum.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "teacher previews fraction bars and student completes a generated division assignment on mobile",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1046,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-09T11:21:44.220Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "95c5cad18d8056620d43-9a857485a3e13d63237a",
+          "file": "curriculum.spec.ts",
+          "line": 4,
           "column": 1
         }
       ]
@@ -162,12 +204,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1768,
+                  "duration": 1875,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-09T06:30:43.188Z",
+                  "startTime": "2026-10-09T11:21:45.275Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -196,12 +238,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1277,
+                  "duration": 1287,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-09T06:30:44.961Z",
+                  "startTime": "2026-10-09T11:21:47.155Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -230,12 +272,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3243,
+                  "duration": 4014,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-09T06:30:46.243Z",
+                  "startTime": "2026-10-09T11:21:48.448Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -272,12 +314,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 598,
+                  "duration": 610,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-09T06:30:49.497Z",
+                  "startTime": "2026-10-09T11:21:52.472Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -306,12 +348,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 625,
+                  "duration": 591,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-09T06:30:50.100Z",
+                  "startTime": "2026-10-09T11:21:53.087Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -340,12 +382,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 441,
+                  "duration": 390,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-09T06:30:50.729Z",
+                  "startTime": "2026-10-09T11:21:53.682Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -363,9 +405,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-09T06:30:39.012Z",
-    "duration": 12214.13,
-    "expected": 8,
+    "startTime": "2026-10-09T11:21:39.763Z",
+    "duration": 14363.668,
+    "expected": 9,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

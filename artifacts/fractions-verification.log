@@ -1,0 +1,108 @@
+packages/math-engine/src/index.ts 63ms
+packages/question-bank/src/grading.ts 5ms
+tests/unit/fraction-curriculum.test.ts 12ms
+tests/integration/api.test.ts 27ms
+
+> tracelab-os@0.1.0 typecheck /Users/userselu/Downloads/TracelabOS
+> tsc --noEmit
+
+
+> tracelab-os@0.1.0 lint /Users/userselu/Downloads/TracelabOS
+> eslint .
+
+
+> tracelab-os@0.1.0 test /Users/userselu/Downloads/TracelabOS
+> vitest run
+
+
+ RUN  v4.1.11 /Users/userselu/Downloads/TracelabOS
+
+(node:66638) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:66641) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:66648) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:66639) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:66640) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:66637) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:66646) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  12 passed (12)
+      Tests  655 passed (655)
+   Start at  06:19:01
+   Duration  1.91s (transform 566ms, setup 0ms, import 2.06s, tests 6.72s, environment 1ms)
+
+
+tests/e2e/curriculum.spec.ts 31ms
+apps/web/app/globals.css 54ms (unchanged)
+
+> tracelab-os@0.1.0 typecheck /Users/userselu/Downloads/TracelabOS
+> tsc --noEmit
+
+
+> tracelab-os@0.1.0 lint /Users/userselu/Downloads/TracelabOS
+> eslint .
+
+
+> tracelab-os@0.1.0 build /Users/userselu/Downloads/TracelabOS
+> next build apps/web --webpack
+
+▲ Next.js 16.3.8 (webpack)
+✓ Running next.config.ts took 54ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1164ms
+  Running TypeScript ...
+  Finished TypeScript in 1326ms ...
+  Collecting page data using 5 workers ...
+(node:68107) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+  Generating static pages using 5 workers (0/3) ...
+✓ Generating static pages using 5 workers (3/3) in 243ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+└ ƒ /api/[[...route]]
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+
+> tracelab-os@0.1.0 test:e2e /Users/userselu/Downloads/TracelabOS
+> playwright test
+
+[WebServer] (node:68487) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:68487) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:68487) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+[WebServer] (node:68558) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:68616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 9 tests using 1 worker
+
+(node:68622) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:68616) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+  ✓  1 tests/e2e/classroom.spec.ts:28:1 › authenticated classroom publication, enrollment, photo, confirmed fraction work, teacher release, and login (1.9s)
+  ✓  2 tests/e2e/classroom.spec.ts:175:1 › keyboard skip link and demo navigation remain usable at 200 percent text zoom (218ms)
+  ✓  3 tests/e2e/curriculum.spec.ts:4:1 › teacher previews fraction bars and student completes a generated division assignment on mobile (1.0s)
+  ✓  4 tests/e2e/ocr-workflow.spec.ts:33:1 › queued extraction preserves original output, requires correction confirmation and remains inspectable by the teacher (1.9s)
+  ✓  5 tests/e2e/ocr-workflow.spec.ts:102:1 › invalid extraction offers manual fallback with no automatic grade (1.3s)
+  ✓  6 tests/e2e/ocr-workflow.spec.ts:121:1 › cancelling an in-flight extraction retains the saved draft and rejects late output (4.0s)
+  ✓  7 tests/e2e/workflow.spec.ts:3:1 › visitor confirms a solution, inspects propagation, and records teacher review (610ms)
+  ✓  8 tests/e2e/workflow.spec.ts:56:1 › landing and student workspace pass automated accessibility checks (591ms)
+  ✓  9 tests/e2e/workflow.spec.ts:82:1 › mobile workspace has no horizontal overflow and supports correct solution (390ms)
+
+  9 passed (14.4s)

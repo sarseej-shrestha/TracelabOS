@@ -96,6 +96,115 @@ describe.each(['sqlite', 'postgres'] as const)('%s API', (engine) => {
       ).status,
     ).toBe(200);
   }
+  it('keeps generated reference and alternative paths teacher-only', async () => {
+    const d = await demo();
+    expect(
+      (
+        await call(
+          '/questions?skillId=fraction-division&seed=0&difficulty=practice',
+          'GET',
+          undefined,
+          d.cookie,
+        )
+      ).status,
+    ).toBe(403);
+    const tc = await teacher(d.cookie);
+    const preview = await call(
+      '/questions?skillId=fraction-division&seed=0&difficulty=practice',
+      'GET',
+      undefined,
+      tc,
+    );
+    expect((await preview.json()).alternativePaths.length).toBeGreaterThan(0);
+    const assignment = await call(
+      '/assignments',
+      'POST',
+      {
+        classroomId: d.room,
+        skillId: 'fraction-division',
+        seed: 0,
+        difficulty: 'practice',
+        title: 'Fraction division',
+        feedback: 'immediate',
+      },
+      tc,
+    );
+    expect(assignment.status).toBe(201);
+    const studentRole = await call(
+      '/demo/role',
+      'POST',
+      { role: 'student' },
+      tc,
+    );
+    const sc = studentRole.headers.get('set-cookie')!.split(';')[0]!;
+    const listing = await (
+      await call('/assignments', 'GET', undefined, sc)
+    ).json();
+    const question = listing.find(
+      (a: { title: string }) => a.title === 'Fraction division',
+    ).question;
+    expect(question.reference).toBeUndefined();
+    expect(question.alternativePaths).toBeUndefined();
+    expect(question.figure.kind).toBe('fraction-bars');
+  });
+  it('persists a valid but unfinished simplification with a completion hint', async () => {
+    const d = await demo(),
+      tc = await teacher(d.cookie);
+    const assignment = await (
+      await call(
+        '/assignments',
+        'POST',
+        {
+          classroomId: d.room,
+          skillId: 'fraction-equivalence',
+          seed: 0,
+          difficulty: 'practice',
+          title: 'Simplify',
+          feedback: 'immediate',
+        },
+        tc,
+      )
+    ).json();
+    const listing = await (
+      await call('/assignments', 'GET', undefined, tc)
+    ).json();
+    const question = listing.find(
+      (a: { id: string }) => a.id === assignment.id,
+    ).question;
+    const studentRole = await call(
+      '/demo/role',
+      'POST',
+      { role: 'student' },
+      tc,
+    );
+    const sc = studentRole.headers.get('set-cookie')!.split(';')[0]!;
+    const id = await submission(sc, assignment.id);
+    await call(
+      `/submissions/${id}/transcription`,
+      'PATCH',
+      { version: 1, lines: [question.expression] },
+      sc,
+    );
+    expect(
+      (
+        await call(
+          `/submissions/${id}/confirm`,
+          'POST',
+          { version: 2, confirmed: true },
+          sc,
+        )
+      ).status,
+    ).toBe(200);
+    const result = await (
+      await call(`/submissions/${id}`, 'GET', undefined, sc)
+    ).json();
+    expect(result.evaluation).toMatchObject({
+      complete: false,
+      firstError: null,
+      completionHint: expect.stringContaining('lowest terms'),
+    });
+    expect(result.evaluation.engineVersion).toContain('completion-1');
+  });
   it('persists a complete manual workflow and teacher override without replacing automatic history', async () => {
     const d = await demo(),
       id = await submission(d.cookie, d.assignment);

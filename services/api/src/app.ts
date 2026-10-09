@@ -1,3 +1,4 @@
+import { evaluateQuestion } from '../../../packages/question-bank/src/grading.ts';
 import { Hono } from 'hono';
 import { bodyLimit } from 'hono/body-limit';
 import { getCookie, setCookie, deleteCookie } from 'hono/cookie';
@@ -34,7 +35,6 @@ import {
   type Question,
 } from '../../../packages/question-bank/src/index.ts';
 import {
-  evaluate,
   MathIssue,
   type Evaluation,
 } from '../../../packages/math-engine/src/index.ts';
@@ -466,6 +466,7 @@ export function createApp(
     return c.json({ id: room!.id });
   });
   app.get('/api/questions', async (c) => {
+    if (c.get('user').role !== 'teacher') fail(403, 'TEACHER_REQUIRED');
     const b = assignmentSchema
       .pick({ skillId: true, seed: true, difficulty: true })
       .parse({
@@ -515,6 +516,8 @@ export function createApp(
           question: {
             ...q,
             reference: u.role === 'teacher' ? q.reference : undefined,
+            alternativePaths:
+              u.role === 'teacher' ? q.alternativePaths : undefined,
           },
         };
       }),
@@ -641,8 +644,8 @@ export function createApp(
       .get(s.id, b.version)) as {
       lines: string;
     };
-    const result = evaluate(
-      (JSON.parse(s.question) as Question).expression,
+    const result = evaluateQuestion(
+      JSON.parse(s.question) as Question,
       JSON.parse(t.lines),
     );
     await transaction(db, async () => {
