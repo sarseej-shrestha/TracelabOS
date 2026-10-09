@@ -23,17 +23,13 @@ Open [obsidian/TraceLab-Vault](obsidian/TraceLab-Vault/00-START-HERE.md) as an O
 
 ## Verified checkpoint
 
-Implemented locally: authenticated teacher/student accounts, isolated visitor demo, classrooms and enrollment, seeded assignments, private image storage, manual transcription and confirmation, exact reasoning checks, teacher review, and persisted event history. Four skills and four question templates are available.
+Authenticated teacher/student accounts, isolated visitor demo, classrooms/enrollment, seeded assignments, private database images, confirmed transcription, exact reasoning checks, teacher review and persisted event history work locally. Four skills/templates are available.
 
-- 358 automated tests passed; 5,000 seeded property cases.
-- Independent SymPy oracle: 2,000 generated cases, 6,000 comparisons, zero disagreements.
-- Type checking, linting, formatting, production build, and 84-note vault validation passed.
-- Browser/axe tests are configured but blocked by the environment's denial of localhost listening. UI interaction is not yet browser-verified.
+- 398 automated tests pass, including 5,000 seeded property cases and API workflows on SQLite and PostgreSQL/PGlite.
+- Five Chromium browser tests pass, including authenticated classroom workflow, mobile, keyboard and axe checks.
+- Independent SymPy: 2,000 cases, 6,000 comparisons, zero disagreements.
+- Typecheck, lint, formatting and production build pass. Dependency audit reports no known vulnerabilities at the recorded checkpoint.
 
-Live OCR, PostgreSQL/R2 cloud adapters, full curriculum, mastery, real-time replay, and public deployment remain incomplete. Images use private local SQLite storage; there is no hosted OCR processing. No Git commits or pushes exist because this session denies `.git` writes and GitHub network access. See the [recovery instructions](obsidian/TraceLab-Vault/07-Development-Journal/Recovery-Instructions.md) before initializing or pushing anything.
+GitHub recovery PR #1 passed CI and is merged. The original source archive is retained; see [recovery](recovery/README.md). PostgreSQL is selected with DATABASE_URL, after `pnpm db:migrate`. `pnpm db:import-sqlite` can copy a preserved local database into an empty migrated target. See the [database decision](obsidian/TraceLab-Vault/11-Architecture-Decisions/ADR-0005-Async-Persistence.md).
 
-Verification evidence: [test log](artifacts/final-verification.log), [oracle report](artifacts/sympy-results.json), and [math benchmark](artifacts/math-benchmark.json). Benchmarks are local engine timings, not cloud or API latency. No actual-learning improvement or student-data compliance is claimed.
-
-Recovery checkpoint: a [verified source archive and restore report](recovery/README.md) now preserve the existing 150 files and all 84 notes. The extracted copy passed a clean lockfile install and all prior checks again. Git/push and browser access remain blocked by the active environment. The next import must be one honest baseline commit; see the [baseline runbook](recovery/BASELINE-IMPORT.md).
-
-Full-access recovery update: Git/GitHub and localhost permissions have been restored and a single baseline import is being prepared. Earlier sandbox-blocker notes are historical. Browser checks and online dependency reproducibility are the next verification tasks.
+Hosted Neon connectivity, R2, live handwriting OCR, full curriculum, mastery, real-time replay and deployment remain incomplete. Local PostgreSQL verification does not demonstrate hosted performance. [Current evidence](artifacts/postgresql-verification.log), [browser report](artifacts/browser-results.json), [oracle report](artifacts/sympy-results.json).

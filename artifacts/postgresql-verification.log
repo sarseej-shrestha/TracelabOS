@@ -1,0 +1,96 @@
+packages/database/src/adapter.ts 31ms (unchanged)
+packages/database/src/import-local.ts 6ms
+packages/database/src/local.ts 2ms (unchanged)
+packages/database/src/migrations.ts 3ms (unchanged)
+packages/database/src/postgres.ts 4ms (unchanged)
+scripts/benchmark.ts 4ms (unchanged)
+scripts/import-sqlite.ts 2ms
+scripts/migrate.ts 1ms (unchanged)
+scripts/oracle-vectors.ts 3ms (unchanged)
+tests/integration/import-local.test.ts 6ms
+package.json 4ms (unchanged)
+
+> tracelab-os@0.1.0 verify /Users/userselu/Downloads/TracelabOS
+> pnpm typecheck && pnpm lint && pnpm test && pnpm build
+
+
+> tracelab-os@0.1.0 typecheck /Users/userselu/Downloads/TracelabOS
+> tsc --noEmit
+
+
+> tracelab-os@0.1.0 lint /Users/userselu/Downloads/TracelabOS
+> eslint .
+
+
+> tracelab-os@0.1.0 test /Users/userselu/Downloads/TracelabOS
+> vitest run
+
+
+ RUN  v4.1.11 /Users/userselu/Downloads/TracelabOS
+
+(node:53644) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:53649) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:53648) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:53645) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:53647) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  7 passed (7)
+      Tests  398 passed (398)
+   Start at  19:32:18
+   Duration  1.47s (transform 237ms, setup 0ms, import 692ms, tests 3.27s, environment 0ms)
+
+
+> tracelab-os@0.1.0 build /Users/userselu/Downloads/TracelabOS
+> next build apps/web --webpack
+
+▲ Next.js 16.3.8 (webpack)
+✓ Running next.config.ts took 14ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 874ms
+  Running TypeScript ...
+  Finished TypeScript in 732ms ...
+  Collecting page data using 5 workers ...
+(node:53693) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+  Generating static pages using 5 workers (0/3) ...
+✓ Generating static pages using 5 workers (3/3) in 260ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+└ ƒ /api/[[...route]]
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+> tracelab-os@0.1.0 test:e2e /Users/userselu/Downloads/TracelabOS
+> playwright test
+
+[WebServer] (node:53729) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:53752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 5 tests using 1 worker
+
+(node:53858) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:53752) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+  ✓  1 tests/e2e/classroom.spec.ts:28:1 › authenticated classroom publication, enrollment, photo, confirmed fraction work, teacher release, and login (1.7s)
+  ✓  2 tests/e2e/classroom.spec.ts:175:1 › keyboard skip link and demo navigation remain usable at 200 percent text zoom (216ms)
+  ✓  3 tests/e2e/workflow.spec.ts:3:1 › visitor confirms a solution, inspects propagation, and records teacher review (736ms)
+  ✓  4 tests/e2e/workflow.spec.ts:56:1 › landing and student workspace pass automated accessibility checks (654ms)
+  ✓  5 tests/e2e/workflow.spec.ts:82:1 › mobile workspace has no horizontal overflow and supports correct solution (447ms)
+
+  5 passed (5.5s)
+No known vulnerabilities found
