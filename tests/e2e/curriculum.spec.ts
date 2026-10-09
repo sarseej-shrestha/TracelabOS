@@ -77,3 +77,57 @@ test('teacher previews fraction bars and student completes a generated division 
     .click();
   await expect(page.getByText('A COMPLETE, CONSISTENT SOLUTION')).toBeVisible();
 });
+
+test('a generated expression can be simplified and completed through the student workspace', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page
+    .getByRole('button', { name: 'Debug a student’s thinking' })
+    .click();
+  await page.getByRole('button', { name: 'Switch to teacher' }).click();
+  await page
+    .getByText('Create a classroom or publish an assignment', { exact: true })
+    .click();
+  await page.getByLabel('Title', { exact: true }).fill('Collect the x terms');
+  await page
+    .getByRole('combobox', { name: 'Skill', exact: true })
+    .selectOption('combine-like-terms');
+  await page.getByLabel('Variation seed').fill('0');
+  await page.getByLabel('Feedback release').selectOption('immediate');
+  await page.getByRole('button', { name: 'Preview', exact: true }).click();
+  await expect(page.locator('.algebra-figure svg')).toHaveCount(1);
+  await page
+    .getByRole('button', { name: 'Publish assignment', exact: true })
+    .click();
+  await expect(
+    page.getByText('Assignment published.', { exact: true }),
+  ).toBeVisible();
+  await page.getByRole('button', { name: 'Switch to student' }).click();
+  await page.getByRole('button', { name: /Collect the x terms/ }).click();
+  const q = generateQuestion('combine-like-terms', 0, 'intro');
+  await expect(
+    page.getByRole('img', { name: `Expression: ${q.expression}`, exact: true }),
+  ).toBeVisible();
+  for (const [index, line] of q.reference.entries()) {
+    if (index)
+      await page
+        .getByRole('button', { name: '+ Add a step', exact: true })
+        .click();
+    await page.getByLabel(`Step ${index + 1}`, { exact: true }).fill(line);
+  }
+  await page.getByRole('checkbox').check();
+  await page.getByRole('button', { name: /Confirm & check steps/ }).click();
+  await expect(page.getByText('A COMPLETE, CONSISTENT SOLUTION')).toBeVisible();
+  expect(
+    (
+      await new AxeBuilder({ page })
+        .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
+        .analyze()
+    ).violations,
+  ).toEqual([]);
+  await page.screenshot({
+    path: 'artifacts/algebra-workspace.png',
+    fullPage: true,
+  });
+});

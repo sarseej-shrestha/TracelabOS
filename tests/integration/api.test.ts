@@ -203,7 +203,73 @@ describe.each(['sqlite', 'postgres'] as const)('%s API', (engine) => {
       firstError: null,
       completionHint: expect.stringContaining('lowest terms'),
     });
-    expect(result.evaluation.engineVersion).toContain('completion-1');
+    expect(result.evaluation.engineVersion).toContain('completion-2');
+  });
+  it('grades collected expressions while keeping a restated expression incomplete', async () => {
+    const d = await demo(),
+      tc = await teacher(d.cookie);
+    const q = await (
+      await call(
+        '/questions?skillId=combine-like-terms&seed=0&difficulty=intro',
+        'GET',
+        undefined,
+        tc,
+      )
+    ).json();
+    const ids = [];
+    for (const title of ['Uncollected expression', 'Collected expression'])
+      ids.push(
+        (
+          await (
+            await call(
+              '/assignments',
+              'POST',
+              {
+                classroomId: d.room,
+                skillId: 'combine-like-terms',
+                seed: 0,
+                difficulty: 'intro',
+                title,
+                feedback: 'immediate',
+              },
+              tc,
+            )
+          ).json()
+        ).id,
+      );
+    const switched = await call('/demo/role', 'POST', { role: 'student' }, tc),
+      sc = switched.headers.get('set-cookie')!.split(';')[0]!;
+    for (const [index, assignmentId] of ids.entries()) {
+      const id = await submission(sc, assignmentId);
+      await call(
+        `/submissions/${id}/transcription`,
+        'PATCH',
+        { version: 1, lines: index === 0 ? [q.expression] : q.reference },
+        sc,
+      );
+      expect(
+        (
+          await call(
+            `/submissions/${id}/confirm`,
+            'POST',
+            { version: 2, confirmed: true },
+            sc,
+          )
+        ).status,
+      ).toBe(200);
+      const result = await (
+        await call(`/submissions/${id}`, 'GET', undefined, sc)
+      ).json();
+      expect(result.evaluation).toMatchObject({
+        firstError: null,
+        requiresReview: false,
+        complete: index === 1,
+      });
+      if (index === 0)
+        expect(result.evaluation.completionHint).toContain(
+          'combining like terms',
+        );
+    }
   });
   it('persists a complete manual workflow and teacher override without replacing automatic history', async () => {
     const d = await demo(),

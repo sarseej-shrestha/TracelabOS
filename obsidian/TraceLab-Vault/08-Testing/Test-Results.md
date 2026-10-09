@@ -60,3 +60,7 @@ Separately, actual Python/ONNX inference through the running Next UI and durable
 ## 2026-10-09 fraction curriculum
 
 655 TypeScript tests pass; typecheck, ESLint and production build pass. Nine browser tests pass (14.4s), including teacher fraction preview, generated division assignment, student diagram/confirmation and mobile axe checks. Both SymPy suites pass: 11,700 new curriculum comparisons plus 6,000 existing comparisons, zero disagreements. The new Python script initially shadowed the standard-library fractions module; renaming it to curriculum_oracle.py corrected import resolution before either result was accepted. New API tests initially reused a revoked demo-role cookie; they now perform the actual role switch, retaining the application's session invalidation behavior.
+
+## 2026-10-09 algebra curriculum
+
+827 TypeScript tests pass; strict typecheck, ESLint and production build pass. Ten Chromium workflows pass (15.0s), including collected-expression completion and axe checks. Algebra oracle: 1,800 cases/11,400 comparisons, zero disagreements; fraction oracle rerun: 1,800/11,700, zero disagreements. Five Python unittest cases verify the independent oracle parser and goal semantics; the prior 24 OCR metric/region tests remain in CI. Figures/reference/alternative paths, legacy behavior, ambiguous identities/nonlinear review and incomplete affine forms have regressions. Reports: artifacts/algebra-oracle-results.json and algebra-verification.log.

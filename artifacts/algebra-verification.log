@@ -1,0 +1,97 @@
+tests/integration/api.test.ts 58ms
+tests/e2e/curriculum.spec.ts 12ms
+.github/workflows/quality.yml 10ms (unchanged)
+
+> tracelab-os@0.1.0 typecheck /Users/userselu/Downloads/TracelabOS
+> tsc --noEmit
+
+
+> tracelab-os@0.1.0 lint /Users/userselu/Downloads/TracelabOS
+> eslint .
+
+
+> tracelab-os@0.1.0 test /Users/userselu/Downloads/TracelabOS
+> vitest run
+
+
+ RUN  v4.1.11 /Users/userselu/Downloads/TracelabOS
+
+(node:78763) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:78761) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:78769) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:78760) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:78762) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:78759) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:78768) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  13 passed (13)
+      Tests  827 passed (827)
+   Start at  06:37:27
+   Duration  1.89s (transform 656ms, setup 0ms, import 2.03s, tests 6.82s, environment 1ms)
+
+
+> tracelab-os@0.1.0 build /Users/userselu/Downloads/TracelabOS
+> next build apps/web --webpack
+
+▲ Next.js 16.3.8 (webpack)
+✓ Running next.config.ts took 50ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1054ms
+  Running TypeScript ...
+  Finished TypeScript in 1256ms ...
+  Collecting page data using 5 workers ...
+(node:78916) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+  Generating static pages using 5 workers (0/3) ...
+✓ Generating static pages using 5 workers (3/3) in 286ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+└ ƒ /api/[[...route]]
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+
+> tracelab-os@0.1.0 test:e2e /Users/userselu/Downloads/TracelabOS
+> playwright test
+
+[WebServer] (node:79492) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:79492) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:79492) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+[WebServer] (node:79493) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:79516) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 10 tests using 1 worker
+
+(node:79627) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:79516) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+  ✓   1 tests/e2e/classroom.spec.ts:28:1 › authenticated classroom publication, enrollment, photo, confirmed fraction work, teacher release, and login (1.9s)
+  ✓   2 tests/e2e/classroom.spec.ts:175:1 › keyboard skip link and demo navigation remain usable at 200 percent text zoom (221ms)
+  ✓   3 tests/e2e/curriculum.spec.ts:4:1 › teacher previews fraction bars and student completes a generated division assignment on mobile (961ms)
+  ✓   4 tests/e2e/curriculum.spec.ts:81:1 › a generated expression can be simplified and completed through the student workspace (783ms)
+  ✓   5 tests/e2e/ocr-workflow.spec.ts:33:1 › queued extraction preserves original output, requires correction confirmation and remains inspectable by the teacher (1.7s)
+  ✓   6 tests/e2e/ocr-workflow.spec.ts:102:1 › invalid extraction offers manual fallback with no automatic grade (1.2s)
+  ✓   7 tests/e2e/ocr-workflow.spec.ts:121:1 › cancelling an in-flight extraction retains the saved draft and rejects late output (4.0s)
+  ✓   8 tests/e2e/workflow.spec.ts:3:1 › visitor confirms a solution, inspects propagation, and records teacher review (569ms)
+  ✓   9 tests/e2e/workflow.spec.ts:56:1 › landing and student workspace pass automated accessibility checks (679ms)
+  ✓  10 tests/e2e/workflow.spec.ts:82:1 › mobile workspace has no horizontal overflow and supports correct solution (447ms)
+
+  10 passed (15.0s)

@@ -57,6 +57,9 @@ jobs:
       - run: python research/symbolic-oracle/verify.py
       - run: pnpm oracle:fractions
       - run: python research/symbolic-oracle/curriculum_oracle.py
+      - run: python -m unittest discover -s research/symbolic-oracle -p 'test_*.py'
+      - run: pnpm oracle:algebra
+      - run: python research/symbolic-oracle/curriculum_oracle.py --input artifacts/algebra-oracle-vectors.json --output artifacts/algebra-oracle-results.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -66,6 +69,8 @@ jobs:
             artifacts/sympy-results.json
             artifacts/fraction-oracle-vectors.json
             artifacts/fraction-oracle-results.json
+            artifacts/algebra-oracle-vectors.json
+            artifacts/algebra-oracle-results.json
   ocr-metrics:
     runs-on: ubuntu-latest
     timeout-minutes: 5

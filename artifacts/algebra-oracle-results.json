@@ -1,9 +1,9 @@
 {
-  "executedAt": "2026-10-09T11:36:07.690149+00:00",
+  "executedAt": "2026-10-09T11:36:07.331494+00:00",
   "sympy": "1.14.0",
   "cases": 1800,
   "templates": 12,
-  "comparisons": 11700,
+  "comparisons": 11400,
   "disagreements": [],
   "scope": "Generated curriculum: each expression/reference/alternative checked against independent parameter arithmetic; not OCR accuracy or an educational outcome."
 }

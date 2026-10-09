@@ -15,6 +15,12 @@ export interface FractionFigure {
   caption: string;
   fractions: { numerator: number; denominator: number; label: string }[];
 }
+export interface AlgebraFigure {
+  kind: 'algebra-structure';
+  parts: string[];
+  caption: string;
+}
+export type QuestionFigure = FractionFigure | AlgebraFigure;
 export interface Question {
   id: string;
   templateId: string;
@@ -28,6 +34,6 @@ export interface Question {
   parameters: Record<string, number>;
   alternativePaths?: string[][];
   explanation?: string;
-  figure?: FractionFigure;
-  answerForm?: 'value' | 'reduced-fraction';
+  figure?: QuestionFigure;
+  answerForm?: 'value' | 'reduced-fraction' | 'simplified-affine';
 }

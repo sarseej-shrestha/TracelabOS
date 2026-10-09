@@ -1,5 +1,6 @@
 """Independent curriculum oracle. Parse a restricted generated AST; never use eval."""
 
+import argparse
 import ast
 import json
 import re
@@ -12,7 +13,7 @@ x = sp.Symbol("x", real=True)
 
 
 def expression(text):
-    node = ast.parse(re.sub(r"(?<=\d)x", "*x", text), mode="eval").body
+    node = ast.parse(re.sub(r"(?<=\d)(?=[x(])", "*", text), mode="eval").body
 
     def visit(item):
         if isinstance(item, ast.Constant) and type(item.value) is int:
@@ -38,8 +39,22 @@ def expression(text):
 
 def expected(case):
     p = case["parameters"]
-    left, right = sp.Rational(p["a"], p["b"]), sp.Rational(p["c"], p["d"])
     skill = case["skillId"]
+    if skill == "arithmetic-expressions":
+        return (p["a"] + p["b"]) * p["c"] if p["variant"] else p["a"] + p["b"] * p["c"]
+    if skill == "combine-like-terms":
+        return (
+            (p["a"] - p["b"]) * x + p["c"] - p["d"]
+            if p["variant"]
+            else (p["a"] + p["b"]) * x + p["c"]
+        )
+    if skill == "one-step-equations":
+        return sp.Rational(p["b"], p["a"]) if p["variant"] else sp.Integer(p["x"])
+    if skill == "distributive-property":
+        return sp.Integer(p["x"]) if p["variant"] else p["a"] * x - p["a"] * p["b"]
+    if skill in {"two-step-equations", "variables-both-sides"}:
+        return sp.Integer(p["x"])
+    left, right = sp.Rational(p["a"], p["b"]), sp.Rational(p["c"], p["d"])
     if skill == "fraction-equivalence":
         return sp.Integer(p["a"] * p["k"]) if p["variant"] else left
     if skill == "fraction-addition":
@@ -55,8 +70,27 @@ def expected(case):
     raise ValueError("Unknown skill")
 
 
+def matches(line, answer, equation_goal):
+    parts = line.split("=")
+    if len(parts) == 1:
+        return not equation_goal and sp.simplify(expression(line) - answer) == 0
+    if len(parts) == 2:
+        if equation_goal:
+            return sp.solve(expression(parts[0]) - expression(parts[1]), x) == [answer]
+        return all(sp.simplify(expression(part) - answer) == 0 for part in parts)
+    return False
+
+
 def main():
-    cases = json.loads(Path("artifacts/fraction-oracle-vectors.json").read_text())
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--input", type=Path, default=Path("artifacts/fraction-oracle-vectors.json")
+    )
+    parser.add_argument(
+        "--output", type=Path, default=Path("artifacts/fraction-oracle-results.json")
+    )
+    args = parser.parse_args()
+    cases = json.loads(args.input.read_text())
     disagreements, comparisons = [], 0
     for case in cases:
         answer = expected(case)
@@ -65,15 +99,7 @@ def main():
         ):
             for line in [case["expression"], *path]:
                 comparisons += 1
-                parts = line.split("=")
-                if len(parts) == 1:
-                    correct = sp.simplify(expression(line) - answer) == 0
-                elif len(parts) == 2:
-                    correct = sp.solve(
-                        expression(parts[0]) - expression(parts[1]), x
-                    ) == [answer]
-                else:
-                    correct = False
+                correct = matches(line, answer, "=" in case["expression"])
                 if not correct or not complete:
                     disagreements.append(
                         {
@@ -91,11 +117,9 @@ def main():
         "templates": len({c["templateId"] for c in cases}),
         "comparisons": comparisons,
         "disagreements": disagreements,
-        "scope": "Generated fraction curriculum: each expression/reference/alternative checked against independent parameter arithmetic; not OCR accuracy or an educational outcome.",
+        "scope": "Generated curriculum: each expression/reference/alternative checked against independent parameter arithmetic; not OCR accuracy or an educational outcome.",
     }
-    Path("artifacts/fraction-oracle-results.json").write_text(
-        json.dumps(report, indent=2) + "\n"
-    )
+    args.output.write_text(json.dumps(report, indent=2) + "\n")
     print(
         json.dumps(
             {k: v for k, v in report.items() if k != "disagreements"}
