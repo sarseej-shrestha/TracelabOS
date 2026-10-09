@@ -8,23 +8,23 @@ Curriculum expansion after verified recovery, local cloud adapters and OCR integ
 
 ## Active Task
 
-TASK-0020 ratio curriculum passes local math, API, browser and independent-oracle verification; commit/push/CI follows.
+TASK-0021A dimensional quantity verifier passes local tests and independent SymPy checks; commit/push/CI follows. Geometry templates/UI remain TASK-0021B.
 
 ## Current Git Branch
 
-feat/ratio-curriculum
+feat/geometry-unit-verifier
 
 ## Latest Commit Hash
 
-Latest verified remote main: a59b1ad70cc9e98dae2e98b01a54b4b194a8d270 (PR #10 merge). Durable jobs commit 8893999; importer fix 88487d7; adapter be25149. This note records preceding commits rather than its own hash.
+Latest verified remote main: 7cd2bd3a971285eb0bf6eab726229e1927b295c7 (PR #11 merge). Durable jobs commit 8893999; importer fix 88487d7; adapter be25149. This note records preceding commits rather than its own hash.
 
 ## Latest Successful Push
 
-PRs #1–#10 merged after checks; PR #10 run 37990594913 passed verify/oracle/ocr-metrics. Algebra feature 572ceec is preserved. Fraction commit fd5f584 and UI commit 8742c97 are preserved. Ratio task push/checks follow local verification.
+PRs #1–#11 merged after checks; PR #11 run 37991449649 passed verify/oracle/ocr-metrics. Algebra feature 572ceec is preserved. Fraction commit fd5f584 and UI commit 8742c97 are preserved. Ratio feature 3c38f88 is preserved; quantity task push/checks follow local verification.
 
 ## Latest Verified Test Results
 
-1,083 Vitest tests pass, including 7,000 seeded property cases and 26 new dual-database OCR job cases. Strict TypeScript, ESLint and production build pass. Eleven Chromium workflows pass (16.1s), including extraction, correction, cancellation, failure fallback, teacher provenance and axe accessibility. Latest Python checkpoint: 24 tests pass; fraction oracle reports 1,800 cases/11,700 comparisons and algebra reports 1,800/11,400, and ratios 1,800/11,850, zero disagreements; five oracle unittest cases pass. SymPy CI repeats 2,000 cases/6,000 comparisons with zero differences. Actual model API smoke processed the research image in 100.57ms. A separate Chromium workflow through the actual local model completed in 1465.52ms, left evaluation null until explicit correction/confirmation, detected fixture first error at step 2, and recorded a teacher review. This is workflow evidence, not camera-image accuracy.
+1,141 Vitest tests pass, including 8,000 seeded property cases and 26 new dual-database OCR job cases. Strict TypeScript, ESLint and production build pass. Eleven Chromium workflows pass (16.1s), including extraction, correction, cancellation, failure fallback, teacher provenance and axe accessibility. Latest Python checkpoint: 24 tests pass; fraction oracle reports 1,800 cases/11,700 comparisons and algebra reports 1,800/11,400, and ratios 1,800/11,850, zero disagreements; quantity oracle 2,000 cases, zero disagreements; five oracle unittest cases pass. SymPy CI repeats 2,000 cases/6,000 comparisons with zero differences. Actual model API smoke processed the research image in 100.57ms. A separate Chromium workflow through the actual local model completed in 1465.52ms, left evaluation null until explicit correction/confirmation, detected fixture first error at step 2, and recorded a teacher review. This is workflow evidence, not camera-image accuracy.
 
 ## Completed Features
 
@@ -32,7 +32,7 @@ Recovery backup/hash/extraction, authorized Git/GitHub and localhost/browser acc
 
 ## Partially Completed Features
 
-Eighteen skills/thirty-six active templates; geometry remains. Rule recommendations without persisted mastery. OCR API/worker and browser processing/correction/fallback controls connected. Experimental model had only 3/72 exact matches in the general handwritten-expression pilot; targeted photographed-work accuracy remains unverified. History slider lacks deterministic reducer/WebSockets.
+Eighteen skills/thirty-six active templates; geometry remains. Its standalone dimensional verifier passes 58 focused tests but is not yet connected to question generation. Rule recommendations without persisted mastery. OCR API/worker and browser processing/correction/fallback controls connected. Experimental model had only 3/72 exact matches in the general handwritten-expression pilot; targeted photographed-work accuracy remains unverified. History slider lacks deterministic reducer/WebSockets.
 
 ## Pending Features
 
@@ -56,7 +56,7 @@ TRACELAB_DB_PATH (use the same absolute path for API and worker) or DATABASE_URL
 
 ## Exact Next Steps
 
-1. Commit/push ratio work, pass checks and merge; verify remote main.
+1. Commit/push dimensional verifier work, pass checks and merge; verify remote main.
 2. Expand geometry according to [[Task-Backlog]], preserving explicit domain and unit boundaries.
 3. Continue mastery/realtime/deployment in [[Master-Roadmap]]. Targeted photographed-work validation and cloud credentials remain open.
 

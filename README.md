@@ -25,9 +25,9 @@ Open [obsidian/TraceLab-Vault](obsidian/TraceLab-Vault/00-START-HERE.md) as an O
 
 Authenticated teacher/student accounts, isolated visitor demo, classrooms/enrollment, seeded assignments, private database images, confirmed transcription, exact reasoning checks, teacher review and persisted event history work locally. Eighteen skills and thirty-six active templates are available: fractions, algebra and ratios/percentages each have six skills with two templates.
 
-- 1,083 automated TypeScript tests pass, including 7,000 seeded property cases and API workflows on SQLite and PostgreSQL/PGlite.
+- 1,141 automated TypeScript tests pass, including 8,000 seeded property cases and API workflows on SQLite and PostgreSQL/PGlite.
 - Eleven Chromium browser tests pass, including authenticated classroom workflow, OCR correction/cancellation/failure, mobile, keyboard and axe checks. Twenty-four Python metric/region tests and five independent-oracle unit tests pass.
-- Independent SymPy: 2,000 existing cases/6,000 comparisons and 1,800 fraction cases/11,700 comparisons and 1,800 algebra cases/11,400 comparisons and 1,800 ratio cases/11,850 comparisons, zero disagreements.
+- Independent SymPy: 2,000 existing cases/6,000 comparisons and 1,800 fraction cases/11,700 comparisons and 1,800 algebra cases/11,400 comparisons and 1,800 ratio cases/11,850 comparisons, plus 2,000 metric quantity cases, zero disagreements.
 - Typecheck, lint, formatting and production build pass. Dependency audit reports no known vulnerabilities at the recorded checkpoint.
 
 GitHub recovery PR #1 passed CI and is merged. The original source archive is retained; see [recovery](recovery/README.md). PostgreSQL is selected with DATABASE_URL, after `pnpm db:migrate`. `pnpm db:import-sqlite` can copy a preserved local database into an empty migrated target. See the [database decision](obsidian/TraceLab-Vault/11-Architecture-Decisions/ADR-0005-Async-Persistence.md).

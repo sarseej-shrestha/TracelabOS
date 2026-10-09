@@ -1,0 +1,7 @@
+{
+  "executedAt": "2026-10-09T21:12:58.834406+00:00",
+  "sympy": "1.14.0",
+  "cases": 2000,
+  "disagreements": [],
+  "scope": "Seeded exact metric products, quotients, sums and perimeter quantities, independently calculated from parameters. Does not measure student-error precision or diagram recognition."
+}
