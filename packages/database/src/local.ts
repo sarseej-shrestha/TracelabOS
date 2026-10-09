@@ -23,6 +23,8 @@ export function openDatabase(path: string) {
     CREATE INDEX IF NOT EXISTS sessions_expiry ON sessions(expires_at);
     CREATE INDEX IF NOT EXISTS reviews_submission ON teacher_reviews(submission_id,created_at);
     CREATE TABLE IF NOT EXISTS schema_migrations (version INTEGER PRIMARY KEY, applied_at TEXT NOT NULL);
+    CREATE TABLE IF NOT EXISTS image_references (submission_id TEXT PRIMARY KEY REFERENCES submissions(id), object_key TEXT NOT NULL UNIQUE, mime TEXT NOT NULL CHECK(mime='image/jpeg'), byte_length INTEGER NOT NULL CHECK(byte_length>0 AND byte_length<=5242880), sha256 TEXT NOT NULL, created_at TEXT NOT NULL);
+    INSERT OR IGNORE INTO schema_migrations VALUES (2, datetime('now'));
     INSERT OR IGNORE INTO schema_migrations VALUES (1, datetime('now'));
   `);
   return db;

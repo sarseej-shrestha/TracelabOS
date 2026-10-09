@@ -226,7 +226,7 @@ it('applies migrations once and rejects historical SQL edits', async () => {
     await expect(
       applyMigration(
         db,
-        2,
+        99,
         'CREATE TABLE incomplete(id INTEGER); SELECT missing_column;',
       ),
     ).rejects.toThrow();
@@ -239,7 +239,7 @@ it('applies migrations once and rejects historical SQL edits', async () => {
     ).toBeUndefined();
     expect(
       await db
-        .prepare('SELECT version FROM schema_migrations WHERE version=2')
+        .prepare('SELECT version FROM schema_migrations WHERE version=99')
         .get(),
     ).toBeUndefined();
   } finally {

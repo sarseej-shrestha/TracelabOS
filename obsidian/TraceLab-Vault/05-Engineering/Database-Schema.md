@@ -7,3 +7,7 @@ Related: [[00-START-HERE]] · [[Current-State]]
 ## PostgreSQL migration 0001
 
 The same current relational entities are now implemented in packages/database/migrations/0001_postgresql.sql and tested using PostgreSQL/PGlite. Sessions use BIGINT expiry; images use BYTEA; event sequence and review rowid use SERIAL for stable order. Existing text JSON snapshots remain intentional; this is not yet the full normalized target described above. PostgreSQL migration checksums are recorded and enforced. No hosted migration has been run. See [[ADR-0005-Async-Persistence]].
+
+## Image references migration 0002
+
+image_references has submission primary/foreign key, unique object key, JPEG MIME constraint, bounded positive byte count, SHA-256 and timestamp. SQLite upgrades retain existing BLOBs and record migration 2; PostgreSQL migrations keep immutable checksums. The SQLite importer tolerates a pre-v2 source and preserves any references present in newer sources.

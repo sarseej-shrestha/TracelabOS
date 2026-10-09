@@ -41,6 +41,11 @@ import {
 import { recommend } from '../../../packages/learning-engine/src/index.ts';
 import { validateImage } from '../../../packages/vision-adapter/src/index.ts';
 import sharp from 'sharp';
+import {
+  StorageUnavailable,
+  type ImageStore,
+} from '../../../packages/vision-adapter/src/storage.ts';
+import { saveImage, readImage } from './images.ts';
 type User = {
   id: string;
   username: string;
@@ -84,6 +89,7 @@ export function createApp(
   input: DB | Database,
   options: {
     allowedOrigins?: string[];
+    imageStore?: ImageStore;
   } = {},
 ) {
   const db = asDatabase(input);
@@ -170,6 +176,8 @@ export function createApp(
     await next();
   });
   app.onError((e, c) => {
+    if (e instanceof StorageUnavailable)
+      return c.json({ error: e.message, requestId: c.get('requestId') }, 503);
     if (e instanceof ZodError)
       return c.json(
         {
@@ -293,6 +301,7 @@ export function createApp(
     return c.json({
       status: 'ok',
       persistence: db.kind,
+      imageStorage: options.imageStore?.kind ?? 'private-database',
       ocr: 'unavailable',
       version: '0.1.0',
     });
@@ -573,8 +582,10 @@ export function createApp(
       version: t.version,
       lines: JSON.parse(t.lines),
       hasImage: !!(await db
-        .prepare('SELECT 1 FROM submission_images WHERE submission_id=?')
-        .get(s.id)),
+        .prepare(
+          'SELECT submission_id FROM submission_images WHERE submission_id=? UNION SELECT submission_id FROM image_references WHERE submission_id=?',
+        )
+        .get(s.id, s.id)),
       evaluation: e ? JSON.parse(e.result) : null,
       feedbackHeld: !visible,
       reviews: visible
@@ -672,23 +683,12 @@ export function createApp(
     }
     s = await submission(s.id, c.get('user'), true);
     if (s.state !== 'MANUAL_ENTRY') fail(409, 'SUBMISSION_LOCKED');
-    await db
-      .prepare(
-        'INSERT INTO submission_images VALUES(?,?,?) ON CONFLICT(submission_id) DO UPDATE SET mime=excluded.mime,bytes=excluded.bytes',
-      )
-      .run(s.id, 'image/jpeg', normalized!);
+    await saveImage(db, options.imageStore, s.id, normalized!);
     return c.json({ stored: true, ocr: 'unavailable', manualEntry: true });
   });
   app.get('/api/submissions/:id/image', async (c) => {
     const s = await submission(c.req.param('id'), c.get('user'));
-    const im = (await db
-      .prepare('SELECT * FROM submission_images WHERE submission_id=?')
-      .get(s.id)) as
-      | {
-          mime: string;
-          bytes: Uint8Array;
-        }
-      | undefined;
+    const im = await readImage(db, options.imageStore, s.id);
     if (!im) fail(404, 'IMAGE_NOT_FOUND');
     return new Response(im!.bytes as BodyInit, {
       headers: {

@@ -36,3 +36,7 @@ After verified extraction to a fresh directory and clean npm ci using the existi
 ## PostgreSQL checkpoint — 2026-10-08
 
 398 tests passed, zero failed on Node 22.23.3. The 24 API tests now run on both SQLite and PostgreSQL/PGlite. Added concurrent create/edit/confirmation, rollback-on-event-failure, transaction recovery, migration checksum/atomicity, parameter binding and full local-to-PostgreSQL import preservation tests. Typecheck/lint/build passed. Five browser tests passed in 5.5s against the local production server. pnpm audit: no known vulnerabilities. Evidence: artifacts/postgresql-verification.log. This does not verify Neon connectivity or R2 storage.
+
+## Private R2 checkpoint — 2026-10-08
+
+416 tests passed, zero failed; typecheck/lint/build passed; five Chromium tests passed in 5.8s; pnpm audit found no known vulnerabilities. Added signed local S3 protocol requests, private-object API authorization, source-preserving migration, storage failure, integrity mismatch and orphan reconciliation tests on SQLite/PostgreSQL. Evidence: artifacts/r2-verification.log. No live R2 call or deployment is claimed.

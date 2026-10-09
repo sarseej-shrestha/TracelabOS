@@ -1,5 +1,8 @@
 import { PGlite } from '@electric-sql/pglite';
-import { applyMigration } from '../../packages/database/src/migrations.ts';
+import {
+  applyMigration,
+  migrationFiles,
+} from '../../packages/database/src/migrations.ts';
 import { readFile } from 'node:fs/promises';
 import {
   Database,
@@ -21,16 +24,15 @@ export async function testPostgres() {
       ),
     close: () => pg.close(),
   });
-  await applyMigration(
-    db,
-    1,
-    await readFile(
-      new URL(
-        '../../packages/database/migrations/0001_postgresql.sql',
-        import.meta.url,
+  for (const [index, file] of migrationFiles.entries()) {
+    await applyMigration(
+      db,
+      index + 1,
+      await readFile(
+        new URL(`../../packages/database/migrations/${file}`, import.meta.url),
+        'utf8',
       ),
-      'utf8',
-    ),
-  );
+    );
+  }
   return { db, pg };
 }
