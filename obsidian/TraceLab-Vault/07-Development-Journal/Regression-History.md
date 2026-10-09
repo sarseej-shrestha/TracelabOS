@@ -17,3 +17,7 @@ First real Chromium run failed all three original tests: demo POST was rejected 
 ## Workspace contrast and premature scan — 2026-10-08
 
 Integrated Node 22/patched-dependency browser run: four tests passed, workspace axe test failed (paragraph contrast 4.37:1). Baseline CSS muted color inherited against green banner. Explicit darker paragraph color corrects the defect. Browser regression now awaits the actual workspace checkbox; prior passing scans could inspect the preceding assignment screen. CI additionally rejected merged ledger formatting; formatted without relaxing check.
+
+## OCR metric normalization — 2026-10-08
+
+During benchmark review, plain prefix replacement of LaTeX sizing commands also changed leftarrow/rightarrow command names and could conflate directions. Added negative-equivalence regressions and restricted normalization to complete sizing commands. Reran pix2tex with corrected scoring before publishing. This fixes measurement fidelity, not model recognition errors.
