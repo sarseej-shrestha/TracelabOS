@@ -68,3 +68,7 @@ Separately, actual Python/ONNX inference through the running Next UI and durable
 ## 2026-10-09 ratios checkpoint
 
 1,083 Vitest tests pass; 7,000 seeded cases include 2,000 new proportion/perturbation cases. TypeScript, ESLint and production build pass. Eleven Chromium workflows pass (16.1s), including ratio publication, confirmation and visible domain conditions with axe checks. Independent ratio oracle: 1,800 cases / 11,850 comparisons / zero disagreements. Five Python oracle regression cases pass. Prior OCR and earlier-domain checks remain in CI. Evidence: artifacts/ratio-verification.log, ratio-oracle-results.json and browser-results.json.
+
+## 2026-10-09 quantity verifier
+
+1,141 Vitest tests, strict TypeScript and ESLint pass. Added 58 quantity tests including 1,000 seeded conversion cases. Independent SymPy quantity checks: 2,000 cases, zero disagreements. Last browser/build checkpoint remains the ratio integration: eleven workflows and production build passed; the standalone verifier does not change exposed application paths. CI will repeat all gates before merge.
