@@ -11,3 +11,9 @@ Set DATABASE_URL securely to a Neon connection string and run `pnpm db:migrate`.
 ## Private object migration and reconciliation
 
 With explicit TRACELAB_DB_PATH or DATABASE_URL and complete R2 credentials, run `pnpm images:migrate` to preview; add `--apply` for a bounded 100-image batch. Repeat until remaining is zero. Run `pnpm images:reconcile` to preview aged orphans; add `--delete` only after reviewing the count and keeping backups. Only unreferenced application objects older than 24 hours are eligible. Live provider execution is still pending credentials. See [[ADR-0006-Private-Object-Storage]].
+
+## Experimental OCR and browser checks
+
+Run the Python service and `pnpm ocr:worker` alongside Next with the same absolute TRACELAB_DB_PATH (or DATABASE_URL), TRACELAB_OCR_URL and shared token. See services/ocr-worker/README.md for pinned environment and queue recovery behavior. The real local service currently listens on 127.0.0.1:8020; the application preview is http://127.0.0.1:3000 while its process is running.
+
+`pnpm test:e2e` now creates a separate ignored `.data/e2e-<pid>.db` and starts a deterministic test provider/worker on localhost:8031. It clears cloud configuration for the child processes and refuses to reuse an existing app server. Stop the local preview before running these tests, then restart it. Fixture responses are integration controls, not OCR benchmark results. `pnpm ocr:browser-smoke <image-path>` instead uses an already running actual local API/provider/worker; use non-sensitive research inputs and read the report limitations.

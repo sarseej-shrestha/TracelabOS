@@ -20,6 +20,8 @@ POST `/api/submissions/:id/process` accepts `{version,idempotencyKey}`. Only the
 
 Persisted rolling-day caps allow five jobs per student and 200 across the demo. Automatic attempts are bounded to three per job. There is one active job per submission. Quota exhaustion and missing providers preserve manual entry. Different worker model versions do not claim one another's jobs: finish or cancel old jobs when upgrading.
 
-This is a database-backed local/Node worker, not a deployed Cloudflare queue consumer. The browser processing controls are the next task. Production hosting, targeted photographed handwriting acceptance, distributed rate limiting and automatic retention remain incomplete.
+This is a database-backed local/Node worker, not a deployed Cloudflare queue consumer. The browser offers extraction, status polling, cancellation/manual fallback, correction and original-output inspection. Production hosting, targeted photographed handwriting acceptance, distributed rate limiting and automatic retention remain incomplete.
 
 `pnpm ocr:workflow-smoke <non-sensitive-image-path>` runs an isolated in-memory application workflow against the configured real model, then deliberately substitutes a labeled distribution fixture to verify confirmation, grading and teacher review. It writes artifacts/ocr-workflow-smoke.json. This validates integration, never recognition accuracy; the executed research input is recorded in the vault Test-Results.
+
+With the real local application and worker running, `pnpm ocr:browser-smoke <non-sensitive-image-path>` verifies the same boundary in Chromium. It requires an installed browser (CHROMIUM_PATH is supported), creates fictional demo records and writes artifacts/ocr-browser-smoke.json. It deliberately replaces recognized text with a known demonstration solution before grading; read the report limitation before citing it.

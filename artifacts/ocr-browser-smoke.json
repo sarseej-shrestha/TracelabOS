@@ -1,0 +1,9 @@
+{
+  "executedAt": "2026-10-09T06:28:29.870Z",
+  "modelVersion": "pix2text-mfr-1.5@1cef9f0:regions-v1",
+  "originalLineCount": 1,
+  "unconfirmedEvaluation": null,
+  "finalState": "FINALIZED",
+  "durationMs": 1465.5216249999999,
+  "limitations": "Actual model and browser workflow. Known demo steps deliberately replace recognition; this is not image/question agreement or camera-photo accuracy. Input provenance is in vault Test-Results."
+}

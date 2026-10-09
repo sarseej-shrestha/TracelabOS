@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState, type FormEvent } from 'react';
+import type { OcrResult } from '../../../packages/contracts/src/index';
 import type { Evaluation } from '../../../packages/math-engine/src/index';
 import type { Question } from '../../../packages/question-bank/src/index';
 type Me = {
@@ -21,6 +22,15 @@ type Submission = {
   version: number;
   lines: string[];
   hasImage: boolean;
+  ocrAvailable: boolean;
+  ocrJob: {
+    id: string;
+    status: string;
+    attempts: number;
+    error_code: string | null;
+    provider_version: string;
+    raw_output: string | null;
+  } | null;
   evaluation: Evaluation | null;
   feedbackHeld: boolean;
   reviews: { decision: string; reason: string }[];
@@ -44,9 +54,11 @@ async function api<T>(
   path: string,
   method = 'GET',
   body?: unknown,
+  signal?: AbortSignal,
 ): Promise<T> {
   const r = await fetch(`/api${path}`, {
     method,
+    signal,
     headers:
       body instanceof Blob
         ? { 'Content-Type': body.type }
@@ -154,8 +166,74 @@ export default function Home() {
   async function inspect(id: string) {
     const full = await api<Submission>(`/submissions/${id}`);
     setSub(full);
-    setLines(full.lines);
+    setLines(full.lines.length ? full.lines : ['']);
     setPreview(full.hasImage ? `/api/submissions/${full.id}/image` : '');
+  }
+  useEffect(() => {
+    if (!sub || sub.state !== 'PROCESSING' || me?.role !== 'student') return;
+    const id = sub.id,
+      controller = new AbortController();
+    let timer: ReturnType<typeof setTimeout>;
+    async function poll() {
+      try {
+        const full = await api<Submission>(
+          `/submissions/${id}`,
+          'GET',
+          undefined,
+          controller.signal,
+        );
+        if (controller.signal.aborted) return;
+        setSub(full);
+        if (full.state !== 'PROCESSING') {
+          setLines(full.lines.length ? full.lines : ['']);
+          setConsent(false);
+          setNotice(
+            full.state === 'CONFIRMATION_REQUIRED'
+              ? 'Extraction ready. Check every symbol against your photograph before confirming.'
+              : 'Extraction could not finish. Your saved work is safe; enter the steps manually or retry.',
+          );
+          return;
+        }
+      } catch {
+        if (controller.signal.aborted) return;
+        setNotice('Connection interrupted. Retrying the processing status…');
+      }
+      timer = setTimeout(poll, 2500);
+    }
+    timer = setTimeout(poll, 750);
+    return () => {
+      controller.abort();
+      clearTimeout(timer);
+    };
+  }, [sub?.id, sub?.state, me?.role]);
+  async function startExtraction() {
+    if (!sub) return;
+    let version = sub.version;
+    const draft = lines.filter((line) => line.trim().length > 0);
+    if (sub.state === 'MANUAL_ENTRY' && draft.length) {
+      const saved = await api<{ version: number }>(
+        `/submissions/${sub.id}/transcription`,
+        'PATCH',
+        { version, lines: draft },
+      );
+      version = saved.version;
+      setSub({ ...sub, version, lines: draft });
+    }
+    await api(`/submissions/${sub.id}/process`, 'POST', {
+      version,
+      idempotencyKey: crypto.randomUUID(),
+    });
+    setConsent(false);
+    await inspect(sub.id);
+  }
+  async function useManualEntry() {
+    if (!sub) return;
+    await api(`/submissions/${sub.id}/manual-entry`, 'POST', {
+      version: sub.version,
+    });
+    setConsent(false);
+    await inspect(sub.id);
+    setNotice('Manual entry is ready. Your saved transcription is preserved.');
   }
   async function loadTeacher(id = roomId) {
     if (!id) return;
@@ -262,6 +340,8 @@ export default function Home() {
   }
   const locked =
     !!sub && !['MANUAL_ENTRY', 'CONFIRMATION_REQUIRED'].includes(sub.state);
+  const graded =
+    !!sub && ['EVALUATED', 'TEACHER_REVIEW', 'FINALIZED'].includes(sub.state);
   const teacher = me?.role === 'teacher';
   return (
     <>
@@ -546,9 +626,9 @@ export default function Home() {
                       decisions.
                     </p>
                     <p>
-                      Live OCR, Neon/R2 deployment, WebSockets, and statistical
-                      mastery are pending. No cloud latency or OCR accuracy is
-                      claimed.
+                      Hosted OCR, Neon/R2 deployment, WebSockets, and
+                      statistical mastery are pending. No cloud latency or OCR
+                      accuracy is claimed.
                     </p>
                   </section>
                   <section className="card">
@@ -843,6 +923,7 @@ export default function Home() {
                         alt="Student's submitted mathematics"
                       />
                     )}
+                    <OriginalOcr sub={sub} />
                     <Reasoning sub={sub} />
                     <form
                       onSubmit={(e) => {
@@ -1024,10 +1105,10 @@ export default function Home() {
                     </div>
                     <div className="flow">
                       <span className="done">01 Capture or type</span>
-                      <span className={locked ? 'done' : 'current'}>
+                      <span className={graded ? 'done' : 'current'}>
                         02 Confirm transcription
                       </span>
-                      <span className={locked ? 'current' : ''}>
+                      <span className={graded ? 'current' : ''}>
                         03 Trace the reasoning
                       </span>
                     </div>
@@ -1053,7 +1134,7 @@ export default function Home() {
                             </p>
                           </div>
                         )}
-                        {!locked && (
+                        {sub?.state === 'MANUAL_ENTRY' && (
                           <>
                             <label className="upload-button">
                               Choose a photo
@@ -1105,8 +1186,9 @@ export default function Home() {
                                           photo,
                                         );
                                         setPhoto(null);
+                                        setSub({ ...sub!, hasImage: true });
                                         setNotice(
-                                          'Photo saved privately. Enter its steps below; live OCR is not connected.',
+                                          'Photo saved privately. Extract its steps or enter them yourself.',
                                         );
                                       })
                                     }
@@ -1138,20 +1220,70 @@ export default function Home() {
                           </>
                         )}
                         <p className="fine">
-                          Live OCR is not connected in this build. Photos are
-                          stored privately on this local server; type and
-                          confirm the transcription yourself.
+                          {sub?.ocrAvailable
+                            ? 'Experimental recognition can misread handwriting. Compare every line with your photograph; nothing is graded before you confirm.'
+                            : 'Automatic extraction is unavailable. Your photograph is private; enter and confirm the steps yourself.'}
                         </p>
+                        {sub?.ocrAvailable &&
+                          sub.hasImage &&
+                          ['MANUAL_ENTRY', 'EXTRACTION_FAILED'].includes(
+                            sub.state,
+                          ) && (
+                            <button
+                              className="primary"
+                              disabled={busy || !!photo}
+                              onClick={() => void act(startExtraction)}
+                            >
+                              {sub.state === 'EXTRACTION_FAILED'
+                                ? 'Retry extraction'
+                                : 'Extract handwritten steps'}
+                            </button>
+                          )}
+                        {sub?.state === 'PROCESSING' && (
+                          <p role="status">
+                            {sub.ocrJob?.status === 'RUNNING'
+                              ? 'Reading your handwriting…'
+                              : 'Waiting for the handwriting processor…'}{' '}
+                            You can switch to manual entry at any time.
+                          </p>
+                        )}
+                        {sub?.state === 'EXTRACTION_FAILED' && (
+                          <p role="status">
+                            Extraction failed. Enter your steps manually or try
+                            again.
+                          </p>
+                        )}
+                        {sub &&
+                          [
+                            'PROCESSING',
+                            'EXTRACTION_FAILED',
+                            'CONFIRMATION_REQUIRED',
+                          ].includes(sub.state) && (
+                            <button
+                              className="secondary"
+                              disabled={busy}
+                              onClick={() => void act(useManualEntry)}
+                            >
+                              Enter steps manually
+                            </button>
+                          )}
+                        {sub && <OriginalOcr sub={sub} />}
                       </section>
                       <section className="card transcription">
                         <div className="section-title">
                           <h2>
-                            {locked
+                            {graded
                               ? 'Confirmed steps'
                               : 'What does your work say?'}
                           </h2>
                           <span className="badge">
-                            {locked ? 'LOCKED' : 'MANUAL ENTRY'}
+                            {sub?.state === 'PROCESSING'
+                              ? 'PROCESSING'
+                              : sub?.state === 'CONFIRMATION_REQUIRED'
+                                ? 'CHECK TRANSCRIPTION'
+                                : locked
+                                  ? 'LOCKED'
+                                  : 'MANUAL ENTRY'}
                           </span>
                         </div>
                         <p>
@@ -1299,7 +1431,7 @@ export default function Home() {
                         )}
                       </section>
                     </div>
-                    {sub && locked && (
+                    {sub && graded && (
                       <section className="card reasoning-card">
                         <Reasoning sub={sub} />
                       </section>
@@ -1328,7 +1460,7 @@ export default function Home() {
           TraceLab OS{' '}
           <span className="muted">/ Debugging the way humans learn.</span>
         </span>
-        <span>Local development · No live OCR</span>
+        <span>Private work · Confirm before grading</span>
       </footer>
     </>
   );
@@ -1415,5 +1547,25 @@ function Reasoning({ sub }: { sub: Submission }) {
         </div>
       )}
     </>
+  );
+}
+
+function OriginalOcr({ sub }: { sub: Submission }) {
+  if (!sub.ocrJob?.raw_output) return null;
+  const original = JSON.parse(sub.ocrJob.raw_output) as OcrResult;
+  return (
+    <details className="ocr-original">
+      <summary>Original machine transcription</summary>
+      <p className="fine">
+        Preserved before your corrections. Recognition may contain mistakes.
+      </p>
+      <ol>
+        {original.lines.map((line) => (
+          <li key={line.line}>
+            <code>{line.raw}</code>
+          </li>
+        ))}
+      </ol>
+    </details>
   );
 }

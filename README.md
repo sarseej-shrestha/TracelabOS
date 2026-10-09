@@ -25,13 +25,19 @@ Open [obsidian/TraceLab-Vault](obsidian/TraceLab-Vault/00-START-HERE.md) as an O
 
 Authenticated teacher/student accounts, isolated visitor demo, classrooms/enrollment, seeded assignments, private database images, confirmed transcription, exact reasoning checks, teacher review and persisted event history work locally. Four skills/templates are available.
 
-- 416 automated tests pass, including 5,000 seeded property cases and API workflows on SQLite and PostgreSQL/PGlite.
-- Five Chromium browser tests pass, including authenticated classroom workflow, mobile, keyboard and axe checks.
+- 470 automated TypeScript tests pass, including 5,000 seeded property cases and API workflows on SQLite and PostgreSQL/PGlite.
+- Eight Chromium browser tests pass, including authenticated classroom workflow, OCR correction/cancellation/failure, mobile, keyboard and axe checks. Twenty-four Python metric/region tests pass.
 - Independent SymPy: 2,000 cases, 6,000 comparisons, zero disagreements.
 - Typecheck, lint, formatting and production build pass. Dependency audit reports no known vulnerabilities at the recorded checkpoint.
 
 GitHub recovery PR #1 passed CI and is merged. The original source archive is retained; see [recovery](recovery/README.md). PostgreSQL is selected with DATABASE_URL, after `pnpm db:migrate`. `pnpm db:import-sqlite` can copy a preserved local database into an empty migrated target. See the [database decision](obsidian/TraceLab-Vault/11-Architecture-Decisions/ADR-0005-Async-Persistence.md).
 
-Hosted Neon/R2 verification, live handwriting OCR, full curriculum, mastery, real-time replay and deployment remain incomplete. Local PostgreSQL verification does not demonstrate hosted performance. [Current evidence](artifacts/r2-verification.log), [browser report](artifacts/browser-results.json), [oracle report](artifacts/sympy-results.json).
+Experimental local handwriting OCR now runs through durable jobs, student correction and explicit confirmation. The real-model API and browser smokes passed; the general 72-image handwriting pilot was poor (3 exact matches for Pix2Text), so targeted photographed-work accuracy and production selection remain open. Hosted Neon/R2 verification, full curriculum, mastery, real-time replay and public deployment remain incomplete. Local PostgreSQL verification does not demonstrate hosted performance. [OCR integration evidence](artifacts/ocr-browser-smoke.json), [browser report](artifacts/browser-results.json), [oracle report](artifacts/sympy-results.json).
 
 Private R2 storage is available when all provider credentials are configured; existing local images remain usable. Migration and orphan reconciliation default to dry-run. See the [storage decision](obsidian/TraceLab-Vault/11-Architecture-Decisions/ADR-0006-Private-Object-Storage.md).
+
+## Experimental handwriting workflow
+
+See [OCR service and worker setup](services/ocr-worker/README.md). Configure the authenticated local model URL/token and the same absolute database path for web and worker processes, then run the Python inference service, `pnpm ocr:worker`, and the web app. Save a photo, select **Extract handwritten steps**, review/correct every line, and explicitly confirm before grading. Cancellation and recognition failure preserve manual entry. The original machine transcription remains visible to the authorized student and teacher.
+
+`pnpm test:e2e` starts an isolated database, application and clearly labeled deterministic provider fixture; it never uses cloud credentials or existing application data. Separately, `pnpm ocr:browser-smoke <non-sensitive-image-path>` exercises a running real local service through Chromium, then deliberately substitutes known demo steps to test grading. Neither fixture tests nor that smoke establish photograph accuracy. Configure CHROMIUM_PATH when using an existing local browser.
