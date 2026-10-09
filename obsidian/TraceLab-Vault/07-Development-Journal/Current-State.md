@@ -8,31 +8,31 @@ Recovery and Phase 1/2 foundation; cloud persistence is next after CI repair.
 
 ## Active Task
 
-TASK-0013 actual OCR pilot completed with poor recognition; preserve results and metric tests before pipeline integration.
+TASK-0014 experimental local OCR adapter passed real inference smoke and focused tests; durable application job/UI integration follows.
 
 ## Current Git Branch
 
-test/ocr-handwriting-benchmark
+feat/local-ocr-adapter
 
 ## Latest Commit Hash
 
-Verified main: a70163b530131965bae20bcdbc640d89f10b1de6; original baseline 839d63439e9c2d5e3f800592cb68003bf1cec3c9. A checkpoint records the preceding verified commit, avoiding a self-referential hash.
+Latest verified remote main: c6bf708fa08e3a439cf2769dee81d409bf51a39a (benchmark PR #4 merge). Original baseline: 839d63439e9c2d5e3f800592cb68003bf1cec3c9. This note records the preceding verified commit rather than its own hash.
 
 ## Latest Successful Push
 
-Recovery PR #1 merged after GitHub verify/oracle checks passed (run 37864780014); remote main a70163b530131965bae20bcdbc640d89f10b1de6 matched locally.
+Recovery, PostgreSQL, R2 and OCR research PRs #1–#4 merged after checks passed. Remote main c6bf708fa08e3a439cf2769dee81d409bf51a39a was verified. Adapter task push/checks pending.
 
 ## Latest Verified Test Results
 
-416 Vitest tests pass, including 5,000 seeded property cases and three new origin regressions. Strict typecheck, ESLint and production build pass. Five Chromium E2E tests pass (5.8 seconds): authenticated classroom publication/enrollment, controlled image upload/rotation, confirmed transcription, withheld/released feedback, teacher review, login, demo reasoning, mobile overflow, keyboard navigation, 200% text zoom and automated axe checks. The image fixture is typeset, not evidence of handwriting OCR. Recovery oracle: 2,000 cases, 6,000 comparisons, zero disagreements. Baseline CI failed npm install; repaired pnpm frozen install and patched dependencies passed GitHub run 37864780014. PostgreSQL PR #2 passed GitHub run 37865456695 and merged. R2 PR #3 passed GitHub run 37868611108 and merged. OCR research adds 18 passing Python tests and two measured 72-image pilot runs.
+444 Vitest tests pass, including 5,000 seeded property cases and three new origin regressions. Strict typecheck, ESLint and production build pass. Five Chromium E2E tests pass (5.8 seconds): authenticated classroom publication/enrollment, controlled image upload/rotation, confirmed transcription, withheld/released feedback, teacher review, login, demo reasoning, mobile overflow, keyboard navigation, 200% text zoom and automated axe checks. The image fixture is typeset, not evidence of handwriting OCR. Recovery oracle: 2,000 cases, 6,000 comparisons, zero disagreements. Baseline CI failed npm install; repaired pnpm frozen install and patched dependencies passed GitHub run 37864780014. PostgreSQL PR #2 passed GitHub run 37865456695 and merged. R2 PR #3 passed GitHub run 37868611108 and merged. OCR research adds 18 passing Python tests and two measured 72-image pilot runs.
 
 ## Completed Features
 
-Local persistent authentication, classrooms/enrollment, generated assignments, private validated images, versioned confirmed transcription, deterministic rational/affine reasoning, first-error propagation, teacher override/release, event history, responsive student/teacher UI, and 84 substantive vault notes. Backup extraction and hashes verified. Git/network/localhost/Chromium permissions restored.
+Local persistent authentication, classrooms/enrollment, generated assignments, private validated images, versioned confirmed transcription, deterministic rational/affine reasoning, first-error propagation, teacher override/release, event history, responsive student/teacher UI, and 86 substantive vault notes. Backup extraction and hashes verified. Git/network/localhost/Chromium permissions restored.
 
 ## Partially Completed Features
 
-Four skills/templates; rule recommendations without persisted mastery; OCR contract and actual offline model experiments without an integrated provider; history slider without deterministic state replay/WebSockets. Browser verification covers the current local workflows, not missing cloud features.
+Four skills/templates; rule recommendations without persisted mastery; Experimental authenticated local OCR provider and offline model experiments; application jobs/UI are not connected; history slider without deterministic state replay/WebSockets. Browser verification covers the current local workflows, not missing cloud features.
 
 ## Pending Features
 
@@ -56,8 +56,8 @@ TRACELAB_DB_PATH optionally selects SQLite. TRACELAB_PUBLIC_ORIGIN sets the expl
 
 ## Exact Next Steps
 
-1. Commit/push OCR research and merge after remote checks pass.
-2. Implement experimental local OCR processing, preserving student correction and explicit failure fallback; require targeted photograph evaluation before production selection.
+1. Commit/push the local OCR adapter and merge after checks.
+2. Integrate durable processing jobs, retries/cancellation, preserved raw output and student correction into the real UI. Keep targeted photograph acceptance open.
 3. Verify hosted adapters when cloud credentials are configured.
 4. Continue [[Master-Roadmap]] through real OCR and deployment; record external credential blockers accurately.
 

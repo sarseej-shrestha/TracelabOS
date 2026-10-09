@@ -1,0 +1,26 @@
+{
+  "executedAt": "2026-10-09T01:31:48.496Z",
+  "unauthorizedStatus": 401,
+  "authorizedExtraction": true,
+  "durationMs": 91.19754100000002,
+  "result": {
+    "questionId": "research-smoke",
+    "modelVersion": "pix2text-mfr-1.5@1cef9f0:regions-v1",
+    "status": "needs_confirmation",
+    "lines": [
+      {
+        "line": 1,
+        "raw": "x _ { 1 } - x _ { 2 } + x _ { 0 } = 0",
+        "latex": "x _ { 1 } - x _ { 2 } + x _ { 0 } = 0",
+        "bbox": [
+          0.019005847953216373,
+          0.07738095238095238,
+          0.9824561403508771,
+          0.9285714285714286
+        ]
+      }
+    ]
+  },
+  "gradingPerformed": false,
+  "scope": "Provider smoke only; not a production accuracy or photographed-work acceptance test"
+}
