@@ -44,3 +44,9 @@ After verified extraction to a fresh directory and clean npm ci using the existi
 ## Experimental OCR adapter checkpoint
 
 444 TypeScript tests, 24 Python tests, TypeScript/lint/Ruff and production build passed locally. Real HTTP smoke against the running Pix2Text service rejected missing authentication and returned schema-valid extraction with pixel-derived coordinates. See artifacts/ocr-service-smoke.json. This is provider verification, not photographed classroom workflow acceptance.
+
+## 2026-10-09 — Durable OCR backend
+
+470 TypeScript tests pass; strict typecheck, ESLint and production build pass. The 26 added dual-database tests exercise authorization, idempotency, persisted quotas, lease recovery/exhaustion, retry backoff, cancellation during inference, stale-result rejection, output validation, changed-image rejection and preservation of original OCR beside corrected work. Import regression covers both image references and OCR provenance. Initial failures exposed cross-test queue contamination (fixtures now isolated), the new third migration count, and the genuine importer identifier defect tracked in [[Regression-History]]. No test expectation was relaxed to hide an application defect.
+
+Real-model workflow smoke used the licensed MathWriting rendered human-stroke sample 002ae6d5dd4173e4-clean.png, not a photograph. The API uploaded/normalized it, enqueued a durable job and called the running authenticated model. One line was extracted; evaluation remained null. A deliberate replacement with known distribution-demo steps was explicitly confirmed, graded and teacher-reviewed. artifacts/ocr-workflow-smoke.json records the measured 100.57ms worker duration. This does not measure recognition accuracy or demonstrate image/question agreement.

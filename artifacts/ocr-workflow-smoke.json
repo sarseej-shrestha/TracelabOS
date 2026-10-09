@@ -1,0 +1,11 @@
+{
+  "executedAt": "2026-10-09T06:22:06.808Z",
+  "provider": "pix2text-mfr-1.5@1cef9f0:regions-v1",
+  "inputKind": "User-supplied research image; consult invocation provenance",
+  "extractedLineCount": 1,
+  "processingDurationMs": 100.566666,
+  "unconfirmedEvaluation": null,
+  "correctedFixtureFirstError": 2,
+  "finalState": "FINALIZED",
+  "limitations": "A deliberate replacement with known demo steps tests correction and grading. This is not image/question agreement, OCR accuracy, or photographed-work acceptance."
+}
