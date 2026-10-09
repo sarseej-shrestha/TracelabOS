@@ -104,3 +104,36 @@ it('rejects oversize upload bodies before decoding', async () => {
   );
   expect(response.status).toBe(413);
 });
+
+it('accepts configured public origin behind a rewriting reverse proxy', async () => {
+  app = createApp(db, { allowedOrigins: ['https://public.example'] });
+  const r = await app.request('http://internal:3000/api/demo', {
+    method: 'POST',
+    headers: { origin: 'https://public.example' },
+  });
+  expect(r.status).toBe(201);
+  expect(r.headers.get('set-cookie')).toContain('Secure');
+});
+it('never trusts a forged forwarded host to expand allowed origins', async () => {
+  app = createApp(db, { allowedOrigins: ['https://public.example'] });
+  const r = await app.request('http://internal:3000/api/demo', {
+    method: 'POST',
+    headers: {
+      origin: 'https://evil.example',
+      'x-forwarded-host': 'evil.example',
+      host: 'evil.example',
+    },
+  });
+  expect(r.status).toBe(403);
+});
+it('does not allow internal-origin mutations when public origins are configured', async () => {
+  app = createApp(db, { allowedOrigins: ['https://public.example'] });
+  expect(
+    (
+      await app.request('http://internal:3000/api/demo', {
+        method: 'POST',
+        headers: { origin: 'http://internal:3000' },
+      })
+    ).status,
+  ).toBe(403);
+});

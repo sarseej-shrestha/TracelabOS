@@ -21,3 +21,7 @@ If remote history now exists, preserve it and reconcile the source into a separa
 Reverify the recovered source and browser in the authorized destination. From the baseline onward, use real task branches, atomic commits, checks, push/merge, and remote hash verification. Browser completion and a verified baseline push must precede new roadmap features. Continue cloud persistence, OCR, curriculum, adaptive learning, real-time classroom work, then production deployment.
 
 Related: [[00-START-HERE]] · [[Current-State]] · [[Git-Workflow]]
+
+## Permissions restored — 2026-10-08
+
+Git, GitHub authentication/network, localhost and Chromium execution now succeed. Baseline 839d63439e9c2d5e3f800592cb68003bf1cec3c9 is verified on official main. Do not reinitialize or import another baseline. See [[Current-State]] for current task and CI install blocker. Original archive is retained unchanged; subsequent changes are tracked in Git.

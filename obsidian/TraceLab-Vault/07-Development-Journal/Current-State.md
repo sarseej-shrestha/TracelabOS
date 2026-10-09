@@ -1,93 +1,66 @@
 # TraceLab OS — Current State
 
-Checkpoint date: 2026-10-08. This is a verified local foundation, not the complete requested product.
-
-## Full-access recovery update
-
-2026-10-08: permissions have been restored. Git metadata creation succeeds, localhost binding succeeds, GitHub authenticates as sarseej-shrestha with push/admin permission, and the official remote has no refs. GitHub confirms sarseej.shrestha@selu.edu is verified and primary. Repository-local identity is Sarseej Shrestha with that address. The original archive checksum remains valid. A single honest baseline import is being prepared on main; no hash or push is claimed before completion. Browser verification is now pending execution rather than permission-blocked. Earlier restriction reports below are historical.
-
-Online npm ci exposed an npm 11.4.2 optional-dependency deduplication error (Invalid Version, nested sharp). The unchanged lockfile installs using the previously verified offline cache. A dedicated post-baseline tooling task will repair online reproducibility and verify CI.
+Checkpoint: 2026-10-08 America/Chicago. This is a verified local application, not the complete requested product.
 
 ## Current Development Phase
 
-Phase 0/1 foundation with a bounded Phase 2 math engine and partial upload/teacher-review features. No full phase exit is claimed while mandatory Git, OCR, browser, and hosting work remains incomplete.
+Recovery and Phase 1/2 foundation; cloud persistence is next after CI repair.
 
 ## Active Task
 
-Recovery checkpoint: verified backup and clean restored-tree verification complete. Await an authorized Git/network/preview environment; no feature work started.
+TASK-0008 browser verification passed locally. Repair online dependency installation before merge.
 
 ## Current Git Branch
 
-None. The workspace began empty and `.git` creation was denied by the environment's read-only protection. Planned branches are recorded in [[Change-Ledger]]; none actually exists.
+test/recovery-browser-verification
 
 ## Latest Commit Hash
 
-None. No commit could be created. Do not invent a hash or recover nonexistent history.
+Baseline: 839d63439e9c2d5e3f800592cb68003bf1cec3c9. A checkpoint records the preceding verified commit, avoiding a self-referential hash.
 
 ## Latest Successful Push
 
-None. Shell DNS could not resolve github.com; gh could not validate the stored credential. The public official repository was observed empty using the web tool. Push authorization has not been verified.
+Baseline pushed to official main; GitHub contents API and matching remote hash verified. Browser task push pending.
 
 ## Latest Verified Test Results
 
-Recovery rerun (2026-10-08 America/Chicago): archive extracted to a fresh temporary directory; npm ci from the unchanged lockfile installed 294 packages. All checks below were repeated successfully in that restored tree. Evidence: recovery/verification/summary.json and verify.log. This is a restore rehearsal within the same restricted host, not a migration to an authorized Git-enabled environment.
-
-- 358 Vitest tests passed; 0 failed. Machine-readable report: artifacts/unit-integration-results.json.
-- The suite includes 5,000 fixed-seed property cases inside three tests.
-- SymPy independent oracle: 2,000 generated cases, 6,000 comparisons, 0 disagreements. Python Fraction also cross-checks rational sums. See artifacts/sympy-results.json.
-- Final npm run verify exited 0: strict TypeScript, ESLint, all 358 tests, and Next production build passed. Prettier and the 84-note vault-link check also passed. See [[Test-Results]].
-- Playwright was attempted but could not start its server: listen EPERM on 127.0.0.1:3000. No browser, mobile, or axe assertion ran.
-- Math-only benchmark: 10,000 four-step evaluations after 500 warmups; see artifacts/math-benchmark.json for exact latest timings and machine. No cloud/API latency is claimed.
+361 Vitest tests pass, including 5,000 seeded property cases and three new origin regressions. Strict typecheck, ESLint and production build pass. Five Chromium E2E tests pass (7.5 seconds): authenticated classroom publication/enrollment, controlled image upload/rotation, confirmed transcription, withheld/released feedback, teacher review, login, demo reasoning, mobile overflow, keyboard navigation, 200% text zoom and automated axe checks. The image fixture is typeset, not evidence of handwriting OCR. Recovery oracle: 2,000 cases, 6,000 comparisons, zero disagreements. GitHub CI run 37863511190 failed during npm ci; no remote check pass claimed.
 
 ## Completed Features
 
-- Real local Next.js/Hono application build, strict TypeScript, workspace manifests, format/lint/test tooling, and CI configuration (CI not run remotely).
-- Local session/password authentication and isolated fictional demo roles.
-- Classroom creation/enrollment, seeded assignment preview/publishing, feedback policy, due-date storage.
-- Local private JPEG/PNG upload, signature/decode/pixel limits, EXIF normalization, authenticated retrieval; client crop/rotation controls are implemented but browser verification is blocked.
-- Versioned manual transcription, explicit student confirmation, stale-write protection, idempotent confirmation/grading.
-- Exact rational/affine parsing and verification, distribution/fraction error classification, first-error and propagation outcomes, uncertainty barriers.
-- Teacher inspection, append-only override/release, actual submission/finalized-decision counts, persisted event history.
-- Complete requested Obsidian note structure with substantive architecture, research, design, operations, and recovery content.
+Local persistent authentication, classrooms/enrollment, generated assignments, private validated images, versioned confirmed transcription, deterministic rational/affine reasoning, first-error propagation, teacher override/release, event history, responsive student/teacher UI, and 84 substantive vault notes. Backup extraction and hashes verified. Git/network/localhost/Chromium permissions restored.
 
 ## Partially Completed Features
 
-Four skills/four templates with two examples and three difficulty ranges; requested broader coverage is incomplete. Rule-based prerequisite explanation exists without persisted mastery or practice delivery. OCR provider contract exists without a live provider. Event history slider exists without a state replay reducer or WebSockets. API and build verified; UI interactions remain unverified in a browser.
+Four skills/templates; rule recommendations without persisted mastery; OCR contract without a provider; history slider without deterministic state replay/WebSockets. Browser verification covers the current local workflows, not missing cloud features.
 
 ## Pending Features
 
-Neon/PostgreSQL adapter and full normalized schema/migrations; R2/Queues/Durable Objects; real OCR benchmark and selected model; asynchronous job lifecycle; larger curriculum and figures; mathematical domain/rule expansion and labeled precision benchmark; targeted remediation and mastery; deletion/retention; distributed quotas; production browser/accessibility/load/security validation; deployment and live acceptance.
+PostgreSQL and R2; actual OCR and benchmark; expanded curriculum; mastery/remediation; real-time/replay; retention/deletion; deployment, load tests and live acceptance.
 
 ## Known Bugs
 
-No failing executed test at checkpoint. Two math-classifier defects found during review were fixed with regressions: variable-bearing answers incorrectly matched denominator addition, and a zero diagnostic denominator concealed a provable error. Known design limitations are in [[Known-Issues]]; unexecuted browser tests may reveal further bugs.
+Fixed: Next's internal URL hostname differed from browser Origin, rejecting valid mutations. Explicit public-origin allowlist now tested; forwarded-host values cannot grant trust. Open: npm online install crashes in nested sharp optional-dependency deduplication. See [[Regression-History]].
 
 ## Current Blockers
 
-Fresh recovery probes confirm the same restrictions. Workspace owner uid 501/mode 0755 and installed Git are ordinary; the active sandbox specifically marks .git read-only and disables sandbox_approval. No permission-change tool or preexisting managed worktree is available. A permission-profile change was requested from the user; no approval/environment change has arrived. The source backup is verified (150 files, 84 notes; SHA-256 acd9b02518cc2d38254cba428e03acf00e10f3c399f0b0b895a11fca84da8bdc).
-
-1. `.git` writes are denied by the session permissions; no branch/commit/push workflow can execute.
-2. Shell network DNS fails for GitHub and npm; credentials cannot be validated and pnpm cannot download.
-3. localhost listen is denied, preventing production browser validation.
-4. Cloud resources/provider credentials are not configured; no live OCR or deployment was attempted.
+No remaining filesystem, Git, network or browser restriction observed. Cloud credentials/resources are absent. GitHub CI dependency install must be repaired before merging browser work.
 
 ## Important Architecture Decisions
 
-[[ADR-0001-System-Architecture]] modular monolith; [[ADR-0002-Database-Selection]] honest local SQLite adapter pending PostgreSQL; [[ADR-0003-OCR-Strategy]] mandatory confirmation and model selection by benchmark; [[ADR-0004-Mathematical-Verification]] exact bounded rational affine domain.
+Modular monolith, exact bounded math domain, mandatory transcription confirmation, append-only review history. Local SQLite remains active; cloud persistence is not yet implemented.
 
 ## Required Environment Variables
 
-Local defaults need no secrets. Optional TRACELAB_DB_PATH selects persistent SQLite, CHROMIUM_PATH selects browser, NEXT_TELEMETRY_DISABLED disables telemetry. Cloud DATABASE_URL/account credentials are future configuration, not connected features. Never commit `.env`, photos, or database files.
+TRACELAB_DB_PATH optionally selects SQLite. TRACELAB_PUBLIC_ORIGIN sets the explicit trusted browser origin; localhost defaults support development only. CHROMIUM_PATH optionally selects installed browser. Never commit private databases, photos, credentials or environment files.
 
 ## Exact Next Steps
 
-1. Preserve recovery/tracelab-baseline-20261009T000129Z.tar.gz and its manifest, then restore an execution profile allowing approved Git metadata writes, GitHub/npm network, and localhost preview. Re-check remote state and gh authentication; do not overwrite newly created history.
-2. Configure repository-local identity Sarseej Shrestha using the existing verified/configured email sarseej.shrestha@selu.edu after rechecking credentials.
-3. If the authenticated remote is still empty, create ONE honest baseline import commit for the existing foundation (no fabricated historical task commits). Push to the exact official repository and verify hashes/files. Use task branches only after this baseline. See recovery/BASELINE-IMPORT.md.
-4. Run npm ci, npm run verify, and npm run test:e2e. Fix browser/accessibility failures before claiming a usable verified UI.
-5. Install pnpm, generate/test its frozen lock, run dependency audit, then implement PostgreSQL repository/migration contracts.
-6. Follow [[Task-Backlog]] through genuine OCR and full acceptance. Do not restart completed math/API work without checking evidence.
+1. Commit/push browser fix and evidence on its task branch.
+2. Establish reproducible pnpm frozen installs on supported Node LTS, fix CI and audit dependencies; merge only after checks pass.
+3. Implement PostgreSQL/private object storage while preserving local mode.
+4. Continue [[Master-Roadmap]] through real OCR and deployment; record external credential blockers accurately.
 
 ## Recovery Procedure
 
-Read [[00-START-HERE]], this note, [[Master-Roadmap]], [[Change-Ledger]], and [[Known-Issues]]. Inspect current files, Git availability, remote, and artifacts. Re-run relevant checks. Node 23.10.0 ran this checkpoint but some dependencies support only even LTS versions; use Node 22.13+ or 24+ for continued validation. The oracle ran using a read-only existing Python environment with SymPy; recreate it from research/symbolic-oracle/requirements.txt rather than depending on another project. See [[Recovery-Instructions]].
+Read [[00-START-HERE]], this note, [[Recovery-Instructions]] and ledger; inspect Git status/log/remote before changing files. Original backup recovery/tracelab-baseline-20261009T000129Z.tar.gz has SHA-256 acd9b02518cc2d38254cba428e03acf00e10f3c399f0b0b895a11fca84da8bdc; 150 files/84 notes were extracted and hash-checked. This archive predates subsequent recovery fixes: use Git for newer work. Use Node 22 LTS and the pinned package manager. Earlier blocked-environment reports are historical.

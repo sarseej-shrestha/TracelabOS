@@ -70,7 +70,7 @@ const fail = (
 ): never => {
   throw new HTTPException(status, { message: code });
 };
-export function createApp(db: DB) {
+export function createApp(db: DB, options: { allowedOrigins?: string[] } = {}) {
   const app = new Hono<{ Variables: { user: User; requestId: string } }>();
   const buckets = new Map<string, { count: number; until: number }>();
   app.use('*', async (c, next) => {
@@ -80,7 +80,9 @@ export function createApp(db: DB) {
     c.header('X-Content-Type-Options', 'nosniff');
     if (
       !['GET', 'HEAD', 'OPTIONS'].includes(c.req.method) &&
-      c.req.header('origin') !== new URL(c.req.url).origin
+      !(options.allowedOrigins ?? [new URL(c.req.url).origin]).includes(
+        c.req.header('origin') ?? '',
+      )
     )
       fail(403, 'ORIGIN_REQUIRED');
     await next();
@@ -235,7 +237,8 @@ export function createApp(db: DB) {
     setCookie(c, 'tracelab_session', token, {
       httpOnly: true,
       sameSite: 'Strict',
-      secure: new URL(c.req.url).protocol === 'https:',
+      secure:
+        new URL(c.req.header('origin') ?? c.req.url).protocol === 'https:',
       path: '/',
       maxAge: 8 * 3600,
     });

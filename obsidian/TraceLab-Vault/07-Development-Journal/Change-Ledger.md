@@ -101,3 +101,21 @@ Related Documentation: [[Recovery-Instructions]], [[Current-State]], [[Test-Resu
 ## TASK-0007 — Import the recovered foundation
 
 Date: 2026-10-08. Objective: preserve the existing implementation in one current-time baseline commit. Branch: main. Commit hash/push: pending at preparation; recorded in the following task after remote verification. GitHub identity and verified primary email checked through authenticated APIs. Official remote confirmed empty using git ls-remote. Git initialization and localhost binding succeeded. Source backup checksum reconfirmed. Existing lockfile installs with the verified offline cache; online npm 11 optional-dependency resolution fails and is recorded for a dedicated fix. Baseline checks: see recovery/verification/full-access-baseline.log. No earlier task commits are fabricated.
+
+## TASK-0008 — Browser recovery verification (active)
+
+Date: 2026-10-08. Branch: test/recovery-browser-verification, created from synchronized main. Baseline import 839d63439e9c2d5e3f800592cb68003bf1cec3c9 was pushed to the official repository; local/remote hashes matched and source/vault files were verified through GitHub API. Acceptance: real Chromium demo and authenticated classroom→assignment→photo→confirmation→teacher-review workflows pass, keyboard/mobile/axe checks pass, defects receive regressions, and fixes are pushed/merged after checks. Current execution uses the installed Chromium binary. No browser result claimed until completion.
+
+TASK-0008 local result: 361 unit/integration/security tests and five Chromium E2E tests passed; typecheck/lint/build passed. Added three API security regressions plus complete authenticated two-context classroom test and keyboard/text zoom test. Fixed explicit public origin handling behind Next internal request normalization. Files: API factory, Next route, environment example, security/E2E tests, browser report/screenshots and vault. No live OCR claim; controlled typeset fixture validates upload only. Push/merge pending CI install repair.
+
+## TASK-0009 — Reproducible workspace install
+
+Date: 2026-10-08. Branch: fix/reproducible-workspace-install, from synchronized baseline main. Objective: replace the failing npm optional dependency installation with a pinned pnpm frozen lock on Node 22 LTS. Acceptance: clean online install, format/type/lint/unit/build/oracle checks and CI pass; audited dependency risks addressed. Browser task a2ce11d is pushed separately and awaits this dependency repair. No merge bypasses failed checks.
+
+TASK-0009 results: pnpm 10.28.2 frozen installation succeeded in a clean temporary directory on Node 22.23.3. Next 16.3.8, sharp 0.35.5, Hono 4.13.13 and Vitest 4.1.11 resolve all 17 advisories reported against the initial dependencies; current pnpm audit reports no known vulnerabilities. All 358 tests on this baseline-derived branch, typecheck/lint/format/build passed. Repeated oracle: 2,000 cases, 6,000 comparisons, zero disagreements. pnpm lock is now authoritative; old npm lock preserved in baseline/archive. Browser branch contains three additional origin regressions and will integrate this task before remote CI acceptance.
+
+## TASK-0010 — Workspace text contrast regression
+
+Date: 2026-10-08. Branch: fix/workspace-text-contrast, dependent on unmerged browser recovery. Objective/acceptance: loaded workspace passes WCAG AA axe scan reliably. Reproduced question paragraph contrast 4.37:1 against #e9efe3; previous browser scan could execute before workspace rendered. Darken paragraph to #4b5d55 and wait for confirmation checkbox before scanning. Preserve full checks; do not suppress axe rules. Integrating TASK-0009 also revealed ledger formatting drift; corrected with Prettier. Verification pending final rerun.
+
+TASK-0010 result: formatting, production build and all five Chromium tests passed (5.4 seconds), with workspace axe scan awaiting the rendered view. TASK-0008 integrated test suite passed 361/361 and typecheck/lint before the CSS correction. TASK-0009 commit e5ff9fb and browser commit a2ce11d are pushed; remote oracle CI passed, initial verify CI rejected ledger formatting now fixed. No failing check bypassed.
