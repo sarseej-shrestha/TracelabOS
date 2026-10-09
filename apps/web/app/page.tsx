@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState, type FormEvent } from 'react';
-import { FractionBars } from '../../../packages/ui/src/fraction-bars';
+import { QuestionDiagram } from '../../../packages/ui/src/question-diagram';
 import type { OcrResult } from '../../../packages/contracts/src/index';
 import type { Evaluation } from '../../../packages/math-engine/src/index';
 import type { Question } from '../../../packages/question-bank/src/index';
@@ -894,7 +894,7 @@ export default function Home() {
                             {questionPreview.expression}
                           </p>
                           {questionPreview.figure && (
-                            <FractionBars figure={questionPreview.figure} />
+                            <QuestionDiagram figure={questionPreview.figure} />
                           )}
                         </div>
                       )}
@@ -1135,7 +1135,7 @@ export default function Home() {
                     </div>
                     {selected.question.figure && (
                       <section className="card">
-                        <FractionBars figure={selected.question.figure} />
+                        <QuestionDiagram figure={selected.question.figure} />
                       </section>
                     )}
                     <div className="flow">

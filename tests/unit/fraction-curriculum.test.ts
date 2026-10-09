@@ -32,7 +32,9 @@ for (const template of fractionTemplates) {
         });
         for (const alternative of q.alternativePaths!)
           expect(evaluateQuestion(q, alternative).complete).toBe(true);
-        for (const figure of q.figure!.fractions) {
+        if (q.figure?.kind !== 'fraction-bars')
+          throw Error('Expected fraction figure');
+        for (const figure of q.figure.fractions) {
           expect(figure.numerator).toBeLessThan(figure.denominator);
           expect(figure.denominator).toBeGreaterThan(0);
         }

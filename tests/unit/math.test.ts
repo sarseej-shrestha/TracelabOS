@@ -1,3 +1,4 @@
+import { evaluateQuestion } from '../../packages/question-bank/src/grading.ts';
 import { describe, expect, it } from 'vitest';
 import fc from 'fast-check';
 import {
@@ -181,7 +182,7 @@ describe('question templates', () => {
       ]) {
         it(`${skill.id}/${difficulty}/${seed} has a verified reference`, () => {
           const q = generateQuestion(skill.id, seed, difficulty);
-          expect(evaluate(q.expression, q.reference).complete).toBe(true);
+          expect(evaluateQuestion(q, q.reference).complete).toBe(true);
           expect(generateQuestion(skill.id, seed, difficulty)).toEqual(q);
           expect(q.parameters).toBeDefined();
         });

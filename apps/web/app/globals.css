@@ -1237,3 +1237,10 @@ footer {
   margin-top: 0.5rem;
   font-size: 0.875rem;
 }
+.algebra-figure {
+  margin: 0;
+}
+.algebra-figure figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}
