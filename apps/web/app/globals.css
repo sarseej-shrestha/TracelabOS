@@ -1218,3 +1218,15 @@ footer {
     scroll-behavior: auto !important;
   }
 }
+
+.ocr-original {
+  margin-top: 1rem;
+}
+.ocr-original summary {
+  cursor: pointer;
+  padding: 0.75rem 0;
+}
+.ocr-original code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
