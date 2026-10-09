@@ -5,7 +5,7 @@
   "type": "module",
   "packageManager": "pnpm@10.28.2",
   "engines": {
-    "node": ">=22.13.0"
+    "node": ">=22.13.0 <23 || >=24"
   },
   "workspaces": [
     "apps/*",
@@ -22,24 +22,24 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "verify": "npm run typecheck && npm run lint && npm test && npm run build",
+    "verify": "pnpm typecheck && pnpm lint && pnpm test && pnpm build",
     "benchmark": "node --experimental-transform-types scripts/benchmark.ts",
     "oracle:vectors": "node --experimental-transform-types scripts/oracle-vectors.ts"
   },
   "dependencies": {
-    "next": "16.3.1",
+    "next": "16.3.8",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "hono": "4.13.2",
+    "hono": "4.13.13",
     "zod": "4.4.3",
-    "sharp": "0.34.5"
+    "sharp": "0.35.5"
   },
   "devDependencies": {
     "@types/node": "22.20.5",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.3",
     "typescript": "5.9.3",
-    "vitest": "4.1.10",
+    "vitest": "4.1.11",
     "fast-check": "4.8.0",
     "eslint": "9.39.5",
     "typescript-eslint": "8.67.0",
@@ -48,7 +48,14 @@
     "vite": "7.3.6",
     "@axe-core/playwright": "4.13.0"
   },
-  "overrides": {
-    "pure-rand": "8.4.0"
+  "pnpm": {
+    "overrides": {
+      "pure-rand": "8.4.0",
+      "sharp": "0.35.5"
+    },
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 # Local Development
 
-Use a supported Node 22.13+ or 24+ runtime; this environment has Node 23.10.0, which ran the checks but is outside some dependency engine ranges. pnpm 10.28.2 is intended. Offline fallback: npm ci --offline --cache <populated-writable-cache>, then npm run verify. npm run dev serves development and npm run start serves the production build. Both require localhost listen permission. SQLite lives under the Next app working directory .data unless TRACELAB_DB_PATH supplies an absolute path. Do not use real student information.
+Use Node 22 LTS (22.13+) or Node 24 LTS with pnpm 10.28.2. Run `corepack pnpm install --frozen-lockfile`, then `pnpm verify`. `pnpm dev` starts development; `pnpm start` serves a production build. SQLite lives under the Next app working directory `.data` unless TRACELAB_DB_PATH supplies an absolute path. Use fictional records only. See [[Environment-Variables]].
 
-Related: [[00-START-HERE]] · [[Current-State]]
+The old npm lockfile is retained in the baseline commit and recovery archive, not used for current installs. An online npm optional-dependency deduplication crash was resolved by adopting the declared pnpm workspace manager and one pinned sharp version. CI uses frozen installs and Node 22.

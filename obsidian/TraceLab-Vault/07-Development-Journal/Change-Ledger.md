@@ -101,3 +101,9 @@ Related Documentation: [[Recovery-Instructions]], [[Current-State]], [[Test-Resu
 ## TASK-0007 — Import the recovered foundation
 
 Date: 2026-10-08. Objective: preserve the existing implementation in one current-time baseline commit. Branch: main. Commit hash/push: pending at preparation; recorded in the following task after remote verification. GitHub identity and verified primary email checked through authenticated APIs. Official remote confirmed empty using git ls-remote. Git initialization and localhost binding succeeded. Source backup checksum reconfirmed. Existing lockfile installs with the verified offline cache; online npm 11 optional-dependency resolution fails and is recorded for a dedicated fix. Baseline checks: see recovery/verification/full-access-baseline.log. No earlier task commits are fabricated.
+
+## TASK-0009 — Reproducible workspace install
+
+Date: 2026-10-08. Branch: fix/reproducible-workspace-install, from synchronized baseline main. Objective: replace the failing npm optional dependency installation with a pinned pnpm frozen lock on Node 22 LTS. Acceptance: clean online install, format/type/lint/unit/build/oracle checks and CI pass; audited dependency risks addressed. Browser task a2ce11d is pushed separately and awaits this dependency repair. No merge bypasses failed checks.
+
+TASK-0009 results: pnpm 10.28.2 frozen installation succeeded in a clean temporary directory on Node 22.23.3. Next 16.3.8, sharp 0.35.5, Hono 4.13.13 and Vitest 4.1.11 resolve all 17 advisories reported against the initial dependencies; current pnpm audit reports no known vulnerabilities. All 358 tests on this baseline-derived branch, typecheck/lint/format/build passed. Repeated oracle: 2,000 cases, 6,000 comparisons, zero disagreements. pnpm lock is now authoritative; old npm lock preserved in baseline/archive. Browser branch contains three additional origin regressions and will integrate this task before remote CI acceptance.
