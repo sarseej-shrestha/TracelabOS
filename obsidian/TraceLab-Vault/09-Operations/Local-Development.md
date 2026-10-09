@@ -7,3 +7,7 @@ The old npm lockfile is retained in the baseline commit and recovery archive, no
 ## PostgreSQL mode and migration
 
 Set DATABASE_URL securely to a Neon connection string and run `pnpm db:migrate`. Configure the same variable in the application runtime. Run `pnpm db:import-sqlite` with TRACELAB_IMPORT_PATH only when importing an existing local database into an empty migrated target. Both commands fail rather than overwrite records. Stop local writes during a final cutover; compare row counts and browser behavior before retiring any copy. Without DATABASE_URL the existing SQLite mode remains active. Hosted execution has not been verified; integration tests run actual PostgreSQL through PGlite.
+
+## Private object migration and reconciliation
+
+With explicit TRACELAB_DB_PATH or DATABASE_URL and complete R2 credentials, run `pnpm images:migrate` to preview; add `--apply` for a bounded 100-image batch. Repeat until remaining is zero. Run `pnpm images:reconcile` to preview aged orphans; add `--delete` only after reviewing the count and keeping backups. Only unreferenced application objects older than 24 hours are eligible. Live provider execution is still pending credentials. See [[ADR-0006-Private-Object-Storage]].

@@ -26,9 +26,12 @@
     "benchmark": "node --experimental-transform-types scripts/benchmark.ts",
     "oracle:vectors": "node --experimental-transform-types scripts/oracle-vectors.ts",
     "db:migrate": "node --experimental-transform-types scripts/migrate.ts",
-    "db:import-sqlite": "node --experimental-transform-types scripts/import-sqlite.ts"
+    "db:import-sqlite": "node --experimental-transform-types scripts/import-sqlite.ts",
+    "images:migrate": "node --experimental-transform-types scripts/images.ts migrate",
+    "images:reconcile": "node --experimental-transform-types scripts/images.ts reconcile"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "3.1148.0",
     "@neondatabase/serverless": "1.2.0",
     "hono": "4.13.13",
     "next": "16.3.8",

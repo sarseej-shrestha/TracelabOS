@@ -1,3 +1,7 @@
+export const migrationFiles = [
+  '0001_postgresql.sql',
+  '0002_image_references.sql',
+] as const;
 import { createHash } from 'node:crypto';
 import type { Database } from './adapter.ts';
 /** Apply static repository SQL atomically; reject edits to an already-applied migration. */

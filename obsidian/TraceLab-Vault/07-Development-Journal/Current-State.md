@@ -8,23 +8,23 @@ Recovery and Phase 1/2 foundation; cloud persistence is next after CI repair.
 
 ## Active Task
 
-TASK-0011 PostgreSQL persistence and guarded data import passed local verification; prepare feature commit/CI.
+TASK-0012 private R2 adapter and migration/reconciliation passed local verification; prepare feature commit/CI.
 
 ## Current Git Branch
 
-feat/postgresql-persistence
+feat/private-r2-storage
 
 ## Latest Commit Hash
 
-Verified main: fce835835e3673ed901264ced80e6cddaeb75705; original baseline 839d63439e9c2d5e3f800592cb68003bf1cec3c9. A checkpoint records the preceding verified commit, avoiding a self-referential hash.
+Verified main: bcc962c01cf6fc406533767e96cc7aafc1ccefcf; original baseline 839d63439e9c2d5e3f800592cb68003bf1cec3c9. A checkpoint records the preceding verified commit, avoiding a self-referential hash.
 
 ## Latest Successful Push
 
-Recovery PR #1 merged after GitHub verify/oracle checks passed (run 37864780014); remote main fce835835e3673ed901264ced80e6cddaeb75705 matched locally.
+Recovery PR #1 merged after GitHub verify/oracle checks passed (run 37864780014); remote main bcc962c01cf6fc406533767e96cc7aafc1ccefcf matched locally.
 
 ## Latest Verified Test Results
 
-398 Vitest tests pass, including 5,000 seeded property cases and three new origin regressions. Strict typecheck, ESLint and production build pass. Five Chromium E2E tests pass (5.5 seconds): authenticated classroom publication/enrollment, controlled image upload/rotation, confirmed transcription, withheld/released feedback, teacher review, login, demo reasoning, mobile overflow, keyboard navigation, 200% text zoom and automated axe checks. The image fixture is typeset, not evidence of handwriting OCR. Recovery oracle: 2,000 cases, 6,000 comparisons, zero disagreements. Baseline CI failed npm install; repaired pnpm frozen install and patched dependencies passed GitHub run 37864780014. PostgreSQL branch local checks pass; its remote CI is pending.
+416 Vitest tests pass, including 5,000 seeded property cases and three new origin regressions. Strict typecheck, ESLint and production build pass. Five Chromium E2E tests pass (5.8 seconds): authenticated classroom publication/enrollment, controlled image upload/rotation, confirmed transcription, withheld/released feedback, teacher review, login, demo reasoning, mobile overflow, keyboard navigation, 200% text zoom and automated axe checks. The image fixture is typeset, not evidence of handwriting OCR. Recovery oracle: 2,000 cases, 6,000 comparisons, zero disagreements. Baseline CI failed npm install; repaired pnpm frozen install and patched dependencies passed GitHub run 37864780014. PostgreSQL PR #2 passed GitHub run 37865456695 and merged. R2 branch local verification passes; remote CI pending.
 
 ## Completed Features
 
@@ -36,7 +36,7 @@ Four skills/templates; rule recommendations without persisted mastery; OCR contr
 
 ## Pending Features
 
-Hosted Neon verification and R2; actual OCR and benchmark; expanded curriculum; mastery/remediation; real-time/replay; retention/deletion; deployment, load tests and live acceptance.
+Hosted Neon/R2 verification; actual OCR and benchmark; expanded curriculum; mastery/remediation; real-time/replay; retention/deletion; deployment, load tests and live acceptance.
 
 ## Known Bugs
 
@@ -56,8 +56,8 @@ TRACELAB_DB_PATH optionally selects SQLite. TRACELAB_PUBLIC_ORIGIN sets the expl
 
 ## Exact Next Steps
 
-1. Commit/push PostgreSQL task and merge after remote checks pass.
-2. Implement private R2 image storage with cross-resource failure handling.
+1. Commit/push R2 task and merge after remote checks pass.
+2. Run actual handwriting OCR experiments with licensed samples; preserve benchmark provenance.
 3. Verify hosted adapters when cloud credentials are configured.
 4. Continue [[Master-Roadmap]] through real OCR and deployment; record external credential blockers accurately.
 
