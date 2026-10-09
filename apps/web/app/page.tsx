@@ -1540,6 +1540,9 @@ function Reasoning({ sub }: { sub: Submission }) {
                     : 'The solution is not yet finished.'}
             </h3>
           </div>
+          {sub.evaluation.domainConditions?.map((condition) => (
+            <p key={condition}>Domain condition: {condition}</p>
+          ))}
           {sub.evaluation.completionHint && (
             <p role="status">{sub.evaluation.completionHint}</p>
           )}

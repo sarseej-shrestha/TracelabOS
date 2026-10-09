@@ -5,3 +5,5 @@ Phase 0: source control, recoverable backup, feasibility notes and actual two-mo
 Next independent implementation: extend the verified fraction/algebra curriculum (12 skills/24 templates) with domain-aware ratios and dimensional geometry, examples and deterministic figures. Preserve unsupported-domain outcomes and do not imply a correct numeric answer proves units or an unshown operation. Continue hosted verification only when resources are configured. Follow [[Task-Backlog]] and [[Current-State]] rather than treating partial phases as complete.
 
 Related: [[00-START-HERE]] · [[Current-State]]
+
+TASK-0020 adds six ratio/percent skills, twelve templates and tested positive-proportion domain handling. Geometry and dimensional-unit checks remain the next curriculum task.

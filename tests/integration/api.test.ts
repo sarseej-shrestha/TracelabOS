@@ -205,6 +205,68 @@ describe.each(['sqlite', 'postgres'] as const)('%s API', (engine) => {
     });
     expect(result.evaluation.engineVersion).toContain('completion-2');
   });
+  it('persists positive-proportion conditions and rejects undefined denominator chains', async () => {
+    const d = await demo(),
+      tc = await teacher(d.cookie);
+    const q = await (
+      await call(
+        '/questions?skillId=solve-proportions&seed=0&difficulty=intro',
+        'GET',
+        undefined,
+        tc,
+      )
+    ).json();
+    const ids = [];
+    for (const title of ['Valid proportion', 'Undefined denominator']) {
+      const response = await call(
+        '/assignments',
+        'POST',
+        {
+          classroomId: d.room,
+          skillId: 'solve-proportions',
+          seed: 0,
+          difficulty: 'intro',
+          title,
+          feedback: 'immediate',
+        },
+        tc,
+      );
+      ids.push((await response.json()).id);
+    }
+    const switched = await call('/demo/role', 'POST', { role: 'student' }, tc);
+    const sc = switched.headers.get('set-cookie')!.split(';')[0]!;
+    for (const [index, assignmentId] of ids.entries()) {
+      const id = await submission(sc, assignmentId);
+      const lines = index === 0 ? q.reference : ['2/0=x/3', ...q.reference];
+      await call(
+        `/submissions/${id}/transcription`,
+        'PATCH',
+        { version: 1, lines },
+        sc,
+      );
+      expect(
+        (
+          await call(
+            `/submissions/${id}/confirm`,
+            'POST',
+            { version: 2, confirmed: true },
+            sc,
+          )
+        ).status,
+      ).toBe(200);
+      const result = await (
+        await call(`/submissions/${id}`, 'GET', undefined, sc)
+      ).json();
+      expect(result.evaluation).toMatchObject({
+        complete: index === 0,
+        requiresReview: index === 1,
+        domainConditions: ['x > 0; every denominator must be nonzero.'],
+      });
+      expect(
+        result.evaluation.steps.map((step: { input: string }) => step.input),
+      ).toEqual(lines);
+    }
+  });
   it('grades collected expressions while keeping a restated expression incomplete', async () => {
     const d = await demo(),
       tc = await teacher(d.cookie);

@@ -1,7 +1,10 @@
+import { RatioDiagram } from './ratio-diagram';
 import type { QuestionFigure } from '../../question-bank/src/types';
 import { FractionBars } from './fraction-bars';
 export function QuestionDiagram({ figure }: { figure: QuestionFigure }) {
   if (figure.kind === 'fraction-bars') return <FractionBars figure={figure} />;
+  if (figure.kind !== 'algebra-structure')
+    return <RatioDiagram figure={figure} />;
   const parts = figure.parts.slice(0, 2);
   return (
     <figure className="algebra-figure">
