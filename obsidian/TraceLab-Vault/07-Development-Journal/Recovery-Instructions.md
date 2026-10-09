@@ -1,0 +1,23 @@
+# Recovery Instructions
+
+Read [[00-START-HERE]], [[Current-State]], [[Master-Roadmap]], and [[Change-Ledger]]. The current implementation has not been recreated or overwritten.
+
+## Verified preservation
+
+Archive: recovery/tracelab-baseline-20261009T000129Z.tar.gz. SHA-256: `acd9b02518cc2d38254cba428e03acf00e10f3c399f0b0b895a11fca84da8bdc`. Its adjacent manifest records every file. Extraction verified all 150 file hashes/sizes and all 84 vault notes. Source, lockfiles, tests, existing fixtures/evidence, and documentation are included; private data, credentials, dependencies, and builds are excluded. The archive predates this recovery journal update; retain recovery/ and the updated vault alongside it.
+
+Fresh extracted copy: /private/tmp/tracelab-restore-re4i2gyz/TracelabOS. This is temporary and remains within the same restricted environment. Do not regard it as an authorized Git destination. A clean lockfile install, 358 tests/5,000 seeded property cases, typecheck, lint, formatting, production build, and repeated 6,000 SymPy comparisons passed there. Evidence: recovery/verification/summary.json.
+
+## Required environment change
+
+The active session protects .git as read-only and disables sandbox escalation requests. Ordinary workspace permissions are not the cause. Fresh probes also confirm blocked GitHub/npm DNS and localhost binding. No connected authorized migration destination was found. Use the host's supported permissions control to permit approved Git writes, required network, and localhost preview, or provide an explicitly authorized environment. These restrictions were not bypassed. See recovery/README.md and [official sandbox documentation](https://learn.chatgpt.com/docs/sandboxing).
+
+## Honest baseline import
+
+After permissions/network are restored, recheck authenticated repository permissions and git ls-remote on https://github.com/sarseej-shrestha/TracelabOS.git. If still empty, initialize main and create ONE baseline import commit representing the actual existing foundation. Do not recreate the earlier intended task branches as fictitious history or backdate anything. Configure author Sarseej Shrestha with the user's verified configured email. No commit, push, or credential verification has succeeded yet.
+
+If remote history now exists, preserve it and reconcile the source into a separate authorized checkout. Never overwrite or force-push. The executable-by-human sequence is documented in recovery/BASELINE-IMPORT.md; it has not been run.
+
+Reverify the recovered source and browser in the authorized destination. From the baseline onward, use real task branches, atomic commits, checks, push/merge, and remote hash verification. Browser completion and a verified baseline push must precede new roadmap features. Continue cloud persistence, OCR, curriculum, adaptive learning, real-time classroom work, then production deployment.
+
+Related: [[00-START-HERE]] · [[Current-State]] · [[Git-Workflow]]

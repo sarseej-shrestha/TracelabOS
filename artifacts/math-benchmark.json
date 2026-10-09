@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-10-08T23:55:12.944Z",
+  "node": "v23.10.0",
+  "cpu": "Apple M4 Max",
+  "engine": "0.1.0",
+  "method": "single process; 500 warmups; 10000 runs of one 4-step distribution case; no network or database",
+  "iterations": 10000,
+  "p50_ms": 0.01883399999996982,
+  "p95_ms": 0.023957999999993262,
+  "p99_ms": 0.062083999999998696
+}

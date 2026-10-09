@@ -1,0 +1,29 @@
+{
+  "created_at": "20261009T000129Z",
+  "archive": "/Users/userselu/Downloads/TracelabOS/recovery/tracelab-baseline-20261009T000129Z.tar.gz",
+  "archive_sha256": "acd9b02518cc2d38254cba428e03acf00e10f3c399f0b0b895a11fca84da8bdc",
+  "archive_bytes": 146681,
+  "verified_files": 150,
+  "vault_notes": 84,
+  "extracted_to": "/private/tmp/tracelab-restore-re4i2gyz/TracelabOS",
+  "extraction_verified": true,
+  "exclusions": [
+    ".agents",
+    ".aws",
+    ".codex",
+    ".data",
+    ".git",
+    ".next",
+    ".pytest_cache",
+    ".ssh",
+    ".venv",
+    ".wrangler",
+    "__pycache__",
+    "coverage",
+    "node_modules",
+    "out",
+    "playwright-report",
+    "recovery",
+    "test-results"
+  ]
+}

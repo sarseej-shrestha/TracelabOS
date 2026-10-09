@@ -1,0 +1,9 @@
+{
+  "timestamp": "2026-10-09T00:03:10.179705+00:00",
+  "python": "3.13.9",
+  "sympy": "1.14.0",
+  "cases": 2000,
+  "comparisons": 6000,
+  "disagreements": [],
+  "scope": "generated linear equations and rational sums; not handwritten-data accuracy or proof of all transformations"
+}

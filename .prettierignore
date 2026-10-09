@@ -1,0 +1,10 @@
+node_modules
+.next
+apps/web/.next
+artifacts
+package-lock.json
+pnpm-lock.yaml
+playwright-report
+test-results
+.data
+**/next-env.d.ts

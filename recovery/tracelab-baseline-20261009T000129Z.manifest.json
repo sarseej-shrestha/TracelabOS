@@ -1,0 +1,781 @@
+{
+  "created_at": "20261009T000129Z",
+  "archive": "/Users/userselu/Downloads/TracelabOS/recovery/tracelab-baseline-20261009T000129Z.tar.gz",
+  "archive_sha256": "acd9b02518cc2d38254cba428e03acf00e10f3c399f0b0b895a11fca84da8bdc",
+  "archive_bytes": 146681,
+  "verified_files": 150,
+  "vault_notes": 84,
+  "extracted_to": "/private/tmp/tracelab-restore-re4i2gyz/TracelabOS",
+  "extraction_verified": true,
+  "exclusions": [
+    ".agents",
+    ".aws",
+    ".codex",
+    ".data",
+    ".git",
+    ".next",
+    ".pytest_cache",
+    ".ssh",
+    ".venv",
+    ".wrangler",
+    "__pycache__",
+    "coverage",
+    "node_modules",
+    "out",
+    "playwright-report",
+    "recovery",
+    "test-results"
+  ],
+  "files": [
+    {
+      "path": ".env.example",
+      "sha256": "702568789849a96028d7c0767bca4982f229ef558fe488cd76c4189cd121d7cf",
+      "bytes": 283
+    },
+    {
+      "path": ".gitattributes",
+      "sha256": "07864b24c41b2504a3cd1c01e1e30a39408588e52ca396b36ca64d8bfa2e2f83",
+      "bytes": 59
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "32c85f25fac567125b5061d3945b49339c21d6612c7ac2600c589a6cc91570ae",
+      "bytes": 257
+    },
+    {
+      "path": ".npmrc",
+      "sha256": "e9e46de4ccfb72c2dbd5abcdf658c749a22d1a97bfc88a7e3a83d63863cdd764",
+      "bytes": 115
+    },
+    {
+      "path": ".prettierignore",
+      "sha256": "9f3fbdb4c29b015db2087e1e7514bca1f78a4af18ea891fe62f9c231b0ed05b6",
+      "bytes": 131
+    },
+    {
+      "path": ".prettierrc.json",
+      "sha256": "32dcd743a0ffca59a737c87abcfcc3f57a0cede5cedb6a8b1b68d32a3b6d4506",
+      "bytes": 48
+    },
+    {
+      "path": "README.md",
+      "sha256": "ec1912277bbd11502c0d349a94c4dba7cd3924e855fbfecece4055dc84d3fb57",
+      "bytes": 2679
+    },
+    {
+      "path": "eslint.config.mjs",
+      "sha256": "a4c337bc33b3c36c17a51c3fbf1d2212f0dc83f4574f1cfc77f77a7592018d62",
+      "bytes": 432
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "5653a4d89d4705361f5508574cb02019ac70eab7eb721bb9207e4a408f3a1627",
+      "bytes": 151574
+    },
+    {
+      "path": "package.json",
+      "sha256": "6557c673344da5f56854351089727873cc9e457b797377a5fa16ea62c7f6fb85",
+      "bytes": 1435
+    },
+    {
+      "path": "playwright.config.ts",
+      "sha256": "864bd20ca407cde92bce59527349caf1c0d943022935c1628e2e9df2daf55871",
+      "bytes": 617
+    },
+    {
+      "path": "pnpm-workspace.yaml",
+      "sha256": "c9e7966531d04f6d2693a5195ece651565e8284aa36a4d0fb5810ae11dcb06d3",
+      "bytes": 51
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "3a9c2a8e46da02b0526d0145bdd962c0733f72e48391ec7e02aa5861a91457b0",
+      "bytes": 623
+    },
+    {
+      "path": "vitest.config.ts",
+      "sha256": "1704a572e62e62a9e6da24dfd4ddd6e84c8ce2b14d44bc3ba53e87b35179d97c",
+      "bytes": 184
+    },
+    {
+      "path": ".github/workflows/quality.yml",
+      "sha256": "57102e8f7d8f0290953cc0065b72759b5b071bead7a5b7f734cd9461b3ab0a2c",
+      "bytes": 1686
+    },
+    {
+      "path": "apps/web/next-env.d.ts",
+      "sha256": "1862ac4bbbc5192d4bf562161df66ea547ed3e67173100656ab606ae9797db2b",
+      "bytes": 288
+    },
+    {
+      "path": "apps/web/next.config.ts",
+      "sha256": "b1136bad421214b5f28576295319b7866c306d1a1320b8e22830d2732f3999e5",
+      "bytes": 584
+    },
+    {
+      "path": "apps/web/package.json",
+      "sha256": "dc483d2036b34b376c24b1bdd0218502a415064e9fe10cc8680ad08d24e52e39",
+      "bytes": 239
+    },
+    {
+      "path": "apps/web/tsconfig.json",
+      "sha256": "0c0d932f4a73f3f4b993e51ef4d4fe0b4cb3848c0e9cfd49ef3874e195ea97e9",
+      "bytes": 287
+    },
+    {
+      "path": "apps/web/app/globals.css",
+      "sha256": "6a7025e5039bac24be252a11a69116fe02d9a0a918fb034944b6b05ec859dc8b",
+      "bytes": 20293
+    },
+    {
+      "path": "apps/web/app/layout.tsx",
+      "sha256": "c32c9021de2a449ff4aacfec509d2f0203d1f08c2f10604b88ebea0e168f9381",
+      "bytes": 424
+    },
+    {
+      "path": "apps/web/app/page.tsx",
+      "sha256": "f1bba7090fb5a4d342f74666c4f0231951b7dbe4f56a00d38fc1fbfe9d606ba2",
+      "bytes": 55223
+    },
+    {
+      "path": "apps/web/app/api/[[...route]]/route.ts",
+      "sha256": "ff2309b0c95844d20385f11f7f9ba4c39ae37dad9faa6227e02fffa9b70c6bac",
+      "bytes": 512
+    },
+    {
+      "path": "artifacts/browser-results.json",
+      "sha256": "65b084b45c6d7711ca1cf8738f6034477ab94d42c018e2e7a4c84735dc4ebecd",
+      "bytes": 1994
+    },
+    {
+      "path": "artifacts/final-verification.log",
+      "sha256": "71f96cedac022cbb72bf817d5532ad208994b7b53af3379d52690e637244acad",
+      "bytes": 1764
+    },
+    {
+      "path": "artifacts/math-benchmark.json",
+      "sha256": "099c99bc9f19dcf6172e66f97e5f925a6f843c42d4bbf1bd77b989a1b9b15f3d",
+      "bytes": 349
+    },
+    {
+      "path": "artifacts/oracle-vectors.json",
+      "sha256": "ae329f7a57b06165b198fef98957f2ce04f671d3f3f672a73ce9cb7272ba7ffb",
+      "bytes": 159017
+    },
+    {
+      "path": "artifacts/sympy-results.json",
+      "sha256": "6c21b7510ad5e1dc1401e0e197d0a2e1c5b66ec7e03235025ed2aabeecf9c1d8",
+      "bytes": 282
+    },
+    {
+      "path": "artifacts/unit-integration-results.json",
+      "sha256": "02fa52f80a280df6c00c6127444d34b844bcf0cfe437e2f1ca98413cc18b5592",
+      "bytes": 87063
+    },
+    {
+      "path": "docs/api/README.md",
+      "sha256": "9c2a26cfb3ab8a69f7493c0c35d50a57cd6595d3c31adbdba2ee1a4612ae1e54",
+      "bytes": 1381
+    },
+    {
+      "path": "docs/architecture/README.md",
+      "sha256": "54f618d241a35aa2a60d9ef789b1f173125af638c1d223e6fa46464d142618af",
+      "bytes": 670
+    },
+    {
+      "path": "docs/benchmarks/README.md",
+      "sha256": "c0c122162591a0b41b5cba5fe7bc9e84c41cfa599794d30643d2e360a6a11cae",
+      "bytes": 1077
+    },
+    {
+      "path": "docs/deployment/README.md",
+      "sha256": "2ccb38aa03752830a5b54d40d01803efdc497d5a39d05f11db42c791136725a9",
+      "bytes": 1122
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/00-START-HERE.md",
+      "sha256": "b46cc597c3b03b38d3de73100dafeed1e1275822f1750a6d06e8c642c2ef319c",
+      "bytes": 1321
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/01-Project-Overview/IXL-Competency-Mapping.md",
+      "sha256": "2eb859f8c315b31a9dccec4f538bd03fc5d3ce591ad2ac51f8ab62c4173e0a41",
+      "bytes": 614
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/01-Project-Overview/Product-Requirements.md",
+      "sha256": "710a86045c426dc2e5c974e6ef70c392bc1fa078458dfb0f1acda8bed65604de",
+      "bytes": 611
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/01-Project-Overview/Project-Glossary.md",
+      "sha256": "76387464a869bc59d31aec0baf561ada05e8d9db13b0d18057051d166acfdc91",
+      "bytes": 579
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/01-Project-Overview/Scope-and-Non-Goals.md",
+      "sha256": "cbef002899eba52196b33b123b59c76d77519ee1d1e95ea541f80c27669beff0",
+      "bytes": 465
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/01-Project-Overview/Success-Criteria.md",
+      "sha256": "97f3fe3dbe0b06aeb3f0a8425d7f0c06831ae4aff26114c949902afd30b34a03",
+      "bytes": 568
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/01-Project-Overview/Vision.md",
+      "sha256": "6877898dbd328ca839dcacb973e8e7fe2925412e5b266c82ba938e7773f7f8e7",
+      "bytes": 369
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/02-Architecture/API-Architecture.md",
+      "sha256": "b50133f779024bb67ddbcb5ac6d3f2a0a06a0e5626c846ea56b3472a483d0066",
+      "bytes": 503
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/02-Architecture/Adaptive-Learning-Engine.md",
+      "sha256": "27746523d8b7146c29ae2ec58324754d57ed07af0f0705b03b9c44fa8678722d",
+      "bytes": 494
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/02-Architecture/Authentication-Architecture.md",
+      "sha256": "6211023b0a98b3121a2cfba4b55b7e3e96c89c46b9176837ae2583f44b6b558c",
+      "bytes": 604
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/02-Architecture/Component-Architecture.md",
+      "sha256": "bff63b3dbe87a141910e24d99b6e62008b6e2f4c057961b18520ce9539fbbe0d",
+      "bytes": 527
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/02-Architecture/Database-Architecture.md",
+      "sha256": "9fb4b7c52af45bc33179a5d244363ec6b3d2ae8e577bf94f1d30b5afd7c939eb",
+      "bytes": 523
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/02-Architecture/Deployment-Architecture.md",
+      "sha256": "9f5b467f4b53ef58346bef7d236217e49e0f5b217696885b0f31ccc958ab144e",
+      "bytes": 568
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/02-Architecture/Event-Replay-Architecture.md",
+      "sha256": "887b8af0612dfcb464127a160c4580d1e95a4372b56170ca724248bfdaaf9f2a",
+      "bytes": 584
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/02-Architecture/Frontend-Architecture.md",
+      "sha256": "93200ccd1f3e429f2c9c3fef3c293732b8011b5ddb566410f8945458620b1e6a",
+      "bytes": 561
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/02-Architecture/Mathematical-Engine.md",
+      "sha256": "912fb62e51cb9c7feb0054485753670173d81856ca59101a38dea95004c16f2d",
+      "bytes": 680
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/02-Architecture/OCR-Pipeline.md",
+      "sha256": "d41afaacfccd3d78e08d0a704be2f3bf0f1911bf08af6947986f86a0bd92ade5",
+      "bytes": 563
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/02-Architecture/Real-Time-Architecture.md",
+      "sha256": "c210c07234221a74a5939dc4694205806dc99555747de40867be3f69873844d7",
+      "bytes": 454
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/02-Architecture/System-Architecture.md",
+      "sha256": "0e801006f9243c0978dbe2c4f793e491c7ad7d79b984f11aa13f405218fe6658",
+      "bytes": 679
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/02-Architecture/Technology-Stack.md",
+      "sha256": "787d3dd49591510ae25d5789911e1ee1fa296ce2029bdc3d366996a4cf39fa71",
+      "bytes": 521
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/03-Product-Design/Accessibility.md",
+      "sha256": "c42eb0b3affad485cc2f949e45e134b673d17f5cd124c84dccf4f93ee536dafe",
+      "bytes": 548
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/03-Product-Design/Demo-User-Flow.md",
+      "sha256": "719487fcca9b793dd3961ead8298ed4c68a2366bb9ab12ad82716206f6bf9e39",
+      "bytes": 500
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/03-Product-Design/Design-System.md",
+      "sha256": "1ad67b783a6ae739c088cb5ce4802fb0965b87b3c80134a936bd7a48a317c7f8",
+      "bytes": 436
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/03-Product-Design/Screen-Inventory.md",
+      "sha256": "d6b08d2719002da6d76f6e69852731af614213263cc083ab6dc1e63d3b301281",
+      "bytes": 470
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/03-Product-Design/Student-User-Flow.md",
+      "sha256": "995b988321d51dea5fde49aabfa65c8bce913e04c83dc632f9f50552217bd476",
+      "bytes": 559
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/03-Product-Design/Teacher-User-Flow.md",
+      "sha256": "058eabaf507e5598ceffcf878957eeed7e6f72018e489b309099019783e6c6ac",
+      "bytes": 495
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/03-Product-Design/User-Stories.md",
+      "sha256": "48d10de43a378ffb564d39ba01cd141a72f0d14d7c77dcaa623abe43090699be",
+      "bytes": 491
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/03-Product-Design/Wireframes.md",
+      "sha256": "29970c1095597ec478c7aa055aab0d007bdf88b73bbd194585e85c67617bcff9",
+      "bytes": 519
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/04-Curriculum/Curriculum-Overview.md",
+      "sha256": "18a15eda07b074ec69a0cd62f355d49b8a706450dbd60bee18f080b2d53143a5",
+      "bytes": 466
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/04-Curriculum/Fractions.md",
+      "sha256": "27cdcdf4519d2430795b48d1e2c7263954333ac1a6771427df1f78a343e7509a",
+      "bytes": 500
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/04-Curriculum/Geometry.md",
+      "sha256": "b306a1dd8a9ac305e6cab50a864e318525b2309cf11ca8751d87d4f9c3fc9e83",
+      "bytes": 452
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/04-Curriculum/Linear-Equations.md",
+      "sha256": "24b5c69c98b0bb05dd1d214680415af486b48db28ea763da71dba86fea59f3b9",
+      "bytes": 497
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/04-Curriculum/Misconception-Taxonomy.md",
+      "sha256": "bceaae5e6dac5e04eaeb2e97946d5281a699ee89cc51cdcfe7cc8acad1bacdcd",
+      "bytes": 506
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/04-Curriculum/Question-Generation.md",
+      "sha256": "dd2ae68f13c36abd8635d96c0969d59add0c2a4b38c44784d169165ffcf2240c",
+      "bytes": 483
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/04-Curriculum/Ratios-and-Proportions.md",
+      "sha256": "e03d64d6bc3260d73508b2250e9079bacbf069afe1709df3389b5a7ec40a8780",
+      "bytes": 446
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/04-Curriculum/Skill-Graph.md",
+      "sha256": "1f837849fba8f5f640666050685912cdebeaf8a6089e42458a546a9e380e96aa",
+      "bytes": 408
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/05-Engineering/API-Contracts.md",
+      "sha256": "03dcc59ac6638ddfb5c81e5eaf4ae4acbc6aa5832acafcfc0fea41ea755a2d03",
+      "bytes": 800
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/05-Engineering/Coding-Conventions.md",
+      "sha256": "79d97f44e1cddb2d9cb27b2fd7753c83500f90910db5d396df7101b8a4eb01a1",
+      "bytes": 506
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/05-Engineering/Database-Schema.md",
+      "sha256": "bde0fd750cc0b3a203bbf9a4faa6b7fd929e5b470b246bb90eb4ba08cef153e7",
+      "bytes": 739
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/05-Engineering/Development-Standards.md",
+      "sha256": "e01e455a666c4a6fb270147c22e935acce34b5d6cbbd89cf38c6526dfd57070d",
+      "bytes": 450
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/05-Engineering/Error-Handling.md",
+      "sha256": "97398444784c1fff5c14db2c1be6bd203cfb2dd20a28636d25d4f6e8a203bbdc",
+      "bytes": 507
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/05-Engineering/Git-Workflow.md",
+      "sha256": "cb8c144f2b8fdb74fa6ec7877bb81fd999949445333524d40a24825f8ec307fe",
+      "bytes": 639
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/05-Engineering/Performance-Engineering.md",
+      "sha256": "bb7057fe05d0b3a1ef57b113d07c2c63148e279d32da5f8b31fe5b1c8f62195a",
+      "bytes": 465
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/05-Engineering/Security-Engineering.md",
+      "sha256": "b1db37e71c2821e08a1d74b2d2316c1ffc1aa6a2cc25ded088d84d8788a14397",
+      "bytes": 574
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/05-Engineering/Testing-Strategy.md",
+      "sha256": "68328f859a663e59e63d4e852cc7ee46120714e73b1f920444f37d708e6385d1",
+      "bytes": 688
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/06-Research/Adaptive-Learning-Research.md",
+      "sha256": "92a702b874e558f3223e10d38b6d127731aed6dafe62e106d7ab94fb7c448e21",
+      "bytes": 513
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/06-Research/Educational-Standards.md",
+      "sha256": "e47683411fd3e14d4e025c60536434012d48967586292627c6078a9aef351955",
+      "bytes": 508
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/06-Research/Hosting-Feasibility.md",
+      "sha256": "fdc54e0997e06c68d7109f021baef1240a80ba094f679fc042cd83a1a73de723",
+      "bytes": 963
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/06-Research/Mathematical-Verification.md",
+      "sha256": "312931bf39b7924b941ef47e37876df189387f2199634a260bc9e18d7ad75b00",
+      "bytes": 555
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/06-Research/OCR-Model-Comparison.md",
+      "sha256": "c4ee9b9e8bae07bcd0f6cbfa37f6da30fc0280be71fc7267389061a05be8281c",
+      "bytes": 738
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/06-Research/Privacy-Requirements.md",
+      "sha256": "bc3f0e36ed5cefb8fc1600ef662b86598b373cb330a1bddecef858093fa80560",
+      "bytes": 519
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/06-Research/References.md",
+      "sha256": "de82ecc164e86fc4d9ed606f7fc617f1431fb932c2531a0674c5c51d0ff60ee1",
+      "bytes": 1272
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/07-Development-Journal/Change-Ledger.md",
+      "sha256": "926f853ea71d0d2766661fefad0c59316d242dbb865d7a32280aea296f706c88",
+      "bytes": 7578
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/07-Development-Journal/Current-State.md",
+      "sha256": "e26a822afb1789ce112d5b06a76eac3cebbd875a683f12c5b022c86baa99c3df",
+      "bytes": 6767
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/07-Development-Journal/Development-Sessions.md",
+      "sha256": "79b20d7dcbe75a761f68cdbac236d8144659b1d633d4fe9255d2ed9acd5072c9",
+      "bytes": 563
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/07-Development-Journal/Known-Issues.md",
+      "sha256": "651fdd5605d85b10d3796c1cfb0985e77e4b6c60997a4a1f98ca785b142fce34",
+      "bytes": 756
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/07-Development-Journal/Recovery-Instructions.md",
+      "sha256": "54c764bd87db074b9267522695261f0ce9ad31da95248b8967bea88dd68944d3",
+      "bytes": 946
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/07-Development-Journal/Regression-History.md",
+      "sha256": "710428069edf941970e7f54c47cd64317cb9e7fe098879555f190004c2478ebb",
+      "bytes": 1289
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/07-Development-Journal/Task-Backlog.md",
+      "sha256": "452b3bc21c288047fcc4435fd455378c45df728ab0672c9dbe68364e10be71e6",
+      "bytes": 1479
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/08-Testing/Accessibility-Testing.md",
+      "sha256": "95ae90f508f568f61b9f9c6062e5fbfe19a03b5517a1de7375f68609ce70088e",
+      "bytes": 493
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/08-Testing/Math-Engine-Results.md",
+      "sha256": "c1c92631bce7ed6fa3cdaa3f6b67ef412eb03f2ec1e6d6e81a0c466834513f5f",
+      "bytes": 948
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/08-Testing/OCR-Benchmark-Results.md",
+      "sha256": "eb0703c48eccb82464bd87373df2066441b671f82fd395f94db0acf567328cb0",
+      "bytes": 507
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/08-Testing/Performance-Benchmarks.md",
+      "sha256": "f46c965637b1c433a30deb84d3af932e0fd83e8b2734ceaebf61ae43ba4ec417",
+      "bytes": 731
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/08-Testing/Security-Testing.md",
+      "sha256": "a316bb33e91c82b1df8fbfec714c2fc1992925bf6495ffa6b821a1aefc21e4fe",
+      "bytes": 565
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/08-Testing/Test-Matrix.md",
+      "sha256": "a602c622b37916c64fc33a4eaaf39041d1c026716cd932139df60c5b84b35988",
+      "bytes": 705
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/08-Testing/Test-Results.md",
+      "sha256": "7468b0ffbac572f67200b101e13e3c9de3e2564a7c9b66a7540855ccd6272b61",
+      "bytes": 2239
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/09-Operations/Data-Retention.md",
+      "sha256": "33c5c0c12bbb34e27fa47d121d9bcffdc2d6d552d6f95b445e66e72fe1a55eab",
+      "bytes": 474
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/09-Operations/Deployment-Guide.md",
+      "sha256": "35b1f2cde29f4a5eac25b4de5a8b61cb711e1f9be04c27aec42f64cb71c67e9f",
+      "bytes": 670
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/09-Operations/Environment-Variables.md",
+      "sha256": "9de78bb27e06bfbad04762faaea2584f3eb898bcacd6025386fa3289a1450d3d",
+      "bytes": 506
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/09-Operations/Incident-Response.md",
+      "sha256": "0d1569c024204bdb6ad21a9373aca2986e54b562ff77e30ac31c82d9dd5ba0b0",
+      "bytes": 494
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/09-Operations/Local-Development.md",
+      "sha256": "84fab8680215e38e0397d830205b959762b8217d3972982dba2490635b9d51d1",
+      "bytes": 598
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/09-Operations/Monitoring.md",
+      "sha256": "1754d755eb4631540952748d931e2586661f3cf0bacaf30a5cbc2e20cbf98df7",
+      "bytes": 458
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/10-Roadmap/Master-Roadmap.md",
+      "sha256": "97a7c2ffd49c452852b6b9fbc283781ba1b5ef978fdcd096d3fa3d8a5b64004c",
+      "bytes": 680
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/10-Roadmap/Phase-0-Feasibility.md",
+      "sha256": "d244cbb95efce67854a448b074de18ff89addcdd68396999a43e14714ba1e4c5",
+      "bytes": 461
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/10-Roadmap/Phase-1-Foundation.md",
+      "sha256": "6b8849756930a2e4bff10bd557da9221783d65e1e9779b881ae90e2465a55758",
+      "bytes": 415
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/10-Roadmap/Phase-2-Mathematics.md",
+      "sha256": "ee82ffec4ea7d65b7cf8c9dc0c8964c08d52c7475867cf86c071d3fc246d2f3d",
+      "bytes": 503
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/10-Roadmap/Phase-3-Computer-Vision.md",
+      "sha256": "9dcd8aa05829e4c1d4a927c3d9d3d03cf7a56a23ac7d644c159efe1977fd35d0",
+      "bytes": 441
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/10-Roadmap/Phase-4-Classrooms.md",
+      "sha256": "977f17080009e0e7c1b3ebb379649843eb9dca3a483b7ee2bd80e569c800ed3c",
+      "bytes": 410
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/10-Roadmap/Phase-5-Adaptive-Learning.md",
+      "sha256": "45c737eb26dfe58cf11d1e0eacf02d128f81fd8ab6873398ddeee1cf1d7b9112",
+      "bytes": 465
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/10-Roadmap/Phase-6-Production-Readiness.md",
+      "sha256": "99164a695d7007b1115d0fc7214d9d667335799121a85ece0f32d24b9bebcddf",
+      "bytes": 405
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/11-Architecture-Decisions/ADR-0001-System-Architecture.md",
+      "sha256": "66e555be6a1f015129271d9846999aa841d0a677996b940503eff76e8946949b",
+      "bytes": 562
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/11-Architecture-Decisions/ADR-0002-Database-Selection.md",
+      "sha256": "85c216ef3807233081f1f84cf611713220fcfad02ebf591087acfefe7e9f8470",
+      "bytes": 540
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/11-Architecture-Decisions/ADR-0003-OCR-Strategy.md",
+      "sha256": "4eb4e790dcf8c8a48e5ed878d65a5e77bd8590dd34b2b5fa9fa141c3a9db7e6a",
+      "bytes": 502
+    },
+    {
+      "path": "obsidian/TraceLab-Vault/11-Architecture-Decisions/ADR-0004-Mathematical-Verification.md",
+      "sha256": "9539aa83b3bd9d98ab2725c5db081b6baa7d0bd253726e8e9be933cad611da0f",
+      "bytes": 624
+    },
+    {
+      "path": "packages/contracts/package.json",
+      "sha256": "a65bd229b61b37d35ef5e727942c5b6b7149665d2f59820928349549958b2f66",
+      "bytes": 128
+    },
+    {
+      "path": "packages/contracts/src/index.ts",
+      "sha256": "54ce1c5f404f7b2e62c31020b3c79b24be6bb7882d2101ed414435e0c5a609ef",
+      "bytes": 3174
+    },
+    {
+      "path": "packages/database/package.json",
+      "sha256": "50a60e8e8783150efe270e4dde4c3980ecf6f5446b7501aa9b8fa995e3139050",
+      "bytes": 127
+    },
+    {
+      "path": "packages/database/src/local.ts",
+      "sha256": "17793f645bd1717696bca6e4811fcb34063ed3d0325e85f417e3a1abb04b4120",
+      "bytes": 3883
+    },
+    {
+      "path": "packages/learning-engine/package.json",
+      "sha256": "62ecb10c642046a91394ab1c4076610103b4dc5186bc399225d3f8dae8c9ff39",
+      "bytes": 134
+    },
+    {
+      "path": "packages/learning-engine/src/index.ts",
+      "sha256": "ac4ff3f7c2f3b4ba87918dbe591d435dfd4c6409dbfe19c35cc118c9e46dd90b",
+      "bytes": 941
+    },
+    {
+      "path": "packages/math-engine/package.json",
+      "sha256": "687d0258ee96d06be679588bc12b28904f6a13b09391d0b0a335e9105c041a67",
+      "bytes": 130
+    },
+    {
+      "path": "packages/math-engine/src/index.ts",
+      "sha256": "96d583a4c08d1463ff4ee099130d0eb3abdaa99b1a9866549134f9de0ae6e111",
+      "bytes": 13955
+    },
+    {
+      "path": "packages/question-bank/package.json",
+      "sha256": "b5faced898a65bf3b082ec55ff2ee6a4393cf8f445750fecca2da640d8d96a38",
+      "bytes": 132
+    },
+    {
+      "path": "packages/question-bank/src/index.ts",
+      "sha256": "8d01cbb0de3236314d26ea901ca62649645f2e19d835f16e3ab8aaecdb065e1f",
+      "bytes": 4169
+    },
+    {
+      "path": "packages/ui/README.md",
+      "sha256": "90a029ebfd6a76a26c337b9c65dae85cbcbd1c242c370301ae69fd9900df679c",
+      "bytes": 306
+    },
+    {
+      "path": "packages/ui/package.json",
+      "sha256": "c842912c7188991e508e35a26244a25799462d908a1de22c9ef98b0c08a3ffb2",
+      "bytes": 90
+    },
+    {
+      "path": "packages/vision-adapter/package.json",
+      "sha256": "b57a954e28cbeec36688894c5faf9202d017737403908905dc282d94ccf2d6d4",
+      "bytes": 133
+    },
+    {
+      "path": "packages/vision-adapter/src/index.ts",
+      "sha256": "1f303fc5295e13a4bf55dcf659f002c50a17399d656779f90779671890a564d3",
+      "bytes": 2086
+    },
+    {
+      "path": "research/adaptive-evaluation/README.md",
+      "sha256": "21ea01050bcbc4ae7cb5001fe023e26393c63626882ba9ca8c7a63e0bd7dd754",
+      "bytes": 619
+    },
+    {
+      "path": "research/ocr-benchmarks/README.md",
+      "sha256": "cb491e066d0d527ae979bf68db92496151195683d15bbd32012cd150e3bf5e76",
+      "bytes": 1369
+    },
+    {
+      "path": "research/symbolic-oracle/requirements.txt",
+      "sha256": "25f9f1fb1988b230147a1d3092d34e09c069eb7a6c6d6df46b3973b9f2d36efc",
+      "bytes": 14
+    },
+    {
+      "path": "research/symbolic-oracle/verify.py",
+      "sha256": "8379b75ac149a95d3ebd20ee843c91fa675564c5798aa2e585d0f55bf6c68849",
+      "bytes": 2234
+    },
+    {
+      "path": "scripts/benchmark.ts",
+      "sha256": "15d8fe270f38b173f6bb7cc473c81ce8c73ccee37b75547873136f92b24418d0",
+      "bytes": 1148
+    },
+    {
+      "path": "scripts/check-vault.py",
+      "sha256": "9b53babce45988333a8b393752fa1ee87381991617738a92d8510c31c82cc0c3",
+      "bytes": 817
+    },
+    {
+      "path": "scripts/oracle-vectors.ts",
+      "sha256": "cd8267265536d01a123774d4f9b472fa3360a35f49937a360966114ee0bfb550",
+      "bytes": 746
+    },
+    {
+      "path": "services/api/package.json",
+      "sha256": "bb74d3729e9971f0e4db0685062952df4ec44ce4b5a63ee49c533478e0b3a5d1",
+      "bytes": 120
+    },
+    {
+      "path": "services/api/src/app.ts",
+      "sha256": "771894fc26650eb71cdd5cc40af59f6489a85fd862d47932ce41b72d4605fb36",
+      "bytes": 23402
+    },
+    {
+      "path": "services/ocr-worker/README.md",
+      "sha256": "6ab43318c3b78382b30a5beaf5c6e310f983f4dfd332f0ef4135f4db2653ee78",
+      "bytes": 513
+    },
+    {
+      "path": "services/ocr-worker/package.json",
+      "sha256": "592833802c1a81c21226206c73e8dc701b35bac0161e99f74a5e8e63f0c1f664",
+      "bytes": 98
+    },
+    {
+      "path": "services/realtime/README.md",
+      "sha256": "d0791e2a0e5fa852c1281dad8d247d1c937088697089ef96a407428d503e18ca",
+      "bytes": 526
+    },
+    {
+      "path": "services/realtime/package.json",
+      "sha256": "6140069028ad544fe8a8faa66cb51add6da47b4dad55f3ecd072b560883f0098",
+      "bytes": 96
+    },
+    {
+      "path": "tests/e2e/workflow.spec.ts",
+      "sha256": "3973036d8ed3bd64c19568898b3f75013442f03fc82d45a507602cc79f816366",
+      "bytes": 3468
+    },
+    {
+      "path": "tests/integration/api.test.ts",
+      "sha256": "16182551a82868b757b207e3e8b6a479d13f94d3fec03c6192948a887f4a5a42",
+      "bytes": 11838
+    },
+    {
+      "path": "tests/integration/persistence.test.ts",
+      "sha256": "7314dc10038cd234ac0eaf89f563e96d67441908feda6dfeae7e51c9831ee0d4",
+      "bytes": 3642
+    },
+    {
+      "path": "tests/security/session.test.ts",
+      "sha256": "b459d1be7ea751b552616e6ea8123b088719fffc0cc23e708236330717f1a6fc",
+      "bytes": 3306
+    },
+    {
+      "path": "tests/unit/contracts.test.ts",
+      "sha256": "4083da160e1074f65a8eb2cbe627b00f11e7c1f5cc194c7cbe40f4391fbcf20b",
+      "bytes": 2409
+    },
+    {
+      "path": "tests/unit/math.test.ts",
+      "sha256": "e4499ec5d66c227eb877159ca7109db616259a6b52958e11571cbf0073266a00",
+      "bytes": 6741
+    }
+  ]
+}

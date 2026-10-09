@@ -1,0 +1,50 @@
+{
+  "checked_at": "2026-10-09T00:04:41.003335+00:00",
+  "source_backup": "/Users/userselu/Downloads/TracelabOS/recovery/tracelab-baseline-20261009T000129Z.tar.gz",
+  "archive_sha256": "acd9b02518cc2d38254cba428e03acf00e10f3c399f0b0b895a11fca84da8bdc",
+  "restored_source": "/private/tmp/tracelab-restore-re4i2gyz/TracelabOS",
+  "source_files_unchanged_before_journal_update": 150,
+  "dependency_install": {
+    "command": "npm ci --offline --cache /private/tmp/tracelab-npm --no-audit --no-fund",
+    "exit_code": 0,
+    "packages_installed": 294,
+    "lockfile_preserved": true
+  },
+  "verify": {
+    "command": "npm run verify",
+    "exit_code": 0,
+    "tests_passed": 358,
+    "tests_failed": 0,
+    "test_files": 5,
+    "seeded_property_cases": 5000,
+    "typecheck": "passed",
+    "lint": "passed",
+    "production_build": "passed"
+  },
+  "format": "passed",
+  "vault": {
+    "notes": 84,
+    "links": "passed"
+  },
+  "oracle": {
+    "timestamp": "2026-10-09T00:03:10.179705+00:00",
+    "python": "3.13.9",
+    "sympy": "1.14.0",
+    "cases": 2000,
+    "comparisons": 6000,
+    "disagreements": [],
+    "scope": "generated linear equations and rational sums; not handwritten-data accuracy or proof of all transformations"
+  },
+  "browser": {
+    "status": "blocked",
+    "reason": "Fresh localhost socket probe returned EPERM; did not repeatedly retry the prohibited bind",
+    "assertions_executed": 0
+  },
+  "git": {
+    "status": "blocked",
+    "commits": 0,
+    "pushes": 0,
+    "reason": "Active session marks .git read-only and disables sandbox approval; shell GitHub DNS unavailable"
+  },
+  "authorized_migration_destination": "none available; managed worktree list empty"
+}

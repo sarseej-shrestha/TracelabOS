@@ -1,0 +1,23 @@
+node_modules/
+.next/
+out/
+coverage/
+.env*
+!.env.example
+.dev.vars*
+!.dev.vars.example
+.wrangler/
+.data/
+*.db
+*.db-shm
+*.db-wal
+*.tsbuildinfo
+.venv/
+__pycache__/
+.pytest_cache/
+test-results/
+playwright-report/
+.DS_Store
+obsidian/**/.obsidian/workspace*.json
+# Preserve source recovery archives locally without committing duplicate source bundles.
+recovery/*.tar.gz

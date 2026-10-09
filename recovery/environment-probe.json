@@ -1,0 +1,21 @@
+{
+  "uid": 501,
+  "workspace_mode": "0o755",
+  "git_metadata_present": false,
+  "github.com": {
+    "dns": "failed",
+    "error": "[Errno 8] nodename nor servname provided, or not known"
+  },
+  "api.github.com": {
+    "dns": "failed",
+    "error": "[Errno 8] nodename nor servname provided, or not known"
+  },
+  "registry.npmjs.org": {
+    "dns": "failed",
+    "error": "[Errno 8] nodename nor servname provided, or not known"
+  },
+  "localhost_listen": {
+    "error": "[Errno 1] Operation not permitted",
+    "errno": 1
+  }
+}

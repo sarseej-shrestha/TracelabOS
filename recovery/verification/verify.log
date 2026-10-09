@@ -1,0 +1,59 @@
+
+> tracelab-os@0.1.0 verify
+> npm run typecheck && npm run lint && npm test && npm run build
+
+
+> tracelab-os@0.1.0 typecheck
+> tsc --noEmit
+
+
+> tracelab-os@0.1.0 lint
+> eslint .
+
+
+> tracelab-os@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.10 /private/tmp/tracelab-restore-re4i2gyz/TracelabOS
+
+(node:32949) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:32947) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:32950) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  5 passed (5)
+      Tests  358 passed (358)
+   Start at  19:03:11
+   Duration  613ms (transform 136ms, setup 0ms, import 922ms, tests 293ms, environment 0ms)
+
+
+> tracelab-os@0.1.0 build
+> next build apps/web --webpack
+
+▲ Next.js 16.3.1 (webpack)
+✓ Running next.config.ts took 582ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1567ms
+  Running TypeScript ...
+  Finished TypeScript in 824ms ...
+  Collecting page data using 5 workers ...
+(node:33088) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+  Generating static pages using 5 workers (0/3) ...
+✓ Generating static pages using 5 workers (3/3) in 220ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+└ ƒ /api/[[...route]]
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

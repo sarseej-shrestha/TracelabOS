@@ -1,0 +1,7 @@
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.webp binary
+
+# Preserve raw verification output, including terminal blank lines.
+*.log whitespace=-blank-at-eof
