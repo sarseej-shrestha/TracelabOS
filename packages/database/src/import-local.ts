@@ -48,7 +48,7 @@ export async function importLocal(source: DatabaseSync, target: Database) {
           .all();
         for (const row of rows) {
           const columns = Object.keys(row);
-          if (!columns.every((column) => /^[a-z_]+$/.test(column)))
+          if (!columns.every((column) => /^[a-z_][a-z0-9_]*$/.test(column)))
             throw new Error('Unexpected source schema');
           await target
             .prepare(

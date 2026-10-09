@@ -21,3 +21,7 @@ Integrated Node 22/patched-dependency browser run: four tests passed, workspace 
 ## OCR metric normalization — 2026-10-08
 
 During benchmark review, plain prefix replacement of LaTeX sizing commands also changed leftarrow/rightarrow command names and could conflate directions. Added negative-equivalence regressions and restricted normalization to complete sizing commands. Reran pix2tex with corrected scoring before publishing. This fixes measurement fidelity, not model recognition errors.
+
+## 2026-10-09 — Import rejected digit-bearing identifiers
+
+Adding an OCR provenance import regression exposed `Unexpected source schema`: the existing column validator rejected `sha256` and new `image_sha256`. The PostgreSQL importer originated in d673447 before R2 added the digit-bearing field. It now permits digits after a valid identifier start while retaining a restricted alphabet. The regression imports an existing image reference and compares every field; transactional failures preserved the source and destination. Related: [[Change-Ledger]].

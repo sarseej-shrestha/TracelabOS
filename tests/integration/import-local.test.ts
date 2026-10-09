@@ -40,7 +40,20 @@ it('imports immutable local work and event ordering, and refuses to overwrite a 
     local
       .prepare('INSERT INTO submission_images VALUES(?,?,?)')
       .run(s.id, 'image/jpeg', new Uint8Array([1, 2, 3]));
+    local
+      .prepare('INSERT INTO image_references VALUES(?,?,?,?,?,?)')
+      .run(
+        s.id,
+        'tracelab-images/v1/imported.jpg',
+        'image/jpeg',
+        3,
+        'abc123',
+        new Date().toISOString(),
+      );
     const counts = await importLocal(local, db);
+    expect(await db.prepare('SELECT * FROM image_references').get()).toEqual(
+      local.prepare('SELECT * FROM image_references').get(),
+    );
     expect(counts).toMatchObject({
       users: 2,
       classrooms: 1,
@@ -50,6 +63,7 @@ it('imports immutable local work and event ordering, and refuses to overwrite a 
       evaluations: 1,
       teacher_reviews: 1,
       submission_images: 1,
+      image_references: 1,
     });
     expect(await db.prepare('SELECT result FROM evaluations').get()).toEqual(
       local.prepare('SELECT result FROM evaluations').get(),

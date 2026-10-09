@@ -8,11 +8,11 @@ Recovery and Phase 1/2 foundation; cloud persistence is next after CI repair.
 
 ## Active Task
 
-TASK-0014 experimental local OCR adapter passed real inference smoke and focused tests; durable application job/UI integration follows.
+TASK-0016 fixes a recovery importer identifier regression discovered during TASK-0015 OCR jobs; queue changes are preserved in a named Git stash.
 
 ## Current Git Branch
 
-feat/local-ocr-adapter
+fix/import-column-identifiers
 
 ## Latest Commit Hash
 
