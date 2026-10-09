@@ -1,0 +1,14 @@
+[
+  {
+    "expected": "x = 7",
+    "predicted": "\\displaystyle\\chi\\ \\longrightarrow\\ {\\bf\\nabla}^{\\prime}\\!\\!"
+  },
+  {
+    "expected": "3(x - 2) = 15",
+    "predicted": "3(\\mathbf{x}-2)=15"
+  },
+  {
+    "expected": "1 + 2 = 3",
+    "predicted": "1+2=3"
+  }
+]
