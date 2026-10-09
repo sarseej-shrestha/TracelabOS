@@ -64,3 +64,7 @@ Separately, actual Python/ONNX inference through the running Next UI and durable
 ## 2026-10-09 algebra curriculum
 
 827 TypeScript tests pass; strict typecheck, ESLint and production build pass. Ten Chromium workflows pass (15.0s), including collected-expression completion and axe checks. Algebra oracle: 1,800 cases/11,400 comparisons, zero disagreements; fraction oracle rerun: 1,800/11,700, zero disagreements. Five Python unittest cases verify the independent oracle parser and goal semantics; the prior 24 OCR metric/region tests remain in CI. Figures/reference/alternative paths, legacy behavior, ambiguous identities/nonlinear review and incomplete affine forms have regressions. Reports: artifacts/algebra-oracle-results.json and algebra-verification.log.
+
+## 2026-10-09 ratios checkpoint
+
+1,083 Vitest tests pass; 7,000 seeded cases include 2,000 new proportion/perturbation cases. TypeScript, ESLint and production build pass. Eleven Chromium workflows pass (16.1s), including ratio publication, confirmation and visible domain conditions with axe checks. Independent ratio oracle: 1,800 cases / 11,850 comparisons / zero disagreements. Five Python oracle regression cases pass. Prior OCR and earlier-domain checks remain in CI. Evidence: artifacts/ratio-verification.log, ratio-oracle-results.json and browser-results.json.

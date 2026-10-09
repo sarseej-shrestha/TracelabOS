@@ -1244,3 +1244,22 @@ footer {
   margin-top: 0.5rem;
   font-size: 0.875rem;
 }
+
+.ratio-figure {
+  margin: 1rem 0;
+}
+.ratio-figure table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.ratio-figure th,
+.ratio-figure td {
+  border: 1px solid #84998d;
+  padding: 0.65rem;
+  text-align: center;
+}
+.ratio-figure caption {
+  caption-side: bottom;
+  text-align: left;
+  padding-top: 0.65rem;
+}

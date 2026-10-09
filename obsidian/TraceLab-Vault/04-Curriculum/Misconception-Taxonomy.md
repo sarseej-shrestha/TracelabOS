@@ -5,3 +5,5 @@ Engine 0.2.0 classifies only observed structural/numeric patterns after exact in
 EQUIVALENCE_CHANGED remains a generic explanation. Question-aware grading assigns its remediation context to the actual question skill, rather than assuming algebra. Invalid cancellation is identified only when a supported value-changing pattern is visible; coincidentally equivalent digit cancellation cannot be inferred from two expressions alone. A labeled precision benchmark remains pending.
 
 Related: [[Mathematical-Engine]] · [[Fractions]] · [[Current-State]]
+
+Ratio question-aware patterns: RATE_DIRECTION, MULTIPLICATIVE_SCALING, CROSS_MULTIPLY_OPPOSITE, PERCENT_PER_HUNDRED, INCLUDE_ORIGINAL_AMOUNT and PERCENT_IS_NOT_AMOUNT. These compare a first observed incorrect value directly following the question against parameter-derived candidates. Later unrelated steps retain generic classification; unsupported domains remain review.

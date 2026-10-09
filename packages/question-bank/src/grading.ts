@@ -1,5 +1,7 @@
+import { ratioErrorCandidates } from './ratios.ts';
 import {
   evaluate,
+  equivalent,
   parse,
   normalize,
   Rational,
@@ -61,8 +63,30 @@ export function evaluateQuestion(
   question: Question,
   lines: string[],
 ): Evaluation {
-  const result = evaluate(question.expression, lines);
+  const result = evaluate(question.expression, lines, question.reasoningDomain);
   result.engineVersion += ':completion-2';
+  const error = result.steps.find((s) => s.outcome === 'FIRST_ERROR');
+  if (
+    error &&
+    (error.line === 1 ||
+      lines[error.line - 2]?.trim() === question.expression.trim())
+  ) {
+    for (const candidate of ratioErrorCandidates(question)) {
+      try {
+        const expected = question.expression.includes('=')
+          ? `x=${candidate.value}`
+          : candidate.value;
+        if (equivalent(parse(expected), parse(error.input)) === true) {
+          const { ruleId, explanation, skillId } = candidate;
+          Object.assign(error, { ruleId, explanation, skillId });
+          break;
+        }
+      } catch {
+        /* Unsupported forms retain their original review/classification. */
+      }
+    }
+  }
+
   for (const step of result.steps)
     if (step.ruleId === 'EQUIVALENCE_CHANGED') step.skillId = question.skillId;
   const requirement =

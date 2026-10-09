@@ -1,3 +1,5 @@
+import { ratioSkills, generateRatio } from './ratios.ts';
+export { ratioTemplates } from './ratios.ts';
 import { algebraSkills, generateAlgebra } from './algebra.ts';
 export { algebraTemplates } from './algebra.ts';
 import { Rational } from '../../math-engine/src/index.ts';
@@ -54,7 +56,11 @@ export const legacySkills = [
     ],
   },
 ] as const;
-export const skills: readonly Skill[] = [...fractionSkills, ...algebraSkills];
+export const skills: readonly Skill[] = [
+  ...fractionSkills,
+  ...algebraSkills,
+  ...ratioSkills,
+];
 export function generateQuestion(
   skillId: string,
   seed: number,
@@ -66,7 +72,9 @@ export function generateQuestion(
     throw new Error('Invalid difficulty');
   return fractionSkills.some((s) => s.id === skillId)
     ? generateFraction(skillId, seed, difficulty)
-    : generateAlgebra(skillId, seed, difficulty);
+    : algebraSkills.some((s) => s.id === skillId)
+      ? generateAlgebra(skillId, seed, difficulty)
+      : generateRatio(skillId, seed, difficulty);
 }
 export function generateLegacyQuestion(
   skillId: string,

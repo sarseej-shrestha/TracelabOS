@@ -20,7 +20,14 @@ export interface AlgebraFigure {
   parts: string[];
   caption: string;
 }
-export type QuestionFigure = FractionFigure | AlgebraFigure;
+export interface RatioFigure {
+  kind: 'ratio-table' | 'double-number-line';
+  labels: [string, string];
+  rows: [string, string][];
+  caption: string;
+  positions?: number[];
+}
+export type QuestionFigure = FractionFigure | AlgebraFigure | RatioFigure;
 export interface Question {
   id: string;
   templateId: string;
@@ -35,5 +42,6 @@ export interface Question {
   alternativePaths?: string[][];
   explanation?: string;
   figure?: QuestionFigure;
+  reasoningDomain?: 'positive-proportion';
   answerForm?: 'value' | 'reduced-fraction' | 'simplified-affine';
 }

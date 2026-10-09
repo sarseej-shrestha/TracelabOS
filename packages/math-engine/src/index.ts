@@ -1,5 +1,5 @@
 /** Exact, bounded arithmetic for the supported rational/affine domain. */
-export const ENGINE_VERSION = '0.2.0';
+export const ENGINE_VERSION = '0.3.0';
 export type Outcome =
   | 'VALID'
   | 'FIRST_ERROR'
@@ -238,6 +238,63 @@ function meaning(s: Statement): Meaning {
     ? { kind: 'degenerate' }
     : { kind: 'solution', value: b.neg().div(a) };
 }
+/** Only a single bare x in a flat ratio may be cleared under x > 0.
+ * Arbitrary rational functions retain their unsupported/domain status. */
+function positiveProportion(statement: Statement): Statement {
+  const variableDenominator = (e: Expr): boolean =>
+    e.kind === 'negate'
+      ? variableDenominator(e.value)
+      : e.kind === 'binary' &&
+        ((e.op === '/' && hasVariable(e.right)) ||
+          variableDenominator(e.left) ||
+          variableDenominator(e.right));
+  let result = statement;
+  if (
+    statement.kind === 'equation' &&
+    (variableDenominator(statement.left) ||
+      variableDenominator(statement.right))
+  ) {
+    const split = (e: Expr): [Expr, Expr] =>
+      e.kind === 'binary' && e.op === '/'
+        ? [e.left, e.right]
+        : [e, { kind: 'number', value: new Rational(1) }];
+    const [a, b] = split(statement.left),
+      [c, d] = split(statement.right);
+    let variables = 0;
+    for (const part of [a, b, c, d]) {
+      if (part.kind === 'variable') variables++;
+      else {
+        if (hasVariable(part))
+          throw new MathIssue(
+            'UNSUPPORTED',
+            'Only a single bare x in a flat proportion has supported denominator analysis.',
+          );
+        if (normalize(part).b.n <= 0n)
+          throw new MathIssue(
+            'DOMAIN',
+            'This proportion requires positive quantities and nonzero denominators.',
+          );
+      }
+    }
+    if (variables !== 1)
+      throw new MathIssue(
+        'UNSUPPORTED',
+        'Proportions with repeated variables need further domain analysis.',
+      );
+    result = {
+      kind: 'equation',
+      left: { kind: 'binary', op: '*', left: a, right: d },
+      right: { kind: 'binary', op: '*', left: c, right: b },
+    };
+  }
+  const value = meaning(result);
+  if (value.kind === 'solution' && value.value.n <= 0n)
+    throw new MathIssue(
+      'DOMAIN',
+      'The equation has no solution satisfying this question’s condition x > 0.',
+    );
+  return result;
+}
 export function equivalent(left: Statement, right: Statement): boolean | null {
   const l = meaning(left),
     r = meaning(right);
@@ -387,11 +444,20 @@ export interface Evaluation {
   complete: boolean;
   requiresReview: boolean;
   completionHint?: string;
+  domainConditions?: string[];
 }
-export function evaluate(problem: string, lines: string[]): Evaluation {
+export function evaluate(
+  problem: string,
+  lines: string[],
+  domain?: 'positive-proportion',
+): Evaluation {
+  const prepare = (input: string) =>
+    domain === 'positive-proportion'
+      ? positiveProportion(parse(input))
+      : parse(input);
   if (!lines.length || lines.length > 40)
     throw new MathIssue('LIMIT', 'Submit between 1 and 40 lines.');
-  const anchor = parse(problem);
+  const anchor = prepare(problem);
   meaning(anchor);
   let previous = anchor,
     firstError: number | null = null,
@@ -401,7 +467,7 @@ export function evaluate(problem: string, lines: string[]): Evaluation {
     const line = index + 1;
     let current: Statement | undefined;
     try {
-      current = parse(input);
+      current = prepare(input);
       let valid: boolean | null;
       try {
         valid = equivalent(previous, current);
@@ -499,6 +565,9 @@ export function evaluate(problem: string, lines: string[]): Evaluation {
   }
   return {
     engineVersion: ENGINE_VERSION,
+    ...(domain
+      ? { domainConditions: ['x > 0; every denominator must be nonzero.'] }
+      : {}),
     steps,
     firstError,
     complete: terminal && firstError === null && !unknown,

@@ -54,6 +54,26 @@ def expected(case):
         return sp.Integer(p["x"]) if p["variant"] else p["a"] * x - p["a"] * p["b"]
     if skill in {"two-step-equations", "variables-both-sides"}:
         return sp.Integer(p["x"])
+    if skill == "unit-rates":
+        return sp.Rational(p["a"] * p["k"], p["b"])
+    if skill in {"equivalent-ratios", "proportional-scaling"}:
+        return sp.Integer((p["b"] if p["variant"] else p["a"]) * p["k"])
+    if skill == "solve-proportions":
+        return (
+            sp.Rational(p["a"] * p["c"], p["b"])
+            if p["variant"]
+            else sp.Rational(p["b"] * p["c"], p["a"])
+        )
+    if skill == "percent-part-whole":
+        return (
+            sp.Integer(p["whole"])
+            if p["variant"]
+            else sp.Rational(p["p"] * p["whole"], 100)
+        )
+    if skill == "percent-change":
+        return sp.Rational(
+            p["whole"] * (100 + (-p["p"] if p["variant"] else p["p"])), 100
+        )
     left, right = sp.Rational(p["a"], p["b"]), sp.Rational(p["c"], p["d"])
     if skill == "fraction-equivalence":
         return sp.Integer(p["a"] * p["k"]) if p["variant"] else left

@@ -131,3 +131,65 @@ test('a generated expression can be simplified and completed through the student
     fullPage: true,
   });
 });
+
+test('positive proportions show a ratio table and preserve denominator conditions after confirmation', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page
+    .getByRole('button', { name: 'Debug a student’s thinking' })
+    .click();
+  await page.getByRole('button', { name: 'Switch to teacher' }).click();
+  await page
+    .getByText('Create a classroom or publish an assignment', { exact: true })
+    .click();
+  await page
+    .getByLabel('Title', { exact: true })
+    .fill('Solve a positive proportion');
+  await page
+    .getByRole('combobox', { name: 'Skill', exact: true })
+    .selectOption('solve-proportions');
+  await page.getByLabel('Variation seed').fill('0');
+  await page.getByLabel('Feedback release').selectOption('immediate');
+  await page.getByRole('button', { name: 'Preview', exact: true }).click();
+  await expect(page.locator('.ratio-figure table')).toHaveCount(1);
+  await page
+    .getByRole('button', { name: 'Publish assignment', exact: true })
+    .click();
+  await expect(
+    page.getByText('Assignment published.', { exact: true }),
+  ).toBeVisible();
+  await page.getByRole('button', { name: 'Switch to student' }).click();
+  await page
+    .getByRole('button', { name: /Solve a positive proportion/ })
+    .click();
+  const q = generateQuestion('solve-proportions', 0, 'intro');
+  await expect(page.locator('.ratio-figure table')).toBeVisible();
+  for (const [index, line] of q.reference.entries()) {
+    if (index)
+      await page
+        .getByRole('button', { name: '+ Add a step', exact: true })
+        .click();
+    await page.getByLabel(`Step ${index + 1}`, { exact: true }).fill(line);
+  }
+  await page.getByRole('checkbox').check();
+  await page.getByRole('button', { name: /Confirm & check steps/ }).click();
+  await expect(page.getByText('A COMPLETE, CONSISTENT SOLUTION')).toBeVisible();
+  await expect(
+    page.getByText(
+      'Domain condition: x > 0; every denominator must be nonzero.',
+      { exact: true },
+    ),
+  ).toBeVisible();
+  expect(
+    (
+      await new AxeBuilder({ page })
+        .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
+        .analyze()
+    ).violations,
+  ).toEqual([]);
+  await page.screenshot({
+    path: 'artifacts/ratio-workspace.png',
+    fullPage: true,
+  });
+});

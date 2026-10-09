@@ -5,3 +5,5 @@ Implemented: bounded parser/typed AST, exact rational/affine equivalence, first-
 Remaining: domain-aware proportions, dimensional geometry units/formulas, broader transformation provenance and independently labeled first-error precision evaluation. Nonlinear operations, identities/contradictions and arbitrary variable denominators remain in review. Generated correctness checks do not prove every unshown reasoning operation or educational efficacy.
 
 Related: [[Math-Engine-Results]] · [[Current-State]] · [[00-START-HERE]]
+
+TASK-0020 adds six ratio/percent skills, twelve templates and tested positive-proportion domain handling. Geometry and dimensional-unit checks remain the next curriculum task.
