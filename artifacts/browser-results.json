@@ -1,8 +1,8 @@
 {
   "config": {
     "argv": [
-      "/opt/homebrew/Cellar/node/23.10.0_1/bin/node",
-      "/Users/userselu/Downloads/TracelabOS/node_modules/.bin/playwright",
+      "/Users/userselu/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+      "/Users/userselu/Downloads/TracelabOS/node_modules/playwright/cli.js",
       "test"
     ],
     "configFile": "/Users/userselu/Downloads/TracelabOS/playwright.config.ts",
@@ -62,7 +62,7 @@
     "version": "1.63.0",
     "workers": 1,
     "webServer": {
-      "command": "npm run start",
+      "command": "pnpm start",
       "url": "http://127.0.0.1:3000",
       "reuseExistingServer": true,
       "timeout": 60000
@@ -91,12 +91,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3472,
+                  "duration": 1780,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-09T00:15:43.892Z",
+                  "startTime": "2026-10-09T00:25:45.901Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -125,12 +125,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 213,
+                  "duration": 212,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-09T00:15:47.672Z",
+                  "startTime": "2026-10-09T00:25:48.013Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -167,12 +167,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1243,
+                  "duration": 583,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-09T00:15:47.893Z",
+                  "startTime": "2026-10-09T00:25:48.233Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -201,12 +201,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 728,
+                  "duration": 622,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-09T00:15:49.140Z",
+                  "startTime": "2026-10-09T00:25:48.819Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -235,12 +235,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 759,
+                  "duration": 437,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-09T00:15:49.873Z",
+                  "startTime": "2026-10-09T00:25:49.446Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -250,7 +250,7 @@
           ],
           "id": "c601ceb5ecfc8efa4a14-40bb44137573c2062e88",
           "file": "workflow.spec.ts",
-          "line": 81,
+          "line": 82,
           "column": 1
         }
       ]
@@ -258,8 +258,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-09T00:15:43.170Z",
-    "duration": 7517.398,
+    "startTime": "2026-10-09T00:25:44.538Z",
+    "duration": 5400.654,
     "expected": 5,
     "skipped": 0,
     "unexpected": 0,

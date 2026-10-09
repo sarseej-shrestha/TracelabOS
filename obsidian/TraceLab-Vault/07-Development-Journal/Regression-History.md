@@ -13,3 +13,7 @@ MATH-001: Review identified two fraction-classifier failures. The observed affin
 ## Browser origin mismatch — 2026-10-08
 
 First real Chromium run failed all three original tests: demo POST was rejected with origin required. Baseline 839d634 used the internal request URL as sole CSRF origin; Next normalized its hostname differently from the browser. Reproduced through the real production server, then added explicit configured public origins and three security regressions (accepted external HTTPS origin, forged forwarded host rejected, internal origin rejected). Session cookies follow the validated public origin. All five browser tests and 361 Vitest tests now pass locally. A test-only select locator timeout was corrected to use its accessible combobox role.
+
+## Workspace contrast and premature scan — 2026-10-08
+
+Integrated Node 22/patched-dependency browser run: four tests passed, workspace axe test failed (paragraph contrast 4.37:1). Baseline CSS muted color inherited against green banner. Explicit darker paragraph color corrects the defect. Browser regression now awaits the actual workspace checkbox; prior passing scans could inspect the preceding assignment screen. CI additionally rejected merged ledger formatting; formatted without relaxing check.
