@@ -1,5 +1,9 @@
 # Phase 5 Adaptive Learning
 
-Acceptance: explainable targeted question delivery, exactly-once finalized mastery, prerequisites and uncertainty, reproducible comparisons. Current implementation only recommends a skill with a rule explanation. Add graph validation, intervention history, persisted practice attempts, finalized evidence deduplication, and BKT/baseline experiments without claiming real learning gains.
+Implemented TASK-0022A: versioned classroom-scoped BKT estimates from one evidence item per reviewed submission, corrected/retracted evidence replay, transitive prerequisite rules, authorized progress views and independent arithmetic checks. Parameters and readiness cutoffs remain provisional. Historical pre-upgrade reviews are preserved but not backfilled automatically.
 
-Related: [[00-START-HERE]] · [[Current-State]]
+Next TASK-0022B: a teacher can assign the recommended prerequisite to the specific student, the student can complete it through the real submission workflow, and the system preserves intervention provenance/idempotency. Test peer isolation and a full browser path. Follow with an explicit dry-run historical-evidence rebuild and reproducible baseline/rule/BKT comparisons. Do not claim synthetic experiments demonstrate learning gains.
+
+Exit acceptance remains explainable targeted question delivery, exactly-once reviewed mastery, prerequisite handling, uncertainty and reproducible comparisons. The phase is incomplete.
+
+Related: [[Adaptive-Learning-Engine]] · [[Current-State]]

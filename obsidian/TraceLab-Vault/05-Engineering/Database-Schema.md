@@ -11,3 +11,7 @@ The same current relational entities are now implemented in packages/database/mi
 ## Image references migration 0002
 
 image_references has submission primary/foreign key, unique object key, JPEG MIME constraint, bounded positive byte count, SHA-256 and timestamp. SQLite upgrades retain existing BLOBs and record migration 2; PostgreSQL migrations keep immutable checksums. The SQLite importer tolerates a pre-v2 source and preserves any references present in newer sources.
+
+## Reviewed mastery migration 0004
+
+Implemented skills (24 seeded IDs/titles), skill_prerequisites (foreign keys and no self-edge), mastery_evidence (one row per submission, foreign keys to classroom/student/skill/review/evaluation, nullable binary outcome, original observation time) and mastery_estimates (classroom/student/skill/algorithm-version key, bounded probability, nonnegative evidence/correct counts). Scope/time indexes support ordered replay. SQLite applies the upgrade transactionally once; PostgreSQL uses the checksum runner. Import preserves present evidence/estimates and accepts pre-mastery sources without inventing history. Seeded catalog rows are not user data and do not prevent an otherwise empty-target import. Existing pre-upgrade reviews are retained; backfill is pending. No hosted migration has been run.

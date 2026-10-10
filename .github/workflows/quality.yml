@@ -66,6 +66,9 @@ jobs:
       - run: python research/symbolic-oracle/quantity_oracle.py
       - run: pnpm oracle:geometry
       - run: python research/symbolic-oracle/geometry_oracle.py
+      - run: pnpm oracle:mastery
+      - run: python research/adaptive-evaluation/verify.py
+      - run: python -m unittest discover -s research/adaptive-evaluation -p 'test_*.py'
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -83,6 +86,8 @@ jobs:
             artifacts/quantity-oracle-results.json
             artifacts/geometry-oracle-vectors.json
             artifacts/geometry-oracle-results.json
+            artifacts/mastery-oracle-vectors.json
+            artifacts/mastery-oracle-results.json
   ocr-metrics:
     runs-on: ubuntu-latest
     timeout-minutes: 5

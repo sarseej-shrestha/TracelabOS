@@ -7,8 +7,8 @@ Next independent tasks:
 1. TASK-0018 complete: fraction PR #9 passed all checks and merged; fd5f584 preserves the feature.
 2. TASK-0019 complete: algebra expanded to six skills/twelve templates with verified alternate paths, completion boundaries, browser and oracle evidence; 572ceec passed CI and PR #10 merged.
 3. TASK-0020 complete: six ratio/percent skills and twelve templates, domain-safe proportions, tables/double number lines and misconception checks passed all checks; 3c38f88 and PR #11 are merged.
-4. TASK-0021A dimensional parser/verifier is complete: 434ebb9 passed CI and PR #12 merged. TASK-0021B geometry is complete: daa6111/570fe9a passed CI and PR #14 merged. TASK-0021C explicit student field projection passes local verification; push/CI/merge pending.
-5. TASK-0022: persisted exactly-once mastery and actual remediation assignments, prerequisite traversal and reproducible baseline/BKT experiments.
+4. TASK-0021A dimensional parser/verifier is complete: 434ebb9 passed CI and PR #12 merged. TASK-0021B geometry is complete: daa6111/570fe9a passed CI and PR #14 merged. TASK-0021C a6727d3 passed CI and PR #15 merged.
+5. TASK-0022A reviewed mastery/prerequisite traversal passes local verification; push/CI pending. Next TASK-0022B targeted remediation, then historical rebuild and reproducible baseline/BKT experiments.
 6. TASK-0023: deterministic event reduction/replay and secure reconnecting live classroom subscriptions.
 7. TASK-0024: retention/deletion, load/security/accessibility gates and hosted deployment, subject to actual provider resources/credentials.
 

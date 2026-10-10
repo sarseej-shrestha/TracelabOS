@@ -37,7 +37,8 @@
     "oracle:algebra": "node --experimental-transform-types scripts/algebra-oracle-vectors.ts",
     "oracle:ratios": "node --experimental-transform-types scripts/ratio-oracle-vectors.ts",
     "oracle:quantities": "node --experimental-transform-types scripts/quantity-oracle-vectors.ts",
-    "oracle:geometry": "node --experimental-transform-types scripts/geometry-oracle-vectors.ts"
+    "oracle:geometry": "node --experimental-transform-types scripts/geometry-oracle-vectors.ts",
+    "oracle:mastery": "node --experimental-transform-types scripts/mastery-oracle-vectors.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.1148.0",

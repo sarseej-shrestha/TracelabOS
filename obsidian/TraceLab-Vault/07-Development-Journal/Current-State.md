@@ -1,30 +1,30 @@
 # TraceLab OS — Current State
 
-Checkpoint: 2026-10-09 America/Chicago. The local application is functional; the full requested product is incomplete.
+Checkpoint: 2026-10-10 America/Chicago. The local application is functional; the full requested product is incomplete.
 
 ## Current Development Phase
 
-Curriculum expansion after verified recovery, local cloud adapters and OCR integration. Hosted validation remains pending.
+Adaptive learning after verified four-unit curriculum, recovery and local cloud/OCR integration. Hosted validation remains pending.
 
 ## Active Task
 
-TASK-0021C student-response disclosure fix passes local database/browser verification; commit/push/CI follows. Geometry is merged. Next product work is persisted mastery and remediation.
+TASK-0022A reviewed mastery passes local database/browser verification; commit/push/CI follows. Security PR #15 is merged. Next product work is targeted remediation delivery.
 
 ## Current Git Branch
 
-security/student-question-projection
+feat/reviewed-mastery
 
 ## Latest Commit Hash
 
-Latest verified remote main: e7b20a03bb195c88a276fa586a0954293ff60714 (PR #14 merge). Quantity verifier 434ebb9, ratios 3c38f88 and algebra 572ceec are preserved. This note records preceding commits rather than its own hash.
+Latest verified remote main: 53a13d8fe43472d74a1573d2947a28a909af75f8 (PR #15 merge). Security a6727d3 and all earlier feature commits are preserved. This note records preceding commits rather than its own hash.
 
 ## Latest Successful Push
 
-PRs #1–#14 merged after checks; geometry PR #14 run 38016555988 passed verify/oracle/ocr-metrics. Geometry commits daa6111 and 570fe9a are preserved. Security push/checks follow local verification.
+PRs #1–#15 merged after checks. Security run 38016980633 passed verify/oracle/ocr-metrics and remote main was verified. Mastery push/checks follow local verification.
 
 ## Latest Verified Test Results
 
-1,385 Vitest tests pass, including 8,000 seeded property cases and 26 new dual-database OCR job cases. Strict TypeScript, ESLint and production build pass. Thirteen Chromium workflows pass (17.3s), including extraction, correction, cancellation, failure fallback, teacher provenance and axe accessibility. Latest Python checkpoint: 24 tests pass; fraction oracle reports 1,800 cases/11,700 comparisons and algebra reports 1,800/11,400, and ratios 1,800/11,850, zero disagreements; quantity oracle 2,000 cases, zero disagreements; geometry oracle 1,800 cases/10,800 comparisons, zero disagreements; ten oracle unittest cases pass. SymPy CI repeats 2,000 cases/6,000 comparisons with zero differences. Actual model API smoke processed the research image in 100.57ms. A separate Chromium workflow through the actual local model completed in 1465.52ms, left evaluation null until explicit correction/confirmation, detected fixture first error at step 2, and recorded a teacher review. This is workflow evidence, not camera-image accuracy.
+1,418 Vitest tests pass, including 9,000 seeded property cases and 26 new dual-database OCR job cases. Strict TypeScript, ESLint and production build pass. Fourteen Chromium workflows pass (18.2s), including extraction, correction, cancellation, failure fallback, teacher provenance and axe accessibility. Independent mastery Decimal oracle: 2,047 sequences, zero disagreements; four Python tests pass. Latest earlier Python checkpoint: 24 tests pass; fraction oracle reports 1,800 cases/11,700 comparisons and algebra reports 1,800/11,400, and ratios 1,800/11,850, zero disagreements; quantity oracle 2,000 cases, zero disagreements; geometry oracle 1,800 cases/10,800 comparisons, zero disagreements; ten oracle unittest cases pass. SymPy CI repeats 2,000 cases/6,000 comparisons with zero differences. Actual model API smoke processed the research image in 100.57ms. A separate Chromium workflow through the actual local model completed in 1465.52ms, left evaluation null until explicit correction/confirmation, detected fixture first error at step 2, and recorded a teacher review. This is workflow evidence, not camera-image accuracy.
 
 ## Completed Features
 
@@ -32,15 +32,15 @@ Recovery backup/hash/extraction, authorized Git/GitHub and localhost/browser acc
 
 ## Partially Completed Features
 
-Twenty-four skills/forty-eight active templates cover four scoped units. Geometry is connected to unit-aware API/browser grading and known SVG figures; broader symbolic formulas remain unsupported. Rule recommendations without persisted mastery. OCR API/worker and browser processing/correction/fallback controls connected. Experimental model had only 3/72 exact matches in the general handwritten-expression pilot; targeted photographed-work accuracy remains unverified. History slider lacks deterministic reducer/WebSockets.
+Twenty-four skills/forty-eight active templates cover four scoped units. Geometry is connected to unit-aware API/browser grading and known SVG figures; broader symbolic formulas remain unsupported. Provisional classroom-scoped BKT mastery from reviewed submissions, corrected/retracted evidence and transitive prerequisites now verified locally; targeted remediation, historical backfill and strategy comparisons pending. OCR API/worker and browser processing/correction/fallback controls connected. Experimental model had only 3/72 exact matches in the general handwritten-expression pilot; targeted photographed-work accuracy remains unverified. History slider lacks deterministic reducer/WebSockets.
 
 ## Pending Features
 
-Hosted Neon/R2 verification; targeted handwritten-photo benchmark; broader symbolic curriculum; mastery/remediation; real-time/replay; retention/deletion; deployment, load tests and live acceptance.
+Hosted Neon/R2 verification; targeted handwritten-photo benchmark; broader symbolic curriculum; remediation/backfill/strategy comparisons; real-time/replay; retention/deletion; deployment, load tests and live acceptance.
 
 ## Known Bugs
 
-Student assignment parameter exposure is fixed locally with an explicit field projection; two database regressions verify that server/teacher snapshots remain intact. See [[Known-Issues]].
+Student assignment parameter exposure is fixed and merged with an explicit field projection; two database regressions verify that server/teacher snapshots remain intact. See [[Known-Issues]].
 
 Importer rejected digit-bearing identifiers such as sha256; fixed in 88487d7 with actual PostgreSQL preservation regression. See [[Regression-History]]. Existing OCR segmentation and accuracy limitations remain documented in [[OCR-Model-Comparison]].
 
@@ -58,9 +58,9 @@ TRACELAB_DB_PATH (use the same absolute path for API and worker) or DATABASE_URL
 
 ## Exact Next Steps
 
-1. Commit/push the student projection fix, pass checks, merge and verify main.
-2. Begin TASK-0022 persisted exactly-once mastery and prerequisite-aware remediation. Teacher review corrections must replace one evidence item rather than count as new attempts; unconfirmed/unsupported work must not silently update mastery.
-3. Continue real-time/replay and production work in [[Master-Roadmap]]. Cloud credentials and targeted photographed-work validation remain open.
+1. Commit/push TASK-0022A, pass checks, merge and verify main.
+2. TASK-0022B: teacher-assigned targeted practice tied to reviewed evidence, with student-specific authorization, immutable recommendation provenance and idempotency.
+3. Add an explicit historical-mastery rebuild and reproducible strategy comparisons, then real-time/replay and production work. Cloud credentials and targeted photographed-work validation remain open.
 
 ## Recovery Procedure
 
