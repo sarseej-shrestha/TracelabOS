@@ -1,4 +1,4 @@
-import { prerequisiteOrder } from './prerequisites.ts';
+import { unmetPrerequisite } from './prerequisites.ts';
 import { skills } from '../../question-bank/src/index.ts';
 import type { Evaluation } from '../../math-engine/src/index.ts';
 export function recommend(
@@ -9,7 +9,7 @@ export function recommend(
   const error = evaluation.steps.find((s) => s.skillId);
   const target = skills.find((s) => s.id === (error?.skillId ?? skillId));
   const prerequisite = target
-    ? prerequisiteOrder(skills, target.id).find((p) => !mastered.has(p))
+    ? unmetPrerequisite(skills, target.id, mastered)
     : undefined;
   return {
     skillId: prerequisite ?? target?.id ?? skillId,

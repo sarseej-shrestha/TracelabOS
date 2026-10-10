@@ -26,3 +26,11 @@ export function prerequisiteOrder(
   walk(target, result);
   return result.filter((id) => id !== target);
 }
+
+export function unmetPrerequisite(
+  graph: readonly SkillNode[],
+  target: string,
+  ready: ReadonlySet<string>,
+) {
+  return prerequisiteOrder(graph, target).find((id) => !ready.has(id));
+}
