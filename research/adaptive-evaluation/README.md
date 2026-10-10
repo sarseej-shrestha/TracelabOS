@@ -12,7 +12,7 @@ python3 -m unittest discover -s research/adaptive-evaluation -p 'test_*.py'
 
 Measured: all 2,047 binary sequences of lengths 0–10 agree within 1e-12; maximum absolute difference 1.099120794378905e-14. Four Python unit tests pass. TypeScript also tests 1,000 seeded longer sequences, invalid parameters, extreme success histories and prerequisite graph safety. Reports are in `artifacts/mastery-oracle-{vectors,results}.json`.
 
-A smoothed success baseline and model entropy are calculated for experiments. Entropy describes this model's belief, not parameter uncertainty or a calibrated confidence interval. Targeted remediation is delivered through real assignments and a verified historical rebuild can backfill old reviews. A reproducible held-out synthetic strategy comparison remains a separate task. There is no real student dataset or demonstrated learning gain.
+A smoothed success baseline and model entropy are calculated for experiments. Entropy describes this model's belief, not parameter uncertainty or a calibrated confidence interval. Targeted remediation is delivered through real assignments and a verified historical rebuild can backfill old reviews. The held-out synthetic strategy comparison below evaluates prediction and practice selection separately. There is no real student dataset or demonstrated learning gain.
 
 ## Frozen strategy comparison
 
