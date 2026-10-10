@@ -141,6 +141,30 @@ CREATE INDEX mastery_student_scope ON mastery_estimates(student_id,classroom_id,
       );
     }
   });
+  transaction(db, () => {
+    if (!db.prepare('SELECT 1 FROM schema_migrations WHERE version=5').get()) {
+      db.exec(`CREATE TABLE recommendations (
+  id TEXT PRIMARY KEY,
+  source_submission_id TEXT NOT NULL UNIQUE REFERENCES submissions(id),
+  assignment_id TEXT NOT NULL UNIQUE REFERENCES assignments(id),
+  student_id TEXT NOT NULL REFERENCES users(id),
+  review_id TEXT NOT NULL REFERENCES teacher_reviews(id),
+  evaluation_id TEXT NOT NULL REFERENCES evaluations(id),
+  skill_id TEXT NOT NULL REFERENCES skills(id),
+  algorithm_version TEXT NOT NULL,
+  reason TEXT NOT NULL,
+  mastery_snapshot TEXT NOT NULL,
+  created_by TEXT NOT NULL REFERENCES users(id),
+  created_at TEXT NOT NULL
+);
+CREATE INDEX recommendations_student ON recommendations(student_id,created_at);
+`);
+      db.prepare('INSERT INTO schema_migrations VALUES(?,?)').run(
+        5,
+        new Date().toISOString(),
+      );
+    }
+  });
   return db;
 }
 export type DB = ReturnType<typeof openDatabase>;

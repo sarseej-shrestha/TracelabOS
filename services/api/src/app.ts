@@ -1,3 +1,4 @@
+import { assignRemediation, remediationView } from './remediation.ts';
 import {
   recordMasteryReview,
   masteredSkills,
@@ -517,9 +518,9 @@ export function createApp(
     const u = c.get('user');
     const rows = (await db
       .prepare(
-        'SELECT DISTINCT a.* FROM assignments a JOIN classrooms c ON c.id=a.classroom_id LEFT JOIN classroom_memberships m ON m.classroom_id=c.id WHERE c.owner_id=? OR m.user_id=? ORDER BY a.published_at DESC LIMIT 100',
+        'SELECT DISTINCT a.*,r.reason AS practice_reason FROM assignments a JOIN classrooms c ON c.id=a.classroom_id LEFT JOIN classroom_memberships m ON m.classroom_id=c.id LEFT JOIN recommendations r ON r.assignment_id=a.id WHERE c.owner_id=? OR (m.user_id=? AND (r.id IS NULL OR r.student_id=?)) ORDER BY a.published_at DESC LIMIT 100',
       )
-      .all(u.id, u.id)) as unknown as Assignment[];
+      .all(u.id, u.id, u.id)) as unknown as Assignment[];
     return c.json(
       rows.map((a) => {
         const q = JSON.parse(a.question) as Question;
@@ -542,6 +543,11 @@ export function createApp(
       .get(assignmentId)) as Assignment | undefined;
     if (!a) fail(404, 'ASSIGNMENT_NOT_FOUND');
     await classroom(a!.classroom_id, u);
+    const targeted = await db
+      .prepare('SELECT student_id FROM recommendations WHERE assignment_id=?')
+      .get(assignmentId);
+    if (targeted && targeted.student_id !== u.id)
+      fail(404, 'ASSIGNMENT_NOT_FOUND');
     const result = await transaction(db, async () => {
       const old = await db
         .prepare(
@@ -615,6 +621,7 @@ export function createApp(
             )
             .all(s.id)
         : [],
+      remediation: await remediationView(db, s.id),
       mastery: await masteryProgress(db, s.classroom_id, s.student_id),
       recommendation: e
         ? recommend(
@@ -815,6 +822,29 @@ export function createApp(
       });
     });
     return c.json({ state: 'FINALIZED' });
+  });
+  app.post('/api/submissions/:id/remediation', async (c) => {
+    const body = z
+      .object({ reviewId: z.string().uuid() })
+      .strict()
+      .parse(await c.req.json());
+    const s = await submission(c.req.param('id'), c.get('user'));
+    await classroom(s.classroom_id, c.get('user'), true);
+    const result = await assignRemediation(
+      db,
+      s,
+      c.get('user').id,
+      body.reviewId,
+    );
+    if (!result.idempotent) {
+      await event(s.classroom_id, null, 'ASSIGNMENT_PUBLISHED', {
+        assignmentId: result.id,
+      });
+      await event(s.classroom_id, s.id, 'REMEDIATION_ASSIGNED', {
+        assignmentId: result.id,
+      });
+    }
+    return c.json(result, result.idempotent ? 200 : 201);
   });
   app.get('/api/classrooms/:id/mastery', async (c) => {
     const user = c.get('user'),

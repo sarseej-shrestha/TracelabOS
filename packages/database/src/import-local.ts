@@ -15,6 +15,7 @@ const tables = [
   'teacher_reviews',
   'mastery_evidence',
   'mastery_estimates',
+  'recommendations',
   'domain_events',
 ] as const;
 /** Explicit one-time import into an empty, migrated target. Source is read only. */
@@ -39,6 +40,7 @@ export async function importLocal(source: DatabaseSync, target: Database) {
             'ocr_jobs',
             'mastery_evidence',
             'mastery_estimates',
+            'recommendations',
           ].includes(table) &&
           !source.prepare('SELECT 1 FROM sqlite_master WHERE name=?').get(table)
         ) {

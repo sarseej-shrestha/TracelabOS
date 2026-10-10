@@ -34,9 +34,13 @@ it('imports immutable local work and event ordering, and refuses to overwrite a 
     await call(`/submissions/${s.id}/confirm`, { version: 2, confirmed: true });
     await call('/demo/role', { role: 'teacher' });
     await call(`/submissions/${s.id}/reviews`, {
-      decision: 'correct',
+      decision: 'needs_practice',
       reason: 'Checked against the original question.',
     });
+    const reviewId = local
+      .prepare('SELECT id FROM teacher_reviews WHERE submission_id=?')
+      .get(s.id)!.id;
+    await call(`/submissions/${s.id}/remediation`, { reviewId });
     local
       .prepare('INSERT INTO submission_images VALUES(?,?,?)')
       .run(s.id, 'image/jpeg', new Uint8Array([1, 2, 3]));
@@ -73,7 +77,11 @@ it('imports immutable local work and event ordering, and refuses to overwrite a 
     expect(await db.prepare('SELECT * FROM image_references').get()).toEqual(
       local.prepare('SELECT * FROM image_references').get(),
     );
-    for (const table of ['mastery_evidence', 'mastery_estimates']) {
+    for (const table of [
+      'mastery_evidence',
+      'mastery_estimates',
+      'recommendations',
+    ]) {
       expect(await db.prepare(`SELECT * FROM ${table}`).all()).toEqual(
         local.prepare(`SELECT * FROM ${table}`).all(),
       );
@@ -82,7 +90,7 @@ it('imports immutable local work and event ordering, and refuses to overwrite a 
     expect(counts).toMatchObject({
       users: 2,
       classrooms: 1,
-      assignments: 1,
+      assignments: 2,
       submissions: 1,
       transcription_versions: 2,
       evaluations: 1,
@@ -146,9 +154,10 @@ it('imports a pre-mastery database without inventing reviewed evidence', async (
   const { db } = await testPostgres();
   try {
     local.exec(
-      'DROP TABLE mastery_estimates; DROP TABLE mastery_evidence; DROP TABLE skill_prerequisites; DROP TABLE skills; DELETE FROM schema_migrations WHERE version=4',
+      'DROP TABLE recommendations; DROP TABLE mastery_estimates; DROP TABLE mastery_evidence; DROP TABLE skill_prerequisites; DROP TABLE skills; DELETE FROM schema_migrations WHERE version>=4',
     );
     const counts = await importLocal(local, db);
+    expect(counts.recommendations).toBe(0);
     expect(counts.mastery_evidence).toBe(0);
     expect(counts.mastery_estimates).toBe(0);
     expect((await db.prepare('SELECT COUNT(*) n FROM skills').get())?.n).toBe(

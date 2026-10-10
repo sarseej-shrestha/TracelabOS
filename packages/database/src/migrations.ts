@@ -3,6 +3,7 @@ export const migrationFiles = [
   '0002_image_references.sql',
   '0003_ocr_jobs.sql',
   '0004_reviewed_mastery.sql',
+  '0005_targeted_remediation.sql',
 ] as const;
 import { createHash } from 'node:crypto';
 import type { Database } from './adapter.ts';
