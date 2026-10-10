@@ -9,7 +9,7 @@ it('upgrades a version-three local database once without losing existing users',
   let db = openDatabase(path);
   try {
     db.exec(
-      'DROP TABLE mastery_estimates; DROP TABLE mastery_evidence; DROP TABLE skill_prerequisites; DROP TABLE skills; DELETE FROM schema_migrations WHERE version=4',
+      'DROP TABLE recommendations; DROP TABLE mastery_estimates; DROP TABLE mastery_evidence; DROP TABLE skill_prerequisites; DROP TABLE skills; DELETE FROM schema_migrations WHERE version>=4',
     );
     db.prepare('INSERT INTO users VALUES(?,?,?,?,?,?)').run(
       'preserved',

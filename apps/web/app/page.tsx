@@ -19,6 +19,7 @@ type Assignment = {
   title: string;
   question: StudentQuestion;
   classroom_id: string;
+  practice_reason?: string | null;
 };
 type MasteryProgress = {
   skillId: string;
@@ -47,6 +48,17 @@ type Submission = {
   evaluation: Evaluation | null;
   feedbackHeld: boolean;
   reviews: { decision: string; reason: string }[];
+  remediation: {
+    assignment: {
+      assignment_id: string;
+      skill_id: string;
+      title: string;
+      reason: string;
+      algorithm_version: string;
+    } | null;
+    eligible: boolean;
+    reviewId: string | null;
+  };
   mastery: MasteryProgress[];
   recommendation: { skillId: string; reason: string } | null;
 };
@@ -178,6 +190,24 @@ export default function Home() {
     setConsent(false);
     setPhoto(null);
     setPreview(full.hasImage ? `/api/submissions/${full.id}/image` : '');
+  }
+  async function openPractice(id: string) {
+    const available = await api<Assignment[]>('/assignments');
+    setAssignments(available);
+    const assignment = available.find((a) => a.id === id);
+    if (!assignment)
+      throw new Error('This practice assignment is not available.');
+    await openAssignment(assignment);
+  }
+  async function assignPractice() {
+    if (!sub?.remediation.reviewId) return;
+    await api(`/submissions/${sub.id}/remediation`, 'POST', {
+      reviewId: sub.remediation.reviewId,
+    });
+    await inspect(sub.id);
+    await refresh();
+    await loadTeacher();
+    setNotice('Focused practice assigned to this student.');
   }
   async function inspect(id: string) {
     const full = await api<Submission>(`/submissions/${id}`);
@@ -1016,6 +1046,15 @@ export default function Home() {
                         Record review & release feedback
                       </button>
                     </form>
+                    {sub.remediation.eligible && (
+                      <button
+                        className="secondary"
+                        disabled={busy}
+                        onClick={() => void act(assignPractice)}
+                      >
+                        Assign recommended practice
+                      </button>
+                    )}
                   </section>
                 )}
                 <section className="card">
@@ -1131,6 +1170,9 @@ export default function Home() {
                       <div>
                         <span className="eyebrow">{selected.title}</span>
                         <p>{selected.question.prompt}</p>
+                        {selected.practice_reason && (
+                          <p>{selected.practice_reason}</p>
+                        )}
                       </div>
                       <div className="equation">
                         {selected.question.expression}
@@ -1482,7 +1524,13 @@ export default function Home() {
                     </div>
                     {sub && graded && (
                       <section className="card reasoning-card">
-                        <Reasoning sub={sub} />
+                        <Reasoning
+                          sub={sub}
+                          onOpenPractice={(id) =>
+                            void act(() => openPractice(id))
+                          }
+                          busy={busy}
+                        />
                       </section>
                     )}
                   </>
@@ -1514,7 +1562,15 @@ export default function Home() {
     </>
   );
 }
-function Reasoning({ sub }: { sub: Submission }) {
+function Reasoning({
+  sub,
+  onOpenPractice,
+  busy,
+}: {
+  sub: Submission;
+  onOpenPractice?: (id: string) => void;
+  busy?: boolean;
+}) {
   return (
     <>
       <div className="section-title">
@@ -1589,6 +1645,29 @@ function Reasoning({ sub }: { sub: Submission }) {
         </>
       ) : (
         <p>This submission has not been evaluated.</p>
+      )}
+      {sub.remediation.assignment && (
+        <section
+          aria-label="Assigned focused practice"
+          className="recommendation"
+        >
+          <h3>{sub.remediation.assignment.title}</h3>
+          <p>{sub.remediation.assignment.reason}</p>
+          <p className="fine">
+            This follow-up is assigned to the student whose work was reviewed.
+          </p>
+          {onOpenPractice && (
+            <button
+              className="secondary"
+              disabled={busy}
+              onClick={() =>
+                onOpenPractice(sub.remediation.assignment!.assignment_id)
+              }
+            >
+              Open focused practice
+            </button>
+          )}
+        </section>
       )}
       <section aria-label="Reviewed skill progress" className="reviews">
         <h3>Reviewed skill progress</h3>

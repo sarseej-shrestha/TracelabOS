@@ -8,23 +8,23 @@ Adaptive learning after verified four-unit curriculum, recovery and local cloud/
 
 ## Active Task
 
-TASK-0022A reviewed mastery passes local database/browser verification; commit/push/CI follows. Security PR #15 is merged. Next product work is targeted remediation delivery.
+TASK-0022B targeted remediation passes local database/browser verification; commit/push/CI follows. Reviewed mastery PR #16 is merged. Next work is historical mastery rebuild and reproducible strategy comparisons.
 
 ## Current Git Branch
 
-feat/reviewed-mastery
+feat/targeted-remediation
 
 ## Latest Commit Hash
 
-Latest verified remote main: 53a13d8fe43472d74a1573d2947a28a909af75f8 (PR #15 merge). Security a6727d3 and all earlier feature commits are preserved. This note records preceding commits rather than its own hash.
+Latest verified remote main: 1ac6fcadda5af2becf210dac3e2c332200631b5b (PR #16 merge). Mastery cbe7ba9/b0529de and earlier feature commits are preserved. This note records preceding commits rather than its own hash.
 
 ## Latest Successful Push
 
-PRs #1–#15 merged after checks. Security run 38016980633 passed verify/oracle/ocr-metrics and remote main was verified. Mastery push/checks follow local verification.
+PRs #1–#16 merged after checks. Mastery run 38042298325 passed verify/oracle/ocr-metrics and remote main was verified. Remediation push/checks follow local verification.
 
 ## Latest Verified Test Results
 
-1,418 Vitest tests pass, including 9,000 seeded property cases and 26 new dual-database OCR job cases. Strict TypeScript, ESLint and production build pass. Fourteen Chromium workflows pass (18.2s), including extraction, correction, cancellation, failure fallback, teacher provenance and axe accessibility. Independent mastery Decimal oracle: 2,047 sequences, zero disagreements; four Python tests pass. Latest earlier Python checkpoint: 24 tests pass; fraction oracle reports 1,800 cases/11,700 comparisons and algebra reports 1,800/11,400, and ratios 1,800/11,850, zero disagreements; quantity oracle 2,000 cases, zero disagreements; geometry oracle 1,800 cases/10,800 comparisons, zero disagreements; ten oracle unittest cases pass. SymPy CI repeats 2,000 cases/6,000 comparisons with zero differences. Actual model API smoke processed the research image in 100.57ms. A separate Chromium workflow through the actual local model completed in 1465.52ms, left evaluation null until explicit correction/confirmation, detected fixture first error at step 2, and recorded a teacher review. This is workflow evidence, not camera-image accuracy.
+1,433 Vitest tests pass, including 9,000 seeded property cases and 26 new dual-database OCR job cases. Strict TypeScript, ESLint and production build pass. Fifteen Chromium workflows pass (19.6s), including extraction, correction, cancellation, failure fallback, teacher provenance and axe accessibility. Independent mastery Decimal oracle: 2,047 sequences, zero disagreements; four Python tests pass. Latest earlier Python checkpoint: 24 tests pass; fraction oracle reports 1,800 cases/11,700 comparisons and algebra reports 1,800/11,400, and ratios 1,800/11,850, zero disagreements; quantity oracle 2,000 cases, zero disagreements; geometry oracle 1,800 cases/10,800 comparisons, zero disagreements; ten oracle unittest cases pass. SymPy CI repeats 2,000 cases/6,000 comparisons with zero differences. Actual model API smoke processed the research image in 100.57ms. A separate Chromium workflow through the actual local model completed in 1465.52ms, left evaluation null until explicit correction/confirmation, detected fixture first error at step 2, and recorded a teacher review. This is workflow evidence, not camera-image accuracy.
 
 ## Completed Features
 
@@ -32,11 +32,11 @@ Recovery backup/hash/extraction, authorized Git/GitHub and localhost/browser acc
 
 ## Partially Completed Features
 
-Twenty-four skills/forty-eight active templates cover four scoped units. Geometry is connected to unit-aware API/browser grading and known SVG figures; broader symbolic formulas remain unsupported. Provisional classroom-scoped BKT mastery from reviewed submissions, corrected/retracted evidence and transitive prerequisites now verified locally; targeted remediation, historical backfill and strategy comparisons pending. OCR API/worker and browser processing/correction/fallback controls connected. Experimental model had only 3/72 exact matches in the general handwritten-expression pilot; targeted photographed-work accuracy remains unverified. History slider lacks deterministic reducer/WebSockets.
+Twenty-four skills/forty-eight active templates cover four scoped units. Geometry is connected to unit-aware API/browser grading and known SVG figures; broader symbolic formulas remain unsupported. Provisional classroom-scoped BKT mastery from reviewed submissions, corrected/retracted evidence and transitive prerequisites now verified locally; targeted remediation now passes the full browser workflow; historical backfill and strategy comparisons pending. OCR API/worker and browser processing/correction/fallback controls connected. Experimental model had only 3/72 exact matches in the general handwritten-expression pilot; targeted photographed-work accuracy remains unverified. History slider lacks deterministic reducer/WebSockets.
 
 ## Pending Features
 
-Hosted Neon/R2 verification; targeted handwritten-photo benchmark; broader symbolic curriculum; remediation/backfill/strategy comparisons; real-time/replay; retention/deletion; deployment, load tests and live acceptance.
+Hosted Neon/R2 verification; targeted handwritten-photo benchmark; broader symbolic curriculum; backfill/strategy comparisons; real-time/replay; retention/deletion; deployment, load tests and live acceptance.
 
 ## Known Bugs
 
@@ -58,9 +58,9 @@ TRACELAB_DB_PATH (use the same absolute path for API and worker) or DATABASE_URL
 
 ## Exact Next Steps
 
-1. Commit/push TASK-0022A, pass checks, merge and verify main.
-2. TASK-0022B: teacher-assigned targeted practice tied to reviewed evidence, with student-specific authorization, immutable recommendation provenance and idempotency.
-3. Add an explicit historical-mastery rebuild and reproducible strategy comparisons, then real-time/replay and production work. Cloud credentials and targeted photographed-work validation remain open.
+1. Commit/push TASK-0022B, pass checks, merge and verify main.
+2. Add an explicit dry-run historical-mastery rebuild preserving original review history and deterministic attempt ordering.
+3. Run reproducible baseline/rule/BKT comparisons, then real-time/replay and production work. Cloud credentials and targeted photographed-work validation remain open.
 
 ## Recovery Procedure
 
