@@ -1,9 +1,9 @@
 # Phase 2 Mathematics
 
-Implemented: bounded parser/typed AST, exact rational/affine equivalence, first-error and propagation, specific distribution/fraction patterns, question-aware reduced-fraction/collected-expression completion, six fraction and six algebra skills with 24 templates, independent SymPy verification and browser workflows. A known SVG figure uses generated question data only. Historical evaluation/template versions remain preserved.
+Implemented: bounded parser/typed AST, exact rational/affine equivalence, first-error and propagation, question-aware reduced-fraction/collected-expression completion, eighteen fraction/algebra/ratio skills with thirty-six templates, safe positive-proportion denominator handling, independent SymPy verification and browser workflows. Figures use generated question data only. Historical evaluation/template versions remain preserved.
 
-Remaining: domain-aware proportions, dimensional geometry units/formulas, broader transformation provenance and independently labeled first-error precision evaluation. Nonlinear operations, identities/contradictions and arbitrary variable denominators remain in review. Generated correctness checks do not prove every unshown reasoning operation or educational efficacy.
+The standalone numerical metric verifier is merged in PR #12: exact scale/dimension handling, explicit final units, review barriers and 2,000 independent quantity cases. TASK-0021B must connect it to six geometry skills/twelve templates, known rectangle/triangle/composite figures, formula-pattern explanations, API and browser workflows. Geometry is not published yet.
 
-Related: [[Math-Engine-Results]] · [[Current-State]] · [[00-START-HERE]]
+Broader symbolic dimensional algebra, nonlinear operations, identities/contradictions and arbitrary variable denominators remain unsupported or reviewable. Labeled first-error precision evaluation remains open. Generated correctness checks do not prove unshown reasoning operations or educational efficacy.
 
-TASK-0020 adds six ratio/percent skills, twelve templates and tested positive-proportion domain handling. Geometry and dimensional-unit checks remain the next curriculum task.
+Related: [[Math-Engine-Results]] · [[Current-State]] · [[Geometry]] · [[00-START-HERE]]

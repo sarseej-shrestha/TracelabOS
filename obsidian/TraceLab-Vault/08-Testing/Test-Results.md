@@ -72,3 +72,5 @@ Separately, actual Python/ONNX inference through the running Next UI and durable
 ## 2026-10-09 quantity verifier
 
 1,141 Vitest tests, strict TypeScript and ESLint pass. Added 58 quantity tests including 1,000 seeded conversion cases. Independent SymPy quantity checks: 2,000 cases, zero disagreements. Last browser/build checkpoint remains the ratio integration: eleven workflows and production build passed; the standalone verifier does not change exposed application paths. CI will repeat all gates before merge.
+
+PR #12 CI run 37992150994 passed verify, oracle and ocr-metrics, including production build and all eleven browser workflows. Feature 434ebb9 is merged as 0113e1ca334621d8db131fc7a61ef7412ea2d3b2. A separate current-preview smoke returned HTTP 200 and confirmed the guided-demo control was visible; it is not counted as an additional end-to-end test.
