@@ -1,7 +1,11 @@
 # Known Issues
 
-Git metadata creation is denied; no branch, commit, or push exists. Shell DNS to GitHub/npm fails; gh cannot validate stored authentication. pnpm cannot download. localhost listen is denied, blocking browser checks. Current runtime is Node/SQLite, not Workers/Neon. Live OCR, distributed quotas, account recovery, automated deletion, broad curriculum, figures, mastery, true replay, and WebSockets are absent. Assignment/submission lists are capped at 100 without a next-page UI. Teacher repeated review POSTs append decisions; review-request idempotency is not implemented. Browser visual/accessibility behavior is unverified. Never expose this development build as a minors-ready service.
+Permissions, Git/GitHub authentication, dependencies, localhost and Chromium are restored; the original blockers are resolved. Source, tests and evidence are on the official repository. See [[Current-State]] for exact verified commits and current checks.
 
-Related: [[00-START-HERE]] · [[Current-State]]
+Open assessment-data issue: student assignment JSON includes generation parameters (for example a solved x), because the baseline serializer spreads the stored Question and only removes reference paths. Fraction task fd5f584 also removed alternate paths, but parameters remain. This exposes unnecessary answer-bearing metadata to an authorized student, not another classroom's records. A dedicated security task must replace that serializer with an explicit student-safe field selection while retaining full teacher/server provenance. Geometry integration discovered the issue; fix follows its merge.
 
-Recovery confirmed the restrictions remain in the active session. A checksummed backup and passing clean restored-tree verification are available under recovery/. User authorization alone cannot change the enforced permission profile; an authorized execution environment is still required. No new features will precede the requested baseline-push and browser-validation gate.
+Hosted Neon/R2 transport and public deployment are unverified without configured provider resources. Experimental local OCR works through correction/confirmation, but the general handwriting pilot had only 3/72 exact matches; camera-photograph accuracy remains unverified. Do not infer production OCR quality from controlled workflow tests.
+
+Persisted mastery, remediation assignment workflows, deterministic replay/WebSockets, distributed quotas, account recovery and automated retention/deletion remain incomplete. Assignment/submission lists are capped at 100 without a next-page UI. Repeated teacher review requests append decisions; request idempotency is not implemented. Supported math intentionally excludes broad symbolic formulas/nonlinear domains; unsupported inputs require review. No school/minor deployment compliance or learning efficacy has been established.
+
+Related: [[Current-State]] · [[Regression-History]] · [[Master-Roadmap]]

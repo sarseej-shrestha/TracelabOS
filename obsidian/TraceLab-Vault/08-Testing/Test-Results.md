@@ -74,3 +74,7 @@ Separately, actual Python/ONNX inference through the running Next UI and durable
 1,141 Vitest tests, strict TypeScript and ESLint pass. Added 58 quantity tests including 1,000 seeded conversion cases. Independent SymPy quantity checks: 2,000 cases, zero disagreements. Last browser/build checkpoint remains the ratio integration: eleven workflows and production build passed; the standalone verifier does not change exposed application paths. CI will repeat all gates before merge.
 
 PR #12 CI run 37992150994 passed verify, oracle and ocr-metrics, including production build and all eleven browser workflows. Feature 434ebb9 is merged as 0113e1ca334621d8db131fc7a61ef7412ea2d3b2. A separate current-preview smoke returned HTTP 200 and confirmed the guided-demo control was visible; it is not counted as an additional end-to-end test.
+
+## 2026-10-09 geometry integration
+
+1,383 Vitest tests pass (8,000 seeded cases remain included in property tests); TypeScript, ESLint and production build pass. Thirteen Chromium tests pass (16.9s), with mobile geometry and teacher-review provenance. Geometry independent oracle: 1,800 cases/10,800 comparisons, zero disagreements. Ten Python oracle unit tests pass; OCR tests remain in CI. The first browser run had twelve passes/one locator failure because review text appeared in both history and an editable field; selecting the saved paragraph fixed the test without changing application behavior. See artifacts/geometry-verification.log and geometry-oracle-results.json.

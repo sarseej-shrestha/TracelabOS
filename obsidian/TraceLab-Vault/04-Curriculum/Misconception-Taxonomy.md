@@ -7,3 +7,5 @@ EQUIVALENCE_CHANGED remains a generic explanation. Question-aware grading assign
 Related: [[Mathematical-Engine]] · [[Fractions]] · [[Current-State]]
 
 Ratio question-aware patterns: RATE_DIRECTION, MULTIPLICATIVE_SCALING, CROSS_MULTIPLY_OPPOSITE, PERCENT_PER_HUNDRED, INCLUDE_ORIGINAL_AMOUNT and PERCENT_IS_NOT_AMOUNT. These compare a first observed incorrect value directly following the question against parameter-derived candidates. Later unrelated steps retain generic classification; unsupported domains remain review.
+
+Geometry numeric patterns: AREA_VS_PERIMETER, PERIMETER_VS_AREA, ALL_FOUR_SIDES, TRIANGLE_HALF, REMOVE_CUTOUT, INVERSE_GEOMETRY_FORMULA and SQUARE_CONVERSION_FACTOR. UNIT_DIMENSION remains distinct and cannot be overwritten by a numerical formula match. Unsupported symbolic expressions retain review.

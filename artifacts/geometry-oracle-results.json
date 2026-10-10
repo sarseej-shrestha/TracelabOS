@@ -1,0 +1,9 @@
+{
+  "executedAt": "2026-10-10T02:02:34.131903+00:00",
+  "sympy": "1.14.0",
+  "cases": 1800,
+  "templates": 12,
+  "comparisons": 10800,
+  "disagreements": [],
+  "scope": "Generated geometry quantities and dimensions checked against independent parameter formulas. Not student-error precision or sketch recognition."
+}

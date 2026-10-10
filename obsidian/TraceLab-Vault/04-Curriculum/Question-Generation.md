@@ -9,3 +9,5 @@ Fraction templates use v2.0.0: seed parity selects one of two distinct structure
 Algebra v2 adds twelve templates and known expression/equation figure data. `answerForm=simplified-affine` checks a collected expression independently of equation-solving completion. Both unit families include independently verified alternate paths. `generateLegacyQuestion` still reproduces v1 snapshots, and the fixed public-demo question remains unchanged. Current active count: 24 templates over 12 skills.
 
 Ratio/percent generation adds twelve v2 templates with fixed requested units, positive-proportion domain metadata where applicable, and bounded known-data tables/double number lines. Student question serialization retains conditions and figures while omitting reference/alternative paths.
+
+Geometry generation adds twelve v2 templates with answerUnit metadata, known SVG dimensions and alternative dimensional calculations. Existing snapshot versions are unchanged. Numerical lines inherit the requested unit; final units and explicit intermediate units are verified.

@@ -11,3 +11,5 @@ The question-aware completion layer is now `completion-2`: fraction reduction st
 Engine 0.3.0 adds a narrowly scoped positive-proportion domain selected by immutable server-generated question metadata. It checks x > 0, clears a single bare-variable denominator in flat ratios, and records conditions in the evaluation. Other variable denominators remain unsupported. Original input and prior evaluation versions are preserved. See [[Ratios-and-Proportions]].
 
 A separate bounded numerical-quantity verifier records `0.3.0:quantity-1` provenance, tracks metric scale and dimensional power, and preserves original lines/error propagation. It is verified but not yet selected by published question metadata. See [[Geometry]] for grammar, completion conventions and unsupported boundaries.
+
+TASK-0021B selects the numerical quantity engine from trusted persisted Question.answerUnit metadata. Teacher/student API confirmation uses that same path; original automatic evaluation remains visible after review. Geometry input guidance explains supported metric notation and required final units.

@@ -23,16 +23,16 @@ Open [obsidian/TraceLab-Vault](obsidian/TraceLab-Vault/00-START-HERE.md) as an O
 
 ## Verified checkpoint
 
-Authenticated teacher/student accounts, isolated visitor demo, classrooms/enrollment, seeded assignments, private database images, confirmed transcription, exact reasoning checks, teacher review and persisted event history work locally. Eighteen skills and thirty-six active templates are available: fractions, algebra and ratios/percentages each have six skills with two templates.
+Authenticated teacher/student accounts, isolated visitor demo, classrooms/enrollment, seeded assignments, private database images, confirmed transcription, exact reasoning checks, teacher review and persisted event history work locally. Twenty-four skills and forty-eight active templates are available across fractions, algebra, ratios/percentages and geometry, with six skills and twelve templates per unit.
 
-- 1,141 automated TypeScript tests pass, including 8,000 seeded property cases and API workflows on SQLite and PostgreSQL/PGlite.
-- Eleven Chromium browser tests pass, including authenticated classroom workflow, OCR correction/cancellation/failure, mobile, keyboard and axe checks. Twenty-four Python metric/region tests and five independent-oracle unit tests pass.
-- Independent SymPy: 2,000 existing cases/6,000 comparisons and 1,800 fraction cases/11,700 comparisons and 1,800 algebra cases/11,400 comparisons and 1,800 ratio cases/11,850 comparisons, plus 2,000 metric quantity cases, zero disagreements.
+- 1,383 automated TypeScript tests pass, including 8,000 seeded property cases and API workflows on SQLite and PostgreSQL/PGlite.
+- Thirteen Chromium browser tests pass, including authenticated classroom workflow, OCR correction/cancellation/failure, mobile, keyboard and axe checks. Twenty-four Python metric/region tests and ten independent-oracle unit tests pass.
+- Independent SymPy: 2,000 existing cases/6,000 comparisons and 1,800 fraction cases/11,700 comparisons and 1,800 algebra cases/11,400 comparisons and 1,800 ratio cases/11,850 comparisons, 1,800 geometry cases/10,800 comparisons and 2,000 metric quantity cases, zero disagreements.
 - Typecheck, lint, formatting and production build pass. Dependency audit reports no known vulnerabilities at the recorded checkpoint.
 
 GitHub recovery PR #1 passed CI and is merged. The original source archive is retained; see [recovery](recovery/README.md). PostgreSQL is selected with DATABASE_URL, after `pnpm db:migrate`. `pnpm db:import-sqlite` can copy a preserved local database into an empty migrated target. See the [database decision](obsidian/TraceLab-Vault/11-Architecture-Decisions/ADR-0005-Async-Persistence.md).
 
-Experimental local handwriting OCR now runs through durable jobs, student correction and explicit confirmation. The real-model API and browser smokes passed; the general 72-image handwriting pilot was poor (3 exact matches for Pix2Text), so targeted photographed-work accuracy and production selection remain open. Hosted Neon/R2 verification, full curriculum, mastery, real-time replay and public deployment remain incomplete. Local PostgreSQL verification does not demonstrate hosted performance. [OCR integration evidence](artifacts/ocr-browser-smoke.json), [browser report](artifacts/browser-results.json), [oracle report](artifacts/sympy-results.json).
+Experimental local handwriting OCR now runs through durable jobs, student correction and explicit confirmation. The real-model API and browser smokes passed; the general 72-image handwriting pilot was poor (3 exact matches for Pix2Text), so targeted photographed-work accuracy and production selection remain open. Hosted Neon/R2 verification, broader symbolic math, mastery, real-time replay and public deployment remain incomplete. Local PostgreSQL verification does not demonstrate hosted performance. [OCR integration evidence](artifacts/ocr-browser-smoke.json), [browser report](artifacts/browser-results.json), [oracle report](artifacts/sympy-results.json).
 
 Private R2 storage is available when all provider credentials are configured; existing local images remain usable. Migration and orphan reconciliation default to dry-run. See the [storage decision](obsidian/TraceLab-Vault/11-Architecture-Decisions/ADR-0006-Private-Object-Storage.md).
 
