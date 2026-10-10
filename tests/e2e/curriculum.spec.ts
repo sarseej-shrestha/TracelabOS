@@ -306,12 +306,10 @@ test('area unit error remains in automatic history after a teacher accepts the o
     .click();
   await expect(page.getByText('FINALIZED', { exact: true })).toBeVisible();
   await expect(
-    page
-      .getByRole('paragraph')
-      .filter({
-        hasText:
-          'Original paper has square units; the transcription missed its exponent.',
-      }),
+    page.getByRole('paragraph').filter({
+      hasText:
+        'Original paper has square units; the transcription missed its exponent.',
+    }),
   ).toBeVisible();
   await expect(page.getByText('FIRST DIVERGENCE · STEP 1')).toBeVisible();
 });
