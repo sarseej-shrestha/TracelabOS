@@ -1,0 +1,86 @@
+{
+  "dry": {
+    "mode": "dry-run",
+    "algorithmVersion": "bkt-reviewed-1",
+    "reviewedSubmissions": 1,
+    "evidenceItems": 1,
+    "estimateScopes": 1,
+    "changes": {
+      "evidence": {
+        "inserted": 1,
+        "updated": 0,
+        "removed": 0
+      },
+      "estimates": {
+        "inserted": 1,
+        "updated": 0,
+        "removed": 0
+      }
+    },
+    "blocked": {},
+    "applied": false
+  },
+  "apply": {
+    "mode": "apply",
+    "algorithmVersion": "bkt-reviewed-1",
+    "reviewedSubmissions": 1,
+    "evidenceItems": 1,
+    "estimateScopes": 1,
+    "changes": {
+      "evidence": {
+        "inserted": 1,
+        "updated": 0,
+        "removed": 0
+      },
+      "estimates": {
+        "inserted": 1,
+        "updated": 0,
+        "removed": 0
+      }
+    },
+    "blocked": {},
+    "applied": true
+  },
+  "repeat": {
+    "mode": "apply",
+    "algorithmVersion": "bkt-reviewed-1",
+    "reviewedSubmissions": 1,
+    "evidenceItems": 1,
+    "estimateScopes": 1,
+    "changes": {
+      "evidence": {
+        "inserted": 0,
+        "updated": 0,
+        "removed": 0
+      },
+      "estimates": {
+        "inserted": 0,
+        "updated": 0,
+        "removed": 0
+      }
+    },
+    "blocked": {},
+    "applied": false
+  },
+  "sourceTablesUnchanged": [
+    "users",
+    "sessions",
+    "classrooms",
+    "classroom_memberships",
+    "assignments",
+    "submissions",
+    "submission_images",
+    "image_references",
+    "ocr_jobs",
+    "transcription_versions",
+    "evaluations",
+    "teacher_reviews",
+    "domain_events"
+  ],
+  "newEmptyTablesFromMigration": [
+    "recommendations"
+  ],
+  "integrity": "ok",
+  "fixture": "Existing fictional local demo; no real student data",
+  "databaseBackupSha256": "d9192f7d0ea336c67eaa044d8f77916b87a4e1d7f012e87ab3f92f40fd38ea5a"
+}
