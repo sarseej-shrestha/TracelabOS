@@ -1,3 +1,4 @@
+import type { AnswerUnit } from '../../math-engine/src/quantities.ts';
 export type Difficulty = 'intro' | 'practice' | 'challenge';
 export interface Skill {
   id: string;
@@ -27,7 +28,15 @@ export interface RatioFigure {
   caption: string;
   positions?: number[];
 }
-export type QuestionFigure = FractionFigure | AlgebraFigure | RatioFigure;
+export interface GeometryFigure {
+  kind: 'geometry';
+  points: [number, number][];
+  labels: { x: number; y: number; text: string }[];
+  guides?: { from: [number, number]; to: [number, number] }[];
+  caption: string;
+}
+export type QuestionFigure =
+  FractionFigure | AlgebraFigure | RatioFigure | GeometryFigure;
 export interface Question {
   id: string;
   templateId: string;
@@ -42,6 +51,7 @@ export interface Question {
   alternativePaths?: string[][];
   explanation?: string;
   figure?: QuestionFigure;
+  answerUnit?: AnswerUnit;
   reasoningDomain?: 'positive-proportion';
   answerForm?: 'value' | 'reduced-fraction' | 'simplified-affine';
 }

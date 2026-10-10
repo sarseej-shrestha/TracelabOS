@@ -1,3 +1,9 @@
+import { geometryErrorCandidates } from './geometry.ts';
+import {
+  evaluateQuantities,
+  quantityInContext,
+  unitQuantity,
+} from '../../math-engine/src/quantities.ts';
 import { ratioErrorCandidates } from './ratios.ts';
 import {
   evaluate,
@@ -63,6 +69,43 @@ export function evaluateQuestion(
   question: Question,
   lines: string[],
 ): Evaluation {
+  if (question.answerUnit) {
+    const result = evaluateQuantities(
+      question.expression,
+      lines,
+      question.answerUnit,
+    );
+    const error = result.steps.find(
+      (step) =>
+        step.outcome === 'FIRST_ERROR' && step.ruleId === 'QUANTITY_VALUE',
+    );
+    if (
+      error &&
+      (error.line === 1 ||
+        lines[error.line - 2]?.trim() === question.expression.trim())
+    ) {
+      const observed = quantityInContext(error.input, question.answerUnit);
+      const unit = unitQuantity(
+        question.answerUnit.unit,
+        question.answerUnit.power,
+      );
+      for (const candidate of geometryErrorCandidates(question))
+        if (
+          observed.power === unit.power &&
+          observed.value.equals(candidate.value.mul(unit.value))
+        ) {
+          Object.assign(error, {
+            ruleId: candidate.ruleId,
+            explanation: candidate.explanation,
+          });
+          break;
+        }
+    }
+    for (const step of result.steps)
+      if (['FIRST_ERROR', 'INDEPENDENT_ERROR'].includes(step.outcome))
+        step.skillId = question.skillId;
+    return result;
+  }
   const result = evaluate(question.expression, lines, question.reasoningDomain);
   result.engineVersion += ':completion-2';
   const error = result.steps.find((s) => s.outcome === 'FIRST_ERROR');

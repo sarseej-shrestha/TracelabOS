@@ -7,3 +7,5 @@ The recommendation selector still chooses the first missing immediate prerequisi
 Related: [[Adaptive-Learning-Engine]] · [[Current-State]] · [[00-START-HERE]]
 
 Ratio prerequisites connect fraction division to unit rates; fraction equivalence and one-step equations to equivalent ratios; both feed proportional scaling and solving proportions. Percent part/whole depends on multiplication and one-step equations; percent change depends on part/whole. All edges are checked for known nodes and cycles.
+
+Geometry connects fraction multiplication to rectangle area, arithmetic to perimeter, area/division to triangle area, area/subtraction to composite area, area/perimeter/division to missing lengths, and area/equivalent ratios to square-unit conversion. A complete-graph regression now traverses every published skill and validates remediation targets.

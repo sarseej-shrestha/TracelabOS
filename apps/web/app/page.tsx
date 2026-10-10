@@ -1322,8 +1322,9 @@ export default function Home() {
                           </span>
                         </div>
                         <p>
-                          One expression or equation per line. Use x,
-                          parentheses, + − * / and =.
+                          {selected.question.answerUnit
+                            ? 'Use numerical calculations or metric quantities. Finish with a number and units (cm, mm, m; square units as cm² or cm^2). Formula letters need teacher review.'
+                            : 'One expression or equation per line. Use x, parentheses, + − * / and =.'}
                         </p>
                         {!locked &&
                           me.demo &&

@@ -205,6 +205,106 @@ describe.each(['sqlite', 'postgres'] as const)('%s API', (engine) => {
     });
     expect(result.evaluation.engineVersion).toContain('completion-2');
   });
+  it('grades geometry dimensions and preserves teacher review provenance', async () => {
+    const d = await demo(),
+      tc = await teacher(d.cookie);
+    const q = await (
+      await call(
+        '/questions?skillId=rectangle-area&seed=0&difficulty=intro',
+        'GET',
+        undefined,
+        tc,
+      )
+    ).json();
+    const ids = [];
+    for (const title of [
+      'Correct area',
+      'Length used for area',
+      'Missing units',
+    ])
+      ids.push(
+        (
+          await (
+            await call(
+              '/assignments',
+              'POST',
+              {
+                classroomId: d.room,
+                skillId: 'rectangle-area',
+                seed: 0,
+                difficulty: 'intro',
+                title,
+                feedback: 'immediate',
+              },
+              tc,
+            )
+          ).json()
+        ).id,
+      );
+    const switched = await call('/demo/role', 'POST', { role: 'student' }, tc),
+      sc = switched.headers.get('set-cookie')!.split(';')[0]!;
+    const submissions = [];
+    for (const [index, assignmentId] of ids.entries()) {
+      const id = await submission(sc, assignmentId);
+      submissions.push(id);
+      const lines =
+        index === 0
+          ? q.reference
+          : index === 1
+            ? [q.reference.at(-1).replace('cm²', 'cm')]
+            : [q.reference.at(-1).replace(' cm²', '')];
+      expect(
+        (
+          await call(
+            `/submissions/${id}/transcription`,
+            'PATCH',
+            { version: 1, lines },
+            sc,
+          )
+        ).status,
+      ).toBe(200);
+      expect(
+        (
+          await call(
+            `/submissions/${id}/confirm`,
+            'POST',
+            { version: 2, confirmed: true },
+            sc,
+          )
+        ).status,
+      ).toBe(200);
+      const result = await (
+        await call(`/submissions/${id}`, 'GET', undefined, sc)
+      ).json();
+      expect(result.evaluation).toMatchObject({
+        complete: index === 0,
+        requiresReview: false,
+        firstError: index === 1 ? 1 : null,
+      });
+      expect(result.evaluation.engineVersion).toContain('quantity-1');
+      if (index === 1)
+        expect(result.evaluation.steps[0].ruleId).toBe('UNIT_DIMENSION');
+      if (index === 2)
+        expect(result.evaluation.completionHint).toContain('compatible unit');
+    }
+    const newTeacher = await teacher(sc);
+    const review = await call(
+      `/submissions/${submissions[1]}/reviews`,
+      'POST',
+      {
+        decision: 'correct',
+        reason:
+          'Verified the original paper uses square units; transcription omitted the exponent.',
+      },
+      newTeacher,
+    );
+    expect(review.status).toBe(200);
+    const inspected = await (
+      await call(`/submissions/${submissions[1]}`, 'GET', undefined, newTeacher)
+    ).json();
+    expect(inspected.evaluation.steps[0].ruleId).toBe('UNIT_DIMENSION');
+    expect(inspected.reviews.at(-1).decision).toBe('correct');
+  });
   it('persists positive-proportion conditions and rejects undefined denominator chains', async () => {
     const d = await demo(),
       tc = await teacher(d.cookie);

@@ -1,3 +1,5 @@
+import { geometrySkills, generateGeometry } from './geometry.ts';
+export { geometryTemplates } from './geometry.ts';
 import { ratioSkills, generateRatio } from './ratios.ts';
 export { ratioTemplates } from './ratios.ts';
 import { algebraSkills, generateAlgebra } from './algebra.ts';
@@ -60,6 +62,7 @@ export const skills: readonly Skill[] = [
   ...fractionSkills,
   ...algebraSkills,
   ...ratioSkills,
+  ...geometrySkills,
 ];
 export function generateQuestion(
   skillId: string,
@@ -74,7 +77,9 @@ export function generateQuestion(
     ? generateFraction(skillId, seed, difficulty)
     : algebraSkills.some((s) => s.id === skillId)
       ? generateAlgebra(skillId, seed, difficulty)
-      : generateRatio(skillId, seed, difficulty);
+      : ratioSkills.some((s) => s.id === skillId)
+        ? generateRatio(skillId, seed, difficulty)
+        : generateGeometry(skillId, seed, difficulty);
 }
 export function generateLegacyQuestion(
   skillId: string,
