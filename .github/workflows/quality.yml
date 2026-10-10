@@ -69,10 +69,15 @@ jobs:
       - run: pnpm oracle:mastery
       - run: python research/adaptive-evaluation/verify.py
       - run: python -m unittest discover -s research/adaptive-evaluation -p 'test_*.py'
+      - run: pnpm adaptive:catalog
+      - run: python research/adaptive-evaluation/generate.py
+      - run: pnpm adaptive:score
+      - run: python research/adaptive-evaluation/evaluate.py --check
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: symbolic-oracle
+          include-hidden-files: true
           path: |
             artifacts/oracle-vectors.json
             artifacts/sympy-results.json
@@ -88,6 +93,10 @@ jobs:
             artifacts/geometry-oracle-results.json
             artifacts/mastery-oracle-vectors.json
             artifacts/mastery-oracle-results.json
+            artifacts/adaptive-strategy-results.json
+            .data/adaptive-evaluation/catalog.json
+            .data/adaptive-evaluation/trajectories.json
+            .data/adaptive-evaluation/predictions.json
   ocr-metrics:
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -97,8 +106,8 @@ jobs:
         with:
           python-version: '3.13'
       - run: pip install -r research/ocr-benchmarks/requirements-test.txt
-      - run: ruff check research/ocr-benchmarks services/ocr-worker/python
-      - run: ruff format --check research/ocr-benchmarks services/ocr-worker/python
+      - run: ruff check research/ocr-benchmarks services/ocr-worker/python research/adaptive-evaluation
+      - run: ruff format --check research/ocr-benchmarks services/ocr-worker/python research/adaptive-evaluation
       - run: pytest research/ocr-benchmarks services/ocr-worker/python --junitxml=artifacts/ocr-metric-tests.xml
       - uses: actions/upload-artifact@v4
         if: always()

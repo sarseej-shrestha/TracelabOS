@@ -39,7 +39,9 @@
     "oracle:quantities": "node --experimental-transform-types scripts/quantity-oracle-vectors.ts",
     "oracle:geometry": "node --experimental-transform-types scripts/geometry-oracle-vectors.ts",
     "oracle:mastery": "node --experimental-transform-types scripts/mastery-oracle-vectors.ts",
-    "mastery:rebuild": "node --experimental-transform-types scripts/mastery-rebuild.ts"
+    "mastery:rebuild": "node --experimental-transform-types scripts/mastery-rebuild.ts",
+    "adaptive:catalog": "node --experimental-transform-types scripts/adaptive-experiment.ts catalog",
+    "adaptive:score": "node --experimental-transform-types scripts/adaptive-experiment.ts score"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.1148.0",
