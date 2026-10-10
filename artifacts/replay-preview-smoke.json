@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-10-10T21:22:37.123Z",
+  "pageStatus": 200,
+  "guidedDemoVisible": true,
+  "application": {
+    "status": "ok",
+    "persistence": "local-sqlite",
+    "imageStorage": "private-database",
+    "ocr": "available",
+    "version": "0.1.0"
+  },
+  "provider": {
+    "modelVersion": "pix2text-mfr-1.5@1cef9f0:regions-v1",
+    "experimental": true
+  },
+  "sourceCommit": "06b7026",
+  "limitations": "Preview and provider health only; no new inference accuracy measurement."
+}

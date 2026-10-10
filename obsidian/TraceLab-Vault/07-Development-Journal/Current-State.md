@@ -8,23 +8,23 @@ Classroom intelligence after adaptive learning, four-unit curriculum, recovery a
 
 ## Active Task
 
-TASK-0023A implements deterministic classroom milestone replay and stable paginated history; local verification passes; commit/push/CI follows. Interactive experiment PR #20 is merged. Live synchronization follows independently.
+TASK-0023A is merged after checks through PR #21. This documentation checkpoint records verified recovery state. Next implementation is TASK-0023B secure live classroom synchronization with snapshot recovery.
 
 ## Current Git Branch
 
-feat/classroom-event-replay
+docs/replay-recovery-checkpoint; resume implementation from synchronized main after its checked merge.
 
 ## Latest Commit Hash
 
-Latest verified remote main: 7ce5bedf6ac38127ed57a9257892f4101e80519d (PR #20 merge). Historical rebuild 5dc88b6, remediation 48581d1, mastery cbe7ba9/b0529de and earlier feature commits are preserved. This note records preceding commits rather than its own hash.
+Latest verified remote main: 25fae5ef16aee1fdf36f4cfd1b1ee0a24664c9df (PR #21 merge). Historical rebuild 5dc88b6, remediation 48581d1, mastery cbe7ba9/b0529de and earlier feature commits are preserved. This note records preceding commits rather than its own hash.
 
 ## Latest Successful Push
 
-PRs #1–#20 merged after checks. Interactive lab run 38061858127 passed verify/oracle/ocr-metrics and remote main was verified. Replay push/checks follow local verification.
+PRs #1–#21 merged after checks. Replay 06b7026 passed verify/oracle/ocr-metrics in run 38087349157; remote main and the replay source blob were verified. Strategy comparison b67f545/b07169e and interactive lab 4d28d18 are preserved in PRs #19–#20. This documentation checkpoint follows the same checked PR workflow.
 
 ## Latest Verified Test Results
 
-1,510 Vitest tests pass, including 9,500 seeded property cases and 26 new dual-database OCR job cases. Strict TypeScript, ESLint and production build pass. Eighteen Chromium workflows pass (22.2s), including extraction, correction, cancellation, failure fallback, teacher provenance and axe accessibility. Independent mastery Decimal oracle: 2,047 sequences, zero disagreements; twelve adaptive Python tests now pass. Synthetic comparison: 240 held-out learners, 34,690 predictions, 5,760 practice choices; hashes/metrics reproduced under Python 3.13. Latest earlier Python checkpoint: 24 tests pass; fraction oracle reports 1,800 cases/11,700 comparisons and algebra reports 1,800/11,400, and ratios 1,800/11,850, zero disagreements; quantity oracle 2,000 cases, zero disagreements; geometry oracle 1,800 cases/10,800 comparisons, zero disagreements; ten oracle unittest cases pass. SymPy CI repeats 2,000 cases/6,000 comparisons with zero differences. Actual model API smoke processed the research image in 100.57ms. A separate Chromium workflow through the actual local model completed in 1465.52ms, left evaluation null until explicit correction/confirmation, detected fixture first error at step 2, and recorded a teacher review. This is workflow evidence, not camera-image accuracy.
+1,510 Vitest tests pass, including 9,500 seeded property cases and 26 new dual-database OCR job cases. Strict TypeScript, ESLint and production build pass. Eighteen Chromium workflows pass (22.2s), including extraction, correction, cancellation, failure fallback, teacher provenance and axe accessibility. Independent mastery Decimal oracle: 2,047 sequences, zero disagreements; twelve adaptive Python tests now pass. Synthetic comparison: 240 held-out learners, 34,690 predictions, 5,760 practice choices; hashes/metrics reproduced under Python 3.13. Current replay CI also passes all 24 OCR metric/region tests, ten symbolic-oracle unit tests and twelve adaptive Python tests; fraction oracle reports 1,800 cases/11,700 comparisons and algebra reports 1,800/11,400, and ratios 1,800/11,850, zero disagreements; quantity oracle 2,000 cases, zero disagreements; geometry oracle 1,800 cases/10,800 comparisons, zero disagreements; ten oracle unittest cases pass. SymPy CI repeats 2,000 cases/6,000 comparisons with zero differences. Actual model API smoke processed the research image in 100.57ms. A separate Chromium workflow through the actual local model completed in 1465.52ms, left evaluation null until explicit correction/confirmation, detected fixture first error at step 2, and recorded a teacher review. This is workflow evidence, not camera-image accuracy.
 
 ## Completed Features
 
@@ -32,7 +32,7 @@ Recovery backup/hash/extraction, authorized Git/GitHub and localhost/browser acc
 
 ## Partially Completed Features
 
-Twenty-four skills/forty-eight active templates cover four scoped units. Geometry is connected to unit-aware API/browser grading and known SVG figures; broader symbolic formulas remain unsupported. Provisional classroom-scoped BKT mastery from reviewed submissions, corrected/retracted evidence and transitive prerequisites now verified locally; targeted remediation now passes the full browser workflow; historical rebuild and local backfill now verified; synthetic strategy comparison now verified; interactive experiment view now verified locally; real-data calibration pending. OCR API/worker and browser processing/correction/fallback controls connected. Experimental model had only 3/72 exact matches in the general handwritten-expression pilot; targeted photographed-work accuracy remains unverified. Deterministic milestone reducer and snapshot pagination are verified locally; WebSockets remain pending.
+Twenty-four skills/forty-eight active templates cover four scoped units. Geometry is connected to unit-aware API/browser grading and known SVG figures; broader symbolic formulas remain unsupported. Provisional classroom-scoped BKT mastery from reviewed submissions, corrected/retracted evidence and transitive prerequisites now verified locally; targeted remediation now passes the full browser workflow; historical rebuild and local backfill now verified; synthetic strategy comparison now verified; interactive experiment view now verified locally; real-data calibration pending. OCR API/worker and browser processing/correction/fallback controls connected. Experimental model had only 3/72 exact matches in the general handwritten-expression pilot; targeted photographed-work accuracy remains unverified. Deterministic milestone reducer and snapshot pagination are merged after local/CI verification; WebSockets remain pending.
 
 ## Pending Features
 
@@ -58,9 +58,10 @@ TRACELAB_DB_PATH (use the same absolute path for API and worker) or DATABASE_URL
 
 ## Exact Next Steps
 
-1. Verify and commit/push TASK-0023A, pass checks, merge and verify main.
-2. Preserve desktop/mobile evidence and restart the local preview after browser tests.
-3. Continue secure live synchronization, then production work. Cloud credentials and targeted photographed-work validation remain open.
+1. Inspect the checkpoint PR/status and synchronize main without overwriting local work; read [[Real-Time-Architecture]] and [[Event-Replay-Architecture]].
+2. TASK-0023B: verify current runtime/free-tier transport constraints, then implement owner-authorized live classroom subscriptions, reconnect cursors, event deduplication and persisted-snapshot reconciliation. Preserve a usable local mode; do not label polling as WebSockets.
+3. Test foreign subscriptions, expired/revoked sessions, reconnect/duplicate/out-of-order delivery and server interruptions; keep photo/transcription bytes out of frames. Follow the task branch/test/docs/push/checked-merge cycle.
+4. Continue classroom insights and production hardening. Cloud credentials and targeted photographed-work validation remain open.
 
 ## Recovery Procedure
 
@@ -68,4 +69,6 @@ Read [[00-START-HERE]], this note, [[Recovery-Instructions]] and ledger; inspect
 
 Earlier preview checkpoint: http://127.0.0.1:3000 returned HTTP 200 and the guided-demo control was visible in Chromium. The local experimental OCR service listens on 127.0.0.1:8020. Preview processes are session-local; restart with [[Local-Development]] and the OCR service README when needed. The source archive hash was rechecked unchanged at this checkpoint.
 
-Latest preview check: 2026-10-10T09:59:14Z, localhost:3000 returned 200 and Chromium saw the guided-demo control; localhost:8020 returned the experimental model version. The durable worker is running in this session. The private local database backup described in [[Local-Development]] was integrity-checked before historical backfill; source records were preserved. Processes remain session-local.
+Latest preview check: 2026-10-10T21:22:37Z, localhost:3000 returned 200 and Chromium saw the guided-demo control; localhost:8020 returned the experimental model version. The durable worker is running in this session. The private local database backup described in [[Local-Development]] was integrity-checked before historical backfill; source records were preserved. Processes remain session-local.
+
+The replay panel contrast regression is fixed; eighteen complete browser workflows now pass. Original archive hash was rechecked unchanged, and all 86 current vault notes have zero broken wiki links. See artifacts/replay-preview-smoke.json for the latest preview evidence.
