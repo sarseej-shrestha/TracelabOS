@@ -1,3 +1,14 @@
+import {
+  recordMasteryReview,
+  masteredSkills,
+  masteryProgress,
+} from './mastery.ts';
+import {
+  BKT_PARAMETERS,
+  MASTERY_VERSION,
+  MIN_EVIDENCE,
+  READY_THRESHOLD,
+} from '../../../packages/learning-engine/src/mastery.ts';
 import { studentQuestion } from './question-view.ts';
 import { evaluateQuestion } from '../../../packages/question-bank/src/grading.ts';
 import { Hono } from 'hono';
@@ -604,8 +615,13 @@ export function createApp(
             )
             .all(s.id)
         : [],
+      mastery: await masteryProgress(db, s.classroom_id, s.student_id),
       recommendation: e
-        ? recommend(q.skillId, JSON.parse(e.result) as Evaluation)
+        ? recommend(
+            q.skillId,
+            JSON.parse(e.result) as Evaluation,
+            await masteredSkills(db, s.classroom_id, s.student_id),
+          )
         : null,
     });
   });
@@ -767,11 +783,28 @@ export function createApp(
     if (!['EVALUATED', 'TEACHER_REVIEW', 'FINALIZED'].includes(s.state))
       fail(409, 'NOT_EVALUATED');
     await transaction(db, async () => {
+      const reviewId = randomUUID(),
+        reviewedAt = now();
       await db
         .prepare(
           'INSERT INTO teacher_reviews(id,submission_id,teacher_id,decision,reason,created_at) VALUES(?,?,?,?,?,?)',
         )
-        .run(randomUUID(), s.id, c.get('user').id, b.decision, b.reason, now());
+        .run(
+          reviewId,
+          s.id,
+          c.get('user').id,
+          b.decision,
+          b.reason,
+          reviewedAt,
+        );
+      await recordMasteryReview(
+        db,
+        s,
+        (JSON.parse(s.question) as Question).skillId,
+        reviewId,
+        b.decision,
+        reviewedAt,
+      );
       if (s.state !== 'FINALIZED') {
         if (s.state === 'EVALUATED') await move(s, 'TEACHER_REVIEW');
         await move(s, 'FINALIZED');
@@ -782,6 +815,33 @@ export function createApp(
       });
     });
     return c.json({ state: 'FINALIZED' });
+  });
+  app.get('/api/classrooms/:id/mastery', async (c) => {
+    const user = c.get('user'),
+      classroomId = c.req.param('id');
+    await classroom(classroomId, user);
+    const studentId = c.req.query('studentId') ?? user.id;
+    if (studentId !== user.id || user.role === 'teacher') {
+      await classroom(classroomId, user, true);
+      if (
+        !(await db
+          .prepare(
+            'SELECT 1 FROM classroom_memberships WHERE classroom_id=? AND user_id=?',
+          )
+          .get(classroomId, studentId))
+      )
+        fail(404, 'STUDENT_NOT_FOUND');
+    }
+    return c.json({
+      studentId,
+      classroomId,
+      algorithmVersion: MASTERY_VERSION,
+      provisional: true,
+      parameters: BKT_PARAMETERS,
+      minimumEvidence: MIN_EVIDENCE,
+      readyThreshold: READY_THRESHOLD,
+      skills: await masteryProgress(db, classroomId, studentId),
+    });
   });
   app.get('/api/classrooms/:id/events', async (c) => {
     await classroom(c.req.param('id'), c.get('user'), true);

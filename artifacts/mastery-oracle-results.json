@@ -1,0 +1,14 @@
+{
+  "method": "50-digit Decimal hidden-state forward recurrence",
+  "algorithmVersion": "bkt-reviewed-1",
+  "cases": 2047,
+  "parameters": {
+    "prior": 0.2,
+    "learn": 0.1,
+    "guess": 0.25,
+    "slip": 0.1
+  },
+  "maximumAbsoluteDifference": 1.099120794378905e-14,
+  "disagreements": [],
+  "limitations": "Arithmetic agreement only. Provisional parameters; no calibrated student predictions or learning gains."
+}

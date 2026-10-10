@@ -1,3 +1,4 @@
+import { prerequisiteOrder } from './prerequisites.ts';
 import { skills } from '../../question-bank/src/index.ts';
 import type { Evaluation } from '../../math-engine/src/index.ts';
 export function recommend(
@@ -7,10 +8,12 @@ export function recommend(
 ) {
   const error = evaluation.steps.find((s) => s.skillId);
   const target = skills.find((s) => s.id === (error?.skillId ?? skillId));
-  const prerequisite = target?.prerequisites.find((p) => !mastered.has(p));
+  const prerequisite = target
+    ? prerequisiteOrder(skills, target.id).find((p) => !mastered.has(p))
+    : undefined;
   return {
     skillId: prerequisite ?? target?.id ?? skillId,
-    algorithmVersion: 'rules-0.1.0',
+    algorithmVersion: 'rules-0.2.0',
     reason: evaluation.requiresReview
       ? 'Review the transcription with your teacher before updating mastery.'
       : prerequisite

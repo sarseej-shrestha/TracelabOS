@@ -50,7 +50,7 @@ it('retains records after closing and reopening the actual database file', () =>
   ).toBe('t');
   expect(
     reopened.prepare('SELECT COUNT(*) n FROM schema_migrations').get()?.n,
-  ).toBe(3);
+  ).toBe(4);
 });
 it('rolls back all domain changes if an event write fails', () => {
   const { db } = database();

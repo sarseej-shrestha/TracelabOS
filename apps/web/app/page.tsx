@@ -20,6 +20,15 @@ type Assignment = {
   question: StudentQuestion;
   classroom_id: string;
 };
+type MasteryProgress = {
+  skillId: string;
+  title: string;
+  probability: number;
+  evidenceCount: number;
+  correctCount: number;
+  status: string;
+  algorithmVersion: string;
+};
 type Submission = {
   id: string;
   state: string;
@@ -38,6 +47,7 @@ type Submission = {
   evaluation: Evaluation | null;
   feedbackHeld: boolean;
   reviews: { decision: string; reason: string }[];
+  mastery: MasteryProgress[];
   recommendation: { skillId: string; reason: string } | null;
 };
 type Event = {
@@ -633,8 +643,8 @@ export default function Home() {
                     </p>
                     <p>
                       Hosted OCR, Neon/R2 deployment, WebSockets, and
-                      statistical mastery are pending. No cloud latency or OCR
-                      accuracy is claimed.
+                      statistical calibration are pending. No cloud latency or
+                      OCR accuracy is claimed.
                     </p>
                   </section>
                   <section className="card">
@@ -1580,6 +1590,46 @@ function Reasoning({ sub }: { sub: Submission }) {
       ) : (
         <p>This submission has not been evaluated.</p>
       )}
+      <section aria-label="Reviewed skill progress" className="reviews">
+        <h3>Reviewed skill progress</h3>
+        <p className="fine">
+          Provisional estimates from teacher-reviewed work in this classroom.
+          Repeated reviews count as one attempt. These estimates are not grades
+          or calibrated measurements.
+        </p>
+        {sub.mastery.length === 0 ? (
+          <p>No reviewed evidence yet.</p>
+        ) : (
+          sub.mastery.map((skill) => (
+            <div key={skill.skillId}>
+              <strong>{skill.title}</strong>
+              <p>
+                {skill.evidenceCount} reviewed{' '}
+                {skill.evidenceCount === 1 ? 'attempt' : 'attempts'} ·{' '}
+                {skill.correctCount} correct
+              </p>
+              <p>
+                {skill.evidenceCount < 3
+                  ? 'More reviewed work is needed.'
+                  : skill.status === 'ready_to_practice_further'
+                    ? 'Ready to try further variations.'
+                    : 'Keep practicing this skill.'}
+              </p>
+              <details>
+                <summary>How this estimate was calculated</summary>
+                <p>
+                  Model estimate: {Math.round(skill.probability * 100)}%. Model:{' '}
+                  {skill.algorithmVersion}. Provisional prior 20%, learning 10%,
+                  guess 25%, slip 10%; no forgetting. At least 3 reviewed
+                  attempts and an estimate of 85% are required to suggest
+                  further variations. Parameters have not been fitted to student
+                  data.
+                </p>
+              </details>
+            </div>
+          ))
+        )}
+      </section>
       {sub.reviews.length > 0 && (
         <div className="reviews">
           <h3>Teacher review history</h3>

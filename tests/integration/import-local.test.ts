@@ -73,6 +73,12 @@ it('imports immutable local work and event ordering, and refuses to overwrite a 
     expect(await db.prepare('SELECT * FROM image_references').get()).toEqual(
       local.prepare('SELECT * FROM image_references').get(),
     );
+    for (const table of ['mastery_evidence', 'mastery_estimates']) {
+      expect(await db.prepare(`SELECT * FROM ${table}`).all()).toEqual(
+        local.prepare(`SELECT * FROM ${table}`).all(),
+      );
+      expect(counts[table]).toBe(1);
+    }
     expect(counts).toMatchObject({
       users: 2,
       classrooms: 1,
@@ -128,6 +134,25 @@ it('imports immutable local work and event ordering, and refuses to overwrite a 
     ).toBe(counts.domain_events! + 1);
     expect(local.prepare('SELECT COUNT(*) n FROM domain_events').get()?.n).toBe(
       counts.domain_events,
+    );
+  } finally {
+    local.close();
+    await db.close();
+  }
+});
+
+it('imports a pre-mastery database without inventing reviewed evidence', async () => {
+  const local = openDatabase(':memory:');
+  const { db } = await testPostgres();
+  try {
+    local.exec(
+      'DROP TABLE mastery_estimates; DROP TABLE mastery_evidence; DROP TABLE skill_prerequisites; DROP TABLE skills; DELETE FROM schema_migrations WHERE version=4',
+    );
+    const counts = await importLocal(local, db);
+    expect(counts.mastery_evidence).toBe(0);
+    expect(counts.mastery_estimates).toBe(0);
+    expect((await db.prepare('SELECT COUNT(*) n FROM skills').get())?.n).toBe(
+      24,
     );
   } finally {
     local.close();

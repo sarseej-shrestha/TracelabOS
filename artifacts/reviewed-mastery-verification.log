@@ -1,0 +1,266 @@
+scripts/mastery-oracle-vectors.ts 23ms
+tests/e2e/mastery.spec.ts 10ms
+tests/integration/import-local.test.ts 11ms
+tests/integration/mastery-migration.test.ts 3ms
+package.json 5ms (unchanged)
+.github/workflows/quality.yml 11ms (unchanged)
+
+> tracelab-os@0.1.0 typecheck /Users/userselu/Downloads/TracelabOS
+> tsc --noEmit
+
+
+> tracelab-os@0.1.0 lint /Users/userselu/Downloads/TracelabOS
+> eslint .
+
+
+> tracelab-os@0.1.0 test /Users/userselu/Downloads/TracelabOS
+> vitest run
+
+
+ RUN  v4.1.11 /Users/userselu/Downloads/TracelabOS
+
+(node:33105) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33102) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33103) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33106) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33104) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33112) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33101) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33116) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ tests/integration/persistence.test.ts (5 tests | 1 failed) 34ms
+   × retains records after closing and reopening the actual database file 12ms
+(node:33119) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/persistence.test.ts > retains records after closing and reopening the actual database file
+AssertionError: expected 4 to be 3 // Object.is equality
+
+- Expected
++ Received
+
+- 3
++ 4
+
+ ❯ tests/integration/persistence.test.ts:53:5
+     51|   expect(
+     52|     reopened.prepare('SELECT COUNT(*) n FROM schema_migrations').get()…
+     53|   ).toBe(3);
+       |     ^
+     54| });
+     55| it('rolls back all domain changes if an event write fails', () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 18 passed (19)
+      Tests  1 failed | 1417 passed (1418)
+   Start at  21:36:01
+   Duration  2.45s (transform 1.21s, setup 0ms, import 3.46s, tests 12.00s, environment 1ms)
+
+ ELIFECYCLE  Test failed. See above for more details.
+tests/integration/persistence.test.ts 29ms (unchanged)
+
+> tracelab-os@0.1.0 typecheck /Users/userselu/Downloads/TracelabOS
+> tsc --noEmit
+
+
+> tracelab-os@0.1.0 lint /Users/userselu/Downloads/TracelabOS
+> eslint .
+
+
+> tracelab-os@0.1.0 test /Users/userselu/Downloads/TracelabOS
+> vitest run
+
+
+ RUN  v4.1.11 /Users/userselu/Downloads/TracelabOS
+
+(node:33466) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33464) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33467) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33469) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33468) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33470) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33476) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33465) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33482) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  19 passed (19)
+      Tests  1418 passed (1418)
+   Start at  21:36:21
+   Duration  2.41s (transform 1.60s, setup 0ms, import 3.51s, tests 11.72s, environment 1ms)
+
+
+> tracelab-os@0.1.0 build /Users/userselu/Downloads/TracelabOS
+> next build apps/web --webpack
+
+▲ Next.js 16.3.8 (webpack)
+✓ Running next.config.ts took 51ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 936ms
+  Running TypeScript ...
+  Finished TypeScript in 1235ms ...
+  Collecting page data using 5 workers ...
+(node:33520) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+  Generating static pages using 5 workers (0/3) ...
+✓ Generating static pages using 5 workers (3/3) in 220ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+└ ƒ /api/[[...route]]
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+> tracelab-os@0.1.0 test:e2e /Users/userselu/Downloads/TracelabOS
+> playwright test
+
+[WebServer] (node:33780) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:33780) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:33780) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+[WebServer] (node:33784) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:33807) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 14 tests using 1 worker
+
+(node:33813) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:33807) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+  ✓   1 tests/e2e/classroom.spec.ts:28:1 › authenticated classroom publication, enrollment, photo, confirmed fraction work, teacher release, and login (1.9s)
+  ✓   2 tests/e2e/classroom.spec.ts:175:1 › keyboard skip link and demo navigation remain usable at 200 percent text zoom (213ms)
+  ✓   3 tests/e2e/curriculum.spec.ts:4:1 › teacher previews fraction bars and student completes a generated division assignment on mobile (939ms)
+  ✓   4 tests/e2e/curriculum.spec.ts:81:1 › a generated expression can be simplified and completed through the student workspace (848ms)
+  ✓   5 tests/e2e/curriculum.spec.ts:135:1 › positive proportions show a ratio table and preserve denominator conditions after confirmation (867ms)
+  ✓   6 tests/e2e/curriculum.spec.ts:197:1 › composite geometry uses known dimensions and completes with square units on mobile (840ms)
+  ✓   7 tests/e2e/curriculum.spec.ts:258:1 › area unit error remains in automatic history after a teacher accepts the original work (632ms)
+  ✓   8 tests/e2e/mastery.spec.ts:4:1 › review corrections update one persisted attempt and student progress survives reload (915ms)
+  ✓   9 tests/e2e/ocr-workflow.spec.ts:33:1 › queued extraction preserves original output, requires correction confirmation and remains inspectable by the teacher (1.7s)
+  ✓  10 tests/e2e/ocr-workflow.spec.ts:102:1 › invalid extraction offers manual fallback with no automatic grade (1.3s)
+  ✓  11 tests/e2e/ocr-workflow.spec.ts:121:1 › cancelling an in-flight extraction retains the saved draft and rejects late output (4.0s)
+  ✓  12 tests/e2e/workflow.spec.ts:3:1 › visitor confirms a solution, inspects propagation, and records teacher review (599ms)
+  ✓  13 tests/e2e/workflow.spec.ts:56:1 › landing and student workspace pass automated accessibility checks (632ms)
+  ✓  14 tests/e2e/workflow.spec.ts:82:1 › mobile workspace has no horizontal overflow and supports correct solution (442ms)
+
+  14 passed (18.2s)
+README.md 24ms (unchanged)
+research/adaptive-evaluation/README.md 4ms (unchanged)
+obsidian/TraceLab-Vault/00-START-HERE.md 3ms (unchanged)
+obsidian/TraceLab-Vault/01-Project-Overview/IXL-Competency-Mapping.md 2ms (unchanged)
+obsidian/TraceLab-Vault/01-Project-Overview/Product-Requirements.md 1ms (unchanged)
+obsidian/TraceLab-Vault/01-Project-Overview/Project-Glossary.md 1ms (unchanged)
+obsidian/TraceLab-Vault/01-Project-Overview/Scope-and-Non-Goals.md 1ms (unchanged)
+obsidian/TraceLab-Vault/01-Project-Overview/Success-Criteria.md 1ms (unchanged)
+obsidian/TraceLab-Vault/01-Project-Overview/Vision.md 1ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/Adaptive-Learning-Engine.md 2ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/API-Architecture.md 1ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/Authentication-Architecture.md 1ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/Component-Architecture.md 1ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/Database-Architecture.md 2ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/Deployment-Architecture.md 1ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/Event-Replay-Architecture.md 1ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/Frontend-Architecture.md 1ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/Mathematical-Engine.md 2ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/OCR-Pipeline.md 1ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/Real-Time-Architecture.md 0ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/System-Architecture.md 1ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/Technology-Stack.md 1ms (unchanged)
+obsidian/TraceLab-Vault/03-Product-Design/Accessibility.md 1ms (unchanged)
+obsidian/TraceLab-Vault/03-Product-Design/Demo-User-Flow.md 1ms (unchanged)
+obsidian/TraceLab-Vault/03-Product-Design/Design-System.md 1ms (unchanged)
+obsidian/TraceLab-Vault/03-Product-Design/Screen-Inventory.md 1ms (unchanged)
+obsidian/TraceLab-Vault/03-Product-Design/Student-User-Flow.md 1ms (unchanged)
+obsidian/TraceLab-Vault/03-Product-Design/Teacher-User-Flow.md 1ms (unchanged)
+obsidian/TraceLab-Vault/03-Product-Design/User-Stories.md 1ms (unchanged)
+obsidian/TraceLab-Vault/03-Product-Design/Wireframes.md 1ms (unchanged)
+obsidian/TraceLab-Vault/04-Curriculum/Curriculum-Overview.md 1ms (unchanged)
+obsidian/TraceLab-Vault/04-Curriculum/Fractions.md 1ms (unchanged)
+obsidian/TraceLab-Vault/04-Curriculum/Geometry.md 2ms (unchanged)
+obsidian/TraceLab-Vault/04-Curriculum/Linear-Equations.md 1ms (unchanged)
+obsidian/TraceLab-Vault/04-Curriculum/Misconception-Taxonomy.md 1ms (unchanged)
+obsidian/TraceLab-Vault/04-Curriculum/Question-Generation.md 1ms (unchanged)
+obsidian/TraceLab-Vault/04-Curriculum/Ratios-and-Proportions.md 1ms (unchanged)
+obsidian/TraceLab-Vault/04-Curriculum/Skill-Graph.md 1ms (unchanged)
+obsidian/TraceLab-Vault/05-Engineering/API-Contracts.md 1ms (unchanged)
+obsidian/TraceLab-Vault/05-Engineering/Coding-Conventions.md 1ms (unchanged)
+obsidian/TraceLab-Vault/05-Engineering/Database-Schema.md 1ms (unchanged)
+obsidian/TraceLab-Vault/05-Engineering/Development-Standards.md 1ms (unchanged)
+obsidian/TraceLab-Vault/05-Engineering/Error-Handling.md 1ms (unchanged)
+obsidian/TraceLab-Vault/05-Engineering/Git-Workflow.md 1ms (unchanged)
+obsidian/TraceLab-Vault/05-Engineering/Performance-Engineering.md 0ms (unchanged)
+obsidian/TraceLab-Vault/05-Engineering/Security-Engineering.md 1ms (unchanged)
+obsidian/TraceLab-Vault/05-Engineering/Testing-Strategy.md 1ms (unchanged)
+obsidian/TraceLab-Vault/06-Research/Adaptive-Learning-Research.md 1ms (unchanged)
+obsidian/TraceLab-Vault/06-Research/Educational-Standards.md 2ms (unchanged)
+obsidian/TraceLab-Vault/06-Research/Hosting-Feasibility.md 1ms (unchanged)
+obsidian/TraceLab-Vault/06-Research/Mathematical-Verification.md 1ms (unchanged)
+obsidian/TraceLab-Vault/06-Research/OCR-Model-Comparison.md 1ms (unchanged)
+obsidian/TraceLab-Vault/06-Research/Privacy-Requirements.md 0ms (unchanged)
+obsidian/TraceLab-Vault/06-Research/References.md 1ms (unchanged)
+obsidian/TraceLab-Vault/07-Development-Journal/Change-Ledger.md 25ms (unchanged)
+obsidian/TraceLab-Vault/07-Development-Journal/Current-State.md 5ms (unchanged)
+obsidian/TraceLab-Vault/07-Development-Journal/Development-Sessions.md 1ms (unchanged)
+obsidian/TraceLab-Vault/07-Development-Journal/Known-Issues.md 1ms (unchanged)
+obsidian/TraceLab-Vault/07-Development-Journal/Recovery-Instructions.md 2ms (unchanged)
+obsidian/TraceLab-Vault/07-Development-Journal/Regression-History.md 4ms (unchanged)
+obsidian/TraceLab-Vault/07-Development-Journal/Task-Backlog.md 1ms (unchanged)
+obsidian/TraceLab-Vault/08-Testing/Accessibility-Testing.md 1ms (unchanged)
+obsidian/TraceLab-Vault/08-Testing/Math-Engine-Results.md 2ms (unchanged)
+obsidian/TraceLab-Vault/08-Testing/OCR-Benchmark-Results.md 1ms (unchanged)
+obsidian/TraceLab-Vault/08-Testing/Performance-Benchmarks.md 1ms (unchanged)
+obsidian/TraceLab-Vault/08-Testing/Security-Testing.md 1ms (unchanged)
+obsidian/TraceLab-Vault/08-Testing/Test-Matrix.md 1ms (unchanged)
+obsidian/TraceLab-Vault/08-Testing/Test-Results.md 8ms (unchanged)
+obsidian/TraceLab-Vault/09-Operations/Data-Retention.md 1ms (unchanged)
+obsidian/TraceLab-Vault/09-Operations/Deployment-Guide.md 1ms (unchanged)
+obsidian/TraceLab-Vault/09-Operations/Environment-Variables.md 1ms (unchanged)
+obsidian/TraceLab-Vault/09-Operations/Incident-Response.md 1ms (unchanged)
+obsidian/TraceLab-Vault/09-Operations/Local-Development.md 2ms (unchanged)
+obsidian/TraceLab-Vault/09-Operations/Monitoring.md 1ms (unchanged)
+obsidian/TraceLab-Vault/10-Roadmap/Master-Roadmap.md 1ms (unchanged)
+obsidian/TraceLab-Vault/10-Roadmap/Phase-0-Feasibility.md 1ms (unchanged)
+obsidian/TraceLab-Vault/10-Roadmap/Phase-1-Foundation.md 0ms (unchanged)
+obsidian/TraceLab-Vault/10-Roadmap/Phase-2-Mathematics.md 1ms (unchanged)
+obsidian/TraceLab-Vault/10-Roadmap/Phase-3-Computer-Vision.md 1ms (unchanged)
+obsidian/TraceLab-Vault/10-Roadmap/Phase-4-Classrooms.md 0ms (unchanged)
+obsidian/TraceLab-Vault/10-Roadmap/Phase-5-Adaptive-Learning.md 1ms (unchanged)
+obsidian/TraceLab-Vault/10-Roadmap/Phase-6-Production-Readiness.md 0ms (unchanged)
+obsidian/TraceLab-Vault/11-Architecture-Decisions/ADR-0001-System-Architecture.md 1ms (unchanged)
+obsidian/TraceLab-Vault/11-Architecture-Decisions/ADR-0002-Database-Selection.md 1ms (unchanged)
+obsidian/TraceLab-Vault/11-Architecture-Decisions/ADR-0003-OCR-Strategy.md 0ms (unchanged)
+obsidian/TraceLab-Vault/11-Architecture-Decisions/ADR-0004-Mathematical-Verification.md 1ms (unchanged)
+obsidian/TraceLab-Vault/11-Architecture-Decisions/ADR-0005-Async-Persistence.md 1ms (unchanged)
+obsidian/TraceLab-Vault/11-Architecture-Decisions/ADR-0006-Private-Object-Storage.md 2ms (unchanged)
+
+> tracelab-os@0.1.0 format:check /Users/userselu/Downloads/TracelabOS
+> prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!
