@@ -1,3 +1,4 @@
+import { studentQuestion } from './question-view.ts';
 import { evaluateQuestion } from '../../../packages/question-bank/src/grading.ts';
 import { Hono } from 'hono';
 import { bodyLimit } from 'hono/body-limit';
@@ -513,12 +514,7 @@ export function createApp(
         const q = JSON.parse(a.question) as Question;
         return {
           ...a,
-          question: {
-            ...q,
-            reference: u.role === 'teacher' ? q.reference : undefined,
-            alternativePaths:
-              u.role === 'teacher' ? q.alternativePaths : undefined,
-          },
+          question: u.role === 'teacher' ? q : studentQuestion(q),
         };
       }),
     );

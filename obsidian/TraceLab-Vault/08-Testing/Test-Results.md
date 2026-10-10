@@ -78,3 +78,7 @@ PR #12 CI run 37992150994 passed verify, oracle and ocr-metrics, including produ
 ## 2026-10-09 geometry integration
 
 1,383 Vitest tests pass (8,000 seeded cases remain included in property tests); TypeScript, ESLint and production build pass. Thirteen Chromium tests pass (16.9s), with mobile geometry and teacher-review provenance. Geometry independent oracle: 1,800 cases/10,800 comparisons, zero disagreements. Ten Python oracle unit tests pass; OCR tests remain in CI. The first browser run had twelve passes/one locator failure because review text appeared in both history and an editable field; selecting the saved paragraph fixed the test without changing application behavior. See artifacts/geometry-verification.log and geometry-oracle-results.json.
+
+## 2026-10-09 student response projection
+
+1,385 Vitest tests pass, including the two new database regressions that failed before the fix. Strict TypeScript, ESLint and production build pass. Thirteen Chromium workflows pass (17.3s), including all four curriculum units, OCR correction, mobile/axe checks and teacher review. Mathematical algorithms are unchanged; CI repeats all independent oracles.

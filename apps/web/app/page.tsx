@@ -3,7 +3,10 @@ import { useEffect, useState, type FormEvent } from 'react';
 import { QuestionDiagram } from '../../../packages/ui/src/question-diagram';
 import type { OcrResult } from '../../../packages/contracts/src/index';
 import type { Evaluation } from '../../../packages/math-engine/src/index';
-import type { Question } from '../../../packages/question-bank/src/index';
+import type {
+  Question,
+  StudentQuestion,
+} from '../../../packages/question-bank/src/types';
 type Me = {
   id: string;
   username: string;
@@ -14,7 +17,7 @@ type Room = { id: string; name: string; code: string | null };
 type Assignment = {
   id: string;
   title: string;
-  question: Question;
+  question: StudentQuestion;
   classroom_id: string;
 };
 type Submission = {

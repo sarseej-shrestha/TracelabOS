@@ -205,6 +205,53 @@ describe.each(['sqlite', 'postgres'] as const)('%s API', (engine) => {
     });
     expect(result.evaluation.engineVersion).toContain('completion-2');
   });
+  it('withholds answer-bearing and future internal question fields from students without erasing teacher provenance', async () => {
+    const d = await demo();
+    const stored = (await db
+      .prepare('SELECT question FROM assignments WHERE id=?')
+      .get(d.assignment)) as { question: string };
+    const saved = {
+      ...JSON.parse(stored.question),
+      teacherNotes: 'Teacher-only fixture annotation',
+      futureAnswer: 'x=7',
+    };
+    await db
+      .prepare('UPDATE assignments SET question=? WHERE id=?')
+      .run(JSON.stringify(saved), d.assignment);
+    const studentAssignments = await (
+      await call('/assignments', 'GET', undefined, d.cookie)
+    ).json();
+    const question = studentAssignments.find(
+      (a: { id: string }) => a.id === d.assignment,
+    ).question;
+    for (const field of [
+      'parameters',
+      'reference',
+      'alternativePaths',
+      'seed',
+      'teacherNotes',
+      'futureAnswer',
+    ])
+      expect(question).not.toHaveProperty(field);
+    expect(question).toMatchObject({
+      id: saved.id,
+      skillId: saved.skillId,
+      prompt: saved.prompt,
+      expression: saved.expression,
+    });
+    const tc = await teacher(d.cookie);
+    const teacherAssignments = await (
+      await call('/assignments', 'GET', undefined, tc)
+    ).json();
+    expect(
+      teacherAssignments.find((a: { id: string }) => a.id === d.assignment)
+        .question,
+    ).toEqual(saved);
+    const retained = (await db
+      .prepare('SELECT question FROM assignments WHERE id=?')
+      .get(d.assignment)) as { question: string };
+    expect(JSON.parse(retained.question)).toEqual(saved);
+  });
   it('grades geometry dimensions and preserves teacher review provenance', async () => {
     const d = await demo(),
       tc = await teacher(d.cookie);
