@@ -2,7 +2,7 @@
 
 Fraction prerequisites: equivalence → addition → subtraction; equivalence → multiplication → division; addition → mixed-number addition. Algebra: arithmetic expressions → combining like terms and one-step equations; combining/one-step → distribution; one-step → two-step; distribution/two-step → variables on both sides. Unit tests visit the complete graph, reject cycles/missing nodes, verify worked examples and require known remediation targets. Metadata lives in packages/question-bank/src/fractions.ts , algebra.ts and ratios.ts.
 
-The recommendation selector still chooses the first missing immediate prerequisite; transitive selection and mastery uncertainty are future work. Generic inequivalence in question-aware grading now points back to the assigned skill, avoiding an unrelated algebra recommendation for a fraction error. Recognized patterns retain their specific skill target.
+The rules-0.2.0 selector validates the complete graph and chooses the first unmet transitive prerequisite in deterministic depth-first order. Classroom-scoped reviewed mastery supplies the ready set; sparse evidence remains insufficient. Statistical calibration remains future work. Generic inequivalence in question-aware grading now points back to the assigned skill, avoiding an unrelated algebra recommendation for a fraction error. Recognized patterns retain their specific skill target.
 
 Related: [[Adaptive-Learning-Engine]] · [[Current-State]] · [[00-START-HERE]]
 
