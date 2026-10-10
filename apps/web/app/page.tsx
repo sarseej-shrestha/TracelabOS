@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState, type FormEvent } from 'react';
+import { LearningLab } from './learning-lab';
 import { QuestionDiagram } from '../../../packages/ui/src/question-diagram';
 import type { OcrResult } from '../../../packages/contracts/src/index';
 import type { Evaluation } from '../../../packages/math-engine/src/index';
@@ -648,7 +649,8 @@ export default function Home() {
                   <h1>Evidence over promises.</h1>
                   <p>
                     The current build checks rational arithmetic and
-                    single-variable linear equations.
+                    single-variable linear equations, positive proportions, and
+                    metric quantities.
                   </p>
                 </div>
                 <div className="info-grid">
@@ -659,17 +661,18 @@ export default function Home() {
                       compare consecutive steps → trace the first error.
                     </p>
                     <p>
-                      Variable denominators, nonlinear expressions, and
-                      ambiguous identities require review. Matching solutions
-                      does not prove an unshown operation.
+                      Nonlinear expressions, unrestricted variable denominators,
+                      and ambiguous identities require review. Matching
+                      solutions does not prove an unshown operation.
                     </p>
                   </section>
                   <section className="card">
                     <h2>What runs here</h2>
                     <p>
-                      Next.js, a Hono API, local SQLite, immutable transcription
-                      versions, versioned evaluations, and append-only teacher
-                      decisions.
+                      Next.js, a Hono API, SQLite or PostgreSQL persistence,
+                      private images, experimental OCR jobs, versioned
+                      evaluations, teacher decisions, reviewed mastery and
+                      targeted practice.
                     </p>
                     <p>
                       Hosted OCR, Neon/R2 deployment, WebSockets, and
@@ -679,7 +682,7 @@ export default function Home() {
                   </section>
                   <section className="card">
                     <h2>Reproduce the evidence</h2>
-                    <code>npm run verify</code>
+                    <code>pnpm verify</code>
                     <p>
                       Unit, generated-case, API authorization, and workflow
                       tests live alongside the implementation. See the vault for
@@ -690,6 +693,7 @@ export default function Home() {
                     </a>
                   </section>
                 </div>
+                <LearningLab />
               </>
             ) : page === 'curriculum' ? (
               <>
@@ -697,8 +701,9 @@ export default function Home() {
                   <div className="eyebrow">SMALL STEPS, STRONG FOUNDATIONS</div>
                   <h1>The skill library.</h1>
                   <p>
-                    {skills.length} implemented skills. Ratios, geometry, and
-                    broader coverage are still on the roadmap.
+                    {skills.length} implemented skills across fractions,
+                    algebra, ratios and geometry. Each unit has six skills and
+                    twelve parameterized question templates.
                   </p>
                 </div>
                 <div className="info-grid">

@@ -7,3 +7,5 @@ Related: [[00-START-HERE]] · [[Current-State]]
 ## Executed Chromium checks — 2026-10-08
 
 Axe checks pass on landing, student workspace and teacher studio. Mobile workspace has no horizontal overflow. Keyboard Tab/Enter activates skip link and navigation; 200% root font size remains usable. These bounded checks do not establish full WCAG conformance. Five full browser tests pass.
+
+Learning lab: desktop (1440×1000) and mobile (390×844) axe WCAG 2/2.1/2.2 A/AA-tagged scans report zero violations in the tested expanded states. Enter activates the correct-outcome control; tables accept keyboard focus and horizontal scrolling; document width stays within the mobile viewport. These checks do not establish complete WCAG conformance or screen-reader usability.
