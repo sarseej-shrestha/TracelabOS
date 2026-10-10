@@ -1,6 +1,12 @@
 'use client';
-import { useEffect, useState, type FormEvent } from 'react';
+import { useEffect, useState, useRef, type FormEvent } from 'react';
 import { LearningLab } from './learning-lab';
+import { ClassroomReplay } from './classroom-replay';
+import {
+  loadHistory,
+  type HistoryPage,
+} from '../../../services/realtime/src/history';
+import type { ClassroomEvent } from '../../../services/realtime/src/replay';
 import { QuestionDiagram } from '../../../packages/ui/src/question-diagram';
 import type { OcrResult } from '../../../packages/contracts/src/index';
 import type { Evaluation } from '../../../packages/math-engine/src/index';
@@ -63,12 +69,6 @@ type Submission = {
   mastery: MasteryProgress[];
   recommendation: { skillId: string; reason: string } | null;
 };
-type Event = {
-  sequence: number;
-  type: string;
-  created_at: string;
-  submission_id: string | null;
-};
 type Skill = {
   id: string;
   title: string;
@@ -127,7 +127,7 @@ export default function Home() {
   const [queue, setQueue] = useState<
       { id: string; title: string; state: string; username: string }[]
     >([]),
-    [events, setEvents] = useState<Event[]>([]),
+    [events, setEvents] = useState<ClassroomEvent[]>([]),
     [cursor, setCursor] = useState(0),
     [roomId, setRoomId] = useState(''),
     [questionPreview, setQuestionPreview] = useState<Question | null>(null);
@@ -282,20 +282,34 @@ export default function Home() {
     await inspect(sub.id);
     setNotice('Manual entry is ready. Your saved transcription is preserved.');
   }
+  const teacherLoad = useRef(0);
   async function loadTeacher(id = roomId) {
     if (!id) return;
-    const [q, e, a] = await Promise.all([
+    const request = ++teacherLoad.current;
+    const [q, history, a] = await Promise.all([
       api<typeof queue>(`/classrooms/${id}/submissions`),
-      api<Event[]>(`/classrooms/${id}/events`),
+      loadHistory((after, through) =>
+        api<HistoryPage>(
+          `/classrooms/${id}/event-history?after=${after}${through === undefined ? '' : `&through=${through}`}`,
+        ),
+      ),
       api<typeof analytics>(`/classrooms/${id}/analytics`),
     ]);
+    if (request !== teacherLoad.current) return;
     setQueue(q);
-    setEvents(e);
-    setCursor(e.length);
+    setEvents(history.events);
+    setCursor(history.events.length);
     setAnalytics(a);
   }
   useEffect(() => {
+    setQueue([]);
+    setEvents([]);
+    setCursor(0);
+    setAnalytics({ states: [], finalizedDecisions: [] });
     if (me?.role === 'teacher' && roomId) void act(() => loadTeacher(roomId));
+    return () => {
+      teacherLoad.current++;
+    };
   }, [me?.role, roomId]); // Dashboard refresh is explicit after mutations.
   async function switchRole() {
     await api('/demo/role', 'POST', {
@@ -1062,36 +1076,11 @@ export default function Home() {
                     )}
                   </section>
                 )}
-                <section className="card">
-                  <div className="section-title">
-                    <h2>Classroom time machine</h2>
-                    <span className="eyebrow">PERSISTED EVENT HISTORY</span>
-                  </div>
-                  <p>
-                    Inspect the ordered events recorded for this classroom. This
-                    view shows up to the first 100 events.
-                  </p>
-                  <label>
-                    Replay position · {cursor} of {events.length}
-                    <input
-                      type="range"
-                      min={0}
-                      max={events.length}
-                      value={cursor}
-                      onChange={(e) => setCursor(Number(e.target.value))}
-                    />
-                  </label>
-                  <ol className="events">
-                    {events.slice(0, cursor).map((e) => (
-                      <li key={e.sequence}>
-                        <span>{e.type.replaceAll('_', ' ').toLowerCase()}</span>
-                        <time>
-                          {new Date(e.created_at).toLocaleTimeString()}
-                        </time>
-                      </li>
-                    ))}
-                  </ol>
-                </section>
+                <ClassroomReplay
+                  events={events}
+                  cursor={cursor}
+                  setCursor={setCursor}
+                />
               </>
             ) : (
               <>

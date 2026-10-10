@@ -1,0 +1,572 @@
+services/realtime/src/history.ts 25ms (unchanged)
+services/realtime/src/replay.ts 17ms (unchanged)
+services/api/src/event-history.ts 4ms (unchanged)
+apps/web/app/page.tsx 80ms (unchanged)
+tests/unit/classroom-replay.test.ts 10ms
+tests/integration/event-history.test.ts 6ms
+
+> tracelab-os@0.1.0 typecheck /Users/userselu/Downloads/TracelabOS
+> tsc --noEmit
+
+
+> tracelab-os@0.1.0 lint /Users/userselu/Downloads/TracelabOS
+> eslint .
+
+
+ RUN  v4.1.11 /Users/userselu/Downloads/TracelabOS
+
+(node:54638) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  2 passed (2)
+      Tests  48 passed (48)
+   Start at  16:18:13
+   Duration  2.06s (transform 163ms, setup 0ms, import 325ms, tests 1.77s, environment 0ms)
+
+tests/e2e/classroom-replay.spec.ts 28ms
+
+> tracelab-os@0.1.0 typecheck /Users/userselu/Downloads/TracelabOS
+> tsc --noEmit
+
+
+> tracelab-os@0.1.0 lint /Users/userselu/Downloads/TracelabOS
+> eslint .
+
+
+> tracelab-os@0.1.0 test /Users/userselu/Downloads/TracelabOS
+> vitest run
+
+
+ RUN  v4.1.11 /Users/userselu/Downloads/TracelabOS
+
+(node:55209) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:55207) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:55203) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:55205) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:55204) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:55206) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:55202) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:55208) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:55210) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:55201) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:55218) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:55230) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:55232) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:55233) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  26 passed (26)
+      Tests  1510 passed (1510)
+   Start at  16:19:00
+   Duration  4.04s (transform 1.60s, setup 0ms, import 4.42s, tests 30.63s, environment 1ms)
+
+
+> tracelab-os@0.1.0 build /Users/userselu/Downloads/TracelabOS
+> next build apps/web --webpack
+
+▲ Next.js 16.3.8 (webpack)
+✓ Running next.config.ts took 14ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1619ms
+  Running TypeScript ...
+  Finished TypeScript in 1303ms ...
+  Collecting page data using 5 workers ...
+(node:55377) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+  Generating static pages using 5 workers (0/3) ...
+✓ Generating static pages using 5 workers (3/3) in 275ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+└ ƒ /api/[[...route]]
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+> tracelab-os@0.1.0 test:e2e /Users/userselu/Downloads/TracelabOS
+> playwright test
+
+[WebServer] (node:55743) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:55743) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:55743) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+[WebServer] (node:55744) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:55767) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 18 tests using 1 worker
+
+(node:55773) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:55767) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+  ✘   1 tests/e2e/classroom-replay.spec.ts:4:1 › teacher replays recorded states and corrected reviews with keyboard controls (966ms)
+(node:55789) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   2 tests/e2e/classroom.spec.ts:28:1 › authenticated classroom publication, enrollment, photo, confirmed fraction work, teacher release, and login (1.6s)
+(node:55812) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   3 tests/e2e/classroom.spec.ts:175:1 › keyboard skip link and demo navigation remain usable at 200 percent text zoom (288ms)
+  ✓   4 tests/e2e/curriculum.spec.ts:4:1 › teacher previews fraction bars and student completes a generated division assignment on mobile (982ms)
+  ✓   5 tests/e2e/curriculum.spec.ts:81:1 › a generated expression can be simplified and completed through the student workspace (849ms)
+  ✓   6 tests/e2e/curriculum.spec.ts:135:1 › positive proportions show a ratio table and preserve denominator conditions after confirmation (931ms)
+  ✓   7 tests/e2e/curriculum.spec.ts:197:1 › composite geometry uses known dimensions and completes with square units on mobile (893ms)
+  ✓   8 tests/e2e/curriculum.spec.ts:258:1 › area unit error remains in automatic history after a teacher accepts the original work (640ms)
+  ✓   9 tests/e2e/learning-lab.spec.ts:5:1 › learning sandbox explains ordered updates without writing student records (742ms)
+  ✓  10 tests/e2e/learning-lab.spec.ts:82:1 › published comparison supports scenario selection, mobile and accessible tables (1.1s)
+  ✓  11 tests/e2e/mastery.spec.ts:4:1 › review corrections update one persisted attempt and student progress survives reload (997ms)
+  ✓  12 tests/e2e/ocr-workflow.spec.ts:33:1 › queued extraction preserves original output, requires correction confirmation and remains inspectable by the teacher (1.9s)
+  ✓  13 tests/e2e/ocr-workflow.spec.ts:102:1 › invalid extraction offers manual fallback with no automatic grade (1.3s)
+  ✓  14 tests/e2e/ocr-workflow.spec.ts:121:1 › cancelling an in-flight extraction retains the saved draft and rejects late output (4.0s)
+  ✓  15 tests/e2e/remediation.spec.ts:5:1 › teacher assigns targeted practice and the student completes the linked question (1.3s)
+  ✓  16 tests/e2e/workflow.spec.ts:3:1 › visitor confirms a solution, inspects propagation, and records teacher review (656ms)
+  ✓  17 tests/e2e/workflow.spec.ts:56:1 › landing and student workspace pass automated accessibility checks (668ms)
+  ✓  18 tests/e2e/workflow.spec.ts:82:1 › mobile workspace has no horizontal overflow and supports correct solution (453ms)
+
+
+  1) tests/e2e/classroom-replay.spec.ts:4:1 › teacher replays recorded states and corrected reviews with keyboard controls 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 93
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#eaf0e6",
+    +               "contrastRatio": 4.41,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#62716c",
+    +               "fontSize": "11.3pt (15px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.41 (foreground color: #62716c, background color: #eaf0e6, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<div class=\"replay-summary\" role=\"status\" aria-label=\"Reconstructed progress\"><p>1 published assignments · 1 observed submissions · through sequence 6.</p><ul><li>FINALIZED: 1</li></ul><p>Latest recorded review decisions at this position:</p><ul><li>correct: 1</li></ul></div>",
+    +                 "target": Array [
+    +                   ".replay-summary",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.41 (foreground color: #62716c, background color: #eaf0e6, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<p>1 published assignments · 1 observed submissions · through sequence 6.</p>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "p:nth-child(1)",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#eaf0e6",
+    +               "contrastRatio": 4.41,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#62716c",
+    +               "fontSize": "11.3pt (15px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.41 (foreground color: #62716c, background color: #eaf0e6, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<div class=\"replay-summary\" role=\"status\" aria-label=\"Reconstructed progress\"><p>1 published assignments · 1 observed submissions · through sequence 6.</p><ul><li>FINALIZED: 1</li></ul><p>Latest recorded review decisions at this position:</p><ul><li>correct: 1</li></ul></div>",
+    +                 "target": Array [
+    +                   ".replay-summary",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.41 (foreground color: #62716c, background color: #eaf0e6, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<p>Latest recorded review decisions at this position:</p>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".replay-summary > p:nth-child(3)",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
+
+      84 |         .analyze()
+      85 |     ).violations,
+    > 86 |   ).toEqual([]);
+         |     ^
+      87 |   await page.screenshot({
+      88 |     path: 'artifacts/classroom-replay-mobile.png',
+      89 |     fullPage: true,
+        at /Users/userselu/Downloads/TracelabOS/tests/e2e/classroom-replay.spec.ts:86:5
+
+    Error Context: test-results/classroom-replay-teacher-r-c65ea-iews-with-keyboard-controls/error-context.md
+
+  2) tests/e2e/classroom.spec.ts:28:1 › authenticated classroom publication, enrollment, photo, confirmed fraction work, teacher release, and login 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -   1
+    + Received  + 128
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#eaf0e6",
+    +               "contrastRatio": 4.41,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#62716c",
+    +               "fontSize": "11.3pt (15px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.41 (foreground color: #62716c, background color: #eaf0e6, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<div class=\"replay-summary\" role=\"status\" aria-label=\"Reconstructed progress\"><p>0 published assignments · 0 observed submissions · through sequence 0.</p><ul></ul><p>Latest recorded review decisions at this position:</p><p>No released reviews yet.</p></div>",
+    +                 "target": Array [
+    +                   ".replay-summary",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.41 (foreground color: #62716c, background color: #eaf0e6, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<p>0 published assignments · 0 observed submissions · through sequence 0.</p>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".replay-summary > p:nth-child(1)",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#eaf0e6",
+    +               "contrastRatio": 4.41,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#62716c",
+    +               "fontSize": "11.3pt (15px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.41 (foreground color: #62716c, background color: #eaf0e6, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<div class=\"replay-summary\" role=\"status\" aria-label=\"Reconstructed progress\"><p>0 published assignments · 0 observed submissions · through sequence 0.</p><ul></ul><p>Latest recorded review decisions at this position:</p><p>No released reviews yet.</p></div>",
+    +                 "target": Array [
+    +                   ".replay-summary",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.41 (foreground color: #62716c, background color: #eaf0e6, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<p>Latest recorded review decisions at this position:</p>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".replay-summary > p:nth-child(3)",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#eaf0e6",
+    +               "contrastRatio": 4.41,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#62716c",
+    +               "fontSize": "11.3pt (15px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.41 (foreground color: #62716c, background color: #eaf0e6, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<div class=\"replay-summary\" role=\"status\" aria-label=\"Reconstructed progress\"><p>0 published assignments · 0 observed submissions · through sequence 0.</p><ul></ul><p>Latest recorded review decisions at this position:</p><p>No released reviews yet.</p></div>",
+    +                 "target": Array [
+    +                   ".replay-summary",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.41 (foreground color: #62716c, background color: #eaf0e6, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<p>No released reviews yet.</p>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "p:nth-child(4)",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
+
+      140 |           .analyze()
+      141 |       ).violations,
+    > 142 |     ).toEqual([]);
+          |       ^
+      143 |     await student.reload();
+      144 |     await student
+      145 |       .getByRole('button', { name: /Fraction reasoning review/ })
+        at /Users/userselu/Downloads/TracelabOS/tests/e2e/classroom.spec.ts:142:7
+
+    Error Context: test-results/classroom-authenticated-cl-71b74-k-teacher-release-and-login/error-context.md
+
+  2 failed
+    tests/e2e/classroom-replay.spec.ts:4:1 › teacher replays recorded states and corrected reviews with keyboard controls 
+    tests/e2e/classroom.spec.ts:28:1 › authenticated classroom publication, enrollment, photo, confirmed fraction work, teacher release, and login 
+  16 passed (23.7s)
+ ELIFECYCLE  Command failed with exit code 1.
+apps/web/app/globals.css 67ms (unchanged)
+
+> tracelab-os@0.1.0 build /Users/userselu/Downloads/TracelabOS
+> next build apps/web --webpack
+
+▲ Next.js 16.3.8 (webpack)
+✓ Running next.config.ts took 14ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1066ms
+  Running TypeScript ...
+  Finished TypeScript in 816ms ...
+  Collecting page data using 5 workers ...
+(node:56386) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+  Generating static pages using 5 workers (0/3) ...
+✓ Generating static pages using 5 workers (3/3) in 244ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+└ ƒ /api/[[...route]]
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+> tracelab-os@0.1.0 test:e2e /Users/userselu/Downloads/TracelabOS
+> playwright test
+
+[WebServer] (node:56423) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:56423) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:56423) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+[WebServer] (node:56424) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:56447) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 18 tests using 1 worker
+
+(node:56453) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:56447) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+  ✓   1 tests/e2e/classroom-replay.spec.ts:4:1 › teacher replays recorded states and corrected reviews with keyboard controls (1.0s)
+  ✓   2 tests/e2e/classroom.spec.ts:28:1 › authenticated classroom publication, enrollment, photo, confirmed fraction work, teacher release, and login (1.7s)
+  ✓   3 tests/e2e/classroom.spec.ts:175:1 › keyboard skip link and demo navigation remain usable at 200 percent text zoom (217ms)
+  ✓   4 tests/e2e/curriculum.spec.ts:4:1 › teacher previews fraction bars and student completes a generated division assignment on mobile (947ms)
+  ✓   5 tests/e2e/curriculum.spec.ts:81:1 › a generated expression can be simplified and completed through the student workspace (838ms)
+  ✓   6 tests/e2e/curriculum.spec.ts:135:1 › positive proportions show a ratio table and preserve denominator conditions after confirmation (901ms)
+  ✓   7 tests/e2e/curriculum.spec.ts:197:1 › composite geometry uses known dimensions and completes with square units on mobile (836ms)
+  ✓   8 tests/e2e/curriculum.spec.ts:258:1 › area unit error remains in automatic history after a teacher accepts the original work (638ms)
+  ✓   9 tests/e2e/learning-lab.spec.ts:5:1 › learning sandbox explains ordered updates without writing student records (738ms)
+  ✓  10 tests/e2e/learning-lab.spec.ts:82:1 › published comparison supports scenario selection, mobile and accessible tables (1.1s)
+  ✓  11 tests/e2e/mastery.spec.ts:4:1 › review corrections update one persisted attempt and student progress survives reload (943ms)
+  ✓  12 tests/e2e/ocr-workflow.spec.ts:33:1 › queued extraction preserves original output, requires correction confirmation and remains inspectable by the teacher (1.8s)
+  ✓  13 tests/e2e/ocr-workflow.spec.ts:102:1 › invalid extraction offers manual fallback with no automatic grade (1.3s)
+  ✓  14 tests/e2e/ocr-workflow.spec.ts:121:1 › cancelling an in-flight extraction retains the saved draft and rejects late output (4.0s)
+  ✓  15 tests/e2e/remediation.spec.ts:5:1 › teacher assigns targeted practice and the student completes the linked question (1.2s)
+  ✓  16 tests/e2e/workflow.spec.ts:3:1 › visitor confirms a solution, inspects propagation, and records teacher review (637ms)
+  ✓  17 tests/e2e/workflow.spec.ts:56:1 › landing and student workspace pass automated accessibility checks (678ms)
+  ✓  18 tests/e2e/workflow.spec.ts:82:1 › mobile workspace has no horizontal overflow and supports correct solution (468ms)
+
+  18 passed (22.2s)
+README.md 25ms (unchanged)
+services/realtime/README.md 2ms (unchanged)
+obsidian/TraceLab-Vault/00-START-HERE.md 4ms (unchanged)
+obsidian/TraceLab-Vault/01-Project-Overview/IXL-Competency-Mapping.md 4ms (unchanged)
+obsidian/TraceLab-Vault/01-Project-Overview/Product-Requirements.md 1ms (unchanged)
+obsidian/TraceLab-Vault/01-Project-Overview/Project-Glossary.md 1ms (unchanged)
+obsidian/TraceLab-Vault/01-Project-Overview/Scope-and-Non-Goals.md 1ms (unchanged)
+obsidian/TraceLab-Vault/01-Project-Overview/Success-Criteria.md 1ms (unchanged)
+obsidian/TraceLab-Vault/01-Project-Overview/Vision.md 1ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/Adaptive-Learning-Engine.md 4ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/API-Architecture.md 1ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/Authentication-Architecture.md 1ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/Component-Architecture.md 1ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/Database-Architecture.md 2ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/Deployment-Architecture.md 1ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/Event-Replay-Architecture.md 2ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/Frontend-Architecture.md 1ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/Mathematical-Engine.md 2ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/OCR-Pipeline.md 1ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/Real-Time-Architecture.md 1ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/System-Architecture.md 1ms (unchanged)
+obsidian/TraceLab-Vault/02-Architecture/Technology-Stack.md 1ms (unchanged)
+obsidian/TraceLab-Vault/03-Product-Design/Accessibility.md 1ms (unchanged)
+obsidian/TraceLab-Vault/03-Product-Design/Demo-User-Flow.md 1ms (unchanged)
+obsidian/TraceLab-Vault/03-Product-Design/Design-System.md 1ms (unchanged)
+obsidian/TraceLab-Vault/03-Product-Design/Screen-Inventory.md 1ms (unchanged)
+obsidian/TraceLab-Vault/03-Product-Design/Student-User-Flow.md 1ms (unchanged)
+obsidian/TraceLab-Vault/03-Product-Design/Teacher-User-Flow.md 1ms (unchanged)
+obsidian/TraceLab-Vault/03-Product-Design/User-Stories.md 1ms (unchanged)
+obsidian/TraceLab-Vault/03-Product-Design/Wireframes.md 1ms (unchanged)
+obsidian/TraceLab-Vault/04-Curriculum/Curriculum-Overview.md 1ms (unchanged)
+obsidian/TraceLab-Vault/04-Curriculum/Fractions.md 1ms (unchanged)
+obsidian/TraceLab-Vault/04-Curriculum/Geometry.md 2ms (unchanged)
+obsidian/TraceLab-Vault/04-Curriculum/Linear-Equations.md 1ms (unchanged)
+obsidian/TraceLab-Vault/04-Curriculum/Misconception-Taxonomy.md 1ms (unchanged)
+obsidian/TraceLab-Vault/04-Curriculum/Question-Generation.md 2ms (unchanged)
+obsidian/TraceLab-Vault/04-Curriculum/Ratios-and-Proportions.md 1ms (unchanged)
+obsidian/TraceLab-Vault/04-Curriculum/Skill-Graph.md 1ms (unchanged)
+obsidian/TraceLab-Vault/05-Engineering/API-Contracts.md 2ms (unchanged)
+obsidian/TraceLab-Vault/05-Engineering/Coding-Conventions.md 1ms (unchanged)
+obsidian/TraceLab-Vault/05-Engineering/Database-Schema.md 2ms (unchanged)
+obsidian/TraceLab-Vault/05-Engineering/Development-Standards.md 0ms (unchanged)
+obsidian/TraceLab-Vault/05-Engineering/Error-Handling.md 1ms (unchanged)
+obsidian/TraceLab-Vault/05-Engineering/Git-Workflow.md 1ms (unchanged)
+obsidian/TraceLab-Vault/05-Engineering/Performance-Engineering.md 1ms (unchanged)
+obsidian/TraceLab-Vault/05-Engineering/Security-Engineering.md 1ms (unchanged)
+obsidian/TraceLab-Vault/05-Engineering/Testing-Strategy.md 1ms (unchanged)
+obsidian/TraceLab-Vault/06-Research/Adaptive-Learning-Research.md 2ms (unchanged)
+obsidian/TraceLab-Vault/06-Research/Educational-Standards.md 2ms (unchanged)
+obsidian/TraceLab-Vault/06-Research/Hosting-Feasibility.md 1ms (unchanged)
+obsidian/TraceLab-Vault/06-Research/Mathematical-Verification.md 1ms (unchanged)
+obsidian/TraceLab-Vault/06-Research/OCR-Model-Comparison.md 1ms (unchanged)
+obsidian/TraceLab-Vault/06-Research/Privacy-Requirements.md 1ms (unchanged)
+obsidian/TraceLab-Vault/06-Research/References.md 1ms (unchanged)
+obsidian/TraceLab-Vault/07-Development-Journal/Change-Ledger.md 30ms (unchanged)
+obsidian/TraceLab-Vault/07-Development-Journal/Current-State.md 5ms (unchanged)
+obsidian/TraceLab-Vault/07-Development-Journal/Development-Sessions.md 1ms (unchanged)
+obsidian/TraceLab-Vault/07-Development-Journal/Known-Issues.md 1ms (unchanged)
+obsidian/TraceLab-Vault/07-Development-Journal/Recovery-Instructions.md 3ms (unchanged)
+obsidian/TraceLab-Vault/07-Development-Journal/Regression-History.md 4ms (unchanged)
+obsidian/TraceLab-Vault/07-Development-Journal/Task-Backlog.md 1ms (unchanged)
+obsidian/TraceLab-Vault/08-Testing/Accessibility-Testing.md 1ms (unchanged)
+obsidian/TraceLab-Vault/08-Testing/Math-Engine-Results.md 2ms (unchanged)
+obsidian/TraceLab-Vault/08-Testing/OCR-Benchmark-Results.md 1ms (unchanged)
+obsidian/TraceLab-Vault/08-Testing/Performance-Benchmarks.md 1ms (unchanged)
+obsidian/TraceLab-Vault/08-Testing/Security-Testing.md 1ms (unchanged)
+obsidian/TraceLab-Vault/08-Testing/Test-Matrix.md 1ms (unchanged)
+obsidian/TraceLab-Vault/08-Testing/Test-Results.md 10ms (unchanged)
+obsidian/TraceLab-Vault/09-Operations/Data-Retention.md 1ms (unchanged)
+obsidian/TraceLab-Vault/09-Operations/Deployment-Guide.md 1ms (unchanged)
+obsidian/TraceLab-Vault/09-Operations/Environment-Variables.md 1ms (unchanged)
+obsidian/TraceLab-Vault/09-Operations/Incident-Response.md 1ms (unchanged)
+obsidian/TraceLab-Vault/09-Operations/Local-Development.md 3ms (unchanged)
+obsidian/TraceLab-Vault/09-Operations/Monitoring.md 0ms (unchanged)
+obsidian/TraceLab-Vault/10-Roadmap/Master-Roadmap.md 1ms (unchanged)
+obsidian/TraceLab-Vault/10-Roadmap/Phase-0-Feasibility.md 0ms (unchanged)
+obsidian/TraceLab-Vault/10-Roadmap/Phase-1-Foundation.md 0ms (unchanged)
+obsidian/TraceLab-Vault/10-Roadmap/Phase-2-Mathematics.md 1ms (unchanged)
+obsidian/TraceLab-Vault/10-Roadmap/Phase-3-Computer-Vision.md 1ms (unchanged)
+obsidian/TraceLab-Vault/10-Roadmap/Phase-4-Classrooms.md 1ms (unchanged)
+obsidian/TraceLab-Vault/10-Roadmap/Phase-5-Adaptive-Learning.md 1ms (unchanged)
+obsidian/TraceLab-Vault/10-Roadmap/Phase-6-Production-Readiness.md 0ms (unchanged)
+obsidian/TraceLab-Vault/11-Architecture-Decisions/ADR-0001-System-Architecture.md 1ms (unchanged)
+obsidian/TraceLab-Vault/11-Architecture-Decisions/ADR-0002-Database-Selection.md 1ms (unchanged)
+obsidian/TraceLab-Vault/11-Architecture-Decisions/ADR-0003-OCR-Strategy.md 1ms (unchanged)
+obsidian/TraceLab-Vault/11-Architecture-Decisions/ADR-0004-Mathematical-Verification.md 1ms (unchanged)
+obsidian/TraceLab-Vault/11-Architecture-Decisions/ADR-0005-Async-Persistence.md 1ms (unchanged)
+obsidian/TraceLab-Vault/11-Architecture-Decisions/ADR-0006-Private-Object-Storage.md 2ms (unchanged)
+
+> tracelab-os@0.1.0 format:check /Users/userselu/Downloads/TracelabOS
+> prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!

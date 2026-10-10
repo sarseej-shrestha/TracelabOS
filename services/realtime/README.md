@@ -1,5 +1,5 @@
-# Classroom transport boundary
+# Classroom history and transport boundary
 
-This package is reserved for the Cloudflare Durable Object transport. No WebSocket server is implemented or deployed. The current application uses explicit refresh and persisted event history from the Hono API.
+`src/replay.ts` implements deterministic recorded-milestone replay and bounded public metadata projection. `src/history.ts` collects a stable paginated snapshot and rejects truncation, conflicting identities and changed capture metadata. These are integrated with the owner-authorized Hono history endpoint and teacher timeline.
 
-Before implementation: enforce classroom membership/ownership on subscription, resume from a cursor, reconcile with a persisted snapshot, deduplicate events, and keep photographs out of broadcast payloads. See the vault's Real-Time-Architecture and Event-Replay-Architecture notes.
+The live Cloudflare Durable Object/WebSocket transport remains unimplemented. Current progress uses explicit refresh. Future subscriptions must authorize ownership, resume from a cursor, reconcile with persisted snapshots and avoid photographs/transcription in broadcast payloads. See the vault Event-Replay-Architecture and Real-Time-Architecture notes for limits and acceptance.

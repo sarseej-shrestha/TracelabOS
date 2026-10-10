@@ -1358,3 +1358,20 @@ footer {
 .lab-digest {
   overflow-wrap: anywhere;
 }
+
+.replay-summary {
+  background: var(--soft);
+  padding: 16px;
+  margin: 16px 0;
+  border-radius: 8px;
+}
+.replay-warning {
+  background: var(--amber-bg);
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.replay-summary p,
+.replay-warning p {
+  color: var(--ink);
+}

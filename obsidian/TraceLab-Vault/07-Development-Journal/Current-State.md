@@ -4,27 +4,27 @@ Checkpoint: 2026-10-10 America/Chicago. The local application is functional; the
 
 ## Current Development Phase
 
-Adaptive learning after verified four-unit curriculum, recovery and local cloud/OCR integration. Hosted validation remains pending.
+Classroom intelligence after adaptive learning, four-unit curriculum, recovery and local cloud/OCR integration. Hosted validation remains pending.
 
 ## Active Task
 
-TASK-0022E adds the interactive experiment view; local verification passes; commit/push/CI follows. Strategy comparison PR #19 is merged. Next work is deterministic replay/live synchronization.
+TASK-0023A implements deterministic classroom milestone replay and stable paginated history; local verification passes; commit/push/CI follows. Interactive experiment PR #20 is merged. Live synchronization follows independently.
 
 ## Current Git Branch
 
-feat/learning-experiment-view
+feat/classroom-event-replay
 
 ## Latest Commit Hash
 
-Latest verified remote main: 22fb37db3b861a8a29a36ca33539479b104f672d (PR #19 merge). Historical rebuild 5dc88b6, remediation 48581d1, mastery cbe7ba9/b0529de and earlier feature commits are preserved. This note records preceding commits rather than its own hash.
+Latest verified remote main: 7ce5bedf6ac38127ed57a9257892f4101e80519d (PR #20 merge). Historical rebuild 5dc88b6, remediation 48581d1, mastery cbe7ba9/b0529de and earlier feature commits are preserved. This note records preceding commits rather than its own hash.
 
 ## Latest Successful Push
 
-PRs #1–#19 merged after checks. Strategy comparison run 38061417133 passed verify/oracle/ocr-metrics and remote main was verified. Interactive view push/checks follow local verification.
+PRs #1–#20 merged after checks. Interactive lab run 38061858127 passed verify/oracle/ocr-metrics and remote main was verified. Replay push/checks follow local verification.
 
 ## Latest Verified Test Results
 
-1,462 Vitest tests pass, including 9,000 seeded property cases and 26 new dual-database OCR job cases. Strict TypeScript, ESLint and production build pass. Seventeen Chromium workflows pass (21.1s), including extraction, correction, cancellation, failure fallback, teacher provenance and axe accessibility. Independent mastery Decimal oracle: 2,047 sequences, zero disagreements; twelve adaptive Python tests now pass. Synthetic comparison: 240 held-out learners, 34,690 predictions, 5,760 practice choices; hashes/metrics reproduced under Python 3.13. Latest earlier Python checkpoint: 24 tests pass; fraction oracle reports 1,800 cases/11,700 comparisons and algebra reports 1,800/11,400, and ratios 1,800/11,850, zero disagreements; quantity oracle 2,000 cases, zero disagreements; geometry oracle 1,800 cases/10,800 comparisons, zero disagreements; ten oracle unittest cases pass. SymPy CI repeats 2,000 cases/6,000 comparisons with zero differences. Actual model API smoke processed the research image in 100.57ms. A separate Chromium workflow through the actual local model completed in 1465.52ms, left evaluation null until explicit correction/confirmation, detected fixture first error at step 2, and recorded a teacher review. This is workflow evidence, not camera-image accuracy.
+1,510 Vitest tests pass, including 9,500 seeded property cases and 26 new dual-database OCR job cases. Strict TypeScript, ESLint and production build pass. Eighteen Chromium workflows pass (22.2s), including extraction, correction, cancellation, failure fallback, teacher provenance and axe accessibility. Independent mastery Decimal oracle: 2,047 sequences, zero disagreements; twelve adaptive Python tests now pass. Synthetic comparison: 240 held-out learners, 34,690 predictions, 5,760 practice choices; hashes/metrics reproduced under Python 3.13. Latest earlier Python checkpoint: 24 tests pass; fraction oracle reports 1,800 cases/11,700 comparisons and algebra reports 1,800/11,400, and ratios 1,800/11,850, zero disagreements; quantity oracle 2,000 cases, zero disagreements; geometry oracle 1,800 cases/10,800 comparisons, zero disagreements; ten oracle unittest cases pass. SymPy CI repeats 2,000 cases/6,000 comparisons with zero differences. Actual model API smoke processed the research image in 100.57ms. A separate Chromium workflow through the actual local model completed in 1465.52ms, left evaluation null until explicit correction/confirmation, detected fixture first error at step 2, and recorded a teacher review. This is workflow evidence, not camera-image accuracy.
 
 ## Completed Features
 
@@ -32,11 +32,11 @@ Recovery backup/hash/extraction, authorized Git/GitHub and localhost/browser acc
 
 ## Partially Completed Features
 
-Twenty-four skills/forty-eight active templates cover four scoped units. Geometry is connected to unit-aware API/browser grading and known SVG figures; broader symbolic formulas remain unsupported. Provisional classroom-scoped BKT mastery from reviewed submissions, corrected/retracted evidence and transitive prerequisites now verified locally; targeted remediation now passes the full browser workflow; historical rebuild and local backfill now verified; synthetic strategy comparison now verified; interactive experiment view now verified locally; real-data calibration pending. OCR API/worker and browser processing/correction/fallback controls connected. Experimental model had only 3/72 exact matches in the general handwritten-expression pilot; targeted photographed-work accuracy remains unverified. History slider lacks deterministic reducer/WebSockets.
+Twenty-four skills/forty-eight active templates cover four scoped units. Geometry is connected to unit-aware API/browser grading and known SVG figures; broader symbolic formulas remain unsupported. Provisional classroom-scoped BKT mastery from reviewed submissions, corrected/retracted evidence and transitive prerequisites now verified locally; targeted remediation now passes the full browser workflow; historical rebuild and local backfill now verified; synthetic strategy comparison now verified; interactive experiment view now verified locally; real-data calibration pending. OCR API/worker and browser processing/correction/fallback controls connected. Experimental model had only 3/72 exact matches in the general handwritten-expression pilot; targeted photographed-work accuracy remains unverified. Deterministic milestone reducer and snapshot pagination are verified locally; WebSockets remain pending.
 
 ## Pending Features
 
-Hosted Neon/R2 verification; targeted handwritten-photo benchmark; broader symbolic curriculum; real-time/replay; retention/deletion; deployment, load tests and live acceptance.
+Hosted Neon/R2 verification; targeted handwritten-photo benchmark; broader symbolic curriculum; live synchronization and archived replay beyond the 10,000-event bound; retention/deletion; deployment, load tests and live acceptance.
 
 ## Known Bugs
 
@@ -58,9 +58,9 @@ TRACELAB_DB_PATH (use the same absolute path for API and worker) or DATABASE_URL
 
 ## Exact Next Steps
 
-1. Verify and commit/push TASK-0022E, pass checks, merge and verify main.
+1. Verify and commit/push TASK-0023A, pass checks, merge and verify main.
 2. Preserve desktop/mobile evidence and restart the local preview after browser tests.
-3. Continue deterministic event replay and live synchronization, then production work. Cloud credentials and targeted photographed-work validation remain open.
+3. Continue secure live synchronization, then production work. Cloud credentials and targeted photographed-work validation remain open.
 
 ## Recovery Procedure
 

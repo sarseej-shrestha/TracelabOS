@@ -1,4 +1,5 @@
 import { assignRemediation, remediationView } from './remediation.ts';
+import { eventHistory } from './event-history.ts';
 import {
   recordMasteryReview,
   masteredSkills,
@@ -872,6 +873,23 @@ export function createApp(
       readyThreshold: READY_THRESHOLD,
       skills: await masteryProgress(db, classroomId, studentId),
     });
+  });
+  app.get('/api/classrooms/:id/event-history', async (c) => {
+    await classroom(c.req.param('id'), c.get('user'), true);
+    try {
+      return c.json(
+        await eventHistory(db, c.req.param('id'), {
+          after: c.req.query('after'),
+          through: c.req.query('through'),
+        }),
+      );
+    } catch (error) {
+      if (error instanceof Error && error.message === 'INVALID_HISTORY_CURSOR')
+        fail(400, error.message);
+      if (error instanceof Error && error.message === 'HISTORY_LIMIT_EXCEEDED')
+        fail(409, error.message);
+      throw error;
+    }
   });
   app.get('/api/classrooms/:id/events', async (c) => {
     await classroom(c.req.param('id'), c.get('user'), true);
