@@ -55,3 +55,18 @@ export interface Question {
   reasoningDomain?: 'positive-proportion';
   answerForm?: 'value' | 'reduced-fraction' | 'simplified-affine';
 }
+
+/** Display contract; generation and reference data remain server/teacher-only. */
+export type StudentQuestion = Pick<
+  Question,
+  | 'id'
+  | 'skillId'
+  | 'difficulty'
+  | 'prompt'
+  | 'expression'
+  | 'explanation'
+  | 'figure'
+  | 'answerForm'
+  | 'answerUnit'
+  | 'reasoningDomain'
+>;

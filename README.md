@@ -25,7 +25,7 @@ Open [obsidian/TraceLab-Vault](obsidian/TraceLab-Vault/00-START-HERE.md) as an O
 
 Authenticated teacher/student accounts, isolated visitor demo, classrooms/enrollment, seeded assignments, private database images, confirmed transcription, exact reasoning checks, teacher review and persisted event history work locally. Twenty-four skills and forty-eight active templates are available across fractions, algebra, ratios/percentages and geometry, with six skills and twelve templates per unit.
 
-- 1,383 automated TypeScript tests pass, including 8,000 seeded property cases and API workflows on SQLite and PostgreSQL/PGlite.
+- 1,385 automated TypeScript tests pass, including 8,000 seeded property cases and API workflows on SQLite and PostgreSQL/PGlite.
 - Thirteen Chromium browser tests pass, including authenticated classroom workflow, OCR correction/cancellation/failure, mobile, keyboard and axe checks. Twenty-four Python metric/region tests and ten independent-oracle unit tests pass.
 - Independent SymPy: 2,000 existing cases/6,000 comparisons and 1,800 fraction cases/11,700 comparisons and 1,800 algebra cases/11,400 comparisons and 1,800 ratio cases/11,850 comparisons, 1,800 geometry cases/10,800 comparisons and 2,000 metric quantity cases, zero disagreements.
 - Typecheck, lint, formatting and production build pass. Dependency audit reports no known vulnerabilities at the recorded checkpoint.
