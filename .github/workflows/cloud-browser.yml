@@ -1,0 +1,33 @@
+name: Public browser verification
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: public-browser-verification
+  cancel-in-progress: false
+jobs:
+  browser:
+    if: github.repository == 'sarseej-shrestha/TracelabOS' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:cloud
+        env:
+          TRACELAB_CLOUD_URL: https://tracelabos.sarseej-shrestha.workers.dev
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: public-browser-results
+          path: artifacts/cloud-browser-results.json
+          retention-days: 14

@@ -2,7 +2,7 @@
   "config": {
     "argv": [
       "/Users/userselu/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
-      "/Users/userselu/Downloads/TracelabOS/node_modules/playwright/cli.js",
+      "/Users/userselu/Downloads/TracelabOS/node_modules/.pnpm/playwright@1.63.0/node_modules/playwright/cli.js",
       "test",
       "--config",
       "playwright.cloud.config.ts"
@@ -80,7 +80,48 @@
           "tests": [
             {
               "timeout": 90000,
-              "annotations": [],
+              "annotations": [
+                {
+                  "type": "classroom-phase",
+                  "description": "teacher registration"
+                },
+                {
+                  "type": "classroom-phase",
+                  "description": "classroom and assignment publication"
+                },
+                {
+                  "type": "classroom-phase",
+                  "description": "student registration and enrollment"
+                },
+                {
+                  "type": "classroom-phase",
+                  "description": "photo upload and adjustment"
+                },
+                {
+                  "type": "classroom-phase",
+                  "description": "explicit transcription confirmation and grading"
+                },
+                {
+                  "type": "classroom-phase",
+                  "description": "teacher inspection and private image authorization"
+                },
+                {
+                  "type": "classroom-phase",
+                  "description": "teacher review and release"
+                },
+                {
+                  "type": "classroom-phase",
+                  "description": "teacher accessibility audit"
+                },
+                {
+                  "type": "classroom-phase",
+                  "description": "refresh persistence and student login"
+                },
+                {
+                  "type": "classroom-phase",
+                  "description": "workflow complete"
+                }
+              ],
               "expectedStatus": "passed",
               "projectId": "",
               "projectName": "",
@@ -89,13 +130,85 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 11719,
+                  "duration": 17204,
                   "errors": [],
-                  "stdout": [],
+                  "stdout": [
+                    {
+                      "text": "[classroom phase] teacher registration\n"
+                    },
+                    {
+                      "text": "[classroom phase] classroom and assignment publication\n"
+                    },
+                    {
+                      "text": "[classroom phase] student registration and enrollment\n"
+                    },
+                    {
+                      "text": "[classroom phase] photo upload and adjustment\n"
+                    },
+                    {
+                      "text": "[classroom phase] explicit transcription confirmation and grading\n"
+                    },
+                    {
+                      "text": "[classroom phase] teacher inspection and private image authorization\n"
+                    },
+                    {
+                      "text": "[classroom phase] teacher review and release\n"
+                    },
+                    {
+                      "text": "[classroom phase] teacher accessibility audit\n"
+                    },
+                    {
+                      "text": "[classroom phase] refresh persistence and student login\n"
+                    },
+                    {
+                      "text": "[classroom phase] workflow complete\n"
+                    }
+                  ],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-11T10:06:17.751Z",
-                  "annotations": [],
+                  "startTime": "2026-10-11T16:38:53.056Z",
+                  "annotations": [
+                    {
+                      "type": "classroom-phase",
+                      "description": "teacher registration"
+                    },
+                    {
+                      "type": "classroom-phase",
+                      "description": "classroom and assignment publication"
+                    },
+                    {
+                      "type": "classroom-phase",
+                      "description": "student registration and enrollment"
+                    },
+                    {
+                      "type": "classroom-phase",
+                      "description": "photo upload and adjustment"
+                    },
+                    {
+                      "type": "classroom-phase",
+                      "description": "explicit transcription confirmation and grading"
+                    },
+                    {
+                      "type": "classroom-phase",
+                      "description": "teacher inspection and private image authorization"
+                    },
+                    {
+                      "type": "classroom-phase",
+                      "description": "teacher review and release"
+                    },
+                    {
+                      "type": "classroom-phase",
+                      "description": "teacher accessibility audit"
+                    },
+                    {
+                      "type": "classroom-phase",
+                      "description": "refresh persistence and student login"
+                    },
+                    {
+                      "type": "classroom-phase",
+                      "description": "workflow complete"
+                    }
+                  ],
                   "attachments": []
                 }
               ],
@@ -123,12 +236,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1245,
+                  "duration": 1434,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-11T10:06:29.964Z",
+                  "startTime": "2026-10-11T16:39:10.572Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -138,7 +251,7 @@
           ],
           "id": "ee123a1e90c2c71e0969-f3ee9b7971d8160ac2e6",
           "file": "classroom.spec.ts",
-          "line": 193,
+          "line": 225,
           "column": 1
         }
       ]
@@ -165,12 +278,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 5168,
+                  "duration": 7275,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-11T10:06:31.217Z",
+                  "startTime": "2026-10-11T16:39:12.018Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -199,12 +312,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3889,
+                  "duration": 3326,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-11T10:06:36.390Z",
+                  "startTime": "2026-10-11T16:39:19.299Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -233,12 +346,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3457,
+                  "duration": 2456,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-11T10:06:40.283Z",
+                  "startTime": "2026-10-11T16:39:22.628Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -256,8 +369,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-11T10:06:17.358Z",
-    "duration": 26461.491,
+    "startTime": "2026-10-11T16:38:52.708Z",
+    "duration": 32462.16,
     "expected": 5,
     "skipped": 0,
     "unexpected": 0,
