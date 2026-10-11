@@ -4,6 +4,7 @@ import {
   type CloudBridgeEnv,
 } from '../../services/api/src/cloud-proxy.ts';
 interface WorkerEnv extends CloudBridgeEnv {
+  TRACELAB_RELEASE_SHA?: string;
   API_RATE_LIMIT: {
     limit(input: { key: string }): Promise<{ success: boolean }>;
   };
@@ -24,7 +25,13 @@ export default {
             headers: { 'retry-after': '60', 'cache-control': 'no-store' },
           },
         );
-      return proxyRequest(request, env);
+      const response = await proxyRequest(request, env);
+      if (/^[a-f0-9]{40}$/.test(env.TRACELAB_RELEASE_SHA ?? ''))
+        response.headers.set(
+          'x-tracelab-worker-release',
+          env.TRACELAB_RELEASE_SHA!,
+        );
+      return response;
     }
     return next.fetch(request, env, context);
   },

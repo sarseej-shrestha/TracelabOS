@@ -1,4 +1,6 @@
 import { spawn } from 'node:child_process';
+import { deploymentRelease } from './deployment-release.mjs';
+process.env.TRACELAB_RELEASE_SHA = deploymentRelease();
 // Load credentials with Node --env-file, or inject encrypted CI secrets. Never put them in shell text.
 const keys = [
   'DATABASE_URL',
@@ -9,6 +11,7 @@ const keys = [
   'NEON_STORAGE_SECRET_ACCESS_KEY',
   'TRACELAB_BRIDGE_SECRET',
   'TRACELAB_PUBLIC_ORIGIN',
+  'TRACELAB_RELEASE_SHA',
 ];
 for (const key of keys) if (!process.env[key]) throw Error(`Missing ${key}`);
 const args = [
