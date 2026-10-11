@@ -1,0 +1,7 @@
+{
+  "measuredAt": "2026-10-11T16:26:48.894Z",
+  "transport": "PostgreSQL TCP with certificate-verified TLS",
+  "tlsProtocol": "TLSv1.3",
+  "channelBinding": "SCRAM-SHA-256-PLUS; server proof verified",
+  "readOnlyProbe": "passed"
+}

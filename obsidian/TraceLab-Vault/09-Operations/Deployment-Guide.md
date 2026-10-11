@@ -1,6 +1,6 @@
 # Deployment Guide
 
-Deployment is blocked and unattempted. First replace the local Node/SQLite/image adapters with tested edge-compatible PostgreSQL/R2/processing interfaces. Generate a pnpm lock; run typecheck/lint/unit/integration/build/browser/security checks; provision the selected free-tier account resources; apply versioned migrations; set secrets through the provider; deploy a preview; execute the genuine workflow against the live URL. Only then promote. Rollback must pin the previous artifact and preserve forward-compatible data. Do not deploy this Node database file as an ephemeral serverless filesystem.
+The existing application is publicly deployed on Workers and Neon; use the verified procedure below. The original Node-only edge-runtime blocker was resolved by preserving the Hono API on Neon Node Functions. Local SQLite remains a development mode, never an ephemeral production database.
 
 Related: [[00-START-HERE]] · [[Current-State]]
 
@@ -10,7 +10,7 @@ The existing project is on Neon Free and already has Object Storage enabled; no 
 
 Local credentials are in ignored `.env.cloud.local` with mode 0600. Load them using Node's `--env-file=.env.cloud.local`; never copy their contents into documentation or logs. Cloudflare Wrangler 4.149.0 and Neon CLI 8.3.5 browser authorization succeeded with macOS Keychain storage. The exposed database password was rotated through the authorized Neon API and the local URL replaced atomically. No hosted secret existed at rotation time. Do not reuse the original password.
 
-Cloud deployment remains pending. Current official [Workers limits](https://developers.cloudflare.com/workers/platform/limits/) specify 100,000 requests/day and 10ms CPU/request on Free; native server dependencies and password/image CPU costs require runtime verification. [OpenNext](https://opennext.js.org/cloudflare) supports Next 16; [vinext 1.0](https://blog.cloudflare.com/vinext-nextjs-on-vite/) is another current option. No framework migration or billing activation has occurred. [Neon Object Storage](https://neon.com/blog/building-neon-object-storage) uses S3-compatible access with visibility managed through Neon, not S3 ACLs. Free allowances are not unlimited or a perpetual hosting guarantee.
+At the earlier database-only checkpoint, cloud deployment was pending. Current official [Workers limits](https://developers.cloudflare.com/workers/platform/limits/) specify 100,000 requests/day and 10ms CPU/request on Free; native server dependencies and password/image CPU costs require runtime verification. [OpenNext](https://opennext.js.org/cloudflare) supports Next 16; [vinext 1.0](https://blog.cloudflare.com/vinext-nextjs-on-vite/) is another current option. No framework migration or billing activation has occurred. [Neon Object Storage](https://neon.com/blog/building-neon-object-storage) uses S3-compatible access with visibility managed through Neon, not S3 ACLs. Free allowances are not unlimited or a perpetual hosting guarantee.
 
 ## Private storage verification
 
@@ -43,3 +43,7 @@ Run `TRACELAB_CLOUD_URL=https://tracelabos.sarseej-shrestha.workers.dev pnpm tes
 Rollback: preserve the preceding Worker version and Neon function deployment ID before publishing. Use Wrangler rollback for the exact previous Worker version; for the API, rebuild/deploy the preceding verified Git commit using the same locked native package. Do not roll back database migrations by deleting tables. These changes did not introduce new SQL migrations. A rollback still requires health, authentication/image authorization and browser checks. Current identifiers are in the development ledger; never use a probe version as a product rollback target.
 
 The `Deploy verified cloud demo` workflow is initially manual and restricted to main. It reruns checks/build/browser verification before publishing and runs the public browser suite afterward. Secrets are attached only to the two deployment steps, never test steps. Automatic main deployment will be enabled only after its durable provider credentials and first end-to-end workflow execution have been verified. Do not claim this workflow has run merely because the YAML exists.
+
+### Database transport verification
+
+After TASK-0025 deployment, the Node adapter requires verified TLS and channel binding for every PostgreSQL connection. Load DATABASE_URL securely and run pnpm db:tls-smoke; it performs a read-only query and records only protocol/proof status. Query flags cannot weaken the policy; sslmode=require or verify-full and channel_binding=require are the only accepted options. No new SQL migration or password rotation is required for this driver change.
