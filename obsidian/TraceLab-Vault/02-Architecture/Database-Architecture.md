@@ -9,3 +9,7 @@ PostgreSQL behavior is verified using PGlite, not a hosted Neon account. Image b
 ## Private image references
 
 Migration 0002 adds image_references without changing existing image BLOBs. Configured R2 uploads store only immutable keys, size/hash and MIME in PostgreSQL/SQLite; reads remain authorized API requests. Legacy bytes can be moved by an explicit dry-run-first command. See [[ADR-0006-Private-Object-Storage]].
+
+## Hosted validation
+
+The existing Neon Free database now has all five checksum-protected migrations. The real transport smoke verifies immutable grading/reviews and session/image/event persistence after reconnect. Private images can use Neon S3 storage through the same ImageStore contract as R2; database metadata retains ownership, byte length and SHA-256. Existing SQLite development data is unchanged. See [[Deployment-Guide]] for explicit smoke and migration commands.

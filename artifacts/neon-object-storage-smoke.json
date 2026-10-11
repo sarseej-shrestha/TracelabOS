@@ -1,0 +1,16 @@
+{
+  "executedAt": "2026-10-11T04:51:06.865Z",
+  "provider": "private-neon",
+  "bucket": "tracelab-submissions",
+  "anonymousStatus": 403,
+  "checks": [
+    "signed upload",
+    "byte-identical retrieval",
+    "prefix listing",
+    "anonymous read denied",
+    "controlled object deleted",
+    "deleted object unavailable"
+  ],
+  "fixture": "Generated blank JPEG; only this randomly named smoke object was deleted.",
+  "limitations": "Storage transport verification; browser deployment and retention scheduling remain separate."
+}

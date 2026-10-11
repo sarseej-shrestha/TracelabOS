@@ -1,0 +1,40 @@
+{
+  "executedAt": "2026-10-11T04:51:21.392Z",
+  "persistence": "neon-postgresql",
+  "imageStorage": "private-neon",
+  "checks": [
+    "five migration checksums match; repeat applies no changes",
+    "foreign keys and classroom event index present",
+    "idempotent submission; controlled image stored; no unconfirmed grade",
+    "confirmed first-error grading; repeated confirmation preserves one evaluation",
+    "authorized teacher review finalizes submission",
+    "anonymous and foreign image access denied; foreign teacher classroom denied",
+    "fresh connection preserves sessions, review, events and authorized normalized image"
+  ],
+  "migrationCount": 5,
+  "constraints": [
+    {
+      "contype": "c",
+      "n": 12
+    },
+    {
+      "contype": "f",
+      "n": 34
+    },
+    {
+      "contype": "n",
+      "n": 106
+    },
+    {
+      "contype": "p",
+      "n": 19
+    },
+    {
+      "contype": "u",
+      "n": 11
+    }
+  ],
+  "indexCount": 41,
+  "fixture": "Two isolated fictional demo spaces; generated blank image; records retained for inspection.",
+  "limitations": "Real Neon transport with in-process Hono requests. Not Worker deployment or browser verification. Image storage provider is reported separately; no deployment claim. No OCR accuracy claim."
+}

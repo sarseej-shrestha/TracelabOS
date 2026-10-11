@@ -8,15 +8,15 @@ Cloud integration and deployment of the existing workflow, prioritized by the us
 
 ## Active Task
 
-TASK-0024A: real Neon validation and secure cloud authorization. Existing source is preserved; no new baseline import is needed. Private object storage and Worker runtime integration follow as separate tasks.
+TASK-0024B: private Neon Object Storage integration. TASK-0024A is merged via PR #23. Existing source is preserved; no new baseline import is needed. Private object storage and Worker runtime integration follow as separate tasks.
 
 ## Current Git Branch
 
-feat/neon-cloud-validation, based on synchronized main 8c5df3c.
+feat/neon-private-storage, based on synchronized main 78d1ee9.
 
 ## Latest Commit Hash
 
-Latest verified remote main: 8c5df3c361bae781899322ad31126cfbf9a2d07f (PR #22 merge). Historical rebuild 5dc88b6, remediation 48581d1, mastery cbe7ba9/b0529de and earlier feature commits are preserved. This note records preceding commits rather than its own hash.
+Latest verified remote main: 78d1ee9ba2f8d285f430da7ab209009546f13364 (PR #23 merge). Historical rebuild 5dc88b6, remediation 48581d1, mastery cbe7ba9/b0529de and earlier feature commits are preserved. This note records preceding commits rather than its own hash.
 
 ## Latest Successful Push
 
@@ -46,7 +46,7 @@ Importer rejected digit-bearing identifiers such as sha256; fixed in 88487d7 wit
 
 ## Current Blockers
 
-No remaining filesystem, Git, network or browser restriction observed. Neon connection and Cloudflare/Neon management authorization now work. Both CLI credentials use macOS Keychain. Five migrations are applied to the existing Neon production branch. The exposed database password was rotated and the ignored mode-0600 local URL updated. No Worker is deployed yet; image storage still uses private PostgreSQL bytes pending object integration.
+No remaining filesystem, Git, network or browser restriction observed. Neon connection and Cloudflare/Neon management authorization now work. Both CLI credentials use macOS Keychain. Five migrations are applied to the existing Neon production branch. The exposed database password was rotated and the ignored mode-0600 local URL updated. No Worker is deployed yet; private Neon Object Storage now passes real transport and workflow checks. Public deployment remains pending.
 
 ## Important Architecture Decisions
 
@@ -74,3 +74,5 @@ Latest preview check: 2026-10-10T21:22:37Z, localhost:3000 returned 200 and Chro
 The replay panel contrast regression is fixed; eighteen complete browser workflows now pass. Original archive hash was rechecked unchanged, and all 86 current vault notes have zero broken wiki links. See artifacts/replay-preview-smoke.json for the latest preview evidence.
 
 Cloud checkpoint: the real Neon smoke verifies migration idempotency, 34 foreign keys, 41 indexes, confirmed first-error grading, teacher review, session/image/event persistence after reconnect and anonymous/foreign image denial. It uses fictional isolated records and a controlled blank image, not handwriting OCR. The first harness attempt reused a deliberately revoked role-switch session; corrected the harness to preserve independent sessions. Local baseline rerun: frozen install, typecheck/lint, 1,510 tests/9,500 seeded property cases, build and eighteen Chromium workflows (22.4s) pass. SymPy repeats 2,000 cases/6,000 comparisons with zero disagreements. See artifacts/neon-cloud-smoke.json and scripts/neon-smoke.ts. No live public URL yet.
+
+Storage checkpoint: existing Neon Free project/production branch, private tracelab-submissions bucket, storage-only scoped credentials. Real signed PUT/GET/LIST/DELETE pass, anonymous GET returns 403, and the actual Neon API workflow passes again using object storage. 1,532 tests pass, including 22 new provider/configuration cases; typecheck/lint pass. Existing local/R2 modes and old database images remain supported. No public photo URLs, new database project or paid service was introduced.

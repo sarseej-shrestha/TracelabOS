@@ -7,6 +7,7 @@ import {
   applyMigration,
   migrationFiles,
 } from '../packages/database/src/migrations.ts';
+import { configuredImageStore } from '../packages/vision-adapter/src/storage.ts';
 import { createApp } from '../services/api/src/app.ts';
 
 if (!process.env.DATABASE_URL || !process.argv.includes('--write-demo'))
@@ -14,8 +15,12 @@ if (!process.env.DATABASE_URL || !process.argv.includes('--write-demo'))
     'Set DATABASE_URL and pass --write-demo; creates fictional records',
   );
 const connection = process.env.DATABASE_URL;
+const imageStore = configuredImageStore();
 let db = openPostgres(connection);
-let app = createApp(db, { allowedOrigins: ['https://tracelab.test'] });
+let app = createApp(db, {
+  allowedOrigins: ['https://tracelab.test'],
+  imageStore,
+});
 let cookie = '';
 const checks: string[] = [];
 async function request(
@@ -163,7 +168,10 @@ try {
   );
   await db.close();
   db = openPostgres(connection);
-  app = createApp(db, { allowedOrigins: ['https://tracelab.test'] });
+  app = createApp(db, {
+    allowedOrigins: ['https://tracelab.test'],
+    imageStore,
+  });
   cookie = teacherCookie;
   assert.equal((await request('/me')).role, 'teacher');
   assert.equal((await request(`/submissions/${id}`)).state, 'FINALIZED');
@@ -187,6 +195,7 @@ try {
   const report = {
     executedAt: new Date().toISOString(),
     persistence: db.kind,
+    imageStorage: imageStore?.kind ?? 'private-database',
     checks,
     migrationCount: ledger.length,
     constraints,
@@ -194,10 +203,12 @@ try {
     fixture:
       'Two isolated fictional demo spaces; generated blank image; records retained for inspection.',
     limitations:
-      'Real Neon transport with in-process Hono requests. Not Worker deployment or browser verification. Image bytes use private PostgreSQL storage; object storage pending. No OCR accuracy claim.',
+      'Real Neon transport with in-process Hono requests. Not Worker deployment or browser verification. Image storage provider is reported separately; no deployment claim. No OCR accuracy claim.',
   };
   await writeFile(
-    'artifacts/neon-cloud-smoke.json',
+    imageStore
+      ? 'artifacts/neon-storage-workflow-smoke.json'
+      : 'artifacts/neon-cloud-smoke.json',
     JSON.stringify(report, null, 2) + '\n',
   );
   console.log(JSON.stringify(report, null, 2));
