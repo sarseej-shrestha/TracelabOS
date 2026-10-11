@@ -4,19 +4,19 @@ Checkpoint: 2026-10-10 America/Chicago. The local application is functional; the
 
 ## Current Development Phase
 
-Classroom intelligence after adaptive learning, four-unit curriculum, recovery and local cloud/OCR integration. Hosted validation remains pending.
+Cloud integration and deployment of the existing workflow, prioritized by the user ahead of live classroom synchronization.
 
 ## Active Task
 
-TASK-0023A is merged after checks through PR #21. This documentation checkpoint records verified recovery state. Next implementation is TASK-0023B secure live classroom synchronization with snapshot recovery.
+TASK-0024A: real Neon validation and secure cloud authorization. Existing source is preserved; no new baseline import is needed. Private object storage and Worker runtime integration follow as separate tasks.
 
 ## Current Git Branch
 
-docs/replay-recovery-checkpoint; resume implementation from synchronized main after its checked merge.
+feat/neon-cloud-validation, based on synchronized main 8c5df3c.
 
 ## Latest Commit Hash
 
-Latest verified remote main: 25fae5ef16aee1fdf36f4cfd1b1ee0a24664c9df (PR #21 merge). Historical rebuild 5dc88b6, remediation 48581d1, mastery cbe7ba9/b0529de and earlier feature commits are preserved. This note records preceding commits rather than its own hash.
+Latest verified remote main: 8c5df3c361bae781899322ad31126cfbf9a2d07f (PR #22 merge). Historical rebuild 5dc88b6, remediation 48581d1, mastery cbe7ba9/b0529de and earlier feature commits are preserved. This note records preceding commits rather than its own hash.
 
 ## Latest Successful Push
 
@@ -46,7 +46,7 @@ Importer rejected digit-bearing identifiers such as sha256; fixed in 88487d7 wit
 
 ## Current Blockers
 
-No remaining filesystem, Git, network or browser restriction observed. Cloud credentials/resources are absent. Hosted database/storage/inference transport, cost and deployment remain unverified.
+No remaining filesystem, Git, network or browser restriction observed. Neon connection and Cloudflare/Neon management authorization now work. Both CLI credentials use macOS Keychain. Five migrations are applied to the existing Neon production branch. The exposed database password was rotated and the ignored mode-0600 local URL updated. No Worker is deployed yet; image storage still uses private PostgreSQL bytes pending object integration.
 
 ## Important Architecture Decisions
 
@@ -58,10 +58,10 @@ TRACELAB_DB_PATH (use the same absolute path for API and worker) or DATABASE_URL
 
 ## Exact Next Steps
 
-1. Inspect the checkpoint PR/status and synchronize main without overwriting local work; read [[Real-Time-Architecture]] and [[Event-Replay-Architecture]].
-2. TASK-0023B: verify current runtime/free-tier transport constraints, then implement owner-authorized live classroom subscriptions, reconnect cursors, event deduplication and persisted-snapshot reconciliation. Preserve a usable local mode; do not label polling as WebSockets.
-3. Test foreign subscriptions, expired/revoked sessions, reconnect/duplicate/out-of-order delivery and server interruptions; keep photo/transcription bytes out of frames. Follow the task branch/test/docs/push/checked-merge cycle.
-4. Continue classroom insights and production hardening. Cloud credentials and targeted photographed-work validation remain open.
+1. Finish TASK-0024A verification, push and merge after checks; preserve the existing local SQLite database and recovery archive.
+2. TASK-0024B: integrate the existing enabled Neon Object Storage through its S3-compatible endpoint, private tracelab-submissions bucket and scoped storage credentials. Verify actual upload/retrieval and anonymous denial.
+3. TASK-0024C: build and test the existing Next/Hono application for Workers Free; resolve SQLite/native image processing and request-scoped connection compatibility without changing existing authentication guarantees. Verify CPU limits before claiming suitability.
+4. Deploy tracelabos, verify the full browser workflow publicly, then resume hosted OCR and TASK-0023B. Do not activate paid services.
 
 ## Recovery Procedure
 
@@ -72,3 +72,5 @@ Earlier preview checkpoint: http://127.0.0.1:3000 returned HTTP 200 and the guid
 Latest preview check: 2026-10-10T21:22:37Z, localhost:3000 returned 200 and Chromium saw the guided-demo control; localhost:8020 returned the experimental model version. The durable worker is running in this session. The private local database backup described in [[Local-Development]] was integrity-checked before historical backfill; source records were preserved. Processes remain session-local.
 
 The replay panel contrast regression is fixed; eighteen complete browser workflows now pass. Original archive hash was rechecked unchanged, and all 86 current vault notes have zero broken wiki links. See artifacts/replay-preview-smoke.json for the latest preview evidence.
+
+Cloud checkpoint: the real Neon smoke verifies migration idempotency, 34 foreign keys, 41 indexes, confirmed first-error grading, teacher review, session/image/event persistence after reconnect and anonymous/foreign image denial. It uses fictional isolated records and a controlled blank image, not handwriting OCR. The first harness attempt reused a deliberately revoked role-switch session; corrected the harness to preserve independent sessions. Local baseline rerun: frozen install, typecheck/lint, 1,510 tests/9,500 seeded property cases, build and eighteen Chromium workflows (22.4s) pass. SymPy repeats 2,000 cases/6,000 comparisons with zero disagreements. See artifacts/neon-cloud-smoke.json and scripts/neon-smoke.ts. No live public URL yet.
