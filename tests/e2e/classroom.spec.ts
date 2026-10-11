@@ -9,7 +9,7 @@ async function register(
 ) {
   await page.goto('/');
   await page
-    .getByRole('button', { name: 'Create a local account', exact: true })
+    .getByRole('button', { name: 'Create a demo account', exact: true })
     .click();
   await page.getByLabel('Username', { exact: true }).fill(username);
   await page
@@ -121,6 +121,24 @@ test('authenticated classroom publication, enrollment, photo, confirmed fraction
     await expect(
       teacher.getByRole('img', { name: "Student's submitted mathematics" }),
     ).toBeVisible();
+    const storedPhoto = teacher.getByRole('img', {
+      name: "Student's submitted mathematics",
+    });
+    await expect
+      .poll(() =>
+        storedPhoto.evaluate((image: HTMLImageElement) => image.naturalWidth),
+      )
+      .toBeGreaterThan(0);
+    const photoUrl = new URL(
+      (await storedPhoto.getAttribute('src'))!,
+      teacher.url(),
+    ).href;
+    const anonymous = await browser.newContext();
+    try {
+      expect((await anonymous.request.get(photoUrl)).status()).toBe(401);
+    } finally {
+      await anonymous.close();
+    }
     await teacher.getByLabel('Teacher decision').selectOption('correct');
     await teacher
       .getByLabel('Review explanation')

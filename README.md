@@ -2,6 +2,8 @@
 
 **Debugging the way humans learn.**
 
+[Open the public demo](https://tracelabos.sarseej-shrestha.workers.dev) · Fictional records only; live OCR is currently unavailable, with working manual transcription.
+
 An educational reasoning debugger: generated mathematics, student-confirmed transcription, exact step verification, and teacher review. The repository is under active construction; see the [current state](obsidian/TraceLab-Vault/07-Development-Journal/Current-State.md) for verified capabilities and blockers.
 
 Official repository: https://github.com/sarseej-shrestha/TracelabOS

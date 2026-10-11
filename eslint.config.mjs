@@ -4,6 +4,9 @@ export default tseslint.config(
     ignores: [
       '**/node_modules/**',
       '**/.next/**',
+      '**/.open-next/**',
+      '**/.wrangler/**',
+      '.data/**',
       'artifacts/**',
       'playwright-report/**',
       'test-results/**',

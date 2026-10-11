@@ -1,0 +1,9 @@
+{
+  "executedAt": "2026-10-11T10:05:00.502Z",
+  "url": "https://tracelabos.sarseej-shrestha.workers.dev",
+  "samples": 20,
+  "failed": 0,
+  "p50Ms": 123.32983300000024,
+  "p95Ms": 361.40874999999994,
+  "methodology": "Twenty sequential public GET /api/health requests from this development host. Includes network and database latency; warmed after browser verification. Not CPU time, load capacity or classroom-query latency."
+}

@@ -30,6 +30,9 @@ jobs:
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:e2e
       - run: pnpm audit --audit-level=high
+      - run: pnpm build:api
+      - run: pnpm build:cloud
+      - run: pnpm exec wrangler deploy --dry-run --config apps/web/wrangler.jsonc
       - uses: actions/upload-artifact@v4
         if: always()
         with:

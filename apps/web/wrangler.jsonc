@@ -1,0 +1,37 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "tracelabos",
+  "main": "worker.ts",
+  "compatibility_date": "2026-10-10",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": false,
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS",
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "tracelabos",
+    },
+  ],
+  "ratelimits": [
+    {
+      "name": "API_RATE_LIMIT",
+      "namespace_id": "721006",
+      "simple": {
+        "limit": 120,
+        "period": 60,
+      },
+    },
+  ],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 0.1,
+  },
+  "vars": {
+    "TRACELAB_BACKEND_URL": "https://br-lingering-shadow-b4ertele-tracelabapi.compute.c-6.us-east-2.aws.neon.tech/",
+    "TRACELAB_PUBLIC_ORIGIN": "https://tracelabos.sarseej-shrestha.workers.dev",
+  },
+}

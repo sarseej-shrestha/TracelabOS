@@ -1,0 +1,55 @@
+name: Deploy verified cloud demo
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: production-deployment
+  cancel-in-progress: false
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm format:check && pnpm typecheck && pnpm lint && pnpm test
+      - run: pnpm audit --audit-level=high
+      - run: pnpm build
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:e2e
+      - run: pnpm build:api && pnpm build:cloud
+      - name: Deploy existing Neon backend
+        run: pnpm deploy:api
+        env:
+          NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NEON_STORAGE_BUCKET: tracelab-submissions
+          NEON_STORAGE_ENDPOINT: https://br-lingering-shadow-b4ertele.storage.c-6.us-east-2.aws.neon.tech
+          NEON_STORAGE_REGION: us-east-2
+          NEON_STORAGE_ACCESS_KEY_ID: ${{ secrets.NEON_STORAGE_ACCESS_KEY_ID }}
+          NEON_STORAGE_SECRET_ACCESS_KEY: ${{ secrets.NEON_STORAGE_SECRET_ACCESS_KEY }}
+          TRACELAB_BRIDGE_SECRET: ${{ secrets.TRACELAB_BRIDGE_SECRET }}
+          TRACELAB_PUBLIC_ORIGIN: https://tracelabos.sarseej-shrestha.workers.dev
+      - name: Deploy existing Cloudflare Worker
+        run: pnpm deploy:web
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          TRACELAB_BRIDGE_SECRET: ${{ secrets.TRACELAB_BRIDGE_SECRET }}
+      - name: Verify public workflow
+        run: pnpm test:cloud
+        env:
+          TRACELAB_CLOUD_URL: https://tracelabos.sarseej-shrestha.workers.dev
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cloud-browser-verification
+          path: artifacts/cloud-browser-results.json
+          retention-days: 14
