@@ -8,21 +8,23 @@ Cloud integration and deployment of the existing workflow, prioritized by the us
 
 ## Active Task
 
-TASK-0024C: free cloud deployment and verification. Neon database/storage tasks are merged via PRs #23–#24. Public browser tests pass; source-control checks and final deployment documentation follow.
+TASK-0025: enforce certificate-verified PostgreSQL TLS and SCRAM-SHA-256-PLUS. Public deployment PR #25 is merged after all three CI checks passed; channel-binding security changes are being verified on their own branch.
 
 ## Current Git Branch
 
-feat/cloudflare-neon-deployment, based on synchronized main 9322747.
+security/neon-channel-binding, based on synchronized main 2a01f74.
 
 ## Latest Commit Hash
 
-Latest verified remote main: 932274701516e5e56ce505e8f856f5de12e2684a (PR #24 merge). Historical rebuild 5dc88b6, remediation 48581d1, mastery cbe7ba9/b0529de and earlier feature commits are preserved. This note records preceding commits rather than its own hash.
+Latest verified remote main: 2a01f74fb72f775fa7b05e2f0764d487757b0224 (PR #25 merge); deployment feature 533c1cf. Historical rebuild 5dc88b6, remediation 48581d1, mastery cbe7ba9/b0529de and earlier feature commits are preserved. This note records preceding commits rather than its own hash.
 
 ## Latest Successful Push
 
-PRs #1–#21 merged after checks. Replay 06b7026 passed verify/oracle/ocr-metrics in run 38087349157; remote main and the replay source blob were verified. Strategy comparison b67f545/b07169e and interactive lab 4d28d18 are preserved in PRs #19–#20. This documentation checkpoint follows the same checked PR workflow.
+PR #25 merged after verify/oracle/ocr-metrics passed in CI run 38130998156. Local main and git ls-remote agree at 2a01f74. Neon deployment credentials are stored in GitHub encrypted secrets; the account-scoped Cloudflare CI token was verified active and saved through a masked local dialog to GitHub encrypted secrets.
 
 ## Latest Verified Test Results
+
+Latest security branch: 1,588 tests pass, including 35 new TLS/protocol/pool regressions. Typecheck, lint, formatting, API/OpenNext builds and dependency audit pass. Real Neon probe verifies TLS 1.3 and SCRAM-SHA-256-PLUS; existing cloud storage/API smoke passes with the replacement driver. Production rollout follows checked merge. Earlier phase evidence follows.
 
 1,510 Vitest tests pass, including 9,500 seeded property cases and 26 new dual-database OCR job cases. Strict TypeScript, ESLint and production build pass. Eighteen Chromium workflows pass (22.2s), including extraction, correction, cancellation, failure fallback, teacher provenance and axe accessibility. Independent mastery Decimal oracle: 2,047 sequences, zero disagreements; twelve adaptive Python tests now pass. Synthetic comparison: 240 held-out learners, 34,690 predictions, 5,760 practice choices; hashes/metrics reproduced under Python 3.13. Current replay CI also passes all 24 OCR metric/region tests, ten symbolic-oracle unit tests and twelve adaptive Python tests; fraction oracle reports 1,800 cases/11,700 comparisons and algebra reports 1,800/11,400, and ratios 1,800/11,850, zero disagreements; quantity oracle 2,000 cases, zero disagreements; geometry oracle 1,800 cases/10,800 comparisons, zero disagreements; ten oracle unittest cases pass. SymPy CI repeats 2,000 cases/6,000 comparisons with zero differences. Actual model API smoke processed the research image in 100.57ms. A separate Chromium workflow through the actual local model completed in 1465.52ms, left evaluation null until explicit correction/confirmation, detected fixture first error at step 2, and recorded a teacher review. This is workflow evidence, not camera-image accuracy.
 
@@ -36,7 +38,7 @@ Twenty-four skills/forty-eight active templates cover four scoped units. Geometr
 
 ## Pending Features
 
-Hosted Neon/R2 verification; targeted handwritten-photo benchmark; broader symbolic curriculum; live synchronization and archived replay beyond the 10,000-event bound; retention/deletion; deployment, load tests and live acceptance.
+Hosted OCR and targeted handwritten-photo benchmark; broader symbolic curriculum; live synchronization and archived replay beyond the 10,000-event bound; global usage budgets; retention/deletion; load tests and full photo-to-OCR acceptance. Cloud manual-transcription workflow is publicly deployed and browser-verified.
 
 ## Known Bugs
 
@@ -46,7 +48,7 @@ Importer rejected digit-bearing identifiers such as sha256; fixed in 88487d7 wit
 
 ## Current Blockers
 
-No remaining filesystem, Git, network or browser restriction observed. Neon connection and Cloudflare/Neon management authorization now work. Both CLI credentials use macOS Keychain. Five migrations are applied to the existing Neon production branch. The exposed database password was rotated and the ignored mode-0600 local URL updated. Worker tracelabos and Neon function tracelabapi are deployed. Five public Chromium workflows pass. Hosted OCR and automated deployment credentials remain pending. Strict PostgreSQL channel-binding negotiation remains unverified with the existing WebSocket driver; address next.
+No remaining filesystem, Git, network or browser restriction observed. Neon connection and Cloudflare/Neon management authorization now work. Both CLI credentials use macOS Keychain. Five migrations are applied to the existing Neon production branch. The exposed database password was rotated and the ignored mode-0600 local URL updated. Worker tracelabos and Neon function tracelabapi are deployed. Five public Chromium workflows pass. Hosted OCR and automated deployment credentials remain pending. Deployed version 2 still uses the encrypted WebSocket driver. The replacement Node TCP adapter has now passed real Neon TLS 1.3/SCRAM-PLUS verification and in-process API workflow checks; checked merge and production rollout follow.
 
 ## Important Architecture Decisions
 
@@ -58,8 +60,8 @@ TRACELAB_DB_PATH (use the same absolute path for API and worker) or DATABASE_URL
 
 ## Exact Next Steps
 
-1. Finish TASK-0024C checked merge, preserving public verification evidence and exact provider versions. Keep original source/local data intact.
-2. Implement explicit TLS/SCRAM-PLUS on the Node backend; verify negotiated channel binding instead of relying on the URL flag with the WebSocket adapter.
+1. Finish TASK-0025 regression checks and checked merge; deploy the exact merged API and rerun public browser tests. Keep original source/local data intact.
+2. Verify the deployed TLS/SCRAM-PLUS adapter and preserve previous API version 2 as rollback evidence.
 3. Complete encrypted CI deployment credentials and exercise the repeatable deployment workflow. Add global demo/upload budgets and scheduled retention.
 4. Integrate and benchmark free hosted vision OCR with explicit confirmation/fallback, then resume TASK-0023B live classroom synchronization and performance hardening.
 
