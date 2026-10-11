@@ -8,15 +8,15 @@ Cloud integration and deployment of the existing workflow, prioritized by the us
 
 ## Active Task
 
-TASK-0025: enforce certificate-verified PostgreSQL TLS and SCRAM-SHA-256-PLUS. Public deployment PR #25 is merged after all three CI checks passed; channel-binding security changes are being verified on their own branch.
+TASK-0027: diagnose the first GitHub cloud-browser deadline. Security PR #26 is merged and deployed; first deployment acceptance was four of five public tests. Local focused reproduction passes. Automatic release work is safely pushed at 7250406 on ci/verified-production-deployment but remains unmerged.
 
 ## Current Git Branch
 
-security/neon-channel-binding, based on synchronized main 2a01f74.
+test/cloud-browser-diagnostics, based on synchronized main eb816f0.
 
 ## Latest Commit Hash
 
-Latest verified remote main: 2a01f74fb72f775fa7b05e2f0764d487757b0224 (PR #25 merge); deployment feature 533c1cf. Historical rebuild 5dc88b6, remediation 48581d1, mastery cbe7ba9/b0529de and earlier feature commits are preserved. This note records preceding commits rather than its own hash.
+Latest verified remote main: eb816f07c3f7be5445bd176f0954c9c9ae91a398 (PR #26 merge); security feature 4d71413, deployment feature 533c1cf. Historical rebuild 5dc88b6, remediation 48581d1, mastery cbe7ba9/b0529de and earlier feature commits are preserved. This note records preceding commits rather than its own hash.
 
 ## Latest Successful Push
 
@@ -60,8 +60,8 @@ TRACELAB_DB_PATH (use the same absolute path for API and worker) or DATABASE_URL
 
 ## Exact Next Steps
 
-1. Finish TASK-0025 regression checks and checked merge; deploy the exact merged API and rerun public browser tests. Keep original source/local data intact.
-2. Verify the deployed TLS/SCRAM-PLUS adapter and preserve previous API version 2 as rollback evidence.
+1. Finish TASK-0027 diagnostics and rerun the complete public browser suite in CI; do not weaken the 90-second deadline or claim the unknown timeout cause is fixed.
+2. Resume ci/verified-production-deployment (7250406); merge updated main into that branch, then finish checked automatic deployment/release-identity verification.
 3. Complete encrypted CI deployment credentials and exercise the repeatable deployment workflow. Add global demo/upload budgets and scheduled retention.
 4. Integrate and benchmark free hosted vision OCR with explicit confirmation/fallback, then resume TASK-0023B live classroom synchronization and performance hardening.
 
@@ -84,3 +84,5 @@ Storage checkpoint: existing Neon Free project/production branch, private tracel
 https://tracelabos.sarseej-shrestha.workers.dev — Worker version 176f1aaa-1bd9-4198-b57d-de0055514d12, Neon API function version 2 (Node 24.16.0/Linux arm64). Neon Postgres/private Object Storage health is verified. Five real public browser tests pass (28.9s); 1,553 unit/integration/security tests pass, plus 18 local browser tests (21.8s). Twenty public health samples: p50 123.33ms/p95 361.41ms, zero failures; not load/CPU measurements. Live OCR reports unavailable and manual entry works. See [[ADR-0006-Free-Cloud-Runtime]].
 
 Deployment dependencies introduced a high-severity glob CLI advisory; frontend upload was stopped before publication, patched version 10.5.0 pinned, then audit/typecheck/lint/tests/build passed before upload. Newly introduced CLI low/moderate advisories were also patched; final audit result is recorded in the ledger. Runtime adapter edits preserve local SQLite and experimental OCR. CI now builds both deployment artifacts without credentials; authenticated deployment automation is still being prepared.
+
+Latest deployment attempt: GitHub run 38155822011 published API version 3 and Worker d52154f5-74fc-41ec-91fd-1da99ba85932 from eb816f0. Health is 200; the required-channel-binding driver is deployed. Cloud browser acceptance was 4 passed/1 timed out. Focused local rerun passed 1/1 in 14.7s; full-suite/CI recovery is pending. No paid service or schema change occurred.
