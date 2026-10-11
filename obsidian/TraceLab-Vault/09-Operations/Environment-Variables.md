@@ -13,3 +13,7 @@ Set CLOUDFLARE_ACCOUNT_ID (32 hex characters), R2_BUCKET, R2_ACCESS_KEY_ID and R
 ## Experimental local OCR
 
 TRACELAB_OCR_URL selects the operator-controlled inference endpoint; HTTP is allowed only on loopback and other endpoints require HTTPS. TRACELAB_OCR_TOKEN is a random shared secret of at least 32 characters used by the Python service and adapter. TRACELAB_OCR_PORT changes the localhost server port (default 8020). Partial configuration fails closed. These settings do not yet enable durable application processing; that integration follows.
+
+## Private Neon Object Storage
+
+Configure NEON_STORAGE_BUCKET, NEON_STORAGE_ENDPOINT, NEON_STORAGE_REGION, NEON_STORAGE_ACCESS_KEY_ID and NEON_STORAGE_SECRET_ACCESS_KEY together. Never combine with R2 variables. Endpoint and region must match the existing branch storage API; HTTPS and a Neon storage hostname are required. The access ID maps to the scoped Neon token_id; the secret maps to s3_secret_access_key. Use only storage:read/storage:write permissions. The server owns the credential and authorizes each image read; browsers receive no storage credential. Keep values in ignored local files and deployment secrets. Current private bucket: tracelab-submissions.

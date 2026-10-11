@@ -25,8 +25,8 @@ const assertKey = (key: string) => {
     throw new Error('Invalid image object key');
 };
 /** The bucket must have public access disabled. Objects are accessed only through the authorized API. */
-export class R2ImageStore implements ImageStore {
-  readonly kind = 'private-r2';
+export class PrivateS3ImageStore implements ImageStore {
+  readonly kind: string = 'private-s3';
   constructor(
     private client: S3Client,
     private bucket: string,
@@ -103,6 +103,12 @@ export class R2ImageStore implements ImageStore {
     }
   }
 }
+export class R2ImageStore extends PrivateS3ImageStore {
+  override readonly kind = 'private-r2';
+}
+export class NeonImageStore extends PrivateS3ImageStore {
+  override readonly kind = 'private-neon';
+}
 export function configuredImageStore(
   env: Record<string, string | undefined> = process.env,
 ): ImageStore | undefined {
@@ -111,6 +117,60 @@ export function configuredImageStore(
     'R2_ACCESS_KEY_ID',
     'R2_SECRET_ACCESS_KEY',
   ] as const;
+  const neonKeys = [
+    'NEON_STORAGE_BUCKET',
+    'NEON_STORAGE_ENDPOINT',
+    'NEON_STORAGE_REGION',
+    'NEON_STORAGE_ACCESS_KEY_ID',
+    'NEON_STORAGE_SECRET_ACCESS_KEY',
+  ] as const;
+  if (neonKeys.some((key) => env[key])) {
+    if (keys.some((key) => env[key]))
+      throw new Error('Configure only one image storage provider');
+    if (!neonKeys.every((key) => env[key]))
+      throw new Error('Incomplete Neon storage configuration');
+    let endpoint: URL;
+    try {
+      endpoint = new URL(env.NEON_STORAGE_ENDPOINT!);
+    } catch {
+      throw new Error('Invalid Neon storage endpoint');
+    }
+    if (
+      endpoint.protocol !== 'https:' ||
+      !/^br-[a-z0-9-]+\.storage\.c-\d+\.[a-z0-9-]+\.aws\.neon\.tech$/.test(
+        endpoint.hostname,
+      ) ||
+      endpoint.username ||
+      endpoint.password ||
+      endpoint.port ||
+      endpoint.pathname !== '/' ||
+      endpoint.search ||
+      endpoint.hash
+    )
+      throw new Error('Invalid Neon storage endpoint');
+    if (
+      !/^[a-z]{2}-[a-z]+-\d$/.test(env.NEON_STORAGE_REGION!) ||
+      !endpoint.hostname.includes(`.${env.NEON_STORAGE_REGION}.aws.`)
+    )
+      throw new Error('Invalid Neon storage region');
+    if (!/^[a-z0-9][a-z0-9-]{1,61}[a-z0-9]$/.test(env.NEON_STORAGE_BUCKET!))
+      throw new Error('Invalid Neon storage bucket');
+    return new NeonImageStore(
+      new S3Client({
+        region: env.NEON_STORAGE_REGION,
+        endpoint: endpoint.origin,
+        forcePathStyle: true,
+        credentials: {
+          accessKeyId: env.NEON_STORAGE_ACCESS_KEY_ID!,
+          secretAccessKey: env.NEON_STORAGE_SECRET_ACCESS_KEY!,
+        },
+        maxAttempts: 2,
+        requestChecksumCalculation: 'WHEN_REQUIRED',
+        responseChecksumValidation: 'WHEN_REQUIRED',
+      }),
+      env.NEON_STORAGE_BUCKET!,
+    );
+  }
   if (!keys.some((key) => env[key])) return undefined;
   if (
     !keys.every((key) => env[key]) ||

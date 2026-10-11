@@ -8,7 +8,9 @@ import {
 } from '../services/api/src/images.ts';
 const store = configuredImageStore();
 if (!store)
-  throw new Error('R2 configuration is required; no images were changed');
+  throw new Error(
+    'Private object storage configuration is required; no images were changed',
+  );
 if (!process.env.DATABASE_URL && !process.env.TRACELAB_DB_PATH)
   throw new Error('Select DATABASE_URL or TRACELAB_DB_PATH explicitly');
 const db = process.env.DATABASE_URL
