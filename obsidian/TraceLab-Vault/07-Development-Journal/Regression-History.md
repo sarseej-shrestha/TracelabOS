@@ -39,3 +39,7 @@ The question-preview route previously returned references to any authenticated r
 ## Replay panel contrast during TASK-0023A
 
 The new pale replay-summary background inherited the global muted paragraph color from the baseline stylesheet. Desktop classroom and mobile replay axe assertions reproduced a 4.41:1 contrast ratio, below the 4.5:1 target. Git diff/blame located the interaction between the new panel background and the existing paragraph rule. The scoped replay/warning paragraph rule now uses the existing dark ink token. The same accessibility assertions are retained and rerun; this was found before the feature commit or merge. See artifacts/classroom-replay-verification.log for the failed run and subsequent result.
+
+## Hosted browser deadline — 2026-10-11
+
+Run 38155822011: after API version 3/Worker d52154f5-74fc-41ec-91fd-1da99ba85932 deployed from eb816f0, four public tests passed and the classroom test exceeded 90 seconds. A finally-block context-close error masked the waiting action. No failing application assertion was identified in the retained JSON; the root cause of the deadline is still unknown. Local public reproduction passes in 13.7 seconds. Test diagnostics now name each phase, apply 15-second operation bounds and preserve the primary failure while closing both contexts. The overall 90-second deadline remains unchanged. Record subsequent CI results separately; a passing rerun alone does not establish the original cause.

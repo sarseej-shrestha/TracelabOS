@@ -34,8 +34,21 @@ test('authenticated classroom publication, enrollment, photo, confirmed fraction
   const student = await studentContext.newPage();
   const suffix = crypto.randomUUID().slice(0, 8);
   const username = `student_${suffix}`;
+  const checkpoint = (phase: string) => {
+    test
+      .info()
+      .annotations.push({ type: 'classroom-phase', description: phase });
+    console.info(`[classroom phase] ${phase}`);
+  };
+  teacher.setDefaultTimeout(15000);
+  student.setDefaultTimeout(15000);
+  teacher.setDefaultNavigationTimeout(15000);
+  student.setDefaultNavigationTimeout(15000);
+  let completed = false;
   try {
+    checkpoint('teacher registration');
     await register(teacher, 'teacher', `teacher_${suffix}`);
+    checkpoint('classroom and assignment publication');
     await teacher
       .getByText('Create a classroom or publish an assignment', { exact: true })
       .click();
@@ -65,6 +78,7 @@ test('authenticated classroom publication, enrollment, photo, confirmed fraction
     await expect(
       teacher.getByText('Assignment published.', { exact: true }),
     ).toBeVisible();
+    checkpoint('student registration and enrollment');
     await register(student, 'student', username);
     await student.getByText('Join a classroom', { exact: true }).click();
     await student.getByLabel('12-character enrollment code').fill(code);
@@ -74,6 +88,7 @@ test('authenticated classroom publication, enrollment, photo, confirmed fraction
     await student
       .getByRole('button', { name: /Fraction reasoning review/ })
       .click();
+    checkpoint('photo upload and adjustment');
     // Controlled typeset fixture verifies capture/storage, not handwriting OCR accuracy.
     const photo = await sharp(
       Buffer.from(
@@ -92,6 +107,7 @@ test('authenticated classroom publication, enrollment, photo, confirmed fraction
       .getByRole('button', { name: 'Save photo', exact: true })
       .click();
     await expect(student.getByText(/Photo saved privately/)).toBeVisible();
+    checkpoint('explicit transcription confirmation and grading');
     for (const [i, line] of question.reference.entries()) {
       if (i > 0)
         await student
@@ -111,6 +127,7 @@ test('authenticated classroom publication, enrollment, photo, confirmed fraction
     await expect(
       student.getByText(/Your teacher will release feedback/),
     ).toBeVisible();
+    checkpoint('teacher inspection and private image authorization');
     await teacher.getByRole('button', { name: 'Refresh progress' }).click();
     await teacher
       .getByRole('button', { name: /Fraction reasoning review/ })
@@ -135,10 +152,13 @@ test('authenticated classroom publication, enrollment, photo, confirmed fraction
     ).href;
     const anonymous = await browser.newContext();
     try {
-      expect((await anonymous.request.get(photoUrl)).status()).toBe(401);
+      expect(
+        (await anonymous.request.get(photoUrl, { timeout: 15000 })).status(),
+      ).toBe(401);
     } finally {
       await anonymous.close();
     }
+    checkpoint('teacher review and release');
     await teacher.getByLabel('Teacher decision').selectOption('correct');
     await teacher
       .getByLabel('Review explanation')
@@ -151,6 +171,7 @@ test('authenticated classroom publication, enrollment, photo, confirmed fraction
     const replay = teacher.getByRole('slider', { name: /Replay position/ });
     await replay.fill('0');
     await expect(teacher.locator('.events li')).toHaveCount(0);
+    checkpoint('teacher accessibility audit');
     expect(
       (
         await new AxeBuilder({ page: teacher })
@@ -158,6 +179,7 @@ test('authenticated classroom publication, enrollment, photo, confirmed fraction
           .analyze()
       ).violations,
     ).toEqual([]);
+    checkpoint('refresh persistence and student login');
     await student.reload();
     await student
       .getByRole('button', { name: /Fraction reasoning review/ })
@@ -185,9 +207,19 @@ test('authenticated classroom publication, enrollment, photo, confirmed fraction
     await expect(
       student.getByRole('button', { name: /Fraction reasoning review/ }),
     ).toBeVisible();
+    completed = true;
+    checkpoint('workflow complete');
   } finally {
-    await teacherContext.close();
-    await studentContext.close();
+    // Preserve the original failed action if Playwright already disposed a context.
+    // Close both sessions even when one fails; successful workflows still check cleanup.
+    const cleanup = await Promise.allSettled([
+      teacherContext.close(),
+      studentContext.close(),
+    ]);
+    if (completed) {
+      const failure = cleanup.find((result) => result.status === 'rejected');
+      if (failure?.status === 'rejected') throw failure.reason;
+    }
   }
 });
 test('keyboard skip link and demo navigation remain usable at 200 percent text zoom', async ({
