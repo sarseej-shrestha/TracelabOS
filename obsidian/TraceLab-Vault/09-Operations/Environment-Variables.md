@@ -17,3 +17,9 @@ TRACELAB_OCR_URL selects the operator-controlled inference endpoint; HTTP is all
 ## Private Neon Object Storage
 
 Configure NEON_STORAGE_BUCKET, NEON_STORAGE_ENDPOINT, NEON_STORAGE_REGION, NEON_STORAGE_ACCESS_KEY_ID and NEON_STORAGE_SECRET_ACCESS_KEY together. Never combine with R2 variables. Endpoint and region must match the existing branch storage API; HTTPS and a Neon storage hostname are required. The access ID maps to the scoped Neon token_id; the secret maps to s3_secret_access_key. Use only storage:read/storage:write permissions. The server owns the credential and authorizes each image read; browsers receive no storage credential. Keep values in ignored local files and deployment secrets. Current private bucket: tracelab-submissions.
+
+## Worker/Neon bridge
+
+TRACELAB_BACKEND_URL is the fixed HTTPS Neon function endpoint; TRACELAB_PUBLIC_ORIGIN is the exact public Workers origin. Both are non-secret Worker configuration. TRACELAB_BRIDGE_SECRET is a cryptographically generated 64-hex-character infrastructure credential configured on both runtimes; browsers never receive it. Existing user sessions still authorize application objects. DATABASE_URL and the five NEON_STORAGE variables are configured only on the backend. Do not copy the entire local environment into the Worker. The deployed function currently overrides DATABASE_URL explicitly, so future password rotation must update that function environment too.
+
+CI additionally requires a project-scoped NEON_API_KEY, CLOUDFLARE_API_TOKEN with this account's Workers deployment permission, and non-secret CLOUDFLARE_ACCOUNT_ID. CLI OAuth credentials remain local in Keychain. Do not put OAuth refresh tokens in the repository or logs.

@@ -43,7 +43,12 @@
     "adaptive:catalog": "node --experimental-transform-types scripts/adaptive-experiment.ts catalog",
     "adaptive:score": "node --experimental-transform-types scripts/adaptive-experiment.ts score",
     "db:smoke": "node --experimental-transform-types scripts/neon-smoke.ts",
-    "storage:smoke": "node --experimental-transform-types scripts/neon-storage-smoke.ts"
+    "storage:smoke": "node --experimental-transform-types scripts/neon-storage-smoke.ts",
+    "build:cloud": "TRACELAB_CLOUDFLARE_BUILD=1 pnpm --dir apps/web exec opennextjs-cloudflare build",
+    "build:api": "node scripts/build-neon-api.mjs",
+    "deploy:api": "node scripts/deploy-neon-api.mjs",
+    "deploy:web": "node scripts/deploy-cloudflare.mjs",
+    "test:cloud": "playwright test --config playwright.cloud.config.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.1148.0",
@@ -58,26 +63,34 @@
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",
     "@electric-sql/pglite": "0.5.8",
+    "@opennextjs/cloudflare": "1.20.10",
     "@types/node": "22.20.5",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.3",
+    "esbuild": "0.28.1",
     "eslint": "9.39.5",
     "fast-check": "4.8.0",
+    "neonctl": "8.3.5",
     "playwright": "1.63.0",
     "prettier": "3.9.6",
     "typescript": "5.9.3",
     "typescript-eslint": "8.67.0",
     "vite": "7.3.6",
-    "vitest": "4.1.11"
+    "vitest": "4.1.11",
+    "wrangler": "4.149.0"
   },
   "pnpm": {
     "overrides": {
       "pure-rand": "8.4.0",
-      "sharp": "0.35.5"
+      "sharp": "0.35.5",
+      "glob@>=10.2.0 <10.5.0": "10.5.0",
+      "diff@5.2.0": "5.2.2",
+      "@hono/node-server@2.0.4": "2.0.10"
     },
     "onlyBuiltDependencies": [
       "esbuild",
-      "sharp"
+      "sharp",
+      "workerd"
     ]
   }
 }

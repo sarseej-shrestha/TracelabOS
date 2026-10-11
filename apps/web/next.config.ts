@@ -1,7 +1,16 @@
 import type { NextConfig } from 'next';
+import { resolve } from 'node:path';
 const config: NextConfig = {
   serverExternalPackages: ['sharp'],
   poweredByHeader: false,
+  webpack(config) {
+    if (process.env.TRACELAB_CLOUDFLARE_BUILD === '1') {
+      config.resolve.alias[
+        resolve(import.meta.dirname, '../../services/api/src/next-runtime.ts')
+      ] = resolve(import.meta.dirname, '../../services/api/src/cloud-proxy.ts');
+    }
+    return config;
+  },
   async headers() {
     return [
       {

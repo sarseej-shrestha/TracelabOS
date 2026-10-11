@@ -482,7 +482,7 @@ export default function Home() {
                     setAuthMode('register');
                   }}
                 >
-                  Create a local account
+                  Create a demo account
                 </button>
               </div>
               <p className="fine">
@@ -525,7 +525,7 @@ export default function Home() {
               <h2>
                 {authMode === 'login'
                   ? 'Welcome back'
-                  : 'Create a local demo account'}
+                  : 'Create a demo account'}
               </h2>
               <p>
                 Use a fictional username. This development build is not for real

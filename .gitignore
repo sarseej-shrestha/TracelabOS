@@ -21,3 +21,5 @@ playwright-report/
 obsidian/**/.obsidian/workspace*.json
 # Preserve source recovery archives locally without committing duplicate source bundles.
 recovery/*.tar.gz
+
+.open-next/

@@ -2,7 +2,7 @@
 
 Debugging the way humans learn.
 
-This vault separates implemented behavior, measured evidence, planned work, and blocked verification. The product is **not complete or publicly deployed**.
+This vault separates implemented behavior, measured evidence, planned work, and blocked verification. The manual-transcription workflow is [publicly deployed](https://tracelabos.sarseej-shrestha.workers.dev); the full product is **not complete**. Live hosted OCR remains unavailable.
 
 Start with [[Current-State]], then [[Master-Roadmap]], [[Task-Backlog]], and [[Recovery-Instructions]]. Inspect the repository before resuming; Git initialization was blocked in the first session.
 
