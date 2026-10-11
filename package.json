@@ -41,7 +41,8 @@
     "oracle:mastery": "node --experimental-transform-types scripts/mastery-oracle-vectors.ts",
     "mastery:rebuild": "node --experimental-transform-types scripts/mastery-rebuild.ts",
     "adaptive:catalog": "node --experimental-transform-types scripts/adaptive-experiment.ts catalog",
-    "adaptive:score": "node --experimental-transform-types scripts/adaptive-experiment.ts score"
+    "adaptive:score": "node --experimental-transform-types scripts/adaptive-experiment.ts score",
+    "db:smoke": "node --experimental-transform-types scripts/neon-smoke.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.1148.0",
