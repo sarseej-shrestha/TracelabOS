@@ -23,3 +23,23 @@ The default download/render directory is ignored `.data/ocr-research`. pix2tex f
 Lightweight CI installs `requirements-test.txt`, then runs `ruff check`, `ruff format --check`, and `pytest` on this directory. It verifies scoring and rendering without downloading models. An arrow-token normalization defect was caught during review, regression-tested, and the pix2tex pilot rerun before publication. `controls.py --font <path>` reproduces three separate typeset sanity controls; recorded controls used macOS Times New Roman, 48px. They are not part of the handwriting score.
 
 Read [data attribution and licensing](DATA-LICENSE.md) before reusing samples or dataset-derived report fields. Do not copy these research samples into unrestricted product fixtures.
+
+## Hosted pilot — 2026-10-11
+
+Eight fixed MathWriting human-stroke expressions were sent once to each of two Workers AI models. All sixteen HTTP requests returned 200. Moondream 3.1 returned eight empty result objects: zero usable transcriptions, 0/8 exact, edit rate 1.0, p50/p95 237.242/1378.997 ms. The cause of the empty provider output is unresolved; this is not evidence about the model's intrinsic recognition accuracy.
+
+Mistral Small returned seven valid structured transcriptions and one string containing invalid JSON escapes. After fixing the client's assumption that `response` must be a string, offline rescoring gives 0/8 exact, character edit rate 0.4878, p50/p95 870.945/2463.685 ms. Some misses are alternative LaTeX syntax; others change symbols or grouping. No syntax repair or symbolic equivalence is used to inflate fidelity. The requested alias is `@cf/mistralai/mistral-small-3.1-24b-instruct`; all responses identify `@cf/mistralai/mistral-small-3.1-24b-v2`. Reported Mistral usage totals 57.5496 neurons across eight responses; Moondream supplies no usage. This is not an invoice or total-account usage measurement.
+
+Both the initial contract-failure report and corrected report are preserved in artifacts/ocr-hosted-initial-contract.json and artifacts/ocr-hosted-pilot.json. The latter records the former's SHA-256 and zero additional calls. Thirty-seven Python metric/benchmark tests pass, including captured-response regression and concurrent daily budget exhaustion. The first regression assertion expected all Mistral responses to parse; inspecting the eighth raw response established its invalid escapes, and the test now explicitly preserves that rejection.
+
+The research runner reserves at most sixteen requests per UTC day across processes, before sending, including failures; no retries, at most 512 output tokens, no redirects, and bounded response sizes. The day's allowance is exhausted. Research credentials and images stay ignored; no model was activated publicly. These are clean rasterized pen strokes, not camera photographs. Correction frequency, line ordering, supported-domain grading errors and billed cost remain unmeasured. No production model is selected.
+
+Sources: [Workers AI pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/), [Moondream contract](https://developers.cloudflare.com/workers-ai/models/moondream3.1-9B-A2B/), [Mistral contract](https://developers.cloudflare.com/workers-ai/models/mistral-small-3.1-24b-instruct/). Research attribution remains in research/ocr-benchmarks/DATA-LICENSE.md.
+
+Reproduce scoring offline without credentials or inference:
+
+```sh
+python research/ocr-benchmarks/cloud_benchmark.py --rescore artifacts/ocr-hosted-initial-contract.json --output /tmp/tracelab-rescored.json
+```
+
+A fresh bounded run requires `--execute --account-id <existing-account> --wrangler-auth --output <new-report.json>` or a private `TRACELAB_BENCHMARK_TOKEN` environment variable. Existing reports are never overwritten by inference. The ignored daily budget is shared across runs; do not remove/reset it to evade limits. CLI scoring preserves input, raw results, durations and hashes; byte-identical rescoring is reproducible from the preserved report. Research-only prompts request transcription, never grades.

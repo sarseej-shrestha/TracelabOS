@@ -1,0 +1,14 @@
+{
+  "measuredAt": "2026-10-11T21:36:33.556Z",
+  "release": "49c10be393b3377e3d3f795b1094a89a77427e78",
+  "worker": "tracelabos",
+  "health": {
+    "status": "ok",
+    "persistence": "neon-postgresql",
+    "imageStorage": "private-neon",
+    "ocr": "unavailable",
+    "version": "0.1.0",
+    "release": "49c10be393b3377e3d3f795b1094a89a77427e78"
+  },
+  "bothCommitsVerified": true
+}

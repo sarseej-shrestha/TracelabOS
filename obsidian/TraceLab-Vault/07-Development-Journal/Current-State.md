@@ -8,23 +8,23 @@ Cloud integration and deployment of the existing workflow, prioritized by the us
 
 ## Active Task
 
-TASK-0026: finish checked automatic deployment and exact release verification. TASK-0025 TLS/channel binding is deployed. TASK-0027 diagnostic changes passed CI and merged; public Linux rerun 38156595138 passes 5/5 in 31.8s after local 5/5 acceptance. Original cloud deadline remains documented; no speculative cause is claimed.
+TASK-0028: preserve the bounded hosted OCR comparison and regression-tested offline rescoring. TASK-0026 automatic deployment is verified complete: run 38176846122 passed both exact-commit checks and all five public browser workflows. Next: global public-demo resource budgets before activating OCR.
 
 ## Current Git Branch
 
-ci/verified-production-deployment; merge aff008a includes updated remote main 4b9cacf and preserves automation commit 7250406.
+research/hosted-ocr-benchmark, based on synchronized main 49c10be393b3377e3d3f795b1094a89a77427e78.
 
 ## Latest Commit Hash
 
-Latest verified remote main: 4b9cacf4497bc2719fcb383005bb075dbc790706 (PR #27 merge). Security feature 4d71413 and main eb816f0 remain preserved. This note records preceding hashes rather than its own hash.
+Verified remote main: 49c10be393b3377e3d3f795b1094a89a77427e78 (PR #28 merge). Automation feature 7250406 and evidence 5888698 are preserved. This note records preceding hashes rather than its own hash.
 
 ## Latest Successful Push
 
-PR #27 passed all checks in run 38156404909 (verify 2m27s, oracle 43s, OCR metrics 10s) before ordinary merge. Local main and git ls-remote agreed at 4b9cacf. CI provider secrets are configured and have deployed both providers successfully; the first full deployment run's browser gate was 4 passed/1 timed out. Local repeated full public verification passes 5/5. Automatic release changes remain on the task branch pending checked merge and actual execution.
+PR #28 passed all checks in run 38156891087, merged normally, and post-merge Engineering checks 38176615632 passed. Automatic deployment 38176846122 succeeded: Neon API version 4 and Worker 945329de-a2a5-4baf-a220-d0ccdb967c0a both report main 49c10be. Five public workflows pass in 34.3s; eighteen local workflows pass in 35.4s on GitHub Linux. Hosted OCR research changes are pending checked push/merge.
 
 ## Latest Verified Test Results
 
-Latest automation branch: 1,602 tests pass, including 35 TLS/protocol/pool regressions and 14 release-source/health cases. Typecheck, lint, formatting, API/OpenNext builds and dependency audit pass. Real Neon probe verifies TLS 1.3 and SCRAM-SHA-256-PLUS; existing cloud storage/API smoke passes with the replacement driver. The TLS driver is already deployed as API version 3. Automation/release metadata rollout follows checked merge. Earlier phase evidence follows.
+Latest automation branch: 1,602 tests pass, including 35 TLS/protocol/pool regressions and 14 release-source/health cases. Typecheck, lint, formatting, API/OpenNext builds and dependency audit pass. Real Neon probe verifies TLS 1.3 and SCRAM-SHA-256-PLUS; existing cloud storage/API smoke passes with the replacement driver. The TLS driver is already deployed as API version 3. Automatic rollout and exact release metadata are now verified in run 38176846122. The new research suite adds nineteen tests: 37 Python benchmark tests pass; with region tests, 43 pass. Earlier phase evidence follows.
 
 1,510 Vitest tests pass, including 9,500 seeded property cases and 26 new dual-database OCR job cases. Strict TypeScript, ESLint and production build pass. Eighteen Chromium workflows pass (22.2s), including extraction, correction, cancellation, failure fallback, teacher provenance and axe accessibility. Independent mastery Decimal oracle: 2,047 sequences, zero disagreements; twelve adaptive Python tests now pass. Synthetic comparison: 240 held-out learners, 34,690 predictions, 5,760 practice choices; hashes/metrics reproduced under Python 3.13. Current replay CI also passes all 24 OCR metric/region tests, ten symbolic-oracle unit tests and twelve adaptive Python tests; fraction oracle reports 1,800 cases/11,700 comparisons and algebra reports 1,800/11,400, and ratios 1,800/11,850, zero disagreements; quantity oracle 2,000 cases, zero disagreements; geometry oracle 1,800 cases/10,800 comparisons, zero disagreements; ten oracle unittest cases pass. SymPy CI repeats 2,000 cases/6,000 comparisons with zero differences. Actual model API smoke processed the research image in 100.57ms. A separate Chromium workflow through the actual local model completed in 1465.52ms, left evaluation null until explicit correction/confirmation, detected fixture first error at step 2, and recorded a teacher review. This is workflow evidence, not camera-image accuracy.
 
@@ -48,7 +48,7 @@ Importer rejected digit-bearing identifiers such as sha256; fixed in 88487d7 wit
 
 ## Current Blockers
 
-No remaining filesystem, Git, network or browser restriction observed. Neon connection and Cloudflare/Neon management authorization now work. Both CLI credentials use macOS Keychain. Five migrations are applied to the existing Neon production branch. The exposed database password was rotated and the ignored mode-0600 local URL updated. Worker tracelabos and Neon function tracelabapi are deployed. Five public Chromium workflows pass. Hosted OCR remains pending. Deployment credentials are configured; API version 3 requires verified TLS/SCRAM-PLUS. First CI public browser deadline is recorded, local full rerun passes, and phase-instrumented Linux rerun passes 5/5. Automatic publication remains gated.
+No remaining filesystem, Git, network or browser restriction observed. Neon connection and Cloudflare/Neon management authorization now work. Both CLI credentials use macOS Keychain. Five migrations are applied to the existing Neon production branch. The exposed database password was rotated and the ignored mode-0600 local URL updated. Worker tracelabos and Neon function tracelabapi are deployed. Five public Chromium workflows pass. Hosted OCR remains pending. Deployment credentials are configured; API version 3 requires verified TLS/SCRAM-PLUS. First CI public browser deadline is recorded, local full rerun passes, and phase-instrumented Linux rerun passes 5/5. Automatic publication is verified by run 38176846122; hosted OCR selection remains open.
 
 ## Important Architecture Decisions
 
@@ -60,10 +60,10 @@ TRACELAB_DB_PATH (use the same absolute path for API and worker) or DATABASE_URL
 
 ## Exact Next Steps
 
-1. Preserve public browser run 38156595138 (5/5 pass, 31.8s, no retries) and the original failed run; retain phase diagnostics for future incidents.
-2. Complete TASK-0026 checked PR; verify both provider release hashes and all five browser workflows in the automatically triggered deployment.
-3. Add global demo/upload budgets and scheduled retention. Then benchmark free hosted vision OCR with explicit confirmation/fallback.
-4. Resume TASK-0023B live classroom synchronization and performance hardening. Preserve local data and measured limitations.
+1. Commit/push TASK-0028 research evidence and regression tests; require all PR checks before merge.
+2. Add global public-demo resource budgets and retention; preserve existing records and local mode.
+3. Investigate the hosted empty-output contract and conduct a bounded supported-domain photograph benchmark before choosing/enabling hosted OCR. Do not bypass the exhausted sixteen-call research budget.
+4. Continue live classroom synchronization and performance hardening.
 
 ## Recovery Procedure
 
@@ -85,4 +85,6 @@ https://tracelabos.sarseej-shrestha.workers.dev — Worker version 176f1aaa-1bd9
 
 Deployment dependencies introduced a high-severity glob CLI advisory; frontend upload was stopped before publication, patched version 10.5.0 pinned, then audit/typecheck/lint/tests/build passed before upload. Newly introduced CLI low/moderate advisories were also patched; final audit result is recorded in the ledger. Runtime adapter edits preserve local SQLite and experimental OCR. CI now builds both deployment artifacts without credentials; authenticated deployment automation is still being prepared.
 
-Latest deployment attempt: GitHub run 38155822011 published API version 3 and Worker d52154f5-74fc-41ec-91fd-1da99ba85932 from eb816f0. Health is 200; the required-channel-binding driver is deployed. Cloud browser acceptance was 4 passed/1 timed out. Focused local rerun passed 1/1 in 14.7s; full-suite/CI recovery is pending. No paid service or schema change occurred.
+Latest deployment attempt: GitHub run 38155822011 published API version 3 and Worker d52154f5-74fc-41ec-91fd-1da99ba85932 from eb816f0. Health is 200; the required-channel-binding driver is deployed. Cloud browser acceptance was 4 passed/1 timed out. Focused local rerun passed 1/1 in 14.7s; local full rerun, independent Linux rerun, and the automatic deployment browser suite all pass. The original deadline remains unexplained and preserved. No paid service or schema change occurred.
+
+Latest automatic deployment: run 38176846122 succeeded on 2026-10-11, API version 4 / Worker 945329de-a2a5-4baf-a220-d0ccdb967c0a, both release 49c10be. See artifacts/cloud-release-smoke.json and artifacts/cloud-browser-results.json. Hosted research pilot: 16 requests, 0/8 exact for each candidate, eight empty Moondream results and one invalid Mistral JSON response. No production OCR activation. See [[OCR-Benchmark-Results]].

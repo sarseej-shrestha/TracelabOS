@@ -98,3 +98,7 @@ TASK-0023A: 1,510 Vitest tests and eighteen Chromium workflows (22.2s) pass, wit
 ## Neon integration — 2026-10-10
 
 TASK-0024A: 1,510 automated tests and 18 local Chromium workflows (22.4s), typecheck/lint/format/build and 6,000 SymPy comparisons pass. Actual hosted Neon checks pass before and after password rotation; five migrations apply once, then validate unchanged. TASK-0024B: 1,532 tests, typecheck/lint/format/build pass; real private object upload/read/list/delete passes with anonymous HTTP 403, and the hosted database workflow passes using private Neon images. Evidence: artifacts/neon-cloud-smoke.json, neon-object-storage-smoke.json and neon-storage-workflow-smoke.json. These in-process API checks are not public Worker/browser deployment verification.
+
+## Verified automatic release
+
+2026-10-11: GitHub run 38176846122 (triggered by successful main checks 38176615632) deployed exact main 49c10be to both services. Neon API version 4; Worker 945329de-a2a5-4baf-a220-d0ccdb967c0a. Release smoke confirms both SHAs and PostgreSQL/private storage. All 1,602 unit/integration tests, 18 local browser tests (35.4s), build/audit checks and 5 public browser workflows (34.3s) pass. No new schema or paid service. Public OCR remains unavailable. Safe evidence: artifacts/cloud-release-smoke.json and artifacts/cloud-browser-results.json.
