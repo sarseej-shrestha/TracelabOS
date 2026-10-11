@@ -55,3 +55,7 @@ The deployment workflow listens for a successful Engineering checks run on main 
 Both providers receive TRACELAB_RELEASE_SHA. The public health body reports the backend release, and x-tracelab-worker-release identifies the Worker. scripts/cloud-release-smoke.mjs requires both to match the selected SHA before the public browser suite runs. Local publishing helpers reject mismatched SHA or uncommitted source/dependency/application-data changes. They allow only explicitly listed generated browser reports/screenshots, which are not application inputs. This avoids discarding verification evidence or mislabeling unreviewed source as a release.
 
 First run results and exact deployment IDs are recorded in [[Change-Ledger]]. Automatic activation is complete only after the checked workflow has actually run successfully. No deployment trigger applies schema migrations or changes service billing plans.
+
+## Verified automatic release
+
+2026-10-11: GitHub run 38176846122 (triggered by successful main checks 38176615632) deployed exact main 49c10be to both services. Neon API version 4; Worker 945329de-a2a5-4baf-a220-d0ccdb967c0a. Release smoke confirms both SHAs and PostgreSQL/private storage. All 1,602 unit/integration tests, 18 local browser tests (35.4s), build/audit checks and 5 public browser workflows (34.3s) pass. No new schema or paid service. Public OCR remains unavailable. Safe evidence: artifacts/cloud-release-smoke.json and artifacts/cloud-browser-results.json.

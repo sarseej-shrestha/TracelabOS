@@ -1,14 +1,14 @@
 {
   "config": {
     "argv": [
-      "/Users/userselu/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
-      "/Users/userselu/Downloads/TracelabOS/node_modules/.pnpm/playwright@1.63.0/node_modules/playwright/cli.js",
+      "/opt/hostedtoolcache/node/22.23.3/x64/bin/node",
+      "/home/runner/work/TracelabOS/TracelabOS/node_modules/playwright/cli.js",
       "test",
       "--config",
       "playwright.cloud.config.ts"
     ],
-    "configFile": "/Users/userselu/Downloads/TracelabOS/playwright.cloud.config.ts",
-    "rootDir": "/Users/userselu/Downloads/TracelabOS/tests/e2e",
+    "configFile": "/home/runner/work/TracelabOS/TracelabOS/playwright.cloud.config.ts",
+    "rootDir": "/home/runner/work/TracelabOS/TracelabOS/tests/e2e",
     "failOnFlakyTests": false,
     "forbidOnly": false,
     "fullyParallel": false,
@@ -19,20 +19,64 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
+      "ci": {
+        "commitHref": "https://github.com/sarseej-shrestha/TracelabOS/commit/49c10be393b3377e3d3f795b1094a89a77427e78",
+        "commitHash": "49c10be393b3377e3d3f795b1094a89a77427e78",
+        "buildHref": "https://github.com/sarseej-shrestha/TracelabOS/actions/runs/38176846122"
+      },
+      "gitCommit": {
+        "shortHash": "49c10be",
+        "hash": "49c10be393b3377e3d3f795b1094a89a77427e78",
+        "subject": "Merge pull request #28 from sarseej-shrestha/ci/verified-production-deployment",
+        "body": "Merge pull request #28 from sarseej-shrestha/ci/verified-production-deployment\n\nAutomate checked releases with exact Worker and API commit verification",
+        "author": {
+          "name": "sarseej-shrestha",
+          "email": "157068990+sarseej-shrestha@users.noreply.github.com",
+          "time": 1791754199000
+        },
+        "committer": {
+          "name": "GitHub",
+          "email": "noreply@github.com",
+          "time": 1791754199000
+        },
+        "branch": "HEAD"
+      },
       "actualWorkers": 1
     },
     "preserveOutput": "always",
     "projects": [
       {
-        "outputDir": "/Users/userselu/Downloads/TracelabOS/test-results",
+        "outputDir": "/home/runner/work/TracelabOS/TracelabOS/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/sarseej-shrestha/TracelabOS/commit/49c10be393b3377e3d3f795b1094a89a77427e78",
+            "commitHash": "49c10be393b3377e3d3f795b1094a89a77427e78",
+            "buildHref": "https://github.com/sarseej-shrestha/TracelabOS/actions/runs/38176846122"
+          },
+          "gitCommit": {
+            "shortHash": "49c10be",
+            "hash": "49c10be393b3377e3d3f795b1094a89a77427e78",
+            "subject": "Merge pull request #28 from sarseej-shrestha/ci/verified-production-deployment",
+            "body": "Merge pull request #28 from sarseej-shrestha/ci/verified-production-deployment\n\nAutomate checked releases with exact Worker and API commit verification",
+            "author": {
+              "name": "sarseej-shrestha",
+              "email": "157068990+sarseej-shrestha@users.noreply.github.com",
+              "time": 1791754199000
+            },
+            "committer": {
+              "name": "GitHub",
+              "email": "noreply@github.com",
+              "time": 1791754199000
+            },
+            "branch": "HEAD"
+          },
           "actualWorkers": 1
         },
         "id": "",
         "name": "",
-        "testDir": "/Users/userselu/Downloads/TracelabOS/tests/e2e",
+        "testDir": "/home/runner/work/TracelabOS/TracelabOS/tests/e2e",
         "testIgnore": [],
         "testMatch": [
           "classroom.spec.ts",
@@ -130,7 +174,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 17204,
+                  "duration": 20319,
                   "errors": [],
                   "stdout": [
                     {
@@ -166,7 +210,7 @@
                   ],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-11T16:38:53.056Z",
+                  "startTime": "2026-10-11T21:36:35.056Z",
                   "annotations": [
                     {
                       "type": "classroom-phase",
@@ -236,12 +280,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1434,
+                  "duration": 1721,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-11T16:39:10.572Z",
+                  "startTime": "2026-10-11T21:36:55.472Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -278,12 +322,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 7275,
+                  "duration": 5161,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-11T16:39:12.018Z",
+                  "startTime": "2026-10-11T21:36:57.211Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -312,12 +356,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3326,
+                  "duration": 2899,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-11T16:39:19.299Z",
+                  "startTime": "2026-10-11T21:37:02.383Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -346,12 +390,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2456,
+                  "duration": 3309,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-11T16:39:22.628Z",
+                  "startTime": "2026-10-11T21:37:05.293Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -369,8 +413,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-11T16:38:52.708Z",
-    "duration": 32462.16,
+    "startTime": "2026-10-11T21:36:34.343Z",
+    "duration": 34324.378,
     "expected": 5,
     "skipped": 0,
     "unexpected": 0,
