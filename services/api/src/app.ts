@@ -107,6 +107,7 @@ export function createApp(
     allowedOrigins?: string[];
     imageStore?: ImageStore;
     visionProvider?: VisionProvider;
+    releaseSha?: string;
   } = {},
 ) {
   const db = asDatabase(input);
@@ -321,6 +322,9 @@ export function createApp(
       imageStorage: options.imageStore?.kind ?? 'private-database',
       ocr: options.visionProvider ? 'available' : 'unavailable',
       version: '0.1.0',
+      release: /^[a-f0-9]{40}$/.test(options.releaseSha ?? '')
+        ? options.releaseSha
+        : null,
     });
   });
   app.get('/api/skills', async (c) => c.json(skills));

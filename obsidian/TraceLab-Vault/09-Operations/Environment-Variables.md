@@ -23,3 +23,7 @@ Configure NEON_STORAGE_BUCKET, NEON_STORAGE_ENDPOINT, NEON_STORAGE_REGION, NEON_
 TRACELAB_BACKEND_URL is the fixed HTTPS Neon function endpoint; TRACELAB_PUBLIC_ORIGIN is the exact public Workers origin. Both are non-secret Worker configuration. TRACELAB_BRIDGE_SECRET is a cryptographically generated 64-hex-character infrastructure credential configured on both runtimes; browsers never receive it. Existing user sessions still authorize application objects. DATABASE_URL and the five NEON_STORAGE variables are configured only on the backend. Do not copy the entire local environment into the Worker. The deployed function currently overrides DATABASE_URL explicitly, so future password rotation must update that function environment too.
 
 CI additionally requires a project-scoped NEON_API_KEY, CLOUDFLARE_API_TOKEN with this account's Workers deployment permission, and non-secret CLOUDFLARE_ACCOUNT_ID. CLI OAuth credentials remain local in Keychain. Do not put OAuth refresh tokens in the repository or logs.
+
+## Release automation
+
+TRACELAB_RELEASE_SHA is a non-secret 40-character Git commit supplied to both deployment steps. Publishing helpers verify it against the checkout. Backend health and the Worker response header expose only this release identity. CLOUDFLARE_API_TOKEN and the project-scoped NEON_API_KEY are encrypted GitHub secrets, as are DATABASE_URL, NEON_STORAGE_ACCESS_KEY_ID, NEON_STORAGE_SECRET_ACCESS_KEY and TRACELAB_BRIDGE_SECRET. CLOUDFLARE_ACCOUNT_ID is a repository variable. Provider secrets are never attached to test/build steps.

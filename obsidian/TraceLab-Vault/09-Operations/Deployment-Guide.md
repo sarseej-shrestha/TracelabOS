@@ -47,3 +47,11 @@ The `Deploy verified cloud demo` workflow is initially manual and restricted to 
 ### Database transport verification
 
 After TASK-0025 deployment, the Node adapter requires verified TLS and channel binding for every PostgreSQL connection. Load DATABASE_URL securely and run pnpm db:tls-smoke; it performs a read-only query and records only protocol/proof status. Query flags cannot weaken the policy; sslmode=require or verify-full and channel_binding=require are the only accepted options. No new SQL migration or password rotation is required for this driver change.
+
+## Checked automatic releases — TASK-0026
+
+The deployment workflow listens for a successful Engineering checks run on main from the official repository, or an explicit main-only dispatch. It resolves the exact successful SHA, verifies that it is still remote main, checks out that SHA without persisted Git credentials, reruns application/browser/build gates, and rechecks main immediately before publishing. Superseded runs cannot publish. A failed engineering run cannot start deployment. Publishing secrets remain scoped to provider steps.
+
+Both providers receive TRACELAB_RELEASE_SHA. The public health body reports the backend release, and x-tracelab-worker-release identifies the Worker. scripts/cloud-release-smoke.mjs requires both to match the selected SHA before the public browser suite runs. Local publishing helpers reject mismatched SHA or uncommitted source/dependency/application-data changes. They allow only explicitly listed generated browser reports/screenshots, which are not application inputs. This avoids discarding verification evidence or mislabeling unreviewed source as a release.
+
+First run results and exact deployment IDs are recorded in [[Change-Ledger]]. Automatic activation is complete only after the checked workflow has actually run successfully. No deployment trigger applies schema migrations or changes service billing plans.

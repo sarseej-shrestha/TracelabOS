@@ -1,0 +1,423 @@
+{
+  "config": {
+    "argv": [
+      "/opt/hostedtoolcache/node/22.23.3/x64/bin/node",
+      "/home/runner/work/TracelabOS/TracelabOS/node_modules/playwright/cli.js",
+      "test",
+      "--config",
+      "playwright.cloud.config.ts"
+    ],
+    "configFile": "/home/runner/work/TracelabOS/TracelabOS/playwright.cloud.config.ts",
+    "rootDir": "/home/runner/work/TracelabOS/TracelabOS/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "ci": {
+        "commitHref": "https://github.com/sarseej-shrestha/TracelabOS/commit/4b9cacf4497bc2719fcb383005bb075dbc790706",
+        "commitHash": "4b9cacf4497bc2719fcb383005bb075dbc790706",
+        "buildHref": "https://github.com/sarseej-shrestha/TracelabOS/actions/runs/38156595138"
+      },
+      "gitCommit": {
+        "shortHash": "4b9cacf",
+        "hash": "4b9cacf4497bc2719fcb383005bb075dbc790706",
+        "subject": "Merge pull request #27 from sarseej-shrestha/test/cloud-browser-diagnostics",
+        "body": "Merge pull request #27 from sarseej-shrestha/test/cloud-browser-diagnostics\n\nPreserve cloud browser failure diagnostics and separate smoke workflow",
+        "author": {
+          "name": "sarseej-shrestha",
+          "email": "157068990+sarseej-shrestha@users.noreply.github.com",
+          "time": 1791736962000
+        },
+        "committer": {
+          "name": "GitHub",
+          "email": "noreply@github.com",
+          "time": 1791736962000
+        },
+        "branch": "main"
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/runner/work/TracelabOS/TracelabOS/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/sarseej-shrestha/TracelabOS/commit/4b9cacf4497bc2719fcb383005bb075dbc790706",
+            "commitHash": "4b9cacf4497bc2719fcb383005bb075dbc790706",
+            "buildHref": "https://github.com/sarseej-shrestha/TracelabOS/actions/runs/38156595138"
+          },
+          "gitCommit": {
+            "shortHash": "4b9cacf",
+            "hash": "4b9cacf4497bc2719fcb383005bb075dbc790706",
+            "subject": "Merge pull request #27 from sarseej-shrestha/test/cloud-browser-diagnostics",
+            "body": "Merge pull request #27 from sarseej-shrestha/test/cloud-browser-diagnostics\n\nPreserve cloud browser failure diagnostics and separate smoke workflow",
+            "author": {
+              "name": "sarseej-shrestha",
+              "email": "157068990+sarseej-shrestha@users.noreply.github.com",
+              "time": 1791736962000
+            },
+            "committer": {
+              "name": "GitHub",
+              "email": "noreply@github.com",
+              "time": 1791736962000
+            },
+            "branch": "main"
+          },
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/home/runner/work/TracelabOS/TracelabOS/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "classroom.spec.ts",
+          "workflow.spec.ts"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "artifacts/cloud-browser-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "classroom.spec.ts",
+      "file": "classroom.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "authenticated classroom publication, enrollment, photo, confirmed fraction work, teacher release, and login",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [
+                {
+                  "type": "classroom-phase",
+                  "description": "teacher registration"
+                },
+                {
+                  "type": "classroom-phase",
+                  "description": "classroom and assignment publication"
+                },
+                {
+                  "type": "classroom-phase",
+                  "description": "student registration and enrollment"
+                },
+                {
+                  "type": "classroom-phase",
+                  "description": "photo upload and adjustment"
+                },
+                {
+                  "type": "classroom-phase",
+                  "description": "explicit transcription confirmation and grading"
+                },
+                {
+                  "type": "classroom-phase",
+                  "description": "teacher inspection and private image authorization"
+                },
+                {
+                  "type": "classroom-phase",
+                  "description": "teacher review and release"
+                },
+                {
+                  "type": "classroom-phase",
+                  "description": "teacher accessibility audit"
+                },
+                {
+                  "type": "classroom-phase",
+                  "description": "refresh persistence and student login"
+                },
+                {
+                  "type": "classroom-phase",
+                  "description": "workflow complete"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15462,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[classroom phase] teacher registration\n"
+                    },
+                    {
+                      "text": "[classroom phase] classroom and assignment publication\n"
+                    },
+                    {
+                      "text": "[classroom phase] student registration and enrollment\n"
+                    },
+                    {
+                      "text": "[classroom phase] photo upload and adjustment\n"
+                    },
+                    {
+                      "text": "[classroom phase] explicit transcription confirmation and grading\n"
+                    },
+                    {
+                      "text": "[classroom phase] teacher inspection and private image authorization\n"
+                    },
+                    {
+                      "text": "[classroom phase] teacher review and release\n"
+                    },
+                    {
+                      "text": "[classroom phase] teacher accessibility audit\n"
+                    },
+                    {
+                      "text": "[classroom phase] refresh persistence and student login\n"
+                    },
+                    {
+                      "text": "[classroom phase] workflow complete\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T16:43:28.736Z",
+                  "annotations": [
+                    {
+                      "type": "classroom-phase",
+                      "description": "teacher registration"
+                    },
+                    {
+                      "type": "classroom-phase",
+                      "description": "classroom and assignment publication"
+                    },
+                    {
+                      "type": "classroom-phase",
+                      "description": "student registration and enrollment"
+                    },
+                    {
+                      "type": "classroom-phase",
+                      "description": "photo upload and adjustment"
+                    },
+                    {
+                      "type": "classroom-phase",
+                      "description": "explicit transcription confirmation and grading"
+                    },
+                    {
+                      "type": "classroom-phase",
+                      "description": "teacher inspection and private image authorization"
+                    },
+                    {
+                      "type": "classroom-phase",
+                      "description": "teacher review and release"
+                    },
+                    {
+                      "type": "classroom-phase",
+                      "description": "teacher accessibility audit"
+                    },
+                    {
+                      "type": "classroom-phase",
+                      "description": "refresh persistence and student login"
+                    },
+                    {
+                      "type": "classroom-phase",
+                      "description": "workflow complete"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ee123a1e90c2c71e0969-0fc443037811f24ddb92",
+          "file": "classroom.spec.ts",
+          "line": 28,
+          "column": 1
+        },
+        {
+          "title": "keyboard skip link and demo navigation remain usable at 200 percent text zoom",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1644,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T16:43:44.450Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ee123a1e90c2c71e0969-f3ee9b7971d8160ac2e6",
+          "file": "classroom.spec.ts",
+          "line": 225,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "workflow.spec.ts",
+      "file": "workflow.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "visitor confirms a solution, inspects propagation, and records teacher review",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6757,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T16:43:46.117Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c601ceb5ecfc8efa4a14-c050490a163852e3056d",
+          "file": "workflow.spec.ts",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "landing and student workspace pass automated accessibility checks",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2946,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T16:43:52.884Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c601ceb5ecfc8efa4a14-3b749f8929d897f85acb",
+          "file": "workflow.spec.ts",
+          "line": 56,
+          "column": 1
+        },
+        {
+          "title": "mobile workspace has no horizontal overflow and supports correct solution",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3480,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-11T16:43:55.845Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c601ceb5ecfc8efa4a14-40bb44137573c2062e88",
+          "file": "workflow.spec.ts",
+          "line": 82,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-11T16:43:27.623Z",
+    "duration": 31775.196,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

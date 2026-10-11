@@ -15,6 +15,7 @@ export default {
     app ??= createApp(openPostgres(process.env.DATABASE_URL), {
       imageStore: configuredImageStore(),
       allowedOrigins: [new URL(process.env.TRACELAB_PUBLIC_ORIGIN).origin],
+      releaseSha: process.env.TRACELAB_RELEASE_SHA,
     });
     return app.fetch(request);
   },

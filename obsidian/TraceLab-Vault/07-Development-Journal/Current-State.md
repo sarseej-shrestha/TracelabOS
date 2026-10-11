@@ -8,23 +8,23 @@ Cloud integration and deployment of the existing workflow, prioritized by the us
 
 ## Active Task
 
-TASK-0027: diagnose the first GitHub cloud-browser deadline. Security PR #26 is merged and deployed; first deployment acceptance was four of five public tests. Local focused reproduction passes. Automatic release work is safely pushed at 7250406 on ci/verified-production-deployment but remains unmerged.
+TASK-0026: finish checked automatic deployment and exact release verification. TASK-0025 TLS/channel binding is deployed. TASK-0027 diagnostic changes passed CI and merged; public Linux rerun 38156595138 passes 5/5 in 31.8s after local 5/5 acceptance. Original cloud deadline remains documented; no speculative cause is claimed.
 
 ## Current Git Branch
 
-test/cloud-browser-diagnostics, based on synchronized main eb816f0.
+ci/verified-production-deployment; merge aff008a includes updated remote main 4b9cacf and preserves automation commit 7250406.
 
 ## Latest Commit Hash
 
-Latest verified remote main: eb816f07c3f7be5445bd176f0954c9c9ae91a398 (PR #26 merge); security feature 4d71413, deployment feature 533c1cf. Historical rebuild 5dc88b6, remediation 48581d1, mastery cbe7ba9/b0529de and earlier feature commits are preserved. This note records preceding commits rather than its own hash.
+Latest verified remote main: 4b9cacf4497bc2719fcb383005bb075dbc790706 (PR #27 merge). Security feature 4d71413 and main eb816f0 remain preserved. This note records preceding hashes rather than its own hash.
 
 ## Latest Successful Push
 
-PR #25 merged after verify/oracle/ocr-metrics passed in CI run 38130998156. Local main and git ls-remote agree at 2a01f74. Neon deployment credentials are stored in GitHub encrypted secrets; the account-scoped Cloudflare CI token was verified active and saved through a masked local dialog to GitHub encrypted secrets.
+PR #27 passed all checks in run 38156404909 (verify 2m27s, oracle 43s, OCR metrics 10s) before ordinary merge. Local main and git ls-remote agreed at 4b9cacf. CI provider secrets are configured and have deployed both providers successfully; the first full deployment run's browser gate was 4 passed/1 timed out. Local repeated full public verification passes 5/5. Automatic release changes remain on the task branch pending checked merge and actual execution.
 
 ## Latest Verified Test Results
 
-Latest security branch: 1,588 tests pass, including 35 new TLS/protocol/pool regressions. Typecheck, lint, formatting, API/OpenNext builds and dependency audit pass. Real Neon probe verifies TLS 1.3 and SCRAM-SHA-256-PLUS; existing cloud storage/API smoke passes with the replacement driver. Production rollout follows checked merge. Earlier phase evidence follows.
+Latest automation branch: 1,602 tests pass, including 35 TLS/protocol/pool regressions and 14 release-source/health cases. Typecheck, lint, formatting, API/OpenNext builds and dependency audit pass. Real Neon probe verifies TLS 1.3 and SCRAM-SHA-256-PLUS; existing cloud storage/API smoke passes with the replacement driver. The TLS driver is already deployed as API version 3. Automation/release metadata rollout follows checked merge. Earlier phase evidence follows.
 
 1,510 Vitest tests pass, including 9,500 seeded property cases and 26 new dual-database OCR job cases. Strict TypeScript, ESLint and production build pass. Eighteen Chromium workflows pass (22.2s), including extraction, correction, cancellation, failure fallback, teacher provenance and axe accessibility. Independent mastery Decimal oracle: 2,047 sequences, zero disagreements; twelve adaptive Python tests now pass. Synthetic comparison: 240 held-out learners, 34,690 predictions, 5,760 practice choices; hashes/metrics reproduced under Python 3.13. Current replay CI also passes all 24 OCR metric/region tests, ten symbolic-oracle unit tests and twelve adaptive Python tests; fraction oracle reports 1,800 cases/11,700 comparisons and algebra reports 1,800/11,400, and ratios 1,800/11,850, zero disagreements; quantity oracle 2,000 cases, zero disagreements; geometry oracle 1,800 cases/10,800 comparisons, zero disagreements; ten oracle unittest cases pass. SymPy CI repeats 2,000 cases/6,000 comparisons with zero differences. Actual model API smoke processed the research image in 100.57ms. A separate Chromium workflow through the actual local model completed in 1465.52ms, left evaluation null until explicit correction/confirmation, detected fixture first error at step 2, and recorded a teacher review. This is workflow evidence, not camera-image accuracy.
 
@@ -48,7 +48,7 @@ Importer rejected digit-bearing identifiers such as sha256; fixed in 88487d7 wit
 
 ## Current Blockers
 
-No remaining filesystem, Git, network or browser restriction observed. Neon connection and Cloudflare/Neon management authorization now work. Both CLI credentials use macOS Keychain. Five migrations are applied to the existing Neon production branch. The exposed database password was rotated and the ignored mode-0600 local URL updated. Worker tracelabos and Neon function tracelabapi are deployed. Five public Chromium workflows pass. Hosted OCR and automated deployment credentials remain pending. Deployed version 2 still uses the encrypted WebSocket driver. The replacement Node TCP adapter has now passed real Neon TLS 1.3/SCRAM-PLUS verification and in-process API workflow checks; checked merge and production rollout follow.
+No remaining filesystem, Git, network or browser restriction observed. Neon connection and Cloudflare/Neon management authorization now work. Both CLI credentials use macOS Keychain. Five migrations are applied to the existing Neon production branch. The exposed database password was rotated and the ignored mode-0600 local URL updated. Worker tracelabos and Neon function tracelabapi are deployed. Five public Chromium workflows pass. Hosted OCR remains pending. Deployment credentials are configured; API version 3 requires verified TLS/SCRAM-PLUS. First CI public browser deadline is recorded, local full rerun passes, and phase-instrumented Linux rerun passes 5/5. Automatic publication remains gated.
 
 ## Important Architecture Decisions
 
@@ -60,10 +60,10 @@ TRACELAB_DB_PATH (use the same absolute path for API and worker) or DATABASE_URL
 
 ## Exact Next Steps
 
-1. Finish TASK-0027 diagnostics and rerun the complete public browser suite in CI; do not weaken the 90-second deadline or claim the unknown timeout cause is fixed.
-2. Resume ci/verified-production-deployment (7250406); merge updated main into that branch, then finish checked automatic deployment/release-identity verification.
-3. Complete encrypted CI deployment credentials and exercise the repeatable deployment workflow. Add global demo/upload budgets and scheduled retention.
-4. Integrate and benchmark free hosted vision OCR with explicit confirmation/fallback, then resume TASK-0023B live classroom synchronization and performance hardening.
+1. Preserve public browser run 38156595138 (5/5 pass, 31.8s, no retries) and the original failed run; retain phase diagnostics for future incidents.
+2. Complete TASK-0026 checked PR; verify both provider release hashes and all five browser workflows in the automatically triggered deployment.
+3. Add global demo/upload budgets and scheduled retention. Then benchmark free hosted vision OCR with explicit confirmation/fallback.
+4. Resume TASK-0023B live classroom synchronization and performance hardening. Preserve local data and measured limitations.
 
 ## Recovery Procedure
 

@@ -1,18 +1,56 @@
 name: Deploy verified cloud demo
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows: [Engineering checks]
+    types: [completed]
+    branches: [main]
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: production-deployment
   cancel-in-progress: false
 jobs:
+  source:
+    if: >-
+      github.repository == 'sarseej-shrestha/TracelabOS' &&
+      ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_repository.full_name == github.repository))
+    runs-on: ubuntu-24.04
+    outputs:
+      sha: ${{ steps.approved.outputs.sha }}
+    steps:
+      - name: Select the current verified main commit
+        id: approved
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          CANDIDATE: ${{ github.event.workflow_run.head_sha || github.sha }}
+        run: |
+          [[ "$CANDIDATE" =~ ^[a-f0-9]{40}$ ]] || exit 1
+          current=$(gh api "repos/$REPOSITORY/git/ref/heads/main" --jq '.object.sha')
+          if [ "$CANDIDATE" != "$current" ]; then
+            echo 'A newer main commit exists; skip this stale deployment.'
+            exit 0
+          fi
+          checked=$(gh api "repos/$REPOSITORY/actions/workflows/quality.yml/runs?head_sha=$CANDIDATE&event=push" --jq '[.workflow_runs[] | select(.conclusion == "success" and .head_branch == "main")] | length')
+          if [ "$checked" = '0' ]; then
+            echo 'The current main commit has not passed engineering checks.'
+            exit 1
+          fi
+          printf 'sha=%s\n' "$CANDIDATE" >> "$GITHUB_OUTPUT"
   deploy:
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
+    needs: source
+    if: needs.source.outputs.sha != ''
+    runs-on: ubuntu-24.04
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.source.outputs.sha }}
+          persist-credentials: false
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
@@ -25,6 +63,14 @@ jobs:
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:e2e
       - run: pnpm build:api && pnpm build:cloud
+      - name: Reject a deployment superseded during verification
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          CANDIDATE: ${{ needs.source.outputs.sha }}
+        run: |
+          current=$(gh api "repos/$REPOSITORY/git/ref/heads/main" --jq '.object.sha')
+          test "$CANDIDATE" = "$current"
       - name: Deploy existing Neon backend
         run: pnpm deploy:api
         env:
@@ -37,12 +83,18 @@ jobs:
           NEON_STORAGE_SECRET_ACCESS_KEY: ${{ secrets.NEON_STORAGE_SECRET_ACCESS_KEY }}
           TRACELAB_BRIDGE_SECRET: ${{ secrets.TRACELAB_BRIDGE_SECRET }}
           TRACELAB_PUBLIC_ORIGIN: https://tracelabos.sarseej-shrestha.workers.dev
+          TRACELAB_RELEASE_SHA: ${{ needs.source.outputs.sha }}
       - name: Deploy existing Cloudflare Worker
         run: pnpm deploy:web
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
           TRACELAB_BRIDGE_SECRET: ${{ secrets.TRACELAB_BRIDGE_SECRET }}
+          TRACELAB_RELEASE_SHA: ${{ needs.source.outputs.sha }}
+      - name: Verify both deployed commit identities
+        run: node scripts/cloud-release-smoke.mjs
+        env:
+          TRACELAB_RELEASE_SHA: ${{ needs.source.outputs.sha }}
       - name: Verify public workflow
         run: pnpm test:cloud
         env:
@@ -51,5 +103,7 @@ jobs:
         if: always()
         with:
           name: cloud-browser-verification
-          path: artifacts/cloud-browser-results.json
+          path: |
+            artifacts/cloud-browser-results.json
+            artifacts/cloud-release-smoke.json
           retention-days: 14
