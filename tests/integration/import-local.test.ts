@@ -70,7 +70,15 @@ it('imports immutable local work and event ordering, and refuses to overwrite a 
         new Date().toISOString(),
         new Date().toISOString(),
       );
+    local
+      .prepare('INSERT INTO resource_budgets VALUES(?,?,?,?)')
+      .run('uploads', 20737, 2, 7);
     const counts = await importLocal(local, db);
+    const budget = await db.prepare('SELECT * FROM resource_budgets').get();
+    expect(budget?.resource).toBe('uploads');
+    expect(Number(budget?.day_used)).toBe(2);
+    expect(Number(budget?.total_used)).toBe(7);
+    expect(counts.resource_budgets).toBe(1);
     expect(await db.prepare('SELECT * FROM ocr_jobs').get()).toEqual(
       local.prepare('SELECT * FROM ocr_jobs').get(),
     );
@@ -154,12 +162,13 @@ it('imports a pre-mastery database without inventing reviewed evidence', async (
   const { db } = await testPostgres();
   try {
     local.exec(
-      'DROP TABLE recommendations; DROP TABLE mastery_estimates; DROP TABLE mastery_evidence; DROP TABLE skill_prerequisites; DROP TABLE skills; DELETE FROM schema_migrations WHERE version>=4',
+      'DROP TABLE resource_budgets; DROP TABLE recommendations; DROP TABLE mastery_estimates; DROP TABLE mastery_evidence; DROP TABLE skill_prerequisites; DROP TABLE skills; DELETE FROM schema_migrations WHERE version>=4',
     );
     const counts = await importLocal(local, db);
     expect(counts.recommendations).toBe(0);
     expect(counts.mastery_evidence).toBe(0);
     expect(counts.mastery_estimates).toBe(0);
+    expect(counts.resource_budgets).toBe(0);
     expect((await db.prepare('SELECT COUNT(*) n FROM skills').get())?.n).toBe(
       24,
     );

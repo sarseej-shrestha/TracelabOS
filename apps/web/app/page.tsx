@@ -99,7 +99,9 @@ async function api<T>(
   const data = await r.json();
   if (!r.ok)
     throw new Error(
-      data.error?.replaceAll('_', ' ').toLowerCase() ?? 'Request failed',
+      data.message ??
+        data.error?.replaceAll('_', ' ').toLowerCase() ??
+        'Request failed',
     );
   return data;
 }
@@ -1539,7 +1541,7 @@ export default function Home() {
         {notice && <div className="toast success">{notice}</div>}
       </div>
       {error && (
-        <div className="error-toast" role="alert">
+        <div className="error-toast" role="alert" aria-label="Request error">
           {error}
           <button aria-label="Dismiss error" onClick={() => setError('')}>
             ×

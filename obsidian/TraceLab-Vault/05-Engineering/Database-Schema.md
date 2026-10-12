@@ -19,3 +19,5 @@ Implemented skills (24 seeded IDs/titles), skill_prerequisites (foreign keys and
 ## Targeted remediation migration 0005
 
 recommendations has a primary ID, unique source_submission_id (one follow-up per reviewed source), unique assignment_id, foreign keys to student/review/evaluation/skill/creator, rules version, explanation, mastery JSON snapshot and timestamp. Assignments retain their existing schema and full generated-question snapshot. Listing joins the recommendation target; submission creation checks that target again. SQLite upgrade/reopen preserves existing classroom memberships. Import copies recommendations after assignments/submissions/evaluations/reviews and tolerates pre-v5 sources. No hosted migration is claimed.
+
+Migration 0006 adds resource_budgets(resource PK, day, day_used, total_used), with a four-resource CHECK constraint and nonnegative/consistent counters. It has no personal data or foreign keys; existing normalized records are unchanged. Conditional UPSERT under a transaction prevents overspending and rejects backward clocks. See [[Security-Engineering]].

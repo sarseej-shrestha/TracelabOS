@@ -3,6 +3,7 @@ import { configuredImageStore } from '../../../packages/vision-adapter/src/stora
 import { createApp } from './app.ts';
 import { openDatabase } from '../../../packages/database/src/local.ts';
 import { openPostgres } from '../../../packages/database/src/postgres.ts';
+import { publicDemoBudgets } from './resource-budgets.ts';
 const globalStore = globalThis as unknown as {
   tracelabApi?: ReturnType<typeof createApp>;
 };
@@ -13,6 +14,8 @@ const app = (globalStore.tracelabApi ??= createApp(
   {
     imageStore: configuredImageStore(),
     visionProvider: configuredVisionProvider(),
+    resourceBudgets:
+      process.env.TRACELAB_DEMO_BUDGETS === '1' ? publicDemoBudgets : undefined,
     allowedOrigins: process.env.TRACELAB_PUBLIC_ORIGIN
       ? [new URL(process.env.TRACELAB_PUBLIC_ORIGIN).origin]
       : ['http://127.0.0.1:3000', 'http://localhost:3000'],

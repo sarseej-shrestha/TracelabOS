@@ -102,3 +102,5 @@ TASK-0024A: 1,510 automated tests and 18 local Chromium workflows (22.4s), typec
 ## Verified automatic release
 
 2026-10-11: GitHub run 38176846122 (triggered by successful main checks 38176615632) deployed exact main 49c10be to both services. Neon API version 4; Worker 945329de-a2a5-4baf-a220-d0ccdb967c0a. Release smoke confirms both SHAs and PostgreSQL/private storage. All 1,602 unit/integration tests, 18 local browser tests (35.4s), build/audit checks and 5 public browser workflows (34.3s) pass. No new schema or paid service. Public OCR remains unavailable. Safe evidence: artifacts/cloud-release-smoke.json and artifacts/cloud-browser-results.json.
+
+TASK-0029 browser gate: twenty local Chromium workflows now pass with durable budgets enabled, including both actual HTTP quota denials, accessible explanation, keyboard dismissal and continued curriculum reads. Production and OpenNext builds pass; actionlint and formatting pass. Quota code is preserved on its task branch while the unrelated release-propagation gate is corrected. No production quota migration has run yet.

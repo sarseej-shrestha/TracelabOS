@@ -27,3 +27,5 @@ CI additionally requires a project-scoped NEON_API_KEY, CLOUDFLARE_API_TOKEN wit
 ## Release automation
 
 TRACELAB_RELEASE_SHA is a non-secret 40-character Git commit supplied to both deployment steps. Publishing helpers verify it against the checkout. Backend health and the Worker response header expose only this release identity. CLOUDFLARE_API_TOKEN and the project-scoped NEON_API_KEY are encrypted GitHub secrets, as are DATABASE_URL, NEON_STORAGE_ACCESS_KEY_ID, NEON_STORAGE_SECRET_ACCESS_KEY and TRACELAB_BRIDGE_SECRET. CLOUDFLARE_ACCOUNT_ID is a repository variable. Provider secrets are never attached to test/build steps.
+
+TRACELAB_DEMO_BUDGETS=1 enables the hosted policy in local Next.js development. Default local behavior is unchanged. Neon Functions always enforce the policy; no secret or account identifier is stored in the budget table.

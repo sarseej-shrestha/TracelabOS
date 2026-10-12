@@ -7,15 +7,19 @@ import { openPostgres } from '../packages/database/src/postgres.ts';
 if (!process.env.DATABASE_URL)
   throw new Error('DATABASE_URL is required; no database was modified');
 const db = openPostgres(process.env.DATABASE_URL);
+const results = [];
 try {
   for (const [index, file] of migrationFiles.entries()) {
     const sql = await readFile(
       new URL(`../packages/database/migrations/${file}`, import.meta.url),
       'utf8',
     );
-    await applyMigration(db, index + 1, sql);
+    const applied = await applyMigration(db, index + 1, sql);
+    results.push({ version: index + 1, file, applied });
   }
-  console.log('PostgreSQL migrations verified');
+  console.log(
+    JSON.stringify({ status: 'migrations-verified', migrations: results }),
+  );
 } finally {
   await db.close();
 }

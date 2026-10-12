@@ -60,7 +60,9 @@ try {
     );
     assert.equal(await applyMigration(db, index + 1, sql), false);
   }
-  checks.push('five migration checksums match; repeat applies no changes');
+  checks.push(
+    `${migrationFiles.length} migration checksums match; repeat applies no changes`,
+  );
   const constraints = await db
     .prepare(
       "SELECT contype, CAST(COUNT(*) AS INTEGER) n FROM pg_constraint WHERE connamespace='public'::regnamespace GROUP BY contype ORDER BY contype",

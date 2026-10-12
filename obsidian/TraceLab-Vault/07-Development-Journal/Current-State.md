@@ -8,19 +8,19 @@ Cloud integration and deployment of the existing workflow, prioritized by the us
 
 ## Active Task
 
-TASK-0028: preserve the bounded hosted OCR comparison and regression-tested offline rescoring. TASK-0026 automatic deployment is verified complete: run 38176846122 passed both exact-commit checks and all five public browser workflows. Next: global public-demo resource budgets before activating OCR.
+TASK-0029: durable public-demo budgets implemented and passing 1,638 unit/integration tests plus an isolated two-pool Neon concurrency smoke. Twenty local browser workflows now pass with enforcement enabled; OpenNext build and formatting/actionlint pass. Production activation awaits checked merge. A separate deployment-check fix is needed: automatic run 38177734175 observed the old Worker SHA immediately after upload while the API had the new SHA; a later public probe observes both at b42e065. No propagation duration is inferred from those two observations.
 
 ## Current Git Branch
 
-research/hosted-ocr-benchmark, based on synchronized main 49c10be393b3377e3d3f795b1094a89a77427e78.
+security/durable-demo-budgets, based on synchronized remote main b42e065aa1c7393cebc403979abdffda1be8cb8d.
 
 ## Latest Commit Hash
 
-Verified remote main: 49c10be393b3377e3d3f795b1094a89a77427e78 (PR #28 merge). Automation feature 7250406 and evidence 5888698 are preserved. This note records preceding hashes rather than its own hash.
+Remote main b42e065 (PR #29 merge), research feature f24b7c76a7c1319028a1f51f7d42864f52779f3b. Preceding completed automatic release 49c10be is preserved.
 
 ## Latest Successful Push
 
-PR #28 passed all checks in run 38156891087, merged normally, and post-merge Engineering checks 38176615632 passed. Automatic deployment 38176846122 succeeded: Neon API version 4 and Worker 945329de-a2a5-4baf-a220-d0ccdb967c0a both report main 49c10be. Five public workflows pass in 34.3s; eighteen local workflows pass in 35.4s on GitHub Linux. Hosted OCR research changes are pending checked push/merge.
+Hosted OCR research f24b7c7 passed all CI checks in run 38177283896 before PR #29 ordinary merge. Source is visible remotely at b42e065. Post-merge quality passed; automatic release 38177734175 failed its immediate Worker SHA check, skipping public browser acceptance. Later health reports both providers at b42e065. Budget changes are not deployed.
 
 ## Latest Verified Test Results
 
