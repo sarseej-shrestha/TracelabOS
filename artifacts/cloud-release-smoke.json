@@ -1,14 +1,22 @@
 {
-  "measuredAt": "2026-10-11T21:36:33.556Z",
-  "release": "49c10be393b3377e3d3f795b1094a89a77427e78",
+  "measuredAt": "2026-10-12T03:32:05.049Z",
+  "release": "b42e065aa1c7393cebc403979abdffda1be8cb8d",
   "worker": "tracelabos",
   "health": {
     "status": "ok",
     "persistence": "neon-postgresql",
     "imageStorage": "private-neon",
-    "ocr": "unavailable",
-    "version": "0.1.0",
-    "release": "49c10be393b3377e3d3f795b1094a89a77427e78"
+    "release": "b42e065aa1c7393cebc403979abdffda1be8cb8d"
   },
-  "bothCommitsVerified": true
+  "bothCommitsVerified": true,
+  "durationMs": 2206,
+  "attempts": [
+    {
+      "elapsedMs": 0,
+      "status": 200,
+      "apiRelease": "b42e065aa1c7393cebc403979abdffda1be8cb8d",
+      "workerRelease": "b42e065aa1c7393cebc403979abdffda1be8cb8d",
+      "outcome": "READY"
+    }
+  ]
 }

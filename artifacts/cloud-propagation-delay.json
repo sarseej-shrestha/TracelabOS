@@ -1,0 +1,28 @@
+{
+  "incident": "automatic-release-version-skew",
+  "runId": 38177734175,
+  "runUrl": "https://github.com/sarseej-shrestha/TracelabOS/actions/runs/38177734175",
+  "expectedRelease": "b42e065aa1c7393cebc403979abdffda1be8cb8d",
+  "neonFunctionVersion": 5,
+  "workerVersion": "f6d45cad-76fa-4509-8497-de334b2943d2",
+  "failedProbe": {
+    "at": "2026-10-11T21:49:28.240Z",
+    "apiRelease": "b42e065aa1c7393cebc403979abdffda1be8cb8d",
+    "workerRelease": "49c10be393b3377e3d3f795b1094a89a77427e78",
+    "source": "GitHub assertion output; API assertion passed before Worker assertion failed"
+  },
+  "laterPublicProbe": {
+    "responseDate": "2026-10-11T21:50:08Z",
+    "httpStatus": 200,
+    "apiRelease": "b42e065aa1c7393cebc403979abdffda1be8cb8d",
+    "workerRelease": "b42e065aa1c7393cebc403979abdffda1be8cb8d",
+    "cloudflareColo": "DFW"
+  },
+  "publicBrowserStep": "skipped after release gate failed",
+  "inheritedArtifact": {
+    "measuredAt": "2026-10-11T21:36:33.556Z",
+    "release": "49c10be393b3377e3d3f795b1094a89a77427e78",
+    "validEvidenceForThisRun": false
+  },
+  "limitations": "Two observations from different execution locations do not establish a global propagation duration. No failing browser run or application data loss was observed in this incident."
+}
