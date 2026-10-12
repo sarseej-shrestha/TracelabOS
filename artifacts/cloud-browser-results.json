@@ -1,14 +1,14 @@
 {
   "config": {
     "argv": [
-      "/opt/hostedtoolcache/node/22.23.3/x64/bin/node",
-      "/home/runner/work/TracelabOS/TracelabOS/node_modules/playwright/cli.js",
+      "/Users/userselu/.npm/_npx/52027bd8fc0022aa/node_modules/node/bin/node",
+      "/Users/userselu/Downloads/TracelabOS/node_modules/.pnpm/playwright@1.63.0/node_modules/playwright/cli.js",
       "test",
       "--config",
       "playwright.cloud.config.ts"
     ],
-    "configFile": "/home/runner/work/TracelabOS/TracelabOS/playwright.cloud.config.ts",
-    "rootDir": "/home/runner/work/TracelabOS/TracelabOS/tests/e2e",
+    "configFile": "/Users/userselu/Downloads/TracelabOS/playwright.cloud.config.ts",
+    "rootDir": "/Users/userselu/Downloads/TracelabOS/tests/e2e",
     "failOnFlakyTests": false,
     "forbidOnly": false,
     "fullyParallel": false,
@@ -19,64 +19,20 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "ci": {
-        "commitHref": "https://github.com/sarseej-shrestha/TracelabOS/commit/49c10be393b3377e3d3f795b1094a89a77427e78",
-        "commitHash": "49c10be393b3377e3d3f795b1094a89a77427e78",
-        "buildHref": "https://github.com/sarseej-shrestha/TracelabOS/actions/runs/38176846122"
-      },
-      "gitCommit": {
-        "shortHash": "49c10be",
-        "hash": "49c10be393b3377e3d3f795b1094a89a77427e78",
-        "subject": "Merge pull request #28 from sarseej-shrestha/ci/verified-production-deployment",
-        "body": "Merge pull request #28 from sarseej-shrestha/ci/verified-production-deployment\n\nAutomate checked releases with exact Worker and API commit verification",
-        "author": {
-          "name": "sarseej-shrestha",
-          "email": "157068990+sarseej-shrestha@users.noreply.github.com",
-          "time": 1791754199000
-        },
-        "committer": {
-          "name": "GitHub",
-          "email": "noreply@github.com",
-          "time": 1791754199000
-        },
-        "branch": "HEAD"
-      },
       "actualWorkers": 1
     },
     "preserveOutput": "always",
     "projects": [
       {
-        "outputDir": "/home/runner/work/TracelabOS/TracelabOS/test-results",
+        "outputDir": "/Users/userselu/Downloads/TracelabOS/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "ci": {
-            "commitHref": "https://github.com/sarseej-shrestha/TracelabOS/commit/49c10be393b3377e3d3f795b1094a89a77427e78",
-            "commitHash": "49c10be393b3377e3d3f795b1094a89a77427e78",
-            "buildHref": "https://github.com/sarseej-shrestha/TracelabOS/actions/runs/38176846122"
-          },
-          "gitCommit": {
-            "shortHash": "49c10be",
-            "hash": "49c10be393b3377e3d3f795b1094a89a77427e78",
-            "subject": "Merge pull request #28 from sarseej-shrestha/ci/verified-production-deployment",
-            "body": "Merge pull request #28 from sarseej-shrestha/ci/verified-production-deployment\n\nAutomate checked releases with exact Worker and API commit verification",
-            "author": {
-              "name": "sarseej-shrestha",
-              "email": "157068990+sarseej-shrestha@users.noreply.github.com",
-              "time": 1791754199000
-            },
-            "committer": {
-              "name": "GitHub",
-              "email": "noreply@github.com",
-              "time": 1791754199000
-            },
-            "branch": "HEAD"
-          },
           "actualWorkers": 1
         },
         "id": "",
         "name": "",
-        "testDir": "/home/runner/work/TracelabOS/TracelabOS/tests/e2e",
+        "testDir": "/Users/userselu/Downloads/TracelabOS/tests/e2e",
         "testIgnore": [],
         "testMatch": [
           "classroom.spec.ts",
@@ -174,7 +130,7 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 20319,
+                  "duration": 14229,
                   "errors": [],
                   "stdout": [
                     {
@@ -210,7 +166,7 @@
                   ],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-11T21:36:35.056Z",
+                  "startTime": "2026-10-12T08:36:32.316Z",
                   "annotations": [
                     {
                       "type": "classroom-phase",
@@ -280,12 +236,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1721,
+                  "duration": 2821,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-11T21:36:55.472Z",
+                  "startTime": "2026-10-12T08:36:47.071Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -313,7 +269,112 @@
           "tests": [
             {
               "timeout": 90000,
-              "annotations": [],
+              "annotations": [
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 401"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 401"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 401"
+                },
+                {
+                  "type": "api-response",
+                  "description": "demo-start: HTTP 201"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "submission-create: HTTP 201"
+                },
+                {
+                  "type": "api-response",
+                  "description": "submission-read: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "submission-transcription: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "submission-confirm: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "submission-read: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "submission-read: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "submission-read: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                }
+              ],
               "expectedStatus": "passed",
               "projectId": "",
               "projectName": "",
@@ -322,13 +383,128 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 5161,
+                  "duration": 4656,
                   "errors": [],
-                  "stdout": [],
+                  "stdout": [
+                    {
+                      "text": "[browser API] other-api: HTTP 401\n"
+                    },
+                    {
+                      "text": "[browser API] other-api: HTTP 401\n"
+                    },
+                    {
+                      "text": "[browser API] other-api: HTTP 401\n"
+                    }
+                  ],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-11T21:36:57.211Z",
-                  "annotations": [],
+                  "startTime": "2026-10-12T08:36:49.902Z",
+                  "annotations": [
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 401"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 401"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 401"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "demo-start: HTTP 201"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "submission-create: HTTP 201"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "submission-read: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "submission-transcription: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "submission-confirm: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "submission-read: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "submission-read: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "submission-read: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    }
+                  ],
                   "attachments": []
                 }
               ],
@@ -337,7 +513,7 @@
           ],
           "id": "c601ceb5ecfc8efa4a14-c050490a163852e3056d",
           "file": "workflow.spec.ts",
-          "line": 3,
+          "line": 5,
           "column": 1
         },
         {
@@ -347,7 +523,48 @@
           "tests": [
             {
               "timeout": 90000,
-              "annotations": [],
+              "annotations": [
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 401"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 401"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 401"
+                },
+                {
+                  "type": "api-response",
+                  "description": "demo-start: HTTP 201"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "submission-create: HTTP 201"
+                },
+                {
+                  "type": "api-response",
+                  "description": "submission-read: HTTP 200"
+                }
+              ],
               "expectedStatus": "passed",
               "projectId": "",
               "projectName": "",
@@ -356,13 +573,64 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2899,
+                  "duration": 3767,
                   "errors": [],
-                  "stdout": [],
+                  "stdout": [
+                    {
+                      "text": "[browser API] other-api: HTTP 401\n"
+                    },
+                    {
+                      "text": "[browser API] other-api: HTTP 401\n"
+                    },
+                    {
+                      "text": "[browser API] other-api: HTTP 401\n"
+                    }
+                  ],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-11T21:37:02.383Z",
-                  "annotations": [],
+                  "startTime": "2026-10-12T08:36:54.564Z",
+                  "annotations": [
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 401"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 401"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 401"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "demo-start: HTTP 201"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "submission-create: HTTP 201"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "submission-read: HTTP 200"
+                    }
+                  ],
                   "attachments": []
                 }
               ],
@@ -371,7 +639,7 @@
           ],
           "id": "c601ceb5ecfc8efa4a14-3b749f8929d897f85acb",
           "file": "workflow.spec.ts",
-          "line": 56,
+          "line": 58,
           "column": 1
         },
         {
@@ -381,7 +649,60 @@
           "tests": [
             {
               "timeout": 90000,
-              "annotations": [],
+              "annotations": [
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 401"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 401"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "demo-start: HTTP 201"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 401"
+                },
+                {
+                  "type": "api-response",
+                  "description": "other-api: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "submission-create: HTTP 201"
+                },
+                {
+                  "type": "api-response",
+                  "description": "submission-read: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "submission-transcription: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "submission-confirm: HTTP 200"
+                },
+                {
+                  "type": "api-response",
+                  "description": "submission-read: HTTP 200"
+                }
+              ],
               "expectedStatus": "passed",
               "projectId": "",
               "projectName": "",
@@ -390,13 +711,76 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3309,
+                  "duration": 3777,
                   "errors": [],
-                  "stdout": [],
+                  "stdout": [
+                    {
+                      "text": "[browser API] other-api: HTTP 401\n"
+                    },
+                    {
+                      "text": "[browser API] other-api: HTTP 401\n"
+                    },
+                    {
+                      "text": "[browser API] other-api: HTTP 401\n"
+                    }
+                  ],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-11T21:37:05.293Z",
-                  "annotations": [],
+                  "startTime": "2026-10-12T08:36:58.335Z",
+                  "annotations": [
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 401"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 401"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "demo-start: HTTP 201"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 401"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "other-api: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "submission-create: HTTP 201"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "submission-read: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "submission-transcription: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "submission-confirm: HTTP 200"
+                    },
+                    {
+                      "type": "api-response",
+                      "description": "submission-read: HTTP 200"
+                    }
+                  ],
                   "attachments": []
                 }
               ],
@@ -405,7 +789,7 @@
           ],
           "id": "c601ceb5ecfc8efa4a14-40bb44137573c2062e88",
           "file": "workflow.spec.ts",
-          "line": 82,
+          "line": 84,
           "column": 1
         }
       ]
@@ -413,8 +797,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-11T21:36:34.343Z",
-    "duration": 34324.378,
+    "startTime": "2026-10-12T08:36:31.879Z",
+    "duration": 30340.609,
     "expected": 5,
     "skipped": 0,
     "unexpected": 0,
