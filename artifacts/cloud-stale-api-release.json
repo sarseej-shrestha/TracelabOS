@@ -1,0 +1,135 @@
+{
+  "measuredAt": "2026-10-12T08:53:30.439Z",
+  "release": "8f4bd6f432939d4c92b709fb78c68eadd9aaf22f",
+  "worker": "tracelabos",
+  "bothCommitsVerified": false,
+  "durationMs": 88869,
+  "attempts": [
+    {
+      "elapsedMs": 0,
+      "status": 200,
+      "apiRelease": "ed703c3b9797f6dc5dec5a950a539a21bcc95557",
+      "workerRelease": "8f4bd6f432939d4c92b709fb78c68eadd9aaf22f",
+      "outcome": "VERSION_MISMATCH"
+    },
+    {
+      "elapsedMs": 6784,
+      "status": 200,
+      "apiRelease": "ed703c3b9797f6dc5dec5a950a539a21bcc95557",
+      "workerRelease": "8f4bd6f432939d4c92b709fb78c68eadd9aaf22f",
+      "outcome": "VERSION_MISMATCH"
+    },
+    {
+      "elapsedMs": 12106,
+      "status": 200,
+      "apiRelease": "ed703c3b9797f6dc5dec5a950a539a21bcc95557",
+      "workerRelease": "8f4bd6f432939d4c92b709fb78c68eadd9aaf22f",
+      "outcome": "VERSION_MISMATCH"
+    },
+    {
+      "elapsedMs": 17324,
+      "status": 200,
+      "apiRelease": "ed703c3b9797f6dc5dec5a950a539a21bcc95557",
+      "workerRelease": "8f4bd6f432939d4c92b709fb78c68eadd9aaf22f",
+      "outcome": "VERSION_MISMATCH"
+    },
+    {
+      "elapsedMs": 22536,
+      "status": 200,
+      "apiRelease": "ed703c3b9797f6dc5dec5a950a539a21bcc95557",
+      "workerRelease": "8f4bd6f432939d4c92b709fb78c68eadd9aaf22f",
+      "outcome": "VERSION_MISMATCH"
+    },
+    {
+      "elapsedMs": 27631,
+      "status": 200,
+      "apiRelease": "ed703c3b9797f6dc5dec5a950a539a21bcc95557",
+      "workerRelease": "8f4bd6f432939d4c92b709fb78c68eadd9aaf22f",
+      "outcome": "VERSION_MISMATCH"
+    },
+    {
+      "elapsedMs": 32728,
+      "status": 200,
+      "apiRelease": "ed703c3b9797f6dc5dec5a950a539a21bcc95557",
+      "workerRelease": "8f4bd6f432939d4c92b709fb78c68eadd9aaf22f",
+      "outcome": "VERSION_MISMATCH"
+    },
+    {
+      "elapsedMs": 37823,
+      "status": 200,
+      "apiRelease": "ed703c3b9797f6dc5dec5a950a539a21bcc95557",
+      "workerRelease": "8f4bd6f432939d4c92b709fb78c68eadd9aaf22f",
+      "outcome": "VERSION_MISMATCH"
+    },
+    {
+      "elapsedMs": 42915,
+      "status": 200,
+      "apiRelease": "ed703c3b9797f6dc5dec5a950a539a21bcc95557",
+      "workerRelease": "8f4bd6f432939d4c92b709fb78c68eadd9aaf22f",
+      "outcome": "VERSION_MISMATCH"
+    },
+    {
+      "elapsedMs": 48010,
+      "status": 200,
+      "apiRelease": "ed703c3b9797f6dc5dec5a950a539a21bcc95557",
+      "workerRelease": "8f4bd6f432939d4c92b709fb78c68eadd9aaf22f",
+      "outcome": "VERSION_MISMATCH"
+    },
+    {
+      "elapsedMs": 53100,
+      "status": 200,
+      "apiRelease": "ed703c3b9797f6dc5dec5a950a539a21bcc95557",
+      "workerRelease": "8f4bd6f432939d4c92b709fb78c68eadd9aaf22f",
+      "outcome": "VERSION_MISMATCH"
+    },
+    {
+      "elapsedMs": 58192,
+      "status": 200,
+      "apiRelease": "ed703c3b9797f6dc5dec5a950a539a21bcc95557",
+      "workerRelease": "8f4bd6f432939d4c92b709fb78c68eadd9aaf22f",
+      "outcome": "VERSION_MISMATCH"
+    },
+    {
+      "elapsedMs": 63285,
+      "status": 200,
+      "apiRelease": "ed703c3b9797f6dc5dec5a950a539a21bcc95557",
+      "workerRelease": "8f4bd6f432939d4c92b709fb78c68eadd9aaf22f",
+      "outcome": "VERSION_MISMATCH"
+    },
+    {
+      "elapsedMs": 68407,
+      "status": 200,
+      "apiRelease": "ed703c3b9797f6dc5dec5a950a539a21bcc95557",
+      "workerRelease": "8f4bd6f432939d4c92b709fb78c68eadd9aaf22f",
+      "outcome": "VERSION_MISMATCH"
+    },
+    {
+      "elapsedMs": 73499,
+      "status": 200,
+      "apiRelease": "ed703c3b9797f6dc5dec5a950a539a21bcc95557",
+      "workerRelease": "8f4bd6f432939d4c92b709fb78c68eadd9aaf22f",
+      "outcome": "VERSION_MISMATCH"
+    },
+    {
+      "elapsedMs": 78592,
+      "status": 200,
+      "apiRelease": "ed703c3b9797f6dc5dec5a950a539a21bcc95557",
+      "workerRelease": "8f4bd6f432939d4c92b709fb78c68eadd9aaf22f",
+      "outcome": "VERSION_MISMATCH"
+    },
+    {
+      "elapsedMs": 83683,
+      "status": 200,
+      "apiRelease": "ed703c3b9797f6dc5dec5a950a539a21bcc95557",
+      "workerRelease": "8f4bd6f432939d4c92b709fb78c68eadd9aaf22f",
+      "outcome": "VERSION_MISMATCH"
+    },
+    {
+      "elapsedMs": 88779,
+      "status": 200,
+      "apiRelease": "ed703c3b9797f6dc5dec5a950a539a21bcc95557",
+      "workerRelease": "8f4bd6f432939d4c92b709fb78c68eadd9aaf22f",
+      "outcome": "VERSION_MISMATCH"
+    }
+  ]
+}

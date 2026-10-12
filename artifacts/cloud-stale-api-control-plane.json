@@ -1,0 +1,9 @@
+{
+  "measuredAt": "2026-10-12T08:57:52.733Z",
+  "deploymentRun": 38225838986,
+  "activeId": 8,
+  "activeStatus": "completed",
+  "currentId": 8,
+  "directStatus": 200,
+  "directRelease": "8f4bd6f432939d4c92b709fb78c68eadd9aaf22f"
+}

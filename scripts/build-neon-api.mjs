@@ -1,7 +1,15 @@
 import { build } from 'esbuild';
-import { mkdir, copyFile, rm } from 'node:fs/promises';
+import { mkdir, copyFile, rm, readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { backendBuildIdentity } from './backend-release.mjs';
 import { execFileSync } from 'node:child_process';
 const directory = '.data/neon-api-bundle';
+const release = execFileSync('git', ['rev-parse', 'HEAD'], {
+  encoding: 'utf8',
+}).trim();
+const sourceStatus = execFileSync('git', ['status', '--porcelain=v1', '-z'], {
+  encoding: 'utf8',
+});
 await rm(directory, { recursive: true, force: true });
 await mkdir(directory, { recursive: true });
 await build({
@@ -12,6 +20,7 @@ await build({
   target: 'node24',
   format: 'esm',
   external: ['sharp'],
+  define: { 'process.env.TRACELAB_BUILD_SHA': JSON.stringify(release) },
   banner: {
     js: "import { createRequire as __createRequire } from 'node:module'; const require = __createRequire(import.meta.url);",
   },
@@ -34,4 +43,13 @@ execFileSync(
   ],
   { stdio: 'inherit' },
 );
-console.log('Neon Node.js API bundle created; no environment files included.');
+const digest = createHash('sha256')
+  .update(await readFile(`${directory}/index.mjs`))
+  .digest('hex');
+await writeFile(
+  `${directory}/release.json`,
+  JSON.stringify(backendBuildIdentity(release, sourceStatus, digest)),
+);
+console.log(
+  'Neon Node.js API bundle created with source identity; no environment files included.',
+);
