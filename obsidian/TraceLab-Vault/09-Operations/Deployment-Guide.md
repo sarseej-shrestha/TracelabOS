@@ -54,7 +54,7 @@ The deployment workflow listens for a successful Engineering checks run on main 
 
 Both providers receive TRACELAB_RELEASE_SHA. The public health body reports the backend release, and x-tracelab-worker-release identifies the Worker. scripts/cloud-release-smoke.mjs requires both to match the selected SHA before the public browser suite runs. Local publishing helpers reject mismatched SHA or uncommitted source/dependency/application-data changes. They allow only explicitly listed generated browser reports/screenshots, which are not application inputs. This avoids discarding verification evidence or mislabeling unreviewed source as a release.
 
-First run results and exact deployment IDs are recorded in [[Change-Ledger]]. Automatic activation is complete only after the checked workflow has actually run successfully. No deployment trigger applies schema migrations or changes service billing plans.
+First run results and exact deployment IDs are recorded in [[Change-Ledger]]. Automatic activation is complete only after the checked workflow has actually run successfully. The initial trigger did not apply migrations. TASK-0029 adds checksum-verified migrations before publication; no workflow changes service billing plans.
 
 ## Verified automatic release
 

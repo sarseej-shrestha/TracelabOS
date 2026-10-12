@@ -10,7 +10,7 @@ Set DATABASE_URL securely to a Neon connection string and run `pnpm db:migrate`.
 
 ## Private object migration and reconciliation
 
-With explicit TRACELAB_DB_PATH or DATABASE_URL and complete R2 credentials, run `pnpm images:migrate` to preview; add `--apply` for a bounded 100-image batch. Repeat until remaining is zero. Run `pnpm images:reconcile` to preview aged orphans; add `--delete` only after reviewing the count and keeping backups. Only unreferenced application objects older than 24 hours are eligible. Live provider execution is still pending credentials. See [[ADR-0006-Private-Object-Storage]].
+With explicit TRACELAB_DB_PATH or DATABASE_URL and complete R2 credentials, run `pnpm images:migrate` to preview; add `--apply` for a bounded 100-image batch. Repeat until remaining is zero. Run `pnpm images:reconcile` to preview aged orphans; add `--delete` only after reviewing the count and keeping backups. Only unreferenced application objects older than 24 hours are eligible. Real Neon private-storage execution is verified; R2 remains an alternate adapter with local transport tests. See [[ADR-0006-Private-Object-Storage]].
 
 ## Experimental OCR and browser checks
 
