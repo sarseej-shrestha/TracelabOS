@@ -1,6 +1,16 @@
 import { spawn } from 'node:child_process';
+import { readFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { validateBackendArtifact } from './backend-release.mjs';
 import { deploymentRelease } from './deployment-release.mjs';
 process.env.TRACELAB_RELEASE_SHA = deploymentRelease();
+validateBackendArtifact(
+  JSON.parse(await readFile('.data/neon-api-bundle/release.json', 'utf8')),
+  process.env.TRACELAB_RELEASE_SHA,
+  createHash('sha256')
+    .update(await readFile('.data/neon-api-bundle/index.mjs'))
+    .digest('hex'),
+);
 // Load credentials with Node --env-file, or inject encrypted CI secrets. Never put them in shell text.
 const keys = [
   'DATABASE_URL',

@@ -1,6 +1,6 @@
 # TraceLab OS — Current State
 
-Checkpoint: 2026-10-11 America/Chicago. The public manual-transcription workflow is functional; the full requested product is incomplete.
+Checkpoint: 2026-10-12 America/Chicago. The public manual-transcription workflow is functional; the full requested product is incomplete.
 
 ## Current Development Phase
 
@@ -8,23 +8,23 @@ Cloud integration and deployment of the existing workflow, prioritized by the us
 
 ## Active Task
 
-TASK-0031: instrument public confirmation diagnostics after quota release 38201268694 passed four browser tests and failed the last mobile result assertion. Local full reproduction passes all five in 30.3s against the same deployed ed703c3. The original failure is retained; its cause remains unproven. No deadlines, quotas, or correctness assertions were weakened.
+TASK-0033: backend artifact identity hardening. Automatic diagnostic release 38225838986 failed after 18 probes still saw old API ed703c3/new Worker 8f4bd6f. Later direct read at 08:57:52.733Z sees expected API 8f4bd6f. Provider propagation internals remain unknown. Public-only browser verification is newly triggered against converged production. The compiled artifact/source/configuration guards are separately tested; no timing workaround or OCR activation is claimed.
 
 ## Current Git Branch
 
-fix/cloud-confirmation-diagnostics, from synchronized main ed703c3b9797f6dc5dec5a950a539a21bcc95557.
+fix/backend-release-identity, from synchronized main 8f4bd6f432939d4c92b709fb78c68eadd9aaf22f.
 
 ## Latest Commit Hash
 
-Main ed703c3 (PR #31), following release fix 10e4532 (PR #30). Quota feature 2304080 and OCR research f24b7c7 are preserved in history.
+Main 8f4bd6f (PR #32). Hosted adapter 07dd51b with synchronization commit 71b8bf0 is safely pushed in PR #33 and passing CI, not merged.
 
 ## Latest Successful Push
 
-PR #31 passed CI 38200702920 before ordinary merge. Source is verified at remote main ed703c3. Its automatic release applied migration 0006 and published both services; public acceptance was 4/5. Prior release 38200660616 passed all five public tests at 10e4532 (API 6 / Worker 1a3f94c1-c4ea-4fa0-8d86-0a52203f359a).
+Diagnostic a17fb2f passed CI 38224854700 and merged as 8f4bd6f. Hosted adapter PR #33 passed CI 38225818529 (verify 3m11s, oracle 45s, OCR 13s); awaiting release recovery before merge.
 
 ## Latest Verified Test Results
 
-Main: 1,653 unit/integration tests, 9,500 seeded property cases, 20 local browser workflows, typecheck/lint/format/build and CI Python oracles pass. Hosted OCR research: 43 Python tests; 16 measured calls preserved. Latest public full local reproduction passes 5/5 (30.3s), including photo authorization, student confirmation, teacher review, persistence and accessibility. Original CI mobile failure remains distinct from the passing reproduction. New diagnostic tests and CI pending.
+Artifact hardening: 1,686 tests pass, including 24 new clean/stale/tampered artifact and runtime-identity cases; typecheck/lint pass. Separate hosted adapter combined branch: 1,695 tests pass, including 33 new OCR cases, with all CI jobs passed. Original quota release mobile assertion failed in CI; local full reproduction against unchanged production passes 5/5 in 30.3s. New Linux public-only run pending. Historical main verification: 9,500 seeded property cases, 20 local browser workflows and independent Python oracles pass.
 
 ## Completed Features
 
@@ -58,9 +58,9 @@ TRACELAB_DB_PATH (use the same absolute path for API and worker) or DATABASE_URL
 
 ## Exact Next Steps
 
-1. Check and merge sanitized browser diagnostics, then verify the instrumented Linux/public release gate. Investigate any captured failure rather than retrying blindly.
-2. Continue hosted OCR integration with persistent inference limits, explicit student confirmation and targeted camera-photo validation. No production OCR model is active.
-3. Continue retention and classroom live updates after the verified release checkpoint.
+1. Verify the instrumented public-only Linux browser run against converged main 8f4bd6f; retain original failed release evidence.
+2. Check/merge artifact-identity hardening and verify its exact deployed build and public workflows.
+3. Integrate already checked hosted adapter PR #33, then implement private cloud transport, persistent inference limits and durable job waking. Camera-photo acceptance remains unverified; no public OCR is active.
 
 ## Recovery Procedure
 
