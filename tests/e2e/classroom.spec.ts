@@ -1,6 +1,7 @@
 import { test, expect, type Page } from 'playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import sharp from 'sharp';
+import { recordApiDiagnostics } from '../helpers/browser-diagnostics.ts';
 import { generateQuestion } from '../../packages/question-bank/src/index';
 async function register(
   page: Page,
@@ -32,6 +33,8 @@ test('authenticated classroom publication, enrollment, photo, confirmed fraction
   const studentContext = await browser.newContext();
   const teacher = await teacherContext.newPage();
   const student = await studentContext.newPage();
+  recordApiDiagnostics(teacher, test.info());
+  recordApiDiagnostics(student, test.info());
   const suffix = crypto.randomUUID().slice(0, 8);
   const username = `student_${suffix}`;
   const checkpoint = (phase: string) => {

@@ -1,5 +1,7 @@
 import { test, expect } from 'playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { recordApiDiagnostics } from '../helpers/browser-diagnostics.ts';
+test.beforeEach(({ page }, info) => recordApiDiagnostics(page, info));
 test('visitor confirms a solution, inspects propagation, and records teacher review', async ({
   page,
 }) => {

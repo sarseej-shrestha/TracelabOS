@@ -363,9 +363,18 @@ TASK-0029 combined verification: all 1,653 tests pass (33 files), TypeScript/lin
 
 TASK-0029 documentation reconciliation: updated the primary system/deployment diagrams, roadmap, backlog and monitoring notes to reflect the already verified cloud architecture. Removed stale credential-blocker/no-deployment statements while retaining historical checkpoints and pending OCR/retention/live-subscription limitations. This accompanies the new shared cloud quota boundary; no extra service was introduced.
 
+## TASK-0031 — Diagnose public mobile confirmation failure
+
+Date: 2026-10-12. Branch: fix/cloud-confirmation-diagnostics, from synchronized main ed703c3b9797f6dc5dec5a950a539a21bcc95557. TASK-0030 automatic deployment 38200660616 passed both release identities and five public workflows (32.2s). TASK-0029 merged via PR #31 after CI 38200702920 passed. Automatic release 38201268694 applied migration 0006, published both ed703c3 services, and passed four public workflows; mobile confirmation did not show the expected result within 15 seconds. No quota exhaustion observed in a read-only production counter inspection (24 mutations, 10 identities, 3 authentication attempts, 1 upload). Original failure preserved before investigation.
+Acceptance: identify the failing request or UI transition with sanitized diagnostics, reproduce where possible, preserve regression evidence, make a focused fix only when cause is established, then repeat complete public browser verification without increasing deadlines or bypassing budgets. Hosted OCR activation waits for this release gate.
+
+TASK-0031 local verification: all 1,662 tests pass (nine new URL-redaction cases); typecheck and lint pass. Full local Chromium public reproduction passes 5/5 in 30.3s, with both transcription and confirmation returning HTTP 200 in the mobile test. Original deployment API version 7 / Worker 4d72e365-55ed-48b7-955e-e38cd89a3d0d remains unchanged. No application fix is claimed. Sanitized evidence, fixed-label diagnostics, vault reconciliation and focused tests are ready for checked CI.
+
 ## TASK-0032 — Strict hosted vision transcription adapter
 
 Date: 2026-10-12. Branch: feat/hosted-vision-adapter from synchronized main ed703c3. TASK-0031 diagnostics are safely pushed at a17fb2f on their separate branch while CI finishes; no pending changes are overwritten.
 Objective: adapt the measured Workers AI Mistral response shapes into the existing student-confirmed OCR contract. Acceptance: bounded image/model input, strict JSON lines with no grading/confidence/bounding-box fabrication, preserved requested/returned model provenance, explicit invalid-output and quota failure categories, captured pilot regressions, existing local provider compatibility, tests/typecheck/lint. This task does not activate a public inference endpoint; persistent inference limits and the checked public deployment gate precede activation.
 
 TASK-0032 focused verification: 87 OCR tests pass, strict TypeScript/lint pass. Initial test compilation needed an explicit typed mock; first runtime run exposed valid JSON form-feed decoding from an incorrectly escaped LaTeX command, now explicitly rejected by the bounded line parser. Eight actual pilot payloads replayed offline (seven accepted, original malformed JSON rejected); no new inference calls. Added terminal-quota regressions on both databases. No public transport is active.
+
+TASK-0032 synchronization: feature 07dd51b pushed; merged verified remote main 8f4bd6f (PR #32, diagnostics a17fb2f). PR #32 CI 38224854700 passed all jobs (verify 4m52s, oracle 48s, OCR 12s). The sole ledger conflict preserves both complete task records. Full branch suite before merge passed 1,686 tests; combined checks follow.
