@@ -144,6 +144,26 @@ describe.each(['sqlite', 'postgres'] as const)('%s durable OCR', (engine) => {
       evaluation: expect.any(Object),
     });
   });
+  it('exhausted provider quota ends the job without scheduling billable retries', async () => {
+    expect((await enqueue()).status).toBe(202);
+    const job = (await claimOcr(db, provider.version))!;
+    expect(
+      await completeOcr(db, job, {
+        ok: false,
+        code: 'QUOTA_EXHAUSTED',
+        manualEntry: true,
+      }),
+    ).toBe(true);
+    expect(await view()).toMatchObject({
+      state: 'EXTRACTION_FAILED',
+      evaluation: null,
+      ocrJob: { status: 'FAILED', attempts: 1 },
+    });
+    expect(
+      await claimOcr(db, provider.version, Date.now() + 60000),
+    ).toBeUndefined();
+    expect((await rows())[0]?.error_code).toBe('QUOTA_EXHAUSTED');
+  });
   it('replays the same key without another job and rejects conflicting payloads', async () => {
     const key = randomUUID();
     const first = await (await enqueue(key)).json();

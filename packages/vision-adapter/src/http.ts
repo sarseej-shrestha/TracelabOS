@@ -1,4 +1,4 @@
-import type { VisionProvider } from './index.ts';
+import { VisionFailure, type VisionProvider } from './index.ts';
 export const localModelVersion = 'pix2text-mfr-1.5@1cef9f0:regions-v1';
 /** Only operator configuration supplies this URL; uploaded content never controls destinations. */
 export class HttpVisionProvider implements VisionProvider {
@@ -47,6 +47,7 @@ export class HttpVisionProvider implements VisionProvider {
         image: Buffer.from(image).toString('base64'),
       }),
     });
+    if (response.status === 429) throw new VisionFailure('QUOTA_EXHAUSTED');
     if (!response.ok || !response.body)
       throw new Error('OCR_PROVIDER_UNAVAILABLE');
     const reader = response.body.getReader();

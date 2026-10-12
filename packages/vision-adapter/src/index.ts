@@ -7,11 +7,23 @@ export interface VisionProvider {
     questionId?: string,
   ): Promise<unknown>;
 }
+export class VisionFailure extends Error {
+  constructor(
+    readonly code: 'QUOTA_EXHAUSTED' | 'INVALID_OUTPUT' | 'UNAVAILABLE',
+  ) {
+    super(code);
+  }
+}
 export type Extraction =
   | { ok: true; data: OcrResult }
   | {
       ok: false;
-      code: 'UNAVAILABLE' | 'TIMEOUT' | 'INVALID_OUTPUT' | 'PROVIDER_ERROR';
+      code:
+        | 'UNAVAILABLE'
+        | 'TIMEOUT'
+        | 'INVALID_OUTPUT'
+        | 'PROVIDER_ERROR'
+        | 'QUOTA_EXHAUSTED';
       manualEntry: true;
     };
 export async function extract(
@@ -41,10 +53,14 @@ export async function extract(
     )
       return { ok: false, code: 'INVALID_OUTPUT', manualEntry: true };
     return { ok: true, data: result.data };
-  } catch {
+  } catch (error) {
     return {
       ok: false,
-      code: controller.signal.aborted ? 'TIMEOUT' : 'PROVIDER_ERROR',
+      code: controller.signal.aborted
+        ? 'TIMEOUT'
+        : error instanceof VisionFailure
+          ? error.code
+          : 'PROVIDER_ERROR',
       manualEntry: true,
     };
   } finally {

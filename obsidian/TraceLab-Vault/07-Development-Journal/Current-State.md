@@ -1,6 +1,6 @@
 # TraceLab OS — Current State
 
-Checkpoint: 2026-10-11 America/Chicago. The public manual-transcription workflow is functional; the full requested product is incomplete.
+Checkpoint: 2026-10-12 America/Chicago. The public manual-transcription workflow is functional; the full requested product is incomplete.
 
 ## Current Development Phase
 
@@ -8,15 +8,15 @@ Cloud integration and deployment of the existing workflow, prioritized by the us
 
 ## Active Task
 
-TASK-0031: instrument public confirmation diagnostics after quota release 38201268694 passed four browser tests and failed the last mobile result assertion. Local full reproduction passes all five in 30.3s against the same deployed ed703c3. The original failure is retained; its cause remains unproven. No deadlines, quotas, or correctness assertions were weakened.
+TASK-0032: hosted adapter implemented, tested and pushed at 07dd51b, still inactive. TASK-0031 diagnostics merged as 8f4bd6f after CI 38224854700 passed; automatic release pending. Diagnostic context: after quota release 38201268694 passed four browser tests and failed the last mobile result assertion. Local full reproduction passes all five in 30.3s against the same deployed ed703c3. The original failure is retained; its cause remains unproven. No deadlines, quotas, or correctness assertions were weakened.
 
 ## Current Git Branch
 
-fix/cloud-confirmation-diagnostics, from synchronized main ed703c3b9797f6dc5dec5a950a539a21bcc95557.
+feat/hosted-vision-adapter, incorporating synchronized main 8f4bd6f432939d4c92b709fb78c68eadd9aaf22f.
 
 ## Latest Commit Hash
 
-Main ed703c3 (PR #31), following release fix 10e4532 (PR #30). Quota feature 2304080 and OCR research f24b7c7 are preserved in history.
+Main 8f4bd6f (PR #32), feature 07dd51b; earlier ed703c3 (PR #31), following release fix 10e4532 (PR #30). Quota feature 2304080 and OCR research f24b7c7 are preserved in history.
 
 ## Latest Successful Push
 
@@ -24,7 +24,7 @@ PR #31 passed CI 38200702920 before ordinary merge. Source is verified at remote
 
 ## Latest Verified Test Results
 
-Main: 1,653 unit/integration tests, 9,500 seeded property cases, 20 local browser workflows, typecheck/lint/format/build and CI Python oracles pass. Hosted OCR research: 43 Python tests; 16 measured calls preserved. Latest public full local reproduction passes 5/5 (30.3s), including photo authorization, student confirmation, teacher review, persistence and accessibility. Original CI mobile failure remains distinct from the passing reproduction. New diagnostic tests and CI pending.
+Main: 1,653 unit/integration tests, 9,500 seeded property cases, 20 local browser workflows, typecheck/lint/format/build and CI Python oracles pass. Hosted OCR research: 43 Python tests; 16 measured calls preserved. Latest public full local reproduction passes 5/5 (30.3s), including photo authorization, student confirmation, teacher review, persistence and accessibility. Original CI mobile failure remains distinct from the passing reproduction. Diagnostics CI passed; hosted feature focused suite 87/87 and full pre-merge suite 1,686/1,686 pass. Combined verification pending.
 
 ## Completed Features
 
@@ -68,7 +68,7 @@ Read [[00-START-HERE]], this note, [[Recovery-Instructions]] and ledger; inspect
 
 Earlier preview checkpoint: http://127.0.0.1:3000 returned HTTP 200 and the guided-demo control was visible in Chromium. The local experimental OCR service listens on 127.0.0.1:8020. Preview processes are session-local; restart with [[Local-Development]] and the OCR service README when needed. The source archive hash was rechecked unchanged at this checkpoint.
 
-Latest preview check: 2026-10-10T21:22:37Z, localhost:3000 returned 200 and Chromium saw the guided-demo control; localhost:8020 returned the experimental model version. The durable worker is running in this session. The private local database backup described in [[Local-Development]] was integrity-checked before historical backfill; source records were preserved. Processes remain session-local.
+Latest preview check: 2026-10-10T21:22:37Z, localhost:3000 returned 200 and Chromium saw the guided-demo control; localhost:8020 returned the experimental model version. That earlier checkpoint observed the local durable worker running; no current process is inferred. The private local database backup described in [[Local-Development]] was integrity-checked before historical backfill; source records were preserved. Processes remain session-local.
 
 The replay panel contrast regression is fixed; eighteen complete browser workflows now pass. Original archive hash was rechecked unchanged, and all 86 current vault notes have zero broken wiki links. See artifacts/replay-preview-smoke.json for the latest preview evidence.
 
