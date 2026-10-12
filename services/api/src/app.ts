@@ -15,6 +15,13 @@ import { studentQuestion } from './question-view.ts';
 import { evaluateQuestion } from '../../../packages/question-bank/src/grading.ts';
 import { Hono } from 'hono';
 import { bodyLimit } from 'hono/body-limit';
+import {
+  requestResources,
+  reserveResources,
+  ResourceLimit,
+  validatePolicies,
+  type ResourcePolicies,
+} from './resource-budgets.ts';
 import { getCookie, setCookie, deleteCookie } from 'hono/cookie';
 import { HTTPException } from 'hono/http-exception';
 import { z, ZodError } from 'zod';
@@ -108,9 +115,11 @@ export function createApp(
     imageStore?: ImageStore;
     visionProvider?: VisionProvider;
     releaseSha?: string;
+    resourceBudgets?: ResourcePolicies;
   } = {},
 ) {
   const db = asDatabase(input);
+  if (options.resourceBudgets) validatePolicies(options.resourceBudgets);
   const app = new Hono<{
     Variables: {
       user: User;
@@ -145,6 +154,35 @@ export function createApp(
       onError: (c) => c.json({ error: 'BODY_TOO_LARGE' }, 413),
     }),
   );
+  app.use('*', async (c, next) => {
+    if (options.resourceBudgets) {
+      const timestamp = Date.now();
+      try {
+        await reserveResources(
+          db,
+          requestResources(c.req.method, c.req.path),
+          options.resourceBudgets,
+          timestamp,
+        );
+      } catch (error) {
+        if (!(error instanceof ResourceLimit)) throw error;
+        if (error.retryAt !== null)
+          c.header(
+            'Retry-After',
+            String(Math.max(1, Math.ceil((error.retryAt - timestamp) / 1000))),
+          );
+        return c.json(
+          {
+            error: error.message,
+            message: error.explanation,
+            requestId: c.get('requestId'),
+          },
+          429,
+        );
+      }
+    }
+    await next();
+  });
   app.use('*', async (c, next) => {
     const rollback = Symbol('rollback response');
     try {

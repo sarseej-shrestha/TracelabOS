@@ -8,19 +8,19 @@ Cloud integration and deployment of the existing workflow, prioritized by the us
 
 ## Active Task
 
-TASK-0030: correct release-propagation verification after run 38177734175 saw the previous Worker commit immediately after publication. Fixed gate passes 15 new regressions and a current public probe; checked automatic rollout pending. TASK-0029 resource budgets are safely committed/pushed at 2304080 with 1,638 tests, 20 local browser workflows and a real isolated two-pool Neon smoke; not merged or deployed.
+TASK-0029: durable public-demo budgets now integrated with the release fix and passing 1,653 unit/integration tests plus an isolated two-pool Neon concurrency smoke. Twenty local browser workflows now pass with enforcement enabled; OpenNext build and formatting/actionlint pass. Production activation awaits checked merge. TASK-0030 fix f0b4ebc passed CI and merged as 10e4532; its automatic release is pending. Original incident: automatic run 38177734175 observed the old Worker SHA immediately after upload while the API had the new SHA; a later public probe observes both at b42e065. No propagation duration is inferred from those two observations.
 
 ## Current Git Branch
 
-fix/release-propagation-check from synchronized main b42e065aa1c7393cebc403979abdffda1be8cb8d. Quota work remains on security/durable-demo-budgets.
+security/durable-demo-budgets; quota feature 2304080 now incorporates synchronized main 10e4532e2d04f032c215808841f11deafec1dd85 (PR #30). Documentation conflicts preserve both complete task records.
 
 ## Latest Commit Hash
 
-Main b42e065 (PR #29), research f24b7c7; quota feature 2304080a7b869cea006be245199ccf60b88cfd72 is pushed on its separate task branch.
+Remote main 10e4532 (PR #30), release fix f0b4ebc537045c6d15216cb1c02e8ef500529bf7. Quota feature 2304080 and research f24b7c7 remain preserved.
 
 ## Latest Successful Push
 
-PR #29 passed run 38177283896 before ordinary merge to b42e065; remote SHA verified. Automatic release 38177734175 published API version 5 / Worker f6d45cad-76fa-4509-8497-de334b2943d2 but failed its immediate Worker SHA check, skipping browser acceptance. Current public health reports both b42e065. The previous 49c10be automatic release passed all five public workflows. Quota feature 2304080 is pushed but not merged.
+Hosted OCR research f24b7c7 passed all CI checks in run 38177283896 before PR #29 ordinary merge. Source is visible remotely at b42e065. Post-merge quality passed; automatic release 38177734175 failed its immediate Worker SHA check, skipping public browser acceptance. Later health reports both providers at b42e065. Release fix PR #30 passed run 38200254164 (verify 2m55s, oracle 54s, OCR metrics 8s) and merged normally. Budget changes are not deployed.
 
 ## Latest Verified Test Results
 
@@ -60,9 +60,9 @@ TRACELAB_DB_PATH (use the same absolute path for API and worker) or DATABASE_URL
 
 ## Exact Next Steps
 
-1. Push/check/merge TASK-0030 and verify its automatic release with both exact SHAs and all five public browser workflows.
-2. Resume security/durable-demo-budgets at 2304080, merge updated main while preserving both task ledgers, rerun affected checks and complete checked PR/deployment. Migration 0006 must precede budget activation; it is additive.
-3. Continue targeted hosted OCR validation, retention and live classroom synchronization. The research budget resets only at the next UTC day; do not manually reset it.
+1. Verify the automatic release of main 10e4532 with both SHAs and all five public browser workflows.
+2. Finish PR #31 for durable budgets after combined checks pass; migration 0006 must run before publication. Verify public workflow and persistent counters without exhausting public capacity.
+3. Continue targeted hosted OCR validation, retention and classroom live updates. Preserve original pilot failures and camera-photograph limitations.
 
 ## Recovery Procedure
 

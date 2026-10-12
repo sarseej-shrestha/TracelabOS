@@ -165,6 +165,20 @@ CREATE INDEX recommendations_student ON recommendations(student_id,created_at);
       );
     }
   });
+  transaction(db, () => {
+    if (!db.prepare('SELECT 1 FROM schema_migrations WHERE version=6').get()) {
+      db.exec(`CREATE TABLE resource_budgets (
+        resource TEXT PRIMARY KEY CHECK(resource IN ('mutations','identities','authentication','uploads')),
+        day BIGINT NOT NULL CHECK(day>=0),
+        day_used BIGINT NOT NULL CHECK(day_used>=0),
+        total_used BIGINT NOT NULL CHECK(total_used>=day_used)
+      )`);
+      db.prepare('INSERT INTO schema_migrations VALUES(?,?)').run(
+        6,
+        new Date().toISOString(),
+      );
+    }
+  });
   return db;
 }
 export type DB = ReturnType<typeof openDatabase>;

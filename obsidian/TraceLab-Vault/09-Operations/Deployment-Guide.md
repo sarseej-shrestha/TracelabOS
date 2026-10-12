@@ -54,11 +54,30 @@ The deployment workflow listens for a successful Engineering checks run on main 
 
 Both providers receive TRACELAB_RELEASE_SHA. The public health body reports the backend release, and x-tracelab-worker-release identifies the Worker. scripts/cloud-release-smoke.mjs requires both to match the selected SHA before the public browser suite runs. Local publishing helpers reject mismatched SHA or uncommitted source/dependency/application-data changes. They allow only explicitly listed generated browser reports/screenshots, which are not application inputs. This avoids discarding verification evidence or mislabeling unreviewed source as a release.
 
-First run results and exact deployment IDs are recorded in [[Change-Ledger]]. Automatic activation is complete only after the checked workflow has actually run successfully. No deployment trigger applies schema migrations or changes service billing plans.
+First run results and exact deployment IDs are recorded in [[Change-Ledger]]. Automatic activation is complete only after the checked workflow has actually run successfully. The initial trigger did not apply migrations. TASK-0029 adds checksum-verified migrations before publication; no workflow changes service billing plans.
 
 ## Verified automatic release
 
 2026-10-11: GitHub run 38176846122 (triggered by successful main checks 38176615632) deployed exact main 49c10be to both services. Neon API version 4; Worker 945329de-a2a5-4baf-a220-d0ccdb967c0a. Release smoke confirms both SHAs and PostgreSQL/private storage. All 1,602 unit/integration tests, 18 local browser tests (35.4s), build/audit checks and 5 public browser workflows (34.3s) pass. No new schema or paid service. Public OCR remains unavailable. Safe evidence: artifacts/cloud-release-smoke.json and artifacts/cloud-browser-results.json.
+
+## Durable public-demo budgets — TASK-0029
+
+Migration 0006 adds four fixed resource counters, each with a UTC day, daily usage and lifetime usage. No account, image, grade or history is removed. SQLite version six preserves existing data; imports preserve existing counters and accept earlier databases without that table. Hosted Neon enables enforcement unconditionally. Local mode opts in with TRACELAB_DEMO_BUDGETS=1; Playwright always enables it in its isolated SQLite database.
+
+| Resource                             | Daily attempts/units |      Lifetime units |
+| ------------------------------------ | -------------------: | ------------------: |
+| Mutations except logout              |                2,000 |              50,000 |
+| New identities (two per guided demo) |                  100 |               1,000 |
+| Password login/registration attempts |                  500 | No separate ceiling |
+| Photo-processing attempts            |                   20 |                 128 |
+
+Reservations commit before request work in a separate short transaction. Failed validation, incorrect credentials, invalid images and interrupted uploads remain charged; there is no automatic refund or reset-on-restart. Multiple requested resources reserve atomically in a stable order. Rejected reservations leave no partial counter increments. Clock rollback cannot reopen a previous allowance. Daily limits reset only on a later UTC day; lifetime limits require an operator capacity review, with no public reset endpoint. Origins and body-size validation precede reservations. Unauthenticated attempts may consume this shared protective budget; it is a conservative circuit breaker, not a fair per-person allocation or DoS immunity.
+
+The upload ceiling bounds at most 640 MiB of newly attempted 5 MiB objects since activation, including replacement/orphan attempts; existing objects are additional. It is not a provider usage meter. GET/HEAD, logout and static pages remain accessible through existing authentication/edge limits. Photo-only exhaustion keeps manual entry available. Other exhausted mutation budgets temporarily prevent writes; messages explain midnight UTC or operator review. Read traffic, provider compute/egress, existing data and direct operator tools still require monitoring. Retention/deletion and account-wide billing guarantees are not claimed.
+
+Verification: 36 new dual-database/migration cases; all 1,638 unit/integration tests pass. The real Neon smoke created a uniquely owned temporary schema: two independent pools made sixteen concurrent reservations, exactly five succeeded and eleven were rejected. No partial charges; reconnect/UTC rollover/lifetime ceilings verified. Temporary schema removed, no production records or budgets changed. Evidence: artifacts/neon-budget-smoke.json; reproduce with `node --env-file=.env.cloud.local --experimental-transform-types scripts/budget-smoke.ts` under Node 22. Never print or commit the environment file.
+
+The deploy workflow applies checksum-verified migrations after source/quality gates and before publishing. Migration output lists actual applied/unchanged versions without credentials. Before rolling back code, retain additive migration 0006 and its counters; older code ignores this table. Production activation and browser acceptance are pending checked merge.
 
 ## Release propagation gate — TASK-0030
 

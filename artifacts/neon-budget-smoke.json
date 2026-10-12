@@ -1,0 +1,14 @@
+{
+  "measuredAt": "2026-10-11T21:48:10.348Z",
+  "database": "existing Neon PostgreSQL",
+  "isolatedTemporarySchema": true,
+  "independentPools": 2,
+  "concurrentReservations": 16,
+  "accepted": 5,
+  "rejected": 11,
+  "partialReservationsRolledBack": true,
+  "reconnectPreservesUsage": true,
+  "utcRolloverAndLifetime": "passed",
+  "productionRecordsOrBudgetsModified": false,
+  "temporarySchemaRemoved": true
+}

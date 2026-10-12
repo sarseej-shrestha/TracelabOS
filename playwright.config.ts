@@ -5,6 +5,7 @@ const database = (process.env.TRACELAB_E2E_DB ??= resolve(
 ));
 const environment = {
   TRACELAB_DB_PATH: database,
+  TRACELAB_DEMO_BUDGETS: '1',
   DATABASE_URL: '',
   CLOUDFLARE_ACCOUNT_ID: '',
   R2_BUCKET: '',
