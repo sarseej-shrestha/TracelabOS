@@ -362,3 +362,10 @@ TASK-0029 resumed (2026-10-12 UTC): verified main 10e4532 includes release fix f
 TASK-0029 combined verification: all 1,653 tests pass (33 files), TypeScript/lint/format and actionlint pass after integrating the independently checked release fix. Twenty local browser workflows and the isolated Neon concurrency smoke remain the quota feature evidence; combined CI and public activation follow.
 
 TASK-0029 documentation reconciliation: updated the primary system/deployment diagrams, roadmap, backlog and monitoring notes to reflect the already verified cloud architecture. Removed stale credential-blocker/no-deployment statements while retaining historical checkpoints and pending OCR/retention/live-subscription limitations. This accompanies the new shared cloud quota boundary; no extra service was introduced.
+
+## TASK-0032 — Strict hosted vision transcription adapter
+
+Date: 2026-10-12. Branch: feat/hosted-vision-adapter from synchronized main ed703c3. TASK-0031 diagnostics are safely pushed at a17fb2f on their separate branch while CI finishes; no pending changes are overwritten.
+Objective: adapt the measured Workers AI Mistral response shapes into the existing student-confirmed OCR contract. Acceptance: bounded image/model input, strict JSON lines with no grading/confidence/bounding-box fabrication, preserved requested/returned model provenance, explicit invalid-output and quota failure categories, captured pilot regressions, existing local provider compatibility, tests/typecheck/lint. This task does not activate a public inference endpoint; persistent inference limits and the checked public deployment gate precede activation.
+
+TASK-0032 focused verification: 87 OCR tests pass, strict TypeScript/lint pass. Initial test compilation needed an explicit typed mock; first runtime run exposed valid JSON form-feed decoding from an incorrectly escaped LaTeX command, now explicitly rejected by the bounded line parser. Eight actual pilot payloads replayed offline (seven accepted, original malformed JSON rejected); no new inference calls. Added terminal-quota regressions on both databases. No public transport is active.

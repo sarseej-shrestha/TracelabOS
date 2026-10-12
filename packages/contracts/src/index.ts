@@ -72,6 +72,22 @@ export const ocrSchema = z
     questionId: z.string().min(1).max(100),
     modelVersion: z.string().min(1).max(100),
     status: z.literal('needs_confirmation'),
+    provenance: z
+      .object({
+        provider: z.literal('cloudflare-workers-ai'),
+        requestedModel: z.string().min(1).max(100),
+        returnedModel: z.string().min(1).max(100).optional(),
+        response: z.union([
+          z.string().max(8192),
+          z
+            .object({
+              lines: z.array(z.string().min(1).max(512)).min(1).max(24),
+            })
+            .strict(),
+        ]),
+      })
+      .strict()
+      .optional(),
     lines: z
       .array(
         z
