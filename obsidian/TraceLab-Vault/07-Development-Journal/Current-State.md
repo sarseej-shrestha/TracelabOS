@@ -8,25 +8,23 @@ Cloud integration and deployment of the existing workflow, prioritized by the us
 
 ## Active Task
 
-TASK-0029: durable public-demo budgets now integrated with the release fix and passing 1,653 unit/integration tests plus an isolated two-pool Neon concurrency smoke. Twenty local browser workflows now pass with enforcement enabled; OpenNext build and formatting/actionlint pass. Production activation awaits checked merge. TASK-0030 fix f0b4ebc passed CI and merged as 10e4532; its automatic release is pending. Original incident: automatic run 38177734175 observed the old Worker SHA immediately after upload while the API had the new SHA; a later public probe observes both at b42e065. No propagation duration is inferred from those two observations.
+TASK-0031: instrument public confirmation diagnostics after quota release 38201268694 passed four browser tests and failed the last mobile result assertion. Local full reproduction passes all five in 30.3s against the same deployed ed703c3. The original failure is retained; its cause remains unproven. No deadlines, quotas, or correctness assertions were weakened.
 
 ## Current Git Branch
 
-security/durable-demo-budgets; quota feature 2304080 now incorporates synchronized main 10e4532e2d04f032c215808841f11deafec1dd85 (PR #30). Documentation conflicts preserve both complete task records.
+fix/cloud-confirmation-diagnostics, from synchronized main ed703c3b9797f6dc5dec5a950a539a21bcc95557.
 
 ## Latest Commit Hash
 
-Remote main 10e4532 (PR #30), release fix f0b4ebc537045c6d15216cb1c02e8ef500529bf7. Quota feature 2304080 and research f24b7c7 remain preserved.
+Main ed703c3 (PR #31), following release fix 10e4532 (PR #30). Quota feature 2304080 and OCR research f24b7c7 are preserved in history.
 
 ## Latest Successful Push
 
-Hosted OCR research f24b7c7 passed all CI checks in run 38177283896 before PR #29 ordinary merge. Source is visible remotely at b42e065. Post-merge quality passed; automatic release 38177734175 failed its immediate Worker SHA check, skipping public browser acceptance. Later health reports both providers at b42e065. Release fix PR #30 passed run 38200254164 (verify 2m55s, oracle 54s, OCR metrics 8s) and merged normally. Budget changes are not deployed.
+PR #31 passed CI 38200702920 before ordinary merge. Source is verified at remote main ed703c3. Its automatic release applied migration 0006 and published both services; public acceptance was 4/5. Prior release 38200660616 passed all five public tests at 10e4532 (API 6 / Worker 1a3f94c1-c4ea-4fa0-8d86-0a52203f359a).
 
 ## Latest Verified Test Results
 
-Latest automation branch: 1,602 tests pass, including 35 TLS/protocol/pool regressions and 14 release-source/health cases. Typecheck, lint, formatting, API/OpenNext builds and dependency audit pass. Real Neon probe verifies TLS 1.3 and SCRAM-SHA-256-PLUS; existing cloud storage/API smoke passes with the replacement driver. The TLS driver is already deployed as API version 3. Automatic rollout and exact release metadata are now verified in run 38176846122. The new research suite adds nineteen tests: 37 Python benchmark tests pass; with region tests, 43 pass. Earlier phase evidence follows.
-
-1,510 Vitest tests pass, including 9,500 seeded property cases and 26 new dual-database OCR job cases. Strict TypeScript, ESLint and production build pass. Eighteen Chromium workflows pass (22.2s), including extraction, correction, cancellation, failure fallback, teacher provenance and axe accessibility. Independent mastery Decimal oracle: 2,047 sequences, zero disagreements; twelve adaptive Python tests now pass. Synthetic comparison: 240 held-out learners, 34,690 predictions, 5,760 practice choices; hashes/metrics reproduced under Python 3.13. Current replay CI also passes all 24 OCR metric/region tests, ten symbolic-oracle unit tests and twelve adaptive Python tests; fraction oracle reports 1,800 cases/11,700 comparisons and algebra reports 1,800/11,400, and ratios 1,800/11,850, zero disagreements; quantity oracle 2,000 cases, zero disagreements; geometry oracle 1,800 cases/10,800 comparisons, zero disagreements; ten oracle unittest cases pass. SymPy CI repeats 2,000 cases/6,000 comparisons with zero differences. Actual model API smoke processed the research image in 100.57ms. A separate Chromium workflow through the actual local model completed in 1465.52ms, left evaluation null until explicit correction/confirmation, detected fixture first error at step 2, and recorded a teacher review. This is workflow evidence, not camera-image accuracy.
+Main: 1,653 unit/integration tests, 9,500 seeded property cases, 20 local browser workflows, typecheck/lint/format/build and CI Python oracles pass. Hosted OCR research: 43 Python tests; 16 measured calls preserved. Latest public full local reproduction passes 5/5 (30.3s), including photo authorization, student confirmation, teacher review, persistence and accessibility. Original CI mobile failure remains distinct from the passing reproduction. New diagnostic tests and CI pending.
 
 ## Completed Features
 
@@ -38,7 +36,7 @@ Twenty-four skills/forty-eight active templates cover four scoped units. Geometr
 
 ## Pending Features
 
-Hosted OCR and targeted handwritten-photo benchmark; broader symbolic curriculum; live synchronization and archived replay beyond the 10,000-event bound; global usage budgets; retention/deletion; load tests and full photo-to-OCR acceptance. Cloud manual-transcription workflow is publicly deployed and browser-verified.
+Hosted OCR and targeted handwritten-photo benchmark; broader symbolic curriculum; live synchronization and archived replay beyond the 10,000-event bound; retention/deletion; load tests and full photo-to-OCR acceptance. Cloud manual-transcription workflow is publicly deployed and browser-verified.
 
 ## Known Bugs
 
@@ -48,7 +46,7 @@ Importer rejected digit-bearing identifiers such as sha256; fixed in 88487d7 wit
 
 ## Current Blockers
 
-No remaining filesystem, Git, network or browser restriction observed. Neon connection and Cloudflare/Neon management authorization now work. Both CLI credentials use macOS Keychain. Five migrations are applied to the existing Neon production branch. The exposed database password was rotated and the ignored mode-0600 local URL updated. Worker tracelabos and Neon function tracelabapi are deployed. Five public Chromium workflows pass. Hosted OCR remains pending. Deployment credentials are configured; API version 3 requires verified TLS/SCRAM-PLUS. First CI public browser deadline is recorded, local full rerun passes, and phase-instrumented Linux rerun passes 5/5. Automatic publication is verified by run 38176846122; hosted OCR selection remains open.
+No remaining filesystem, Git, network or browser restriction observed. Neon connection and Cloudflare/Neon management authorization now work. Both CLI credentials use macOS Keychain. Six migrations are applied to the existing Neon production branch. The exposed database password was rotated and the ignored mode-0600 local URL updated. Worker tracelabos and Neon function tracelabapi are deployed. Five public Chromium workflows pass. Hosted OCR remains pending. Deployment credentials are configured; API version 3 requires verified TLS/SCRAM-PLUS. First CI public browser deadline is recorded, local full rerun passes, and phase-instrumented Linux rerun passes 5/5. Automatic publication is verified by run 38176846122; hosted OCR selection remains open.
 
 ## Important Architecture Decisions
 
@@ -60,9 +58,9 @@ TRACELAB_DB_PATH (use the same absolute path for API and worker) or DATABASE_URL
 
 ## Exact Next Steps
 
-1. Verify the automatic release of main 10e4532 with both SHAs and all five public browser workflows.
-2. Finish PR #31 for durable budgets after combined checks pass; migration 0006 must run before publication. Verify public workflow and persistent counters without exhausting public capacity.
-3. Continue targeted hosted OCR validation, retention and classroom live updates. Preserve original pilot failures and camera-photograph limitations.
+1. Check and merge sanitized browser diagnostics, then verify the instrumented Linux/public release gate. Investigate any captured failure rather than retrying blindly.
+2. Continue hosted OCR integration with persistent inference limits, explicit student confirmation and targeted camera-photo validation. No production OCR model is active.
+3. Continue retention and classroom live updates after the verified release checkpoint.
 
 ## Recovery Procedure
 
