@@ -8,19 +8,19 @@ Cloud integration and deployment of the existing workflow, prioritized by the us
 
 ## Active Task
 
-TASK-0028: preserve the bounded hosted OCR comparison and regression-tested offline rescoring. TASK-0026 automatic deployment is verified complete: run 38176846122 passed both exact-commit checks and all five public browser workflows. Next: global public-demo resource budgets before activating OCR.
+TASK-0030: correct release-propagation verification after run 38177734175 saw the previous Worker commit immediately after publication. Fixed gate passes 15 new regressions and a current public probe; checked automatic rollout pending. TASK-0029 resource budgets are safely committed/pushed at 2304080 with 1,638 tests, 20 local browser workflows and a real isolated two-pool Neon smoke; not merged or deployed.
 
 ## Current Git Branch
 
-research/hosted-ocr-benchmark, based on synchronized main 49c10be393b3377e3d3f795b1094a89a77427e78.
+fix/release-propagation-check from synchronized main b42e065aa1c7393cebc403979abdffda1be8cb8d. Quota work remains on security/durable-demo-budgets.
 
 ## Latest Commit Hash
 
-Verified remote main: 49c10be393b3377e3d3f795b1094a89a77427e78 (PR #28 merge). Automation feature 7250406 and evidence 5888698 are preserved. This note records preceding hashes rather than its own hash.
+Main b42e065 (PR #29), research f24b7c7; quota feature 2304080a7b869cea006be245199ccf60b88cfd72 is pushed on its separate task branch.
 
 ## Latest Successful Push
 
-PR #28 passed all checks in run 38156891087, merged normally, and post-merge Engineering checks 38176615632 passed. Automatic deployment 38176846122 succeeded: Neon API version 4 and Worker 945329de-a2a5-4baf-a220-d0ccdb967c0a both report main 49c10be. Five public workflows pass in 34.3s; eighteen local workflows pass in 35.4s on GitHub Linux. Hosted OCR research changes are pending checked push/merge.
+PR #29 passed run 38177283896 before ordinary merge to b42e065; remote SHA verified. Automatic release 38177734175 published API version 5 / Worker f6d45cad-76fa-4509-8497-de334b2943d2 but failed its immediate Worker SHA check, skipping browser acceptance. Current public health reports both b42e065. The previous 49c10be automatic release passed all five public workflows. Quota feature 2304080 is pushed but not merged.
 
 ## Latest Verified Test Results
 
@@ -60,10 +60,9 @@ TRACELAB_DB_PATH (use the same absolute path for API and worker) or DATABASE_URL
 
 ## Exact Next Steps
 
-1. Commit/push TASK-0028 research evidence and regression tests; require all PR checks before merge.
-2. Add global public-demo resource budgets and retention; preserve existing records and local mode.
-3. Investigate the hosted empty-output contract and conduct a bounded supported-domain photograph benchmark before choosing/enabling hosted OCR. Do not bypass the exhausted sixteen-call research budget.
-4. Continue live classroom synchronization and performance hardening.
+1. Push/check/merge TASK-0030 and verify its automatic release with both exact SHAs and all five public browser workflows.
+2. Resume security/durable-demo-budgets at 2304080, merge updated main while preserving both task ledgers, rerun affected checks and complete checked PR/deployment. Migration 0006 must precede budget activation; it is additive.
+3. Continue targeted hosted OCR validation, retention and live classroom synchronization. The research budget resets only at the next UTC day; do not manually reset it.
 
 ## Recovery Procedure
 
@@ -88,3 +87,5 @@ Deployment dependencies introduced a high-severity glob CLI advisory; frontend u
 Latest deployment attempt: GitHub run 38155822011 published API version 3 and Worker d52154f5-74fc-41ec-91fd-1da99ba85932 from eb816f0. Health is 200; the required-channel-binding driver is deployed. Cloud browser acceptance was 4 passed/1 timed out. Focused local rerun passed 1/1 in 14.7s; local full rerun, independent Linux rerun, and the automatic deployment browser suite all pass. The original deadline remains unexplained and preserved. No paid service or schema change occurred.
 
 Latest automatic deployment: run 38176846122 succeeded on 2026-10-11, API version 4 / Worker 945329de-a2a5-4baf-a220-d0ccdb967c0a, both release 49c10be. See artifacts/cloud-release-smoke.json and artifacts/cloud-browser-results.json. Hosted research pilot: 16 requests, 0/8 exact for each candidate, eight empty Moondream results and one invalid Mistral JSON response. No production OCR activation. See [[OCR-Benchmark-Results]].
+
+Latest fix-branch verification: 1,617 tests pass, typecheck/lint pass; 15 new bounded release-gate cases. Current health smoke records both b42e065 on 2026-10-12 03:32 UTC. See [[Regression-History]] for the separate gate failure and safe evidence handling.

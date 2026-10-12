@@ -7,6 +7,13 @@ it('accepts a clean exact commit and newly generated browser evidence', () => {
     validateDeploymentSource(
       sha,
       sha,
+      ' D artifacts/cloud-release-smoke.json\0 D artifacts/cloud-browser-results.json\0',
+    ),
+  ).toBe(sha);
+  expect(
+    validateDeploymentSource(
+      sha,
+      sha,
       ' M artifacts/browser-results.json\0 M artifacts/teacher-studio.png\0',
     ),
   ).toBe(sha);
