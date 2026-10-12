@@ -51,6 +51,8 @@ jobs:
         with:
           ref: ${{ needs.source.outputs.sha }}
           persist-credentials: false
+      - name: Remove inherited deployment reports
+        run: rm -f artifacts/cloud-release-smoke.json artifacts/cloud-browser-results.json
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:

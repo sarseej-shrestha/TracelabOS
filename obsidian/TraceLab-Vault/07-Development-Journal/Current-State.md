@@ -8,19 +8,19 @@ Cloud integration and deployment of the existing workflow, prioritized by the us
 
 ## Active Task
 
-TASK-0029: durable public-demo budgets implemented and passing 1,638 unit/integration tests plus an isolated two-pool Neon concurrency smoke. Twenty local browser workflows now pass with enforcement enabled; OpenNext build and formatting/actionlint pass. Production activation awaits checked merge. A separate deployment-check fix is needed: automatic run 38177734175 observed the old Worker SHA immediately after upload while the API had the new SHA; a later public probe observes both at b42e065. No propagation duration is inferred from those two observations.
+TASK-0029: durable public-demo budgets now integrated with the release fix and passing 1,653 unit/integration tests plus an isolated two-pool Neon concurrency smoke. Twenty local browser workflows now pass with enforcement enabled; OpenNext build and formatting/actionlint pass. Production activation awaits checked merge. TASK-0030 fix f0b4ebc passed CI and merged as 10e4532; its automatic release is pending. Original incident: automatic run 38177734175 observed the old Worker SHA immediately after upload while the API had the new SHA; a later public probe observes both at b42e065. No propagation duration is inferred from those two observations.
 
 ## Current Git Branch
 
-security/durable-demo-budgets, based on synchronized remote main b42e065aa1c7393cebc403979abdffda1be8cb8d.
+security/durable-demo-budgets; quota feature 2304080 now incorporates synchronized main 10e4532e2d04f032c215808841f11deafec1dd85 (PR #30). Documentation conflicts preserve both complete task records.
 
 ## Latest Commit Hash
 
-Remote main b42e065 (PR #29 merge), research feature f24b7c76a7c1319028a1f51f7d42864f52779f3b. Preceding completed automatic release 49c10be is preserved.
+Remote main 10e4532 (PR #30), release fix f0b4ebc537045c6d15216cb1c02e8ef500529bf7. Quota feature 2304080 and research f24b7c7 remain preserved.
 
 ## Latest Successful Push
 
-Hosted OCR research f24b7c7 passed all CI checks in run 38177283896 before PR #29 ordinary merge. Source is visible remotely at b42e065. Post-merge quality passed; automatic release 38177734175 failed its immediate Worker SHA check, skipping public browser acceptance. Later health reports both providers at b42e065. Budget changes are not deployed.
+Hosted OCR research f24b7c7 passed all CI checks in run 38177283896 before PR #29 ordinary merge. Source is visible remotely at b42e065. Post-merge quality passed; automatic release 38177734175 failed its immediate Worker SHA check, skipping public browser acceptance. Later health reports both providers at b42e065. Release fix PR #30 passed run 38200254164 (verify 2m55s, oracle 54s, OCR metrics 8s) and merged normally. Budget changes are not deployed.
 
 ## Latest Verified Test Results
 
@@ -60,10 +60,9 @@ TRACELAB_DB_PATH (use the same absolute path for API and worker) or DATABASE_URL
 
 ## Exact Next Steps
 
-1. Commit/push TASK-0028 research evidence and regression tests; require all PR checks before merge.
-2. Add global public-demo resource budgets and retention; preserve existing records and local mode.
-3. Investigate the hosted empty-output contract and conduct a bounded supported-domain photograph benchmark before choosing/enabling hosted OCR. Do not bypass the exhausted sixteen-call research budget.
-4. Continue live classroom synchronization and performance hardening.
+1. Verify the automatic release of main 10e4532 with both SHAs and all five public browser workflows.
+2. Finish PR #31 for durable budgets after combined checks pass; migration 0006 must run before publication. Verify public workflow and persistent counters without exhausting public capacity.
+3. Continue targeted hosted OCR validation, retention and classroom live updates. Preserve original pilot failures and camera-photograph limitations.
 
 ## Recovery Procedure
 
@@ -88,3 +87,5 @@ Deployment dependencies introduced a high-severity glob CLI advisory; frontend u
 Latest deployment attempt: GitHub run 38155822011 published API version 3 and Worker d52154f5-74fc-41ec-91fd-1da99ba85932 from eb816f0. Health is 200; the required-channel-binding driver is deployed. Cloud browser acceptance was 4 passed/1 timed out. Focused local rerun passed 1/1 in 14.7s; local full rerun, independent Linux rerun, and the automatic deployment browser suite all pass. The original deadline remains unexplained and preserved. No paid service or schema change occurred.
 
 Latest automatic deployment: run 38176846122 succeeded on 2026-10-11, API version 4 / Worker 945329de-a2a5-4baf-a220-d0ccdb967c0a, both release 49c10be. See artifacts/cloud-release-smoke.json and artifacts/cloud-browser-results.json. Hosted research pilot: 16 requests, 0/8 exact for each candidate, eight empty Moondream results and one invalid Mistral JSON response. No production OCR activation. See [[OCR-Benchmark-Results]].
+
+Latest fix-branch verification: 1,617 tests pass, typecheck/lint pass; 15 new bounded release-gate cases. Current health smoke records both b42e065 on 2026-10-12 03:32 UTC. See [[Regression-History]] for the separate gate failure and safe evidence handling.
